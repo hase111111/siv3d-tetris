@@ -1,14 +1,19 @@
-#include "DxLib.h"
+
+#include <DxLib.h>
+
 #include "system_main.h"
+
+#pragma warning(disable : 28251)
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nCmdShow) {
   using mytetris::SystemMain;
-  SystemMain _sys;
+  SystemMain system_main;
 
-  if (_sys.initialize()) {
-    _sys.main();
+  if (system_main.initialize()) {
+    system_main.main();
+    system_main.finalize();
   } else {
     MessageBox(
         NULL,
@@ -16,8 +21,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
              "このアプリは二重起動できません"),
         TEXT("報告"), MB_ICONERROR);
   }
-
-  _sys.finalize();
 
   return 0;
 }
