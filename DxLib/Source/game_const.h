@@ -11,8 +11,8 @@ namespace mytetris {
 
 class GameConst {
  public:
-  static constexpr int kResolutionX = 960;
-  static constexpr int kResolutionY = 540;
+  static constexpr int kResolutionX = 1280;
+  static constexpr int kResolutionY = 960;
 
   static constexpr char kWindowTitle[] = "Tetris";
 
