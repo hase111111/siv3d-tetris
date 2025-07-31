@@ -45,6 +45,7 @@
     <ClCompile Include="Source\TetroMinoCheckField.cpp" />
     <ClCompile Include="Source\TetroMinoGetPos.cpp" />
     <ClCompile Include="Source\TetroMinoTurn.cpp" />
+    <ClCompile Include="Source\title_scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\debug_scene.h" />
