@@ -1,8 +1,8 @@
 #include "SceneManager.h"
 
-#include "Error.h"
 #include "GameScene.h"
 #include "TitleScene.h"
+#include "dxlib_assert.h"
 
 SceneManger::SceneManger() {
   Parameter tempParam;
@@ -25,14 +25,14 @@ void SceneManger::addNewScene(const enumScene _sceneName,
       break;
 
     default:
-      ERR("存在していないシーンの追加依頼が出されました");
+      ASSERT_MUST_NOT_REACH_HERE();
       break;
   }
 }
 
 void SceneManger::deleteNowScene(const Parameter& parameter) {
   m_uniqueSceneStack.pop();
-  if (m_uniqueSceneStack.empty()) ERR("シーンが存在していません");
+  if (m_uniqueSceneStack.empty()) ASSERT_MUST_NOT_REACH_HERE();
 
   m_uniqueSceneStack.top()->receiveParameterInCaseOfDeleteScene(parameter);
 }

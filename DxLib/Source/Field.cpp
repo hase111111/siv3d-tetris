@@ -1,9 +1,9 @@
 #include "Field.h"
 
 #include "DxLib.h"
-#include "Error.h"
 #include "Image.h"
 #include "Keyboard.h"
+#include "dxlib_assert.h"
 
 Field::Field() { mf_init(); }
 
@@ -33,12 +33,13 @@ bool Field::getTspinFlag() const {
 /// <param name="_pos">設置する箇所</param>
 /// <returns>falseが返る場合ゲームオーバー</returns>
 bool Field::setMino(const enumMino _mino, const int (&_pos)[4][2]) {
-  int _most_low_y = TetrisDefine::FIELD_Y;  // 21段目に設置した場合ゲームオーバー
+  int _most_low_y =
+      TetrisDefine::FIELD_Y;  // 21段目に設置した場合ゲームオーバー
   m_tspin_flag = false;
 
   for (int i = 0; i < 4; i++) {
     // フィールド外を参照させない
-    if (!mf_isInField(_pos[i][0], _pos[i][1])) ERR("バッファオーバーフロー");
+    if (!mf_isInField(_pos[i][0], _pos[i][1])) ASSERT_MUST_NOT_REACH_HERE();
 
     if (m_field[_pos[i][0]][_pos[i][1]] != enumMino::none) return false;
 

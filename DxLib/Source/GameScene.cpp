@@ -1,14 +1,14 @@
 #include "GameScene.h"
 
 #include "DxLib.h"
-#include "Error.h"
 #include "Keyboard.h"
+#include "dxlib_assert.h"
 
 GameScene::GameScene(SceneChangeListenerInterface* pScli,
                      const Parameter& parameter)
     : AbstractScene(pScli, parameter) {
   if (parameter.getParam("mode") == Parameter::Error) {
-    ERR("ïsñæÇ»ÉGÉâÅ[");
+    ASSERT_MUST_NOT_REACH_HERE();
   } else if (parameter.getParam("mode") == 0) {
     m_tetris.init(enumGameMode::endless);
   } else if (parameter.getParam("mode") == 1) {

@@ -1,7 +1,6 @@
 #include "Image.h"
 
 #include "DxLib.h"
-#include "Error.h"
 
 void Image::release() {}
 
@@ -15,7 +14,7 @@ int Image::myLoadGraph(std::string str) {
   const int temp_gr_handle = LoadGraph(str.c_str());
 
   if (temp_gr_handle == -1) {
-    ERR("‰æ‘œ‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½");
+    return -1;
   }
 
   // ‹L˜^

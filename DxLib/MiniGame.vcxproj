@@ -24,7 +24,6 @@
     <ClCompile Include="Source\Define.cpp" />
     <ClCompile Include="Source\dxlib_assert.cpp" />
     <ClCompile Include="Source\dxlib_keyboard.cpp" />
-    <ClCompile Include="Source\Error.cpp" />
     <ClCompile Include="Source\error_box.cpp" />
     <ClCompile Include="Source\Field.cpp" />
     <ClCompile Include="Source\Font.cpp" />
@@ -59,7 +58,6 @@
     <ClInclude Include="Source\dxlib_assert.h" />
     <ClInclude Include="Source\dxlib_keyboard.h" />
     <ClInclude Include="Source\EnumTetris.h" />
-    <ClInclude Include="Source\Error.h" />
     <ClInclude Include="Source\error_box.h" />
     <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\Font.h" />

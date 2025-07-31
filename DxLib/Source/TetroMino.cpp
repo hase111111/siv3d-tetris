@@ -1,8 +1,8 @@
 #include "TetroMino.h"
 
 #include "DxLib.h"
-#include "Error.h"
 #include "Keyboard.h"
+#include "dxlib_assert.h"
 
 TetroMino::TetroMino()
     : m_fieldx(5),
@@ -21,7 +21,7 @@ TetroMino::TetroMino()
 }
 
 void TetroMino::update(const int _speed) {
-  if (m_mino == enumMino::none) ERR("reset関数が実行されていません");
+  if (m_mino == enumMino::none) ASSERT_MUST_NOT_REACH_HERE();
 
   mf_moveHardDrop();        // 上ボタンが押された時の処理
   mf_moveSoftDrop();        // 下ボタンが押された時の処理
@@ -54,7 +54,7 @@ void TetroMino::reset(const enumMino _mino) {
       m_fieldy = 1;
       break;
     default:
-      ERR("そのテトリミノは生成できません");
+      ASSERT_MUST_NOT_REACH_HERE();
       break;
   }
 }
@@ -145,7 +145,7 @@ void TetroMino::mf_moveHardDrop() {
 
     loop_jammer++;
     if (TetrisDefine::FIELD_Y < loop_jammer) {
-      ERR("無限ループが発生しました");
+      ASSERT_MUST_NOT_REACH_HERE();
     }
   }
 }

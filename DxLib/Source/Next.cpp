@@ -1,7 +1,7 @@
 #include "Next.h"
 
 #include "DxLib.h"
-#include "Error.h"
+#include "dxlib_assert.h"
 
 Next::Next() {
   for (int i = 0; i < 21; i++) {
@@ -29,7 +29,7 @@ enumMino Next::getTopMino() {
 
   if (_result == enumMino::jammer || _result == enumMino::none ||
       _result == enumMino::wall) {
-    ERR("異常なテトリミノがネクストに挿入されています");
+    ASSERT_MUST_NOT_REACH_HERE();
   }
 
   return _result;

@@ -60,9 +60,6 @@
     <ClCompile Include="Source\TitleScene.cpp">
       <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Error.cpp">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GameScene.cpp">
       <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClCompile>
@@ -160,9 +157,6 @@
     </ClInclude>
     <ClInclude Include="Source\SceneChangeListenerInterface.h">
       <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Error.h">
-      <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameScene.h">
       <Filter>ソース ファイル\ConcreteScene</Filter>
