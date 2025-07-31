@@ -72,9 +72,6 @@
     <ClCompile Include="Source\fps_controller.cpp">
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CalcUtils.cpp">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Keyboard.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
@@ -171,9 +168,6 @@
       <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\fps_controller.h">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CalcUtils.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\Singleton.h">
