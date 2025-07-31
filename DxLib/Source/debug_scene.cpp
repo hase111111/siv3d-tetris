@@ -1,4 +1,10 @@
 
+//! @file debug_scene.cpp
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #include "debug_scene.h"
 
 #include <DxLib.h>
@@ -17,11 +23,11 @@ DebugScene::DebugScene(
 }
 
 bool DebugScene::update() {
-  if (dxlib_keyboard_ptr_->getPressingCount(KEY_INPUT_ESCAPE) == 1) {
+  if (dxlib_keyboard_ptr_->getPressingCount(KeyHandle::kEscape) == 1) {
     return false;
   }
 
-  if (dxlib_keyboard_ptr_->getPressingCount(KEY_INPUT_R) == 1) {
+  if (dxlib_keyboard_ptr_->getPressingCount(KeyHandle::kC) == 1) {
     scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter{});
   }
 

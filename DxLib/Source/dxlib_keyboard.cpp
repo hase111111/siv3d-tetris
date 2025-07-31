@@ -38,20 +38,22 @@ void DxLibKeyboard::update() {
   }
 }
 
-int DxLibKeyboard::getPressingCount(const int key_code) const {
-  if (!isAvailableCode(key_code)) {
+int DxLibKeyboard::getPressingCount(const KeyHandle key_code) const {
+  const int cast_code = static_cast<int>(key_code);
+  if (!isAvailableCode(cast_code)) {
     return -1;
   }
 
-  return key_pressing_counter_[key_code];
+  return key_pressing_counter_[cast_code];
 }
 
-int DxLibKeyboard::getReleasingCount(const int key_code) const {
-  if (!isAvailableCode(key_code)) {
+int DxLibKeyboard::getReleasingCount(const KeyHandle key_code) const {
+  const int cast_code = static_cast<int>(key_code);
+  if (!isAvailableCode(cast_code)) {
     return -1;
   }
 
-  return key_releasing_counter_[key_code];
+  return key_releasing_counter_[cast_code];
 }
 
 bool DxLibKeyboard::isAnyKeyPressed() const {

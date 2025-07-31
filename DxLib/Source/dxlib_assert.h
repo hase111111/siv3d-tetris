@@ -1,4 +1,10 @@
 
+//! @file dxlib_assert.h
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include <DxLib.h>
@@ -55,8 +61,6 @@ void ErrorAssert(const std::string& conditional_expression,
   ASSERT(false, "This part is never reached.")
 
 #else
-
-#define ERROR_ASSERT(error_mes) ((void)0)
 
 #define ASSERT(expr, error_mes) ((void)0)
 
