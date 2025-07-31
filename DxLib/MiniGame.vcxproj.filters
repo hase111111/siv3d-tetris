@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Scene">
-      <UniqueIdentifier>{96f7207f-657e-44f0-b634-f05803970441}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene">
-      <UniqueIdentifier>{e316bc5d-ef39-4d55-baf4-1822c9d5fd5b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Singleton">
       <UniqueIdentifier>{74ad8b33-41db-4e5b-b54d-00ff6dce5041}</UniqueIdentifier>
     </Filter>
@@ -47,21 +41,6 @@
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Parameter.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AbstractScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SceneManager.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TitleScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\Define.cpp">
       <Filter>ソース ファイル\Common</Filter>
@@ -140,26 +119,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Parameter.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Define.h">
       <Filter>ソース ファイル\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AbstractScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneManager.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TitleScene.h">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneChangeListenerInterface.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameScene.h">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\fps_controller.h">
       <Filter>ソース ファイル\Common</Filter>
@@ -169,9 +130,6 @@
     </ClInclude>
     <ClInclude Include="Source\Keyboard.h">
       <Filter>ソース ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneEnum.h">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\Image.h">
       <Filter>ソース ファイル\Singleton</Filter>
