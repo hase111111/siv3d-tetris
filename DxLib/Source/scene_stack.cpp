@@ -16,31 +16,31 @@ namespace mytetris {
 SceneStack::SceneStack(std::unique_ptr<SceneCreator>&& scene_creator_ptr)
     : scene_creator_ptr_(std::move(scene_creator_ptr)),
       initial_scene_name_(SceneName::kDebug) {
-  initializeScene();
+  InitializeScene();
 }
 
-bool SceneStack::updateTopScene() {
+bool SceneStack::UpdateTopScene() {
   ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
-  return scene_ptr_stack_.top()->update();
+  return scene_ptr_stack_.top()->Update();
 }
 
-void SceneStack::drawTopScene() const {
+void SceneStack::DrawTopScene() const {
   ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
-  scene_ptr_stack_.top()->draw();
+  scene_ptr_stack_.top()->Draw();
 }
 
-void SceneStack::addNewScene(const SceneName scene_name,
+void SceneStack::AddNewScene(const SceneName scene_name,
                              const SceneChangeParameter& parameter) {
-  auto new_scene_ptr = scene_creator_ptr_->createScene(scene_name);
+  auto new_scene_ptr = scene_creator_ptr_->CreateScene(scene_name);
 
-  new_scene_ptr->onStart(parameter);  // パラメータを渡して，初期化処理を行う．
+  new_scene_ptr->OnStart(parameter);  // パラメータを渡して，初期化処理を行う．
 
   scene_ptr_stack_.push(std::move(new_scene_ptr));
 }
 
-void SceneStack::deleteNowScene(const int delete_num,
+void SceneStack::DeleteNowScene(const int delete_num,
                                 const SceneChangeParameter& parameter) {
   ASSERT(delete_num <= scene_ptr_stack_.size(),
          "The number of scenes to delete is invalid.");
@@ -52,30 +52,30 @@ void SceneStack::deleteNowScene(const int delete_num,
 
   if (scene_ptr_stack_.empty()) {
     // シーンがなくなった場合は，初期シーンを再度生成する．
-    initializeScene(parameter);
+    InitializeScene(parameter);
 
     return;
   }
 
   // 削除後のシーンに対して，引数のパラメータを渡して，初期化処理を行う．
-  scene_ptr_stack_.top()->onReturnFromOtherScene(parameter);
+  scene_ptr_stack_.top()->OnReturnFromOtherScene(parameter);
 }
 
-void SceneStack::deleteAllScene() {
+void SceneStack::DeleteAllScene() {
   // シーンを全て削除する．
   while (!scene_ptr_stack_.empty()) {
     scene_ptr_stack_.pop();
   }
 
   // 初期シーンを再度生成する．
-  initializeScene();
+  InitializeScene();
 }
 
-void SceneStack::initializeScene(const SceneChangeParameter& parameter) {
-  auto first_scene_ptr = scene_creator_ptr_->createScene(initial_scene_name_);
+void SceneStack::InitializeScene(const SceneChangeParameter& parameter) {
+  auto first_scene_ptr = scene_creator_ptr_->CreateScene(initial_scene_name_);
 
   // 空のパラメータを渡して，初期化処理を行う．
-  first_scene_ptr->onStart(parameter);
+  first_scene_ptr->OnStart(parameter);
 
   scene_ptr_stack_.push(std::move(first_scene_ptr));
 }

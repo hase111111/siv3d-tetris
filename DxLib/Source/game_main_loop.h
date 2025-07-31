@@ -28,10 +28,10 @@ class GameMainLoop final {
 
   //! @brief メインループ内で1フレームごとに行う処理を呼ぶ．
   //! @return false := ゲームを終了する．
-  bool loop();
+  bool Loop();
 
  private:
-  [[nodiscard]] std::shared_ptr<SceneStack> initializeSceneStack() const;
+  [[nodiscard]] std::shared_ptr<SceneStack> InitializeSceneStack() const;
 
   const std::shared_ptr<DxLibKeyboard> dxlib_keyboard_ptr_;
 

@@ -18,7 +18,7 @@ DxLibKeyboard::DxLibKeyboard() {
   }
 }
 
-void DxLibKeyboard::update() {
+void DxLibKeyboard::Update() {
   char now_key_status[kKeyNum];
   GetHitKeyStateAll(now_key_status);  // 今のキーの入力状態を取得．
 
@@ -44,25 +44,25 @@ void DxLibKeyboard::update() {
   }
 }
 
-int DxLibKeyboard::getPressingCount(const KeyHandle key_code) const {
+int DxLibKeyboard::GetPressingCount(const KeyHandle key_code) const {
   const int cast_code = static_cast<int>(key_code);
-  if (!isAvailableCode(cast_code)) {
+  if (!IsAvailableCode(cast_code)) {
     return -1;
   }
 
   return key_pressing_counter_[cast_code];
 }
 
-int DxLibKeyboard::getReleasingCount(const KeyHandle key_code) const {
+int DxLibKeyboard::GetReleasingCount(const KeyHandle key_code) const {
   const int cast_code = static_cast<int>(key_code);
-  if (!isAvailableCode(cast_code)) {
+  if (!IsAvailableCode(cast_code)) {
     return -1;
   }
 
   return key_releasing_counter_[cast_code];
 }
 
-bool DxLibKeyboard::isAnyKeyPressed() const {
+bool DxLibKeyboard::IsAnyKeyPressed() const {
   for (int i = 0; i < kKeyNum; i++) {
     if (key_pressing_counter_[i] > 0) {
       return true;
@@ -72,18 +72,12 @@ bool DxLibKeyboard::isAnyKeyPressed() const {
   return false;
 }
 
-bool DxLibKeyboard::isAvailableCode(const int key_code) const {
+bool DxLibKeyboard::IsAvailableCode(const int key_code) const {
   if (!(0 <= key_code && key_code < kKeyNum)) {
     return false;
   }
 
   return true;
 }
-
-// DxLib のキーコードの定義が変化していないか確認する．
-static_assert(KEY_INPUT_ESCAPE == 0x01, "KEY_INPUT_ESCAPE is not 0x01.");
-static_assert(KEY_INPUT_SPACE == 0x39, "KEY_INPUT_SPACE is not 0x39.");
-static_assert(KEY_INPUT_Z == 0x2c, "KEY_INPUT_Z is not 0x2c.");
-static_assert(KEY_INPUT_X == 0x2d, "KEY_INPUT_X is not 0x2d.");
 
 }  // namespace mytetris

@@ -29,33 +29,33 @@ class FpsController final {
   explicit FpsController(int target_fps);
 
   //! @brief 処理が早すぎる場合，FPSを一定にするために待つ．
-  void wait();
+  void Wait();
 
   //! @brief 60Hz以上のモニター使用時に処理が詰まって画面がちらつかないように，
   //! 描画処理をスキップするかどうかを判定する．
   //! @return 処理が詰まって描画を飛ばしたいときに
   //!  true を返す．その後フラグを false にする．
-  bool skipDrawScene();
+  bool SkipDrawScene();
 
   //! @brief 現在のFPSを返す関数．
   //! @return 現在のFPS．
-  double getCurrentFps() const;
+  double GetCurrentFps() const;
 
  private:
   //! @brief 現在の時刻を記録する関数．
   //! @param[in] now_time 現在の時刻(ミリ秒)
-  void registerTime(int now_time);
+  void RegisterTime(int now_time);
 
   //! @brief どれだけ待てばよいか返す関数．
   //! また，コマ落ちしているかどうかも判定する．
   //! @note 機能が2つあるので分けたほうがよい．
   //! @param[out] wait_time 待つべき時間 (ミリ秒)．
   //! @return コマ落ちしている場合は false．
-  bool checkNeedSkipDrawScreen(int* wait_time) const;
+  bool CheckNeedSkipDrawScreen(int* wait_time) const;
 
   //! @brief 目標のFPSが正しいかどうかを判定する関数．
   //! @return 負の値，または60より大きい値であれば false．
-  bool targetFpsIsValid() const;
+  bool TargetFpsIsValid() const;
 
   //! 目標のFPS，推奨値は 60 or 30．DxLib の使用上 60 を上回る値を推奨しない．
   const int target_fps_value_;

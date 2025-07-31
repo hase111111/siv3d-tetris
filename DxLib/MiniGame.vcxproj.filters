@@ -203,6 +203,9 @@
     <ClInclude Include="Source\error_box.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
+    <ClInclude Include="title_scene.h">
+      <Filter>ソース ファイル\scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

@@ -24,13 +24,13 @@ class SystemMain final {
   //! @brief ゲームの初期化処理を行う．
   //! 失敗した場合は即座に終了すること．
   //! @return 初期化に成功した場合は true，失敗した場合は false を返す．
-  bool initialize();
+  bool Initialize();
 
   //! @brief ゲームの終了処理を行う．
-  void finalize() const;
+  void Finalize() const;
 
   //! @brief ゲームのメインループを実行する．
-  void main() const;
+  void Main() const;
 
  private:
   const std::string kWindowClassName{"DxLibTetrisTHase"};

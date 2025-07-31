@@ -23,26 +23,26 @@ class SceneStack final {
 
   //! @brief シーンのスタックの一番上を実行する．
   //! @return false : メインループを終了する．
-  [[nodiscard]] bool updateTopScene();
+  [[nodiscard]] bool UpdateTopScene();
 
   //! @brief シーンのスタックの一番上を描画する．
-  void drawTopScene() const;
+  void DrawTopScene() const;
 
   //! @brief 1番上にシーンを追加する．
   //! @param[in] scene_name シーンの名前．
   //! @param[in] parameter シーンの変更時のパラメータ．
-  void addNewScene(SceneName scene_name, const SceneChangeParameter& parameter);
+  void AddNewScene(SceneName scene_name, const SceneChangeParameter& parameter);
 
   //! @brief 1番上のシーンを削除する．
   //! @param[in] delete_num 削除するシーンの数．
   //! @param[in] parameter シーンの変更時のパラメータ．
-  void deleteNowScene(int delete_num, const SceneChangeParameter& parameter);
+  void DeleteNowScene(int delete_num, const SceneChangeParameter& parameter);
 
   //! @brief シーンを全て削除する．
-  void deleteAllScene();
+  void DeleteAllScene();
 
  private:
-  void initializeScene(
+  void InitializeScene(
       const SceneChangeParameter& parameter = SceneChangeParameter{});
 
   //! シーンを格納する配列．スタック．

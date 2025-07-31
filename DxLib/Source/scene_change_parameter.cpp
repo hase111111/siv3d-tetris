@@ -9,6 +9,6 @@
 
 namespace mytetris {
 
-void SceneChangeParameter::reset() { parameters_.clear(); }
+void SceneChangeParameter::Reset() { parameters_.clear(); }
 
 }  // namespace mytetris

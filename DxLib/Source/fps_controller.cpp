@@ -22,31 +22,31 @@ FpsController::FpsController(const int target_fps)
       list_max_(target_fps * 2),
       need_skip_draw_screen_(false) {}
 
-void FpsController::wait() {
-  if (!targetFpsIsValid()) {
+void FpsController::Wait() {
+  if (!TargetFpsIsValid()) {
     return;
   }
 
   // 待つべき時間を取得して待つ．
   int wait_time = 0;
 
-  if (checkNeedSkipDrawScreen(&wait_time)) {
+  if (CheckNeedSkipDrawScreen(&wait_time)) {
     WaitTimer(wait_time);  // 取得した時間分待つ．
     // Sleep(wait_time);    // windows API版．
 
-    registerTime(GetNowCount());  // 現在の時刻を記録する．
+    RegisterTime(GetNowCount());  // 現在の時刻を記録する．
   } else {
     // 時間オーバーしているので，コマ落ちの処理をする．
 
     // このフレームは理想的な処理をしたものとして，記録する．
-    registerTime(time_list_.back() + one_frame_time_);
+    RegisterTime(time_list_.back() + one_frame_time_);
 
     need_skip_draw_screen_ = true;  // 描画を飛ばすフラグを立てる．
   }
 }
 
-bool FpsController::skipDrawScene() {
-  if (!targetFpsIsValid()) {
+bool FpsController::SkipDrawScene() {
+  if (!TargetFpsIsValid()) {
     return false;
   }
 
@@ -59,8 +59,8 @@ bool FpsController::skipDrawScene() {
   return false;
 }
 
-double FpsController::getCurrentFps() const {
-  if (!targetFpsIsValid()) {
+double FpsController::GetCurrentFps() const {
+  if (!TargetFpsIsValid()) {
     return -1.0;
   }
 
@@ -75,7 +75,7 @@ double FpsController::getCurrentFps() const {
   return 1000.0 / duration;
 }
 
-void FpsController::registerTime(const int now_time) {
+void FpsController::RegisterTime(const int now_time) {
   time_list_.push_back(now_time);  // 現在の時刻を記憶．
 
   if (time_list_.size() > list_max_) {
@@ -84,7 +84,7 @@ void FpsController::registerTime(const int now_time) {
   }
 }
 
-bool FpsController::checkNeedSkipDrawScreen(int* time) const {
+bool FpsController::CheckNeedSkipDrawScreen(int* time) const {
   // 時刻を初期化．
   (*time) = 0;
 
@@ -120,7 +120,7 @@ bool FpsController::checkNeedSkipDrawScreen(int* time) const {
   return true;
 }
 
-bool FpsController::targetFpsIsValid() const {
+bool FpsController::TargetFpsIsValid() const {
   // マイナスの値は許容しない．
   if (target_fps_value_ <= 0) {
     return false;

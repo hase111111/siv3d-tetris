@@ -11,7 +11,7 @@
 
 namespace mytetris {
 
-void SceneChangeListener::requestAddScene(
+void SceneChangeListener::RequestAddScene(
     const SceneName scene_name, const SceneChangeParameter& parameter) {
   // リクエストを設定する．
   has_request_ = true;
@@ -22,7 +22,7 @@ void SceneChangeListener::requestAddScene(
   parameter_ = parameter;
 }
 
-void SceneChangeListener::requestDeleteScene(
+void SceneChangeListener::RequestDeleteScene(
     const int delete_num, const SceneChangeParameter& parameter) {
   // リクエストを設定する．
   has_request_ = true;
@@ -33,15 +33,15 @@ void SceneChangeListener::requestDeleteScene(
   delete_num_ = delete_num;
 }
 
-void SceneChangeListener::requestDeleteAllScene() {
+void SceneChangeListener::RequestDeleteAllScene() {
   // リクエストを設定する．
   has_request_ = true;
   request_type_ = RequestType::kDeleteAllScene;
 }
 
-bool SceneChangeListener::hasRequest() const { return has_request_; }
+bool SceneChangeListener::HasRequest() const { return has_request_; }
 
-SceneChangeListener::RequestType SceneChangeListener::receiveRequest(
+SceneChangeListener::RequestType SceneChangeListener::ReceiveRequest(
     SceneName* const scene_name, SceneChangeParameter* const parameter,
     int* const delete_num) {
   // 引数が nullでないかチェックする．

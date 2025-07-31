@@ -31,7 +31,7 @@ class SceneCreator final {
   //! @brief シーンを生成する．
   //! @param[in] scene_name シーンの名前．
   //! @return 生成したシーン．
-  [[nodiscard]] std::unique_ptr<IScene> createScene(SceneName scene_name) const;
+  [[nodiscard]] std::unique_ptr<IScene> CreateScene(SceneName scene_name) const;
 
  private:
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;

@@ -22,13 +22,13 @@ class DebugScene final : public IScene {
       const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr);
   ~DebugScene() = default;
 
-  bool update() override;
+  bool Update() override;
 
-  void draw() const override;
+  void Draw() const override;
 
-  void onStart(const SceneChangeParameter& parameter) override;
+  void OnStart(const SceneChangeParameter& parameter) override;
 
-  void onReturnFromOtherScene(const SceneChangeParameter& parameter) override;
+  void OnReturnFromOtherScene(const SceneChangeParameter& parameter) override;
 
  private:
   std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;

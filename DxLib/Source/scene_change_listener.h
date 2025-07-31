@@ -19,20 +19,20 @@ class SceneChangeListener final {
   //! @brief シーンの追加をリクエストする．
   //! @param[in] scene_name シーン名．
   //! @param[in] parameter パラメータ．
-  void requestAddScene(SceneName scene_name,
+  void RequestAddScene(SceneName scene_name,
                        const SceneChangeParameter& parameter);
 
   //! @brief シーンの削除をリクエストする．
   //! @param[in] delete_num 削除するシーンの数．
   //! @param[in] parameter パラメータ．
-  void requestDeleteScene(int delete_num,
+  void RequestDeleteScene(int delete_num,
                           const SceneChangeParameter& parameter);
 
   //! @brief 全てのシーンの削除をリクエストする．
-  void requestDeleteAllScene();
+  void RequestDeleteAllScene();
 
   //! @brief リクエストがあるかどうかを返す．
-  [[nodiscard]] bool hasRequest() const;
+  [[nodiscard]] bool HasRequest() const;
 
   //! @brief リクエストを受け取る．
   //! 受け取った後，リクエストはリセットされる．
@@ -41,7 +41,7 @@ class SceneChangeListener final {
   //! @param[out] parameter パラメータ．
   //! @param[out] delete_num 削除するシーンの数．
   //! @return リクエストの種類．
-  RequestType receiveRequest(SceneName* const scene_name,
+  RequestType ReceiveRequest(SceneName* const scene_name,
                              SceneChangeParameter* const parameter,
                              int* const delete_num);
 

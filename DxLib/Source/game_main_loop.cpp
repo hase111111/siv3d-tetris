@@ -22,7 +22,7 @@ GameMainLoop::GameMainLoop(
       fps_controller_ptr_(std::make_shared<FpsController>(60)),
       game_setting_record_ptr_(game_setting_record_ptr),
       scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
-      scene_stack_ptr_(initializeSceneStack()),
+      scene_stack_ptr_(InitializeSceneStack()),
       scene_change_executer_{scene_change_listener_ptr_, scene_stack_ptr_} {
   // NULLチェック．
   ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
@@ -34,24 +34,24 @@ GameMainLoop::GameMainLoop(
   ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
 }
 
-bool GameMainLoop::loop() {
+bool GameMainLoop::Loop() {
   // 入力を取得
-  dxlib_keyboard_ptr_->update();
+  dxlib_keyboard_ptr_->Update();
 
   // シーンのスタックの一番上を実行する．
-  if (!scene_stack_ptr_->updateTopScene()) {
+  if (!scene_stack_ptr_->UpdateTopScene()) {
     return false;
   }
 
   // 処理が重い場合はここでコマ落ちさせる．
-  if (!fps_controller_ptr_->skipDrawScene()) {
+  if (!fps_controller_ptr_->SkipDrawScene()) {
     // スクリーンを消す．
     if (DxLib::ClearDrawScreen() != 0) {
       return false;
     }
 
     // 描画する．
-    scene_stack_ptr_->drawTopScene();
+    scene_stack_ptr_->DrawTopScene();
 
     // スクリーンに表示する．
     if (DxLib::ScreenFlip() != 0) {
@@ -60,15 +60,15 @@ bool GameMainLoop::loop() {
   }
 
   // FPSを調整するための処理．
-  fps_controller_ptr_->wait();
+  fps_controller_ptr_->Wait();
 
   // シーンの変更を実行する．
-  scene_change_executer_.execute();
+  scene_change_executer_.Execute();
 
   return true;
 }
 
-std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
+std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   // NULLチェック．
   ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr_);
   ASSERT_NOT_NULL_PTR(fps_controller_ptr_);

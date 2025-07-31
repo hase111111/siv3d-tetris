@@ -22,7 +22,7 @@ class SceneChangeExecuter final {
 
   //! @brief シーンの変更を実行する．
   //! リクエストがない場合は何もしない．
-  void execute();
+  void Execute();
 
  private:
   std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;

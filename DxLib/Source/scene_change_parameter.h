@@ -27,7 +27,7 @@ class SceneChangeParameter final {
 
   //! @brief 指定したキーが存在するか確認する．
   //! @param[in] key キー．
-  bool hasParameter(const std::string& key) const {
+  bool HasParameter(const std::string& key) const {
     return parameters_.find(key) != parameters_.end();
   }
 
@@ -35,7 +35,7 @@ class SceneChangeParameter final {
   //! @param[in] key キー．
   //! @param[in] value 値．
   template <IsParameter T>
-  void setParameter(const std::string& key, T value) {
+  void SetParameter(const std::string& key, T value) {
     parameters_[key] = value;
   }
 
@@ -43,7 +43,7 @@ class SceneChangeParameter final {
   //! @param[in] key キー．
   //! @return パラメータ．
   template <IsParameter T>
-  T getParameter(const std::string& key) const {
+  T GetParameter(const std::string& key) const {
     auto it = parameters_.find(key);
 
     ASSERT(it != parameters_.end(), "Parameter not found. Key is " + key);
@@ -52,7 +52,7 @@ class SceneChangeParameter final {
   }
 
   //! @brief パラメータを全て削除する．
-  void reset();
+  void Reset();
 
  private:
   std::map<std::string, std::variant<int, double, std::string>> parameters_;

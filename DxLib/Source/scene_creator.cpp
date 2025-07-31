@@ -28,7 +28,7 @@ SceneCreator::SceneCreator(
   ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 }
 
-std::unique_ptr<IScene> SceneCreator::createScene(
+std::unique_ptr<IScene> SceneCreator::CreateScene(
     const SceneName scene_name) const {
   switch (scene_name) {
     case SceneName::kDebug: {

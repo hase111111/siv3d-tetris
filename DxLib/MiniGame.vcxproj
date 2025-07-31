@@ -75,6 +75,7 @@
     <ClInclude Include="Source\TetrisMain.h" />
     <ClInclude Include="Source\TetrisDefine.h" />
     <ClInclude Include="Source\TetroMino.h" />
+    <ClInclude Include="title_scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

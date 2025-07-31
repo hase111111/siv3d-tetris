@@ -19,9 +19,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
   SystemMain system_main;
 
-  if (system_main.initialize()) {
-    system_main.main();
-    system_main.finalize();
+  if (system_main.Initialize()) {
+    system_main.Main();
+    system_main.Finalize();
   } else {
     ShowErrorBox(
         "DxLib‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½D‹­§I—¹‚µ‚Ü‚·D\n\n"

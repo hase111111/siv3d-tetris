@@ -14,7 +14,7 @@
 
 namespace mytetris {
 
-bool SystemMain::initialize() {
+bool SystemMain::Initialize() {
   // 設定ファイルを読み込む．
   game_setting_record_ptr_ = std::make_shared<GameSettingRecord>();
 
@@ -63,17 +63,17 @@ bool SystemMain::initialize() {
   return true;
 }
 
-void SystemMain::finalize() const {
+void SystemMain::Finalize() const {
   // DxLibの終了処理を呼ぶ．
   DxLib::DxLib_End();
 }
 
-void SystemMain::main() const {
+void SystemMain::Main() const {
   GameMainLoop game_main_loop(game_setting_record_ptr_);
 
   // メインループ．
   while (!DxLib::ProcessMessage()) {
-    if (!game_main_loop.loop()) {
+    if (!game_main_loop.Loop()) {
       break;
     }
   }
