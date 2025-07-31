@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene">
+      <UniqueIdentifier>{96f7207f-657e-44f0-b634-f05803970441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Common">
+      <UniqueIdentifier>{8bc2624c-90ae-4fc1-b7f9-9e7955b838d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene">
+      <UniqueIdentifier>{e316bc5d-ef39-4d55-baf4-1822c9d5fd5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Singleton">
+      <UniqueIdentifier>{74ad8b33-41db-4e5b-b54d-00ff6dce5041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Tetris">
+      <UniqueIdentifier>{7788b157-1115-4c82-837a-1e3d1dfca80c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SystemMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Parameter.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AbstractScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneManager.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Looper.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TitleScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Error.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Define.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Fps.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CalcUtils.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Keyboard.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Image.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetrisMain.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Field.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetrisDefine.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMino.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMinoCheckField.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMinoTurn.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMinoGetPos.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Next.cpp">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Font.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\SystemMain.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Parameter.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Define.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AbstractScene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneManager.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Looper.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TitleScene.h">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneChangeListenerInterface.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Error.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameScene.h">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Fps.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CalcUtils.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Singleton.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Keyboard.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneEnum.h">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Image.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TetrisMain.h">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Field.h">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TetrisDefine.h">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TetroMino.h">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnumTetris.h">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Next.h">
+      <Filter>ソース ファイル\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Font.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
