@@ -1,9 +1,10 @@
 #include "DxLib.h"
-#include "SystemMain.h"
+#include "system_main.h"
 
 // ƒvƒƒOƒ‰ƒ€‚Í WinMain ‚©‚çn‚Ü‚è‚Ü‚·
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nCmdShow) {
+  using mytetris::SystemMain;
   SystemMain _sys;
 
   if (_sys.initialize()) {

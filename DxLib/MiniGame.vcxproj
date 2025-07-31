@@ -21,20 +21,29 @@
   <ItemGroup>
     <ClCompile Include="Source\AbstractScene.cpp" />
     <ClCompile Include="Source\CalcUtils.cpp" />
+    <ClCompile Include="Source\debug_scene.cpp" />
     <ClCompile Include="Source\Define.cpp" />
+    <ClCompile Include="Source\dxlib_assert.cpp" />
+    <ClCompile Include="Source\dxlib_keyboard.cpp" />
     <ClCompile Include="Source\Error.cpp" />
     <ClCompile Include="Source\Field.cpp" />
     <ClCompile Include="Source\Font.cpp" />
-    <ClCompile Include="Source\Fps.cpp" />
+    <ClCompile Include="Source\fps_controller.cpp" />
     <ClCompile Include="Source\GameScene.cpp" />
+    <ClCompile Include="Source\game_const.cpp" />
     <ClCompile Include="Source\Image.cpp" />
     <ClCompile Include="Source\Keyboard.cpp" />
-    <ClCompile Include="Source\Looper.cpp" />
+    <ClCompile Include="Source\game_main_loop.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Next.cpp" />
     <ClCompile Include="Source\Parameter.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
-    <ClCompile Include="Source\SystemMain.cpp" />
+    <ClCompile Include="Source\scene_change_executer.cpp" />
+    <ClCompile Include="Source\scene_change_listener.cpp" />
+    <ClCompile Include="Source\scene_change_parameter.cpp" />
+    <ClCompile Include="Source\scene_creator.cpp" />
+    <ClCompile Include="Source\scene_stack.cpp" />
+    <ClCompile Include="Source\system_main.cpp" />
     <ClCompile Include="Source\TetrisMain.cpp" />
     <ClCompile Include="Source\TetrisDefine.cpp" />
     <ClCompile Include="Source\TetroMino.cpp" />
@@ -46,23 +55,36 @@
   <ItemGroup>
     <ClInclude Include="Source\AbstractScene.h" />
     <ClInclude Include="Source\CalcUtils.h" />
+    <ClInclude Include="Source\debug_scene.h" />
     <ClInclude Include="Source\Define.h" />
+    <ClInclude Include="Source\dxlib_assert.h" />
+    <ClInclude Include="Source\dxlib_keyboard.h" />
     <ClInclude Include="Source\EnumTetris.h" />
     <ClInclude Include="Source\Error.h" />
     <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\Font.h" />
-    <ClInclude Include="Source\Fps.h" />
+    <ClInclude Include="Source\fps_controller.h" />
     <ClInclude Include="Source\GameScene.h" />
+    <ClInclude Include="Source\game_const.h" />
+    <ClInclude Include="Source\game_setting_record.h" />
     <ClInclude Include="Source\Image.h" />
+    <ClInclude Include="Source\i_scene.h" />
     <ClInclude Include="Source\Keyboard.h" />
-    <ClInclude Include="Source\Looper.h" />
+    <ClInclude Include="Source\game_main_loop.h" />
     <ClInclude Include="Source\Next.h" />
     <ClInclude Include="Source\Parameter.h" />
+    <ClInclude Include="Source\resource_container.h" />
     <ClInclude Include="Source\SceneChangeListenerInterface.h" />
     <ClInclude Include="Source\SceneEnum.h" />
     <ClInclude Include="Source\SceneManager.h" />
+    <ClInclude Include="Source\scene_change_executer.h" />
+    <ClInclude Include="Source\scene_change_listener.h" />
+    <ClInclude Include="Source\scene_change_parameter.h" />
+    <ClInclude Include="Source\scene_creator.h" />
+    <ClInclude Include="Source\scene_name.h" />
+    <ClInclude Include="Source\scene_stack.h" />
     <ClInclude Include="Source\Singleton.h" />
-    <ClInclude Include="Source\SystemMain.h" />
+    <ClInclude Include="Source\system_main.h" />
     <ClInclude Include="Source\TetrisMain.h" />
     <ClInclude Include="Source\TetrisDefine.h" />
     <ClInclude Include="Source\TetroMino.h" />
@@ -142,6 +164,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -156,6 +179,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -173,6 +197,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -192,6 +217,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
