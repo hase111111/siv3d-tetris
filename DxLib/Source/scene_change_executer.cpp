@@ -19,9 +19,6 @@ SceneChangeExecuter::SceneChangeExecuter(
   // NULL チェック．
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
   ASSERT_NOT_NULL_PTR(scene_stack_ptr);
-
-  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-  ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
 }
 
 void SceneChangeExecuter::Execute() {
@@ -31,11 +28,8 @@ void SceneChangeExecuter::Execute() {
   }
 
   // リクエストを受け取る．
-  SceneName scene_name;
-  SceneChangeParameter parameter;
-  int delete_num;
-  const auto request_type = scene_change_listener_ptr_->ReceiveRequest(
-      &scene_name, &parameter, &delete_num);
+  const auto [request_type, scene_name, parameter, delete_num] =
+      scene_change_listener_ptr_->ReceiveRequest();
 
   // リクエストに応じて処理を行う．
   switch (request_type) {

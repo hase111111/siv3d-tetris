@@ -203,7 +203,7 @@
     <ClInclude Include="Source\error_box.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
-    <ClInclude Include="title_scene.h">
+    <ClInclude Include="Source\title_scene.h">
       <Filter>ソース ファイル\scenes</Filter>
     </ClInclude>
   </ItemGroup>

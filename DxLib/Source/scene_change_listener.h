@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <tuple>
+
 #include "scene_change_parameter.h"
 #include "scene_name.h"
 
@@ -32,25 +34,24 @@ class SceneChangeListener final {
   void RequestDeleteAllScene();
 
   //! @brief リクエストがあるかどうかを返す．
-  [[nodiscard]] bool HasRequest() const;
+  [[nodiscard]] inline bool HasRequest() const {
+    return request_type_ != RequestType::kNone;
+  }
 
   //! @brief リクエストを受け取る．
   //! 受け取った後，リクエストはリセットされる．
   //! リクエストがない場合は何もしない．
-  //! @param[out] scene_name シーン名．
-  //! @param[out] parameter パラメータ．
-  //! @param[out] delete_num 削除するシーンの数．
-  //! @return リクエストの種類．
-  RequestType ReceiveRequest(SceneName* const scene_name,
-                             SceneChangeParameter* const parameter,
-                             int* const delete_num);
+  //! @return
+  //! リクエストの種類，シーン名，パラメータ，削除するシーンの数のタプル．
+  [[nodiscard]]
+  std::tuple<RequestType, SceneName, SceneChangeParameter, int>
+  ReceiveRequest();
 
  private:
   SceneName scene_name_{SceneName::kTitle};
   SceneChangeParameter parameter_{};
   int delete_num_{0};
 
-  bool has_request_{false};
   RequestType request_type_{RequestType::kNone};
 };
 

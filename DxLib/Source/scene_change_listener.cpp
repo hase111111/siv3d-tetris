@@ -14,7 +14,6 @@ namespace mytetris {
 void SceneChangeListener::RequestAddScene(
     const SceneName scene_name, const SceneChangeParameter& parameter) {
   // リクエストを設定する．
-  has_request_ = true;
   request_type_ = RequestType::kAddScene;
 
   // パラメータを設定する．
@@ -25,7 +24,6 @@ void SceneChangeListener::RequestAddScene(
 void SceneChangeListener::RequestDeleteScene(
     const int delete_num, const SceneChangeParameter& parameter) {
   // リクエストを設定する．
-  has_request_ = true;
   request_type_ = RequestType::kDeleteScene;
 
   // パラメータを設定する．
@@ -35,44 +33,15 @@ void SceneChangeListener::RequestDeleteScene(
 
 void SceneChangeListener::RequestDeleteAllScene() {
   // リクエストを設定する．
-  has_request_ = true;
   request_type_ = RequestType::kDeleteAllScene;
 }
 
-bool SceneChangeListener::HasRequest() const { return has_request_; }
-
-SceneChangeListener::RequestType SceneChangeListener::ReceiveRequest(
-    SceneName* const scene_name, SceneChangeParameter* const parameter,
-    int* const delete_num) {
-  // 引数が nullでないかチェックする．
-  ASSERT_NOT_NULL_PTR(scene_name);
-  ASSERT_NOT_NULL_PTR(parameter);
-  ASSERT_NOT_NULL_PTR(delete_num);
-
-  // 冗長だが，C6011警告を抑制するための処理
-  if (scene_name == nullptr || parameter == nullptr || delete_num == nullptr) {
-    return RequestType::kNone;
-  }
-
-  // リクエストがない場合は何もしない．
-  if (!has_request_) {
-    return RequestType::kNone;
-  }
-
-  // リクエストを受け取る．
-  *scene_name = scene_name_;
-
-  *parameter = parameter_;
-
-  *delete_num = delete_num_;
-
+std::tuple<SceneChangeListener::RequestType, SceneName, SceneChangeParameter,
+           int>
+SceneChangeListener::ReceiveRequest() {
   RequestType ret = request_type_;
-
-  // リクエストをリセットする．
-  has_request_ = false;
-  request_type_ = RequestType::kNone;
-
-  return ret;
+  request_type_ = RequestType::kNone;  // リセット.
+  return std::make_tuple(ret, scene_name_, parameter_, delete_num_);
 }
 
 }  // namespace mytetris
