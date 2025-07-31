@@ -12,12 +12,6 @@ namespace mytetris {
 enum class SceneName {
   kDebug,
   kGame,
-  kLanguage,
-  kMenu,
-  kReplay,
-  kResult,
-  kRule,
-  kSetting,
   kTitle,
 };
 
