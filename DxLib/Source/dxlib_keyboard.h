@@ -1,4 +1,10 @@
 
+//! @file dxlib_keyboard.h
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include <array>
@@ -72,7 +78,7 @@ class DxLibKeyboard final {
   //! @retval false 無効なキー番号である．
   bool isAvailableCode(const int key_code) const;
 
-  std::array<int, kKeyNum> key_pressing_counter_;  //!< 押されカウンタ．
+  std::array<int, kKeyNum> key_pressing_counter_;   //!< 押されカウンタ．
   std::array<int, kKeyNum> key_releasing_counter_;  //!< 離されカウンタ．
 };
 
