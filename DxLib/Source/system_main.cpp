@@ -1,7 +1,7 @@
 
 //! @file system_main.cpp
 //! @brief
-//! Copyright(c) 2024 Taisei Hasegawa
+//! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
 
@@ -22,11 +22,11 @@ bool SystemMain::initialize() {
   DxLib::SetWindowIconID(333);
 
   DxLib::SetUseCharCodeFormat(
-      DX_CHARCODEFORMAT_UTF8);  // 文字コードをUTF-8に設定する．
+      DX_CHARCODEFORMAT_UTF8);             // 文字コードをUTF-8に設定する．
   SetWindowText(GameConst::kWindowTitle);  // ウィンドウタイトルを付ける．
   DxLib::SetAlwaysRunFlag(TRUE);  // ウィンドウがノンアクティブでも実行．
   DxLib::SetOutApplicationLogValidFlag(FALSE);  // ログ出力しない．
-  DxLib::SetDoubleStartValidFlag(FALSE);  // 二重起動を許可しない．
+  DxLib::SetDoubleStartValidFlag(FALSE);        // 二重起動を許可しない．
   DxLib::SetMainWindowClassName(
       kWindowClassName.c_str());  // ウィンドウのクラス名を設定する．
 

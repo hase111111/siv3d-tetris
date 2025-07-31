@@ -1,7 +1,7 @@
 
 //! @file scene_creator.cpp
 //! @brief
-//! Copyright(c) 2024 Taisei Hasegawa
+//! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
 
