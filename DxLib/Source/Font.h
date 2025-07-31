@@ -1,22 +1,23 @@
 #pragma once
-#include"Singleton.h"
-#include<string>
+#include <string>
+
+#include "Singleton.h"
 
 class Font : public Singleton<Font> {
-private:
-	friend Singleton<Font>;
+ private:
+  friend Singleton<Font>;
 
-public:
-	bool LoadFont();
+ public:
+  bool LoadFont();
 
-	int getFontHandle();
+  int getFontHandle();
 
-	void releaseFont();
+  void releaseFont();
 
-private:
-	//フォントデータが置いてあるパス
-	const std::string FONT_PATH = "dat/font/dot_font.dft";
+ private:
+  // フォントデータが置いてあるパス
+  const std::string FONT_PATH = "dat/font/dot_font.dft";
 
-	//フォントのハンドル
-	int font_handle = 0;
+  // フォントのハンドル
+  int font_handle = 0;
 };

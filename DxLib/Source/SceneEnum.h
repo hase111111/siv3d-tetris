@@ -1,7 +1,3 @@
 #pragma once
 
-enum class enumScene : int
-{
-	title,
-	game
-};
+enum class enumScene : int { title, game };

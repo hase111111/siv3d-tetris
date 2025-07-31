@@ -1,18 +1,21 @@
 #pragma once
-#include<stack>
-#include<memory>
-#include"SceneChangeListenerInterface.h"
+#include <memory>
+#include <stack>
 
-class SceneManger final : public SceneChangeListenerInterface{
-public:
-	SceneManger();
-	~SceneManger() = default;
+#include "SceneChangeListenerInterface.h"
 
-	void updateTopScene();
-	void drawTopScene() const;
+class SceneManger final : public SceneChangeListenerInterface {
+ public:
+  SceneManger();
+  ~SceneManger() = default;
 
-	void addNewScene(const enumScene _sceneName, const Parameter& parameter) override;
-	void deleteNowScene(const Parameter& parameter) override;
-private:
-	std::stack<std::unique_ptr<AbstractScene>> m_uniqueSceneStack;
+  void updateTopScene();
+  void drawTopScene() const;
+
+  void addNewScene(const enumScene _sceneName,
+                   const Parameter& parameter) override;
+  void deleteNowScene(const Parameter& parameter) override;
+
+ private:
+  std::stack<std::unique_ptr<AbstractScene>> m_uniqueSceneStack;
 };

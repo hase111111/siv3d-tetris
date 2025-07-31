@@ -1,4 +1,4 @@
-#include"Define.h"
+#include "Define.h"
 
 const int Define::WIN_SIZEX = 640;
 const int Define::WIN_SIZEY = 480;
