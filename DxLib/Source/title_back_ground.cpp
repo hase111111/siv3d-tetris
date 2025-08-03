@@ -13,14 +13,31 @@ namespace mytetris {
 
 TitleBackGround::TitleBackGround(int window_size_x, int window_size_y)
     : title_texture_("dat/img/title.png"),
+      wall_texture_("dat/img/wall.png"),
       window_size_x_(window_size_x),
       window_size_y_(window_size_y) {
   ASSERT(title_texture_.IsValid(), "Failed to load title texture.");
+  ASSERT(wall_texture_.IsValid(), "Failed to load wall texture.");
 }
 
 void TitleBackGround::Draw() const {
-  title_texture_.DrawRotated(window_size_x_ / 2.f, window_size_y_ * 5.f / 12.f,
+  title_texture_.DrawRotated(window_size_x_ / 2.f, window_size_y_ * 4.f / 12.f,
                              RenderAnchor::Center, 2.0, 0.0);
+
+  const int wall_num =
+      wall_texture_.GetHeight() != 0
+          ? window_size_y_ / (wall_texture_.GetHeight() * wall_ex_rate_) + 1
+          : 0;
+
+  for (int i = 0; i < wall_num; ++i) {
+    const float i_ = static_cast<float>(i);
+    wall_texture_.DrawRotated(0.f,
+                              i_ * wall_texture_.GetHeight() * wall_ex_rate_,
+                              RenderAnchor::TopLeft, wall_ex_rate_, 0.f);
+    wall_texture_.DrawRotated(static_cast<float>(window_size_x_),
+                              i_ * wall_texture_.GetHeight() * wall_ex_rate_,
+                              RenderAnchor::TopRight, wall_ex_rate_, 0.f);
+  }
 }
 
 }  // namespace mytetris

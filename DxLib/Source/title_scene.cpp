@@ -8,6 +8,7 @@
 #include "title_scene.h"
 
 #include "dxlib_assert.h"
+#include "game_const.h"
 
 namespace mytetris {
 
@@ -18,8 +19,7 @@ TitleScene::TitleScene(
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
       game_setting_record_ptr_(game_setting_record_ptr),
-      title_back_ground_{game_setting_record_ptr->window_width,
-                         game_setting_record_ptr->window_height} {
+      title_back_ground_{GameConst::kResolutionX, GameConst::kResolutionY} {
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
   ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr);
   ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
