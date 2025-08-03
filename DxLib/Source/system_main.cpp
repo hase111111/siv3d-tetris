@@ -59,7 +59,7 @@ bool SystemMain::Initialize() {
 
   DxLib::SetSysCommandOffFlag(TRUE);     // ALTを無効にする．
   DxLib::SetDrawScreen(DX_SCREEN_BACK);  // 裏画面処理を設定する．
-
+  DxLib::SetLogFontSize(30);             // ログのフォントサイズを設定する．
   return true;
 }
 
