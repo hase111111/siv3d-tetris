@@ -11,6 +11,7 @@
 
 #include "dxlib_keyboard.h"
 #include "fps_controller.h"
+#include "game_setting_record.h"
 #include "i_scene.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
@@ -25,7 +26,8 @@ class SceneCreator final {
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const FpsController>& fps_controller_ptr,
       const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-      const std::shared_ptr<ResourceContainer>& dxlib_resource_loader_ptr);
+      const std::shared_ptr<ResourceContainer>& dxlib_resource_loader_ptr,
+      const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
   ~SceneCreator() = default;
 
   //! @brief ÉVÅ[ÉìÇê∂ê¨Ç∑ÇÈÅD
@@ -41,6 +43,8 @@ class SceneCreator final {
   const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
 
   const std::shared_ptr<ResourceContainer> dxlib_resource_loader_ptr_;
+
+  const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
 };
 
 }  // namespace mytetris

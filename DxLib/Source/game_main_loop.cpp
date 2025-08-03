@@ -9,10 +9,12 @@
 
 #include <DxLib.h>
 
+#include <format>
 #include <utility>
 
 #include "dxlib_assert.h"
 #include "resource_container.h"
+#include "texture.h"
 
 namespace mytetris {
 
@@ -42,6 +44,10 @@ bool GameMainLoop::Loop() {
   if (!scene_stack_ptr_->UpdateTopScene()) {
     return false;
   }
+
+  ASSERT(Texture::GetCount() - texture_count_ < 1000,
+         "A large number of textures are generated in a single frame");
+  texture_count_ = Texture::GetCount();
 
   // 処理が重い場合はここでコマ落ちさせる．
   if (!fps_controller_ptr_->SkipDrawScene()) {
@@ -79,7 +85,7 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
       scene_change_listener_ptr_, fps_controller_ptr_, dxlib_keyboard_ptr_,
-      dxlib_resource_loader_ptr);
+      dxlib_resource_loader_ptr, game_setting_record_ptr_);
 
   auto scene_stack_ptr =
       std::make_shared<SceneStack>(std::move(scene_creator_ptr));

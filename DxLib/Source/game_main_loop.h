@@ -42,6 +42,8 @@ class GameMainLoop final {
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<SceneStack> scene_stack_ptr_;
   SceneChangeExecuter scene_change_executer_;
+
+  int texture_count_{0};
 };
 
 }  // namespace mytetris
