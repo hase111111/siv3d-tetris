@@ -11,12 +11,16 @@
 
 namespace mytetris {
 
-TitleBackGround::TitleBackGround() : title_texture_("dat/img/title.png") {
+TitleBackGround::TitleBackGround(int window_size_x, int window_size_y)
+    : title_texture_("dat/img/title.png"),
+      window_size_x_(window_size_x),
+      window_size_y_(window_size_y) {
   ASSERT(title_texture_.IsValid(), "Failed to load title texture.");
 }
 
 void TitleBackGround::Draw() const {
-  title_texture_.Draw(0.f, 0.f, RenderAnchor::TopLeft);
+  title_texture_.DrawRotated(window_size_x_ / 2.f, window_size_y_ * 5.f / 12.f,
+                             RenderAnchor::Center, 2.0, 0.0);
 }
 
 }  // namespace mytetris

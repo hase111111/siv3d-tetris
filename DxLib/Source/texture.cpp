@@ -46,17 +46,20 @@ int Texture::GetHeight() const {
 }
 
 void Texture::Draw(float x, float y, RenderAnchor anchor) const {
+  DrawRotated(x, y, anchor, 1.0f, 0.0f);
+}
+
+void Texture::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
+                          float angle) const {
   if (!IsValid()) {
     return;
   }
 
   const auto [render_x, render_y] = GetRenderPos(anchor);
 
-  DxLib::DrawRotaGraphF(x + render_x, y + render_y, 1.0f, 0.0f, handle_, TRUE);
+  DxLib::DrawRotaGraphF(x + render_x * ex, y + render_y * ex, ex, angle,
+                        handle_, TRUE);
 }
-
-void Texture::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
-                          float angle) const {}
 
 std::tuple<int, int> Texture::GetRenderPos(RenderAnchor anchor) const {
   const int width = GetWidth();

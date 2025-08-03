@@ -13,13 +13,15 @@ namespace mytetris {
 
 class TitleBackGround final {
  public:
-  TitleBackGround();
+  TitleBackGround(int window_size_x, int window_size_y);
   ~TitleBackGround() = default;
 
   void Draw() const;
 
  private:
-  Texture title_texture_;
+  const Texture title_texture_;
+  const int window_size_x_;
+  const int window_size_y_;
 };
 
 }  // namespace mytetris
