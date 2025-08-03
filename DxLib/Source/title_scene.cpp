@@ -15,14 +15,15 @@ namespace mytetris {
 TitleScene::TitleScene(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
     const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-    const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
+    const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
-      game_setting_record_ptr_(game_setting_record_ptr),
-      title_back_ground_{GameConst::kResolutionX, GameConst::kResolutionY} {
+      resource_container_ptr_(resource_container_ptr),
+      title_back_ground_{GameConst::kResolutionX, GameConst::kResolutionY,
+                         resource_container_ptr_} {
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
   ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr);
-  ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
+  ASSERT_NOT_NULL_PTR(resource_container_ptr);
 }
 
 bool TitleScene::Update() {

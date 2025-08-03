@@ -15,7 +15,7 @@ namespace mytetris {
 
 SceneStack::SceneStack(std::unique_ptr<SceneCreator>&& scene_creator_ptr)
     : scene_creator_ptr_(std::move(scene_creator_ptr)),
-      initial_scene_name_(SceneName::kTitle) {
+      initial_scene_name_(SceneName::kDebug) {
   InitializeScene();
 }
 

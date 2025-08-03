@@ -27,9 +27,9 @@ class Texture final {
   Texture(const std::string &file_name);
   Texture(const Texture &) = delete;
   Texture &operator=(const Texture &) = delete;
+  Texture(Texture &&) = default;
+  Texture &operator=(Texture &&) = default;
   ~Texture();
-
-  bool IsValid() const;
 
   inline int GetRawHandle() const { return handle_; }
 

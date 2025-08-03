@@ -26,7 +26,7 @@ class SceneCreator final {
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const FpsController>& fps_controller_ptr,
       const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-      const std::shared_ptr<ResourceContainer>& dxlib_resource_loader_ptr,
+      const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
       const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
   ~SceneCreator() = default;
 
@@ -42,7 +42,7 @@ class SceneCreator final {
 
   const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
 
-  const std::shared_ptr<ResourceContainer> dxlib_resource_loader_ptr_;
+  const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
 
   const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
 };

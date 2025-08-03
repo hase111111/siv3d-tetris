@@ -69,6 +69,11 @@ void SystemMain::Finalize() const {
 }
 
 void SystemMain::Main() const {
+  if (DxLib::DxLib_IsInit() < 0) {
+    // DxLibが初期化されていない場合は何もしない．
+    return;
+  }
+
   GameMainLoop game_main_loop(game_setting_record_ptr_);
 
   // メインループ．

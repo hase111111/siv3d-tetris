@@ -10,8 +10,8 @@
 #include <memory>
 
 #include "dxlib_keyboard.h"
-#include "game_setting_record.h"
 #include "i_scene.h"
+#include "resource_container.h"
 #include "scene_change_listener.h"
 #include "title_back_ground.h"
 
@@ -22,7 +22,7 @@ class TitleScene final : public IScene {
   TitleScene(
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-      const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
+      const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
   ~TitleScene() = default;
 
   bool Update() override;
@@ -36,7 +36,7 @@ class TitleScene final : public IScene {
  private:
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
-  const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
+  const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   TitleBackGround title_back_ground_;
 };
 

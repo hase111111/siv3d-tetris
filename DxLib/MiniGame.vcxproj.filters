@@ -120,6 +120,12 @@
     <ClCompile Include="Source\debug_scene.cpp">
       <Filter>ソース ファイル\scenes\debug</Filter>
     </ClCompile>
+    <ClCompile Include="Source\resource_container.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\texture_view.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Define.h">
@@ -202,6 +208,12 @@
     </ClInclude>
     <ClInclude Include="Source\debug_scene.h">
       <Filter>ソース ファイル\scenes\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\title_ui.h">
+      <Filter>ソース ファイル\scenes\title</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\texture_view.h">
+      <Filter>ソース ファイル\resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

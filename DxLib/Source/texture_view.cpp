@@ -1,40 +1,26 @@
 
-//! @file texture.cpp
+//! @file texture_view.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
 
-#include "texture.h"
+#include "texture_view.h"
 
 #include <DxLib.h>
-
-#include <format>
 
 #include "dxlib_assert.h"
 
 namespace mytetris {
 
-int Texture::count_{0};
-
-Texture::Texture(const std::string& file_name)
-    : file_name_(file_name), handle_(DxLib::LoadGraph(file_name.c_str())) {
-  ASSERT(handle_ >= 0, std::format("Failed to load texture: {} (handle: {})",
-                                   file_name, handle_));
+TextureView::TextureView(const Texture& texture)
+    : handle_(texture.GetRawHandle()) {
   printfDx("%d\n", handle_);
-  // 1フレーム間に大量のテクスチャのロードが発生することを防ぐため，
-  // ロードした数をカウントする
-  ++count_;
 }
 
-Texture::~Texture() {
-  // テクスチャのハンドルが有効な場合は解放する
-  printfDx("Texture::~Texture() called for file: %s (handle: %d)\n",
-           file_name_.c_str(), handle_);
-  DxLib::DeleteGraph(handle_);
-}
+bool TextureView::IsValid() const { return handle_ >= 0; }
 
-int Texture::GetWidth() const {
+int TextureView::GetWidth() const {
   int width = 0, height = 0;
   if (DxLib::GetGraphSize(handle_, &width, &height) >= 0) {
     return width;
@@ -42,7 +28,7 @@ int Texture::GetWidth() const {
   return 0;
 }
 
-int Texture::GetHeight() const {
+int TextureView::GetHeight() const {
   int width = 0, height = 0;
   if (DxLib::GetGraphSize(handle_, &width, &height) >= 0) {
     return height;
@@ -50,19 +36,22 @@ int Texture::GetHeight() const {
   return 0;
 }
 
-void Texture::Draw(float x, float y, RenderAnchor anchor) const {
+void TextureView::Draw(float x, float y, RenderAnchor anchor) const {
   DrawRotated(x, y, anchor, 1.0f, 0.0f);
 }
 
-void Texture::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
-                          float angle) const {
+void TextureView::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
+                              float angle) const {
+  if (!IsValid()) {
+    return;
+  }
   const auto [render_x, render_y] = GetRenderPos(anchor);
 
   DxLib::DrawRotaGraphF(x + render_x * ex, y + render_y * ex, ex, angle,
-                        GetRawHandle(), TRUE);
+                        handle_, TRUE);
 }
 
-std::tuple<int, int> Texture::GetRenderPos(RenderAnchor anchor) const {
+std::tuple<int, int> TextureView::GetRenderPos(RenderAnchor anchor) const {
   const int width = GetWidth();
   const int height = GetHeight();
   switch (anchor) {
@@ -87,5 +76,4 @@ std::tuple<int, int> Texture::GetRenderPos(RenderAnchor anchor) const {
     }
   }
 }
-
 }  // namespace mytetris

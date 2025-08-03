@@ -17,18 +17,18 @@ SceneCreator::SceneCreator(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
     const std::shared_ptr<const FpsController>& fps_controller_ptr,
     const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-    const std::shared_ptr<ResourceContainer>& dxlib_resource_loader_ptr,
+    const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       fps_controller_ptr_(fps_controller_ptr),
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
-      dxlib_resource_loader_ptr_(dxlib_resource_loader_ptr),
+      resource_container_ptr_(resource_container_ptr),
       game_setting_record_ptr_(game_setting_record_ptr) {
   // ポインタが nullptr でないことを確認
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
   ASSERT_NOT_NULL_PTR(fps_controller_ptr);
   ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr);
-  ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
+  ASSERT_NOT_NULL_PTR(resource_container_ptr);
   ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
 }
 
@@ -42,7 +42,7 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
     case SceneName::kTitle: {
       return std::make_unique<TitleScene>(scene_change_listener_ptr_,
                                           dxlib_keyboard_ptr_,
-                                          game_setting_record_ptr_);
+                                          resource_container_ptr_);
     }
     default: {
       ASSERT_MUST_NOT_REACH_HERE();
