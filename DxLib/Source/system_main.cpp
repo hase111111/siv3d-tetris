@@ -72,7 +72,7 @@ void SystemMain::Main() const {
   GameMainLoop game_main_loop(game_setting_record_ptr_);
 
   // メインループ．
-  while (!DxLib::ProcessMessage()) {
+  while (!(DxLib::ProcessMessage() > 0)) {
     if (!game_main_loop.Loop()) {
       break;
     }

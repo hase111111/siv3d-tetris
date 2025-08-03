@@ -9,6 +9,7 @@
 
 #include "debug_scene.h"
 #include "dxlib_assert.h"
+#include "title_scene.h"
 
 namespace mytetris {
 
@@ -33,6 +34,10 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
   switch (scene_name) {
     case SceneName::kDebug: {
       return std::make_unique<DebugScene>(scene_change_listener_ptr_,
+                                          dxlib_keyboard_ptr_);
+    }
+    case SceneName::kTitle: {
+      return std::make_unique<TitleScene>(scene_change_listener_ptr_,
                                           dxlib_keyboard_ptr_);
     }
     default: {
