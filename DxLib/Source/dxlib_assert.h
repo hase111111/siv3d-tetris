@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include <DxLib.h>
-
 #include <cassert>
 #include <source_location>
 #include <stdexcept>
@@ -17,6 +15,8 @@
 namespace mytetris {
 
 namespace assert_internal {
+
+bool IsDxLibInitialized();
 
 void ErrorAssert(const std::string& conditional_expression,
                  const std::string& error_mes, const std::string& file,
@@ -42,17 +42,17 @@ void ErrorAssert(const std::string& conditional_expression,
 //! DxLib が初期化されていない場合は，例外を投げるが，そもそも呼び出さないこと．
 //! @param expr TRUE であることが期待される条件
 //! @param error_mes エラーメッセージ
-#define ASSERT(expr, error_mes)                             \
-  do {                                                      \
-    if (!(!!(expr))) {                                      \
-      if (DxLib_IsInit() != TRUE) {                         \
-        assert(false && "DxLib is not initialized.");       \
-      } else {                                              \
-        const std::string expr_str = #expr;                 \
-        const std::string message = error_mes;              \
-        MYTETRIS_INTERNAL_ERROR_MESSAGE(expr_str, message); \
-      }                                                     \
-    }                                                       \
+#define ASSERT(expr, error_mes)                                 \
+  do {                                                          \
+    if (!(!!(expr))) {                                          \
+      if (!::mytetris::assert_internal::IsDxLibInitialized()) { \
+        assert(false && "DxLib is not initialized.");           \
+      } else {                                                  \
+        const std::string expr_str = #expr;                     \
+        const std::string message = error_mes;                  \
+        MYTETRIS_INTERNAL_ERROR_MESSAGE(expr_str, message);     \
+      }                                                         \
+    }                                                           \
   } while (0)
 
 #define ASSERT_NOT_NULL_PTR(ptr) ASSERT((ptr) != nullptr, "nullptr passed.")

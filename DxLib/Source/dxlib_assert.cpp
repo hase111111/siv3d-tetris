@@ -104,6 +104,8 @@ static std::string CollapseTemplate(const std::string& func_name) {
   return result;
 }
 
+bool IsDxLibInitialized() { return DxLib_IsInit() == TRUE; }
+
 void ErrorAssert(const std::string& conditional_expression,
                  const std::string& error_mes, const std::string& file,
                  const std::string& func, const int line) {
