@@ -36,6 +36,7 @@ bool TitleScene::Update() {
 
 void TitleScene::Draw() const {
   DrawString(0, 0, "Title Scene", GetColor(255, 255, 255));
+  title_back_ground_.Draw();
 }
 
 void TitleScene::OnStart(const SceneChangeParameter&) {}

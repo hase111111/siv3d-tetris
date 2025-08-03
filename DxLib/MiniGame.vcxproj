@@ -45,6 +45,8 @@
     <ClCompile Include="Source\TetroMinoCheckField.cpp" />
     <ClCompile Include="Source\TetroMinoGetPos.cpp" />
     <ClCompile Include="Source\TetroMinoTurn.cpp" />
+    <ClCompile Include="Source\texture.cpp" />
+    <ClCompile Include="Source\title_back_ground.cpp" />
     <ClCompile Include="Source\title_scene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +78,8 @@
     <ClInclude Include="Source\TetrisMain.h" />
     <ClInclude Include="Source\TetrisDefine.h" />
     <ClInclude Include="Source\TetroMino.h" />
+    <ClInclude Include="Source\texture.h" />
+    <ClInclude Include="Source\title_back_ground.h" />
     <ClInclude Include="Source\title_scene.h" />
   </ItemGroup>
   <ItemGroup>

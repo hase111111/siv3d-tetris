@@ -12,6 +12,7 @@
 #include "dxlib_keyboard.h"
 #include "i_scene.h"
 #include "scene_change_listener.h"
+#include "title_back_ground.h"
 
 namespace mytetris {
 
@@ -33,6 +34,7 @@ class TitleScene final : public IScene {
  private:
   std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
+  TitleBackGround title_back_ground_;
 };
 
 }  // namespace mytetris

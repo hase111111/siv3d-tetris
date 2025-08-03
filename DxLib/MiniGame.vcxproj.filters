@@ -37,6 +37,9 @@
     <Filter Include="ソース ファイル\scenes">
       <UniqueIdentifier>{4b2e051b-747e-4cce-9fad-2d69066a4b36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scenes\title">
+      <UniqueIdentifier>{a1ab0b4b-65e2-43f7-9693-44976c9a3d37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -117,8 +120,14 @@
     <ClCompile Include="Source\error_box.cpp">
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Source\texture.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
     <ClCompile Include="Source\title_scene.cpp">
-      <Filter>ソース ファイル\scenes</Filter>
+      <Filter>ソース ファイル\scenes\title</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\title_back_ground.cpp">
+      <Filter>ソース ファイル\scenes\title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -206,8 +215,14 @@
     <ClInclude Include="Source\error_box.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Source\texture.h">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
     <ClInclude Include="Source\title_scene.h">
-      <Filter>ソース ファイル\scenes</Filter>
+      <Filter>ソース ファイル\scenes\title</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\title_back_ground.h">
+      <Filter>ソース ファイル\scenes\title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
