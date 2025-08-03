@@ -25,11 +25,8 @@
     <ClCompile Include="Source\dxlib_keyboard.cpp" />
     <ClCompile Include="Source\error_box.cpp" />
     <ClCompile Include="Source\Field.cpp" />
-    <ClCompile Include="Source\Font.cpp" />
     <ClCompile Include="Source\fps_controller.cpp" />
     <ClCompile Include="Source\game_const.cpp" />
-    <ClCompile Include="Source\Image.cpp" />
-    <ClCompile Include="Source\Keyboard.cpp" />
     <ClCompile Include="Source\game_main_loop.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Next.cpp" />
@@ -57,13 +54,10 @@
     <ClInclude Include="Source\EnumTetris.h" />
     <ClInclude Include="Source\error_box.h" />
     <ClInclude Include="Source\Field.h" />
-    <ClInclude Include="Source\Font.h" />
     <ClInclude Include="Source\fps_controller.h" />
     <ClInclude Include="Source\game_const.h" />
     <ClInclude Include="Source\game_setting_record.h" />
-    <ClInclude Include="Source\Image.h" />
     <ClInclude Include="Source\i_scene.h" />
-    <ClInclude Include="Source\Keyboard.h" />
     <ClInclude Include="Source\game_main_loop.h" />
     <ClInclude Include="Source\Next.h" />
     <ClInclude Include="Source\resource_container.h" />
@@ -73,7 +67,6 @@
     <ClInclude Include="Source\scene_creator.h" />
     <ClInclude Include="Source\scene_name.h" />
     <ClInclude Include="Source\scene_stack.h" />
-    <ClInclude Include="Source\Singleton.h" />
     <ClInclude Include="Source\system_main.h" />
     <ClInclude Include="Source\TetrisMain.h" />
     <ClInclude Include="Source\TetrisDefine.h" />

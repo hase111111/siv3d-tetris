@@ -1,8 +1,8 @@
 #include "Field.h"
 
 #include "DxLib.h"
-#include "Image.h"
-#include "Keyboard.h"
+// #include "Image.h"
+// #include "Keyboard.h"
 #include "dxlib_assert.h"
 
 Field::Field() { mf_init(); }
@@ -18,9 +18,9 @@ void Field::getField(
 }
 
 bool Field::getTspinFlag() const {
-  if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 0) {
-    return m_tspin_flag;
-  }
+  // if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 0) {
+  //   return m_tspin_flag;
+  // }
 
   return false;
 }

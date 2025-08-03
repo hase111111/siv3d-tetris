@@ -1,7 +1,7 @@
 #include "TetroMino.h"
 
 #include "DxLib.h"
-#include "Keyboard.h"
+// #include "Keyboard.h"
 #include "dxlib_assert.h"
 
 TetroMino::TetroMino()
@@ -70,71 +70,73 @@ void TetroMino::setFieldDate(
 }
 
 void TetroMino::mf_moveTurn() {
-  if (Keyboard::getIns()->getPressingCount(KEY_INPUT_A) == 1) {
-    // 回転したのならば固定中操作カウンタを回し固定カウンタを初期化する
-    if (mf_moveUniqueTurn(true)) {
-      m_rock_operation_counter++;
-      m_rock_counter = 0;
-    }
-  } else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_D) == 1) {
-    // 回転したのならば固定中操作カウンタを回し固定カウンタを初期化する
-    if (mf_moveUniqueTurn(false)) {
-      m_rock_operation_counter++;
-      m_rock_counter = 0;
-    }
-  }
+  // if (Keyboard::getIns()->getPressingCount(KEY_INPUT_A) == 1) {
+  //   // 回転したのならば固定中操作カウンタを回し固定カウンタを初期化する
+  //   if (mf_moveUniqueTurn(true)) {
+  //     m_rock_operation_counter++;
+  //     m_rock_counter = 0;
+  //   }
+  // } else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_D) == 1) {
+  //   // 回転したのならば固定中操作カウンタを回し固定カウンタを初期化する
+  //   if (mf_moveUniqueTurn(false)) {
+  //     m_rock_operation_counter++;
+  //     m_rock_counter = 0;
+  //   }
+  // }
 }
 
 void TetroMino::mf_moveHorizontal() {
   // 左ボタンが押された時
-  if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) >= 1) {
-    // 押された瞬間または（インターバル時間以上押されているかつ押した時間ーインターバル時間割るカウンタの余りが０）
-    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 ||
-        (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) >
-             TetrisDefine::MINO_HORIZONTAL_INTERVAL &&
-         (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) -
-          TetrisDefine::MINO_HORIZONTAL_INTERVAL) %
-                 TetrisDefine::MINO_HORIZONTAL_COUNT ==
-             0)) {
-      // 移動処理
-      if (mf_canSetMinoInField(m_fieldx - 1, m_fieldy)) {
-        m_fieldx -= 1;       // 移動可能ならば移動する
-        m_rock_counter = 0;  // 固定カウンタを初期化する
+  // if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) >= 1) {
+  //  //
+  //  押された瞬間または（インターバル時間以上押されているかつ押した時間ーインターバル時間割るカウンタの余りが０）
+  //  if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 ||
+  //      (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) >
+  //           TetrisDefine::MINO_HORIZONTAL_INTERVAL &&
+  //       (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) -
+  //        TetrisDefine::MINO_HORIZONTAL_INTERVAL) %
+  //               TetrisDefine::MINO_HORIZONTAL_COUNT ==
+  //           0)) {
+  //    // 移動処理
+  //    if (mf_canSetMinoInField(m_fieldx - 1, m_fieldy)) {
+  //      m_fieldx -= 1;       // 移動可能ならば移動する
+  //      m_rock_counter = 0;  // 固定カウンタを初期化する
 
-        // 地面に足を付けたままならば操作カウンタを回す
-        if (!mf_canSetMinoInField(m_fieldx + 1, m_fieldy + 1) &&
-            !mf_canSetMinoInField(m_fieldx, m_fieldy + 1))
-          m_rock_operation_counter++;
-      }
-    }
-  } else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) >= 1) {
-    // 押された瞬間または（インターバル時間以上押されているかつ押した時間ーインターバル時間割るカウンタの余りが０）
-    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1 ||
-        (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) >
-             TetrisDefine::MINO_HORIZONTAL_INTERVAL &&
-         (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) -
-          TetrisDefine::MINO_HORIZONTAL_INTERVAL) %
-                 TetrisDefine::MINO_HORIZONTAL_COUNT ==
-             0)) {
-      // 移動処理
-      if (mf_canSetMinoInField(m_fieldx + 1, m_fieldy)) {
-        m_fieldx += 1;       // 移動可能ならば移動する
-        m_rock_counter = 0;  // 固定カウンタを初期化する
+  //      // 地面に足を付けたままならば操作カウンタを回す
+  //      if (!mf_canSetMinoInField(m_fieldx + 1, m_fieldy + 1) &&
+  //          !mf_canSetMinoInField(m_fieldx, m_fieldy + 1))
+  //        m_rock_operation_counter++;
+  //    }
+  //  }
+  //} else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) >= 1) {
+  //  //
+  //  押された瞬間または（インターバル時間以上押されているかつ押した時間ーインターバル時間割るカウンタの余りが０）
+  //  if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1 ||
+  //      (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) >
+  //           TetrisDefine::MINO_HORIZONTAL_INTERVAL &&
+  //       (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) -
+  //        TetrisDefine::MINO_HORIZONTAL_INTERVAL) %
+  //               TetrisDefine::MINO_HORIZONTAL_COUNT ==
+  //           0)) {
+  //    // 移動処理
+  //    if (mf_canSetMinoInField(m_fieldx + 1, m_fieldy)) {
+  //      m_fieldx += 1;       // 移動可能ならば移動する
+  //      m_rock_counter = 0;  // 固定カウンタを初期化する
 
-        // 地面に足を付けたままならば操作カウンタを回す
-        if (!mf_canSetMinoInField(m_fieldx + 1, m_fieldy + 1) &&
-            !mf_canSetMinoInField(m_fieldx, m_fieldy + 1))
-          m_rock_operation_counter++;
-      }
-    }
-  }
+  //      // 地面に足を付けたままならば操作カウンタを回す
+  //      if (!mf_canSetMinoInField(m_fieldx + 1, m_fieldy + 1) &&
+  //          !mf_canSetMinoInField(m_fieldx, m_fieldy + 1))
+  //        m_rock_operation_counter++;
+  //    }
+  //  }
+  //}
 }
 
 void TetroMino::mf_moveHardDrop() {
   // 上ボタンが押された瞬間でなければ終了する
-  if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) != 1) {
-    return;
-  }
+  // if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) != 1) {
+  //  return;
+  //}
 
   m_rock = true;  // 地面に固定
 
@@ -152,10 +154,10 @@ void TetroMino::mf_moveHardDrop() {
 
 void TetroMino::mf_moveSoftDrop() {
   // 下キーが押されているならば
-  if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) > 0) {
-    // 20倍の速度で落下する
-    m_counter += 19;
-  }
+  // if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) > 0) {
+  //  // 20倍の速度で落下する
+  //  m_counter += 19;
+  //}
 }
 
 void TetroMino::mf_moveFreeDrop(int speed) {
