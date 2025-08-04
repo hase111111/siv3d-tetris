@@ -86,6 +86,11 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
       "title.png", std::move(std::make_unique<Texture>("dat/img/title.png")));
   resource_container->RegisterTexture(
       "wall.png", std::move(std::make_unique<Texture>("dat/img/wall.png")));
+  auto tetromino = LoadDivideGraph("dat/img/blocks.png", 8, 1, 8, 20, 20);
+  for (int i = 0; i < 8; ++i) {
+    resource_container->RegisterTexture(std::format("block_{}.png", i),
+                                        std::move(tetromino[i]));
+  }
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
       scene_change_listener_ptr_, fps_controller_ptr_, dxlib_keyboard_ptr_,

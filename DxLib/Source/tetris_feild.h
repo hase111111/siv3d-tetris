@@ -8,6 +8,7 @@
 #pragma once
 
 #include <array>
+#include <tuple>
 
 namespace mytetris {
 
@@ -29,6 +30,41 @@ class TetrisField final {
 
  public:
   TetrisField();
+
+  class Iterator {
+   public:
+    using value_type = std::tuple<int, int, Tetromino>;
+    using reference = value_type;
+    using pointer = void;
+    using difference_type = std::ptrdiff_t;
+    using iterator_category = std::input_iterator_tag;
+
+    Iterator(const FieldType& field, int index = 0)
+        : field_(field), index_(index) {}
+
+    reference operator*() const {
+      int y = index_ / kWidth;
+      int x = index_ % kWidth;
+      return {x, y, field_[y][x]};
+    }
+
+    Iterator& operator++() {
+      ++index_;
+      return *this;
+    }
+
+    bool operator!=(const Iterator& other) const {
+      return index_ != other.index_;
+    }
+
+   private:
+    const FieldType& field_;
+    int index_;
+    static constexpr int kWidth = 12;
+  };
+
+  Iterator begin() const { return Iterator(field_, 0); }
+  Iterator end() const { return Iterator(field_, kWidth * kHeight); }
 
  private:
   static constexpr int kWidth = 12;

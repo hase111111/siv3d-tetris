@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -27,6 +28,7 @@ class Texture final {
  public:
   Texture() = delete;
   Texture(const std::string &file_name);
+  Texture(int raw_handle);
   Texture(const Texture &) = delete;
   Texture &operator=(const Texture &) = delete;
   Texture(Texture &&) = default;
@@ -51,9 +53,13 @@ class Texture final {
  private:
   std::tuple<int, int> GetRenderPos(RenderAnchor anchor) const;
 
-  const std::string file_name_;
   const int handle_;
   static int count_;
 };
+
+std::vector<std::unique_ptr<Texture>> LoadDivideGraph(const std::string path,
+                                                      int x_num, int y_num,
+                                                      int all_num, int x_size,
+                                                      int y_size);
 
 }  // namespace mytetris

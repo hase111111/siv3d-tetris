@@ -21,10 +21,10 @@ TetrisField::FieldType TetrisField::InitializeField() const {
 
   // ¾ó‚É‚È‚é‚æ‚¤‚É kWall ‚ğ”z’u.
   for (int x = 0; x < kWidth; ++x) {
-    field[0][x] = Tetromino::kWall;
     field[static_cast<size_t>(kHeight) - 1][x] = Tetromino::kWall;
   }
   for (int y = 0; y < kHeight; ++y) {
+    field[y][0] = Tetromino::kWall;
     field[y][static_cast<size_t>(kWidth) - 1] = Tetromino::kWall;
   }
   return field;

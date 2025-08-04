@@ -18,7 +18,7 @@ class TextureView final {
   TextureView() = delete;
   TextureView(const Texture& texture);
   TextureView(const TextureView&) = default;
-  TextureView& operator=(const TextureView&) = default;
+  TextureView(TextureView&&) noexcept = default;
 
   bool IsValid() const;
 

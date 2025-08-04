@@ -20,7 +20,9 @@ TetrisScene::TetrisScene(
 
 bool TetrisScene::Update() { return true; }
 
-void TetrisScene::Draw() const {}
+void TetrisScene::Draw() const {
+  tetris_field_renderer_.Draw(tetris_field_, 300, 0);
+}
 
 void TetrisScene::OnStart(const SceneChangeParameter& parameter) {}
 
