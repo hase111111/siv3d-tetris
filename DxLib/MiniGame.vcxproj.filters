@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\scenes\debug">
       <UniqueIdentifier>{130719ca-ce38-4fe4-b10c-a02ad7490c1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scenes\tetris">
+      <UniqueIdentifier>{d7b73ff3-d25f-4c4c-9c01-0411d2f2a0f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -176,9 +179,6 @@
     <ClInclude Include="Source\scene_change_listener.h">
       <Filter>ソース ファイル\system\scene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\scene_name.h">
-      <Filter>ソース ファイル\system\scene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\scene_change_parameter.h">
       <Filter>ソース ファイル\system\scene</Filter>
     </ClInclude>
@@ -214,6 +214,12 @@
     </ClInclude>
     <ClInclude Include="Source\texture_view.h">
       <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetris_scene.h">
+      <Filter>ソース ファイル\scenes\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\scene_name.h">
+      <Filter>ソース ファイル\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

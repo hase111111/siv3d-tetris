@@ -22,7 +22,6 @@ Texture::Texture(const std::string& file_name)
     : file_name_(file_name), handle_(DxLib::LoadGraph(file_name.c_str())) {
   ASSERT(handle_ >= 0, std::format("Failed to load texture: {} (handle: {})",
                                    file_name, handle_));
-  printfDx("%d\n", handle_);
   // 1フレーム間に大量のテクスチャのロードが発生することを防ぐため，
   // ロードした数をカウントする
   ++count_;

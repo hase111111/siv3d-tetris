@@ -72,6 +72,7 @@
     <ClInclude Include="Source\system_main.h" />
     <ClInclude Include="Source\TetrisMain.h" />
     <ClInclude Include="Source\TetrisDefine.h" />
+    <ClInclude Include="Source\tetris_scene.h" />
     <ClInclude Include="Source\TetroMino.h" />
     <ClInclude Include="Source\texture.h" />
     <ClInclude Include="Source\texture_view.h" />

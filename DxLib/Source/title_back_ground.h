@@ -28,7 +28,7 @@ class TitleBackGround final {
   const TextureView wall_texture_;
   const int window_size_x_;
   const int window_size_y_;
-  const float wall_ex_rate_{2.0f};
+  const float wall_ex_{2.0f};
 };
 
 }  // namespace mytetris

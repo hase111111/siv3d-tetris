@@ -14,9 +14,7 @@
 namespace mytetris {
 
 TextureView::TextureView(const Texture& texture)
-    : handle_(texture.GetRawHandle()) {
-  printfDx("%d\n", handle_);
-}
+    : handle_(texture.GetRawHandle()) {}
 
 bool TextureView::IsValid() const { return handle_ >= 0; }
 
