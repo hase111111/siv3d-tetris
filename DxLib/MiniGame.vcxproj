@@ -39,6 +39,7 @@
     <ClCompile Include="Source\system_main.cpp" />
     <ClCompile Include="Source\TetrisMain.cpp" />
     <ClCompile Include="Source\TetrisDefine.cpp" />
+    <ClCompile Include="Source\tetris_scene.cpp" />
     <ClCompile Include="Source\TetroMino.cpp" />
     <ClCompile Include="Source\TetroMinoCheckField.cpp" />
     <ClCompile Include="Source\TetroMinoGetPos.cpp" />
