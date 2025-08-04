@@ -31,6 +31,12 @@ bool TitleScene::Update() {
     return false;
   }
 
+  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+    scene_change_listener_ptr_->RequestAddScene(SceneName::kTetris,
+                                                SceneChangeParameter{});
+    return true;
+  }
+
   return true;
 }
 

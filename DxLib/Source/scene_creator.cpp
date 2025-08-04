@@ -9,6 +9,7 @@
 
 #include "debug_scene.h"
 #include "dxlib_assert.h"
+#include "tetris_scene.h"
 #include "title_scene.h"
 
 namespace mytetris {
@@ -43,6 +44,11 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
       return std::make_unique<TitleScene>(scene_change_listener_ptr_,
                                           dxlib_keyboard_ptr_,
                                           resource_container_ptr_);
+    }
+    case SceneName::kTetris: {
+      return std::make_unique<TetrisScene>(scene_change_listener_ptr_,
+                                           dxlib_keyboard_ptr_,
+                                           resource_container_ptr_);
     }
     default: {
       ASSERT_MUST_NOT_REACH_HERE();
