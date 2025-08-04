@@ -1,5 +1,5 @@
 
-//! @file tetris_field_renderer.h
+//! @file tetris_renderer.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -13,24 +13,27 @@
 
 #include "resource_container.h"
 #include "tetris_feild.h"
+#include "tetromino.h"
 #include "texture_view.h"
 
 namespace mytetris {
 
-class TetrisFieldRenderer final {
+class TetrisRenderer final {
  public:
-  TetrisFieldRenderer(
+  TetrisRenderer(
       const std::shared_ptr<const ResourceContainer> resource_container_ptr_);
 
-  void Draw(const TetrisField& tetris_field, int x, int y) const;
+  void Draw(const TetrisField& tetris_field, int render_x, int render_y,
+            const Tetromino& tetromino, int tetromino_pos_x,
+            int tetromino_pos_y) const;
 
  private:
-  std::map<Tetromino, TextureView> InitializeBlockTextures(
+  std::map<TetrominoColor, TextureView> InitializeBlockTextures(
       const std::shared_ptr<const ResourceContainer> resource_container_ptr_)
       const;
 
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
-  const std::map<Tetromino, TextureView> block_textures_;
+  const std::map<TetrominoColor, TextureView> block_textures_;
 };
 
 }  // namespace mytetris

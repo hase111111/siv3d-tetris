@@ -40,6 +40,10 @@ enum class KeyHandle : int {
   kY = 0x15,
   kZ = 0x2C,
   kSpace = 0x039,
+  kLeft = 0xCB,
+  kRight = 0xCD,
+  kUp = 0xC8,
+  kDown = 0xD0,
 };
 
 //! @brief DxLibのキーボード入力を取得するクラス．

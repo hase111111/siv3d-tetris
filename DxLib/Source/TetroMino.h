@@ -1,33 +1,29 @@
+
+//! @file tetromino.h
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
-#include "EnumTetris.h"
-#include "TetrisDefine.h"
 
-class TetroMino final {
+#include <vector>
+
+#include "tetromino_color.h"
+
+namespace mytetris {
+
+class Tetromino final {
  public:
-  TetroMino();
+  Tetromino(const std::vector<std::vector<bool>> shape, TetrominoColor color);
 
-  void update(const int _speed = 0);
-  void reset(const enumMino _mino);
+  inline std::vector<std::vector<bool>> GetShape() const { return shape_; }
 
-  bool getFlagRockMino() const { return m_rock; }
-  enumMino getMinoType() const { return m_mino; }
-  void getMinoPos(int (&_meta)[4][2], const bool _get_gost = false) const;
-
-  void setFieldDate(
-      const enumMino (&_date)[TetrisDefine::FIELD_X][TetrisDefine::FIELD_Y]);
+  inline TetrominoColor GetColor() const { return color_; }
 
  private:
-  int m_fieldx, m_fieldy;  // ミノの左上のフィールド座標
-  unsigned int m_roll, m_counter, m_rock_counter, m_rock_operation_counter;
-  bool m_rock;
-  enumMino m_mino;
-  enumMino m_fielddate[TetrisDefine::FIELD_X][TetrisDefine::FIELD_Y];
-
-  bool mf_canSetMinoInField(const int _fieldx, const int _fieldy) const;
-  bool mf_moveUniqueTurn(bool _turnleft);
-  void mf_moveTurn();
-  void mf_moveHorizontal();
-  void mf_moveHardDrop();
-  void mf_moveSoftDrop();
-  void mf_moveFreeDrop(int _speed);
+  const std::vector<std::vector<bool>> shape_;
+  const TetrominoColor color_;
 };
+
+}  // namespace mytetris

@@ -10,30 +10,22 @@
 #include <array>
 #include <tuple>
 
+#include "tetromino_color.h"
+
 namespace mytetris {
 
-enum class Tetromino : int {
-  kNone = 0,
-  kI = 1,
-  kJ = 2,
-  kL = 3,
-  kO = 4,
-  kS = 5,
-  kZ = 6,
-  kT = 7,
-  kWall = 8,
-  kJammer = 9,
-};
-
 class TetrisField final {
-  using FieldType = std::array<std::array<Tetromino, 12>, 24>;
+  using FieldType = std::array<std::array<TetrominoColor, 12>, 24>;
 
  public:
   TetrisField();
 
+  int GetWidth() const { return kWidth; }
+  int GetHeight() const { return kHeight; }
+
   class Iterator {
    public:
-    using value_type = std::tuple<int, int, Tetromino>;
+    using value_type = std::tuple<int, int, TetrominoColor>;
     using reference = value_type;
     using pointer = void;
     using difference_type = std::ptrdiff_t;

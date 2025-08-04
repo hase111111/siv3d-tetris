@@ -2,6 +2,7 @@
 
 #include "DxLib.h"
 #include "dxlib_assert.h"
+#include "next_tetromino.h"
 
 Next::Next() {
   for (int i = 0; i < 21; i++) {

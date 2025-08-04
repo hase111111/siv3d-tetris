@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\tetris">
       <UniqueIdentifier>{7788b157-1115-4c82-837a-1e3d1dfca80c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\tetris\Old">
+      <UniqueIdentifier>{75fc2f67-56a0-43e5-a501-2711d1e09ed4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -53,30 +56,6 @@
     </ClCompile>
     <ClCompile Include="Source\fps_controller.cpp">
       <Filter>ソース ファイル\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TetrisMain.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Field.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TetrisDefine.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TetroMino.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TetroMinoCheckField.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TetroMinoTurn.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TetroMinoGetPos.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Next.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
     <ClCompile Include="Source\system_main.cpp">
       <Filter>ソース ファイル\system</Filter>
@@ -135,7 +114,40 @@
     <ClCompile Include="Source\tetris_feild.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
-    <ClCompile Include="Source\tetris_field_renderer.cpp">
+    <ClCompile Include="Source\tetris_renderer.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMinoCheckField.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMinoGetPos.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMinoTurn.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetrisDefine.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetrisMain.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TetroMino_.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\next_tetromino.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\tetromino_generator.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Field.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Next.cpp">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\tetromino.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
   </ItemGroup>
@@ -145,24 +157,6 @@
     </ClInclude>
     <ClInclude Include="Source\fps_controller.h">
       <Filter>ソース ファイル\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TetrisMain.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Field.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TetrisDefine.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TetroMino.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EnumTetris.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Next.h">
-      <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
     <ClInclude Include="Source\system_main.h">
       <Filter>ソース ファイル\system</Filter>
@@ -233,8 +227,41 @@
     <ClInclude Include="Source\tetris_feild.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
-    <ClInclude Include="Source\tetris_field_renderer.h">
+    <ClInclude Include="Source\tetris_renderer.h">
       <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetromino.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetromino_color.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TetrisMain.h">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TetrisDefine.h">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TetroMino_.h">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\next_tetromino.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetromino_type.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetromino_generator.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Next.h">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnumTetris.h">
+      <Filter>ソース ファイル\tetris\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Field.h">
+      <Filter>ソース ファイル\tetris\Old</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

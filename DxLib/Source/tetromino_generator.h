@@ -1,16 +1,24 @@
 
-//! @file tetromino.cpp
+//! @file tetromino_generator.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
 
+#pragma once
+
 #include "tetromino.h"
+#include "tetromino_type.h"
 
 namespace mytetris {
 
-Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
-                     TetrominoColor color)
-    : shape_(shape), color_(color) {}
+class TetrominoGenerator final {
+ public:
+  TetrominoGenerator() = default;
+
+  Tetromino Generate(const TetrominoType);
+
+ private:
+};
 
 }  // namespace mytetris

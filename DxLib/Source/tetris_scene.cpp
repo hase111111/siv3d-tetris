@@ -7,6 +7,9 @@
 
 #include "tetris_scene.h"
 
+#include "game_const.h"
+#include "tetromino_generator.h"
+
 namespace mytetris {
 
 TetrisScene::TetrisScene(
@@ -16,12 +19,30 @@ TetrisScene::TetrisScene(
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
       resource_container_ptr_(resource_container_ptr),
-      tetris_field_renderer_{resource_container_ptr} {}
+      tetris_renderer_{resource_container_ptr} {}
 
-bool TetrisScene::Update() { return true; }
+bool TetrisScene::Update() {
+  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kW) == 1) {
+    next_tetromino_.Next();
+  }
+  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kLeft) == 1) {
+    tetromino_x_--;
+  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kRight) == 1) {
+    tetromino_x_++;
+  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kDown) == 1) {
+    tetromino_y_++;
+  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
+    tetromino_y_--;
+  }
+  return true;
+}
 
 void TetrisScene::Draw() const {
-  tetris_field_renderer_.Draw(tetris_field_, 300, 0);
+  const auto tetromino =
+      TetrominoGenerator{}.Generate(next_tetromino_.GetNext());
+  tetris_renderer_.Draw(tetris_field_, GameConst::kResolutionX / 2,
+                        GameConst::kResolutionY / 2, tetromino, tetromino_x_,
+                        tetromino_y_);
 }
 
 void TetrisScene::OnStart(const SceneChangeParameter& parameter) {}
