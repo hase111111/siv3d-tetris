@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Tetris">
-      <UniqueIdentifier>{7788b157-1115-4c82-837a-1e3d1dfca80c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\system">
       <UniqueIdentifier>{c4e3ae29-f013-4224-aaa5-16b49da4a77c}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,9 @@
     <Filter Include="ソース ファイル\scenes\tetris">
       <UniqueIdentifier>{d7b73ff3-d25f-4c4c-9c01-0411d2f2a0f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\tetris_">
+      <UniqueIdentifier>{7788b157-1115-4c82-837a-1e3d1dfca80c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -55,28 +55,28 @@
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\TetrisMain.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\Field.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\TetrisDefine.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\TetroMino.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\TetroMinoCheckField.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\TetroMinoTurn.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\TetroMinoGetPos.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\Next.cpp">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClCompile>
     <ClCompile Include="Source\system_main.cpp">
       <Filter>ソース ファイル\system</Filter>
@@ -132,6 +132,12 @@
     <ClCompile Include="Source\tetris_scene.cpp">
       <Filter>ソース ファイル\scenes\tetris</Filter>
     </ClCompile>
+    <ClCompile Include="Source\tetris_feild.cpp">
+      <Filter>ソース ファイル\tetris_</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\tetris_field_renderer.cpp">
+      <Filter>ソース ファイル\tetris_</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Define.h">
@@ -141,22 +147,22 @@
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\TetrisMain.h">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClInclude>
     <ClInclude Include="Source\Field.h">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClInclude>
     <ClInclude Include="Source\TetrisDefine.h">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClInclude>
     <ClInclude Include="Source\TetroMino.h">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClInclude>
     <ClInclude Include="Source\EnumTetris.h">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClInclude>
     <ClInclude Include="Source\Next.h">
-      <Filter>ソース ファイル\Tetris</Filter>
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClInclude>
     <ClInclude Include="Source\system_main.h">
       <Filter>ソース ファイル\system</Filter>
@@ -223,6 +229,12 @@
     </ClInclude>
     <ClInclude Include="Source\scene_name.h">
       <Filter>ソース ファイル\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetris_feild.h">
+      <Filter>ソース ファイル\tetris_</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetris_field_renderer.h">
+      <Filter>ソース ファイル\tetris_</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

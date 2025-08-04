@@ -15,7 +15,8 @@ TetrisScene::TetrisScene(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
-      resource_container_ptr_(resource_container_ptr) {}
+      resource_container_ptr_(resource_container_ptr),
+      tetris_field_renderer_{resource_container_ptr} {}
 
 bool TetrisScene::Update() { return true; }
 
