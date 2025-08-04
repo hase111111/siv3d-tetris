@@ -8,6 +8,7 @@
 #pragma once
 
 #include <map>
+#include <memory>
 #include <string>
 
 #include "texture.h"
@@ -24,7 +25,8 @@ class ResourceContainer final {
   //! @param[in] name テクスチャのキー.
   //! この値が重複している場合Assertが発生する.
   //! @param[in] texture テクスチャのデータ.
-  void RegisterTexture(const std::string& name, Texture&& texture);
+  void RegisterTexture(const std::string& name,
+                       std::unique_ptr<const Texture>&& texture);
 
   //! @brief 登録したテクスチャを取得する.
   //! テクスチャはの実態はこのクラスのみで管理されるので，
@@ -47,7 +49,7 @@ class ResourceContainer final {
   void UnloadTexture(const std::string& name);
 
  private:
-  std::map<std::string, Texture> textures;
+  std::map<std::string, std::unique_ptr<const Texture>> textures;
 };
 
 }  // namespace mytetris

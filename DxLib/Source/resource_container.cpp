@@ -13,8 +13,8 @@
 
 namespace mytetris {
 
-void ResourceContainer::RegisterTexture(const std::string& name,
-                                        Texture&& texture) {
+void ResourceContainer::RegisterTexture(
+    const std::string& name, std::unique_ptr<const Texture>&& texture) {
   ASSERT(textures.find(name) == textures.end(),
          std::format("Texture with name {} already exists.", name));
   // –¾Ž¦“I‚É move ‚·‚é‚½‚ß‚É insert ‚ðŽg—p.
@@ -24,7 +24,7 @@ void ResourceContainer::RegisterTexture(const std::string& name,
 TextureView ResourceContainer::GetTexture(const std::string& name) const {
   ASSERT(textures.find(name) != textures.end(),
          std::format("Texture with name {} does not exist.", name));
-  return TextureView(textures.at(name));
+  return textures.at(name)->GetView();
 }
 
 void ResourceContainer::UnloadTexture(const std::string& name) {

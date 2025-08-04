@@ -82,10 +82,10 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
   const auto resource_container = std::make_shared<ResourceContainer>();
-  resource_container->RegisterTexture("title.png",
-                                      std::move(Texture("dat/img/title.png")));
-  // resource_container->RegisterTexture("wall.png",
-  // Texture("dat/img/wall.png"));
+  resource_container->RegisterTexture(
+      "title.png", std::move(std::make_unique<Texture>("dat/img/title.png")));
+  resource_container->RegisterTexture(
+      "wall.png", std::move(std::make_unique<Texture>("dat/img/wall.png")));
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
       scene_change_listener_ptr_, fps_controller_ptr_, dxlib_keyboard_ptr_,

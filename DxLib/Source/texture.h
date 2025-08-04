@@ -13,6 +13,8 @@
 
 namespace mytetris {
 
+class TextureView;
+
 enum class RenderAnchor : int {
   TopLeft,
   TopRight,
@@ -42,10 +44,9 @@ class Texture final {
   void DrawRotated(float x, float y, RenderAnchor anchor, float ex,
                    float angle) const;
 
-  [[nodiscard]]
-  inline static int GetCount() {
-    return count_;
-  }
+  [[nodiscard]] inline static int GetCount() { return count_; }
+
+  TextureView GetView() const;
 
  private:
   std::tuple<int, int> GetRenderPos(RenderAnchor anchor) const;

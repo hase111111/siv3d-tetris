@@ -12,6 +12,7 @@
 #include <format>
 
 #include "dxlib_assert.h"
+#include "texture_view.h"
 
 namespace mytetris {
 
@@ -61,6 +62,8 @@ void Texture::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
   DxLib::DrawRotaGraphF(x + render_x * ex, y + render_y * ex, ex, angle,
                         GetRawHandle(), TRUE);
 }
+
+TextureView Texture::GetView() const { return TextureView{*this}; }
 
 std::tuple<int, int> Texture::GetRenderPos(RenderAnchor anchor) const {
   const int width = GetWidth();
