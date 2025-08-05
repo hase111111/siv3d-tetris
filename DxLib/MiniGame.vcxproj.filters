@@ -51,9 +51,6 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Define.cpp">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Source\fps_controller.cpp">
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
@@ -152,9 +149,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Define.h">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Source\fps_controller.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
