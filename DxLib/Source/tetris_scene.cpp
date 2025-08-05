@@ -42,6 +42,10 @@ bool TetrisScene::Update() {
   } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kD) == 1) {
     current_tetromino_.RightRotate();
   }
+
+  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kS) == 1) {
+    tetris_field_.SetTetromino(current_tetromino_, tetromino_x_, tetromino_y_);
+  }
   return true;
 }
 

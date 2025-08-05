@@ -66,6 +66,9 @@ class TetrisField final {
   bool IsValidPosition(const Tetromino& tetromino, int tetromino_x,
                        int tetromino_y) const;
 
+  void SetTetromino(const Tetromino& tetromino, int tetromino_x,
+                    int tetromino_y);
+
  private:
   static constexpr int kWidth = 12;
   static constexpr int kHeight = 24;

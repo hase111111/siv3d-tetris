@@ -43,6 +43,38 @@ bool TetrisField::IsValidPosition(const Tetromino& tetromino,
   return true;
 }
 
+void TetrisField::SetTetromino(const Tetromino& tetromino,
+                               const int tetromino_x, const int tetromino_y) {
+  // 仮に tetromino がフィールド外にある場合でも,
+  // フィールド内にある分だけをセットする.
+  // Wallは上書きしない.
+  const auto shape = tetromino.GetShape();
+  const int height = static_cast<int>(shape.size());
+  const int width = static_cast<int>(shape[0].size());
+
+  for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+      if (shape[y][x]) {
+        const int field_x = tetromino_x + x;
+        const int field_y = tetromino_y + y;
+
+        // フィールド外は無視.
+        if (field_x < 0 || field_x >= kWidth || field_y < 0 ||
+            field_y >= kHeight) {
+          continue;
+        }
+
+        // Wallは上書きしない.
+        if (field_[field_y][field_x] == TetrominoColor::kWall) {
+          continue;
+        }
+
+        field_[field_y][field_x] = tetromino.GetColor();
+      }
+    }
+  }
+}
+
 TetrisField::FieldType TetrisField::InitializeField() const {
   FieldType field{};
   for (int y = 0; y < kHeight; ++y) {
