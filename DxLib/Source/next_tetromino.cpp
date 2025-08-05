@@ -16,17 +16,28 @@ namespace mytetris {
 
 NextTetromino::NextTetromino() : next_{MakeNextTetromino()} {}
 
-TetrominoType NextTetromino::GetNext() const {
+Tetromino NextTetromino::GetNext() const {
   ASSERT(!next_.empty(), "No next tetromino available.");
-  return next_.back();
+  return tetromino_generator_.Generate(next_.back());
 }
 
-std::vector<TetrominoType> NextTetromino::GetNextList() const {
+std::vector<Tetromino> NextTetromino::GetNextList() const {
   // Œã‚ë‚©‚ç7‚Â‚ÌƒeƒgƒŠƒ~ƒm‚ð•Ô‚·, ‘«‚è‚È‚¯‚ê‚Îæ“ª‚©‚ç–„‚ß‚é.
   if (next_.size() >= 7) {
-    return std::vector<TetrominoType>(next_.end() - 7, next_.end());
+    const auto types = std::vector<TetrominoType>(next_.end() - 7, next_.end());
+    std::vector<Tetromino> tetrominos;
+    tetrominos.reserve(types.size());
+    for (const auto& type : types) {
+      tetrominos.push_back(tetromino_generator_.Generate(type));
+    }
+    return tetrominos;
   } else {
-    return next_;
+    std::vector<Tetromino> tetrominos;
+    tetrominos.reserve(next_.size());
+    for (const auto& type : next_) {
+      tetrominos.push_back(tetromino_generator_.Generate(type));
+    }
+    return tetrominos;
   }
 }
 

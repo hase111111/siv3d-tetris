@@ -9,6 +9,8 @@
 
 #include <vector>
 
+#include "tetromino.h"
+#include "tetromino_generator.h"
 #include "tetromino_type.h"
 
 namespace mytetris {
@@ -18,9 +20,9 @@ class NextTetromino final {
   NextTetromino();
   ~NextTetromino() = default;
 
-  TetrominoType GetNext() const;
+  Tetromino GetNext() const;
 
-  std::vector<TetrominoType> GetNextList() const;
+  std::vector<Tetromino> GetNextList() const;
 
   void Next();
 
@@ -33,6 +35,7 @@ class NextTetromino final {
       TetrominoType::kZ};
 
   std::vector<TetrominoType> next_;
+  TetrominoGenerator tetromino_generator_;
 };
 
 }  // namespace mytetris

@@ -20,8 +20,7 @@ TetrisScene::TetrisScene(
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
       resource_container_ptr_(resource_container_ptr),
       tetris_renderer_{resource_container_ptr},
-      current_tetromino_(
-          TetrominoGenerator{}.Generate(next_tetromino_.GetNext())) {}
+      current_tetromino_(next_tetromino_.GetNext()) {}
 
 bool TetrisScene::Update() {
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kW) == 1) {

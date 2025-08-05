@@ -14,7 +14,7 @@
 
 namespace mytetris {
 
-Tetromino TetrominoGenerator::Generate(const TetrominoType type) {
+Tetromino TetrominoGenerator::Generate(const TetrominoType type) const {
   switch (type) {
     case TetrominoType::kI: {
       return Tetromino{{{0, 0, 0, 0}, {0, 0, 0, 0}, {1, 1, 1, 1}, {0, 0, 0, 0}},

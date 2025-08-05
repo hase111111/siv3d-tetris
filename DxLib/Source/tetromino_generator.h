@@ -16,7 +16,7 @@ class TetrominoGenerator final {
  public:
   TetrominoGenerator() = default;
 
-  Tetromino Generate(const TetrominoType);
+  Tetromino Generate(const TetrominoType) const;
 
  private:
 };
