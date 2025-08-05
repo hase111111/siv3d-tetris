@@ -11,6 +11,38 @@ namespace mytetris {
 
 TetrisField::TetrisField() : field_(InitializeField()) {}
 
+std::tuple<int, int> TetrisField::GetHardDropPosition(
+    const Tetromino& tetromino, int tetromino_x, int tetromino_y) const {
+  int y = tetromino_y;
+  while (IsValidPosition(tetromino, tetromino_x, y + 1)) {
+    ++y;
+  }
+  return {tetromino_x, y};
+}
+
+bool TetrisField::IsValidPosition(const Tetromino& tetromino,
+                                  const int tetromino_x,
+                                  const int tetromino_y) const {
+  const auto shape = tetromino.GetShape();
+  const int height = static_cast<int>(shape.size());
+  const int width = static_cast<int>(shape[0].size());
+  for (int y = 0; y < height; ++y) {
+    for (int x = 0; x < width; ++x) {
+      if (shape[y][x]) {
+        const int field_x = tetromino_x + x;
+        const int field_y = tetromino_y + y;
+
+        if (field_x < 0 || field_x >= kWidth || field_y < 0 ||
+            field_y >= kHeight ||
+            field_[field_y][field_x] != TetrominoColor::kNone) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+
 TetrisField::FieldType TetrisField::InitializeField() const {
   FieldType field{};
   for (int y = 0; y < kHeight; ++y) {

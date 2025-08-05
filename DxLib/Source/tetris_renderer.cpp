@@ -19,13 +19,12 @@ TetrisRenderer::TetrisRenderer(
 void TetrisRenderer::Draw(const TetrisField& tetris_field, int render_x,
                           int render_y, const Tetromino& tetromino,
                           int tetromino_pos_x, int tetromino_pos_y) const {
-  const float block_size = 40.f;
   const float render_x_ = static_cast<float>(render_x) -
-                          block_size * (tetris_field.GetWidth() / 2.f - 0.5f);
+                          block_size_ * (tetris_field.GetWidth() / 2.f - 0.5f);
   const float render_y_ = static_cast<float>(render_y) -
-                          block_size * (tetris_field.GetHeight() / 2.f - 0.5f);
+                          block_size_ * (tetris_field.GetHeight() / 2.f - 0.5f);
 
-  // フィールドの描画
+  // フィールドの描画.
   for (const auto& [x_, y_, tetromino] : tetris_field) {
     if (tetromino == TetrominoColor::kNone) {
       continue;
@@ -36,29 +35,22 @@ void TetrisRenderer::Draw(const TetrisField& tetris_field, int render_x,
       continue;
     }
     const TextureView& texture = it->second;
-    texture.DrawRotated(render_x_ + x_ * block_size,
-                        render_y_ + y_ * block_size, RenderAnchor::Center, 2.f,
+    texture.DrawRotated(render_x_ + x_ * block_size_,
+                        render_y_ + y_ * block_size_, RenderAnchor::Center, 2.f,
                         0.f);
   }
 
-  // テトリミノの描画
-  const auto shape = tetromino.GetShape();
-  const float offset_x = tetromino_pos_x * block_size;
-  const float offset_y = tetromino_pos_y * block_size;
-  for (int y = 0; y < shape.size(); ++y) {
-    for (int x = 0; x < shape[0].size(); ++x) {
-      if (!shape[y][x]) continue;
-      const auto color = tetromino.GetColor();
-      const auto it = block_textures_.find(color);
-      if (it == block_textures_.end()) {
-        ASSERT_MUST_NOT_REACH_HERE();
-        continue;
-      }
-      const TextureView& texture = it->second;
-      texture.DrawRotated(render_x_ + offset_x + x * block_size,
-                          render_y_ + offset_y + y * block_size,
-                          RenderAnchor::Center, 2.f, 0.f);
-    }
+  // テトリミノの描画.
+  DrawTetromino(tetromino, render_x_, render_y_, tetromino_pos_x,
+                tetromino_pos_y, 1.f);
+
+  const auto [hard_drop_x, hard_drop_y] = tetris_field.GetHardDropPosition(
+      tetromino, tetromino_pos_x, tetromino_pos_y);
+
+  // ハードドロップ位置の描画.
+  if (hard_drop_x != tetromino_pos_x || hard_drop_y != tetromino_pos_y) {
+    DrawTetromino(tetromino, render_x_, render_y_, hard_drop_x, hard_drop_y,
+                  0.5f);
   }
 }
 
@@ -76,6 +68,31 @@ std::map<TetrominoColor, TextureView> TetrisRenderer::InitializeBlockTextures(
   block_textures.emplace(kJammer, resource->GetTexture("block_7.png"));
   block_textures.emplace(kWall, resource->GetTexture("wall.png"));
   return block_textures;
+}
+
+void TetrisRenderer::DrawTetromino(const Tetromino& tetromino,
+                                   const float render_x, const float render_y,
+                                   const int tetromino_pos_x,
+                                   const int tetromino_pos_y,
+                                   const float alpha) const {
+  const auto shape = tetromino.GetShape();
+  const float offset_x = tetromino_pos_x * block_size_;
+  const float offset_y = tetromino_pos_y * block_size_;
+  for (int y = 0; y < shape.size(); ++y) {
+    for (int x = 0; x < shape[0].size(); ++x) {
+      if (!shape[y][x]) continue;
+      const auto color = tetromino.GetColor();
+      const auto it = block_textures_.find(color);
+      if (it == block_textures_.end()) {
+        ASSERT_MUST_NOT_REACH_HERE();
+        continue;
+      }
+      const TextureView& texture = it->second;
+      texture.DrawRotatedAlpha(render_x + offset_x + x * block_size_,
+                               render_y + offset_y + y * block_size_,
+                               RenderAnchor::Center, 2.f, 0.f, alpha);
+    }
+  }
 }
 
 }  // namespace mytetris

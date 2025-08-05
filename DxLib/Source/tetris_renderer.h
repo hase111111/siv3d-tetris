@@ -32,8 +32,13 @@ class TetrisRenderer final {
       const std::shared_ptr<const ResourceContainer> resource_container_ptr_)
       const;
 
+  void DrawTetromino(const Tetromino& tetromino, float render_x, float render_y,
+                     int tetromino_pos_x, int tetromino_pos_y,
+                     float alpha) const;
+
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   const std::map<TetrominoColor, TextureView> block_textures_;
+  const float block_size_{40.f};  // Size of each block in pixels
 };
 
 }  // namespace mytetris

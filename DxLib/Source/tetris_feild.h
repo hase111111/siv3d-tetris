@@ -10,6 +10,7 @@
 #include <array>
 #include <tuple>
 
+#include "tetromino.h"
 #include "tetromino_color.h"
 
 namespace mytetris {
@@ -57,6 +58,13 @@ class TetrisField final {
 
   Iterator begin() const { return Iterator(field_, 0); }
   Iterator end() const { return Iterator(field_, kWidth * kHeight); }
+
+  std::tuple<int, int> GetHardDropPosition(const Tetromino& tetromino,
+                                           int tetromino_x,
+                                           int tetromino_y) const;
+
+  bool IsValidPosition(const Tetromino& tetromino, int tetromino_x,
+                       int tetromino_y) const;
 
  private:
   static constexpr int kWidth = 12;

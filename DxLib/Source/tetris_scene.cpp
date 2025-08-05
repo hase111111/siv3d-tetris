@@ -19,7 +19,9 @@ TetrisScene::TetrisScene(
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
       resource_container_ptr_(resource_container_ptr),
-      tetris_renderer_{resource_container_ptr} {}
+      tetris_renderer_{resource_container_ptr},
+      current_tetromino_(
+          TetrominoGenerator{}.Generate(next_tetromino_.GetNext())) {}
 
 bool TetrisScene::Update() {
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kW) == 1) {
@@ -34,15 +36,19 @@ bool TetrisScene::Update() {
   } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     tetromino_y_--;
   }
+
+  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kA) == 1) {
+    current_tetromino_.LeftRotate();
+  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kD) == 1) {
+    current_tetromino_.RightRotate();
+  }
   return true;
 }
 
 void TetrisScene::Draw() const {
-  const auto tetromino =
-      TetrominoGenerator{}.Generate(next_tetromino_.GetNext());
   tetris_renderer_.Draw(tetris_field_, GameConst::kResolutionX / 2,
-                        GameConst::kResolutionY / 2, tetromino, tetromino_x_,
-                        tetromino_y_);
+                        GameConst::kResolutionY / 2, current_tetromino_,
+                        tetromino_x_, tetromino_y_);
 }
 
 void TetrisScene::OnStart(const SceneChangeParameter& parameter) {}

@@ -30,8 +30,13 @@ class TextureView final {
 
   void Draw(float x, float y, RenderAnchor anchor) const;
 
+  void DrawAlpha(float x, float y, RenderAnchor anchor, float alpha) const;
+
   void DrawRotated(float x, float y, RenderAnchor anchor, float ex,
                    float angle) const;
+
+  void DrawRotatedAlpha(float x, float y, RenderAnchor anchor, float ex,
+                        float angle, float alpha) const;
 
  private:
   std::tuple<int, int> GetRenderPos(RenderAnchor anchor) const;

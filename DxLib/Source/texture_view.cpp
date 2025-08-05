@@ -38,6 +38,14 @@ void TextureView::Draw(float x, float y, RenderAnchor anchor) const {
   DrawRotated(x, y, anchor, 1.0f, 0.0f);
 }
 
+void TextureView::DrawAlpha(float x, float y, RenderAnchor anchor,
+                            float alpha) const {
+  const int alpha_ = static_cast<int>(alpha * 255);
+  DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
+  Draw(x, y, anchor);
+  DxLib::SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+}
+
 void TextureView::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
                               float angle) const {
   if (!IsValid()) {
@@ -47,6 +55,14 @@ void TextureView::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
 
   DxLib::DrawRotaGraphF(x + render_x * ex, y + render_y * ex, ex, angle,
                         handle_, TRUE);
+}
+
+void TextureView::DrawRotatedAlpha(float x, float y, RenderAnchor anchor,
+                                   float ex, float angle, float alpha) const {
+  const int alpha_ = static_cast<int>(alpha * 255);
+  DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
+  DrawRotated(x, y, anchor, ex, angle);
+  DxLib::SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 std::tuple<int, int> TextureView::GetRenderPos(RenderAnchor anchor) const {

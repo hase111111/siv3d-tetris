@@ -41,13 +41,16 @@ Tetromino TetrominoGenerator::Generate(const TetrominoType type) {
                        TetrominoColor::kZ};
     }
     case TetrominoType::kT: {
-      return Tetromino{{{0, 0, 0, 0}, {0, 1, 0, 0}, {1, 1, 1, 0}, {0, 0, 0, 0}},
+      return Tetromino{{{0, 0, 0, 0, 0},
+                        {0, 0, 1, 0, 0},
+                        {0, 1, 1, 1, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0}},
                        TetrominoColor::kT};
     }
     default: {
       ASSERT_MUST_NOT_REACH_HERE();
-      return Tetromino{{{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}},
-                       TetrominoColor::kNone};
+      return Tetromino{{{0}}, TetrominoColor::kNone};
     }
   }
 }

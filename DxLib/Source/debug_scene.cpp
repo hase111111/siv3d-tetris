@@ -28,7 +28,7 @@ bool DebugScene::Update() {
   }
 
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kT) == 1) {
-    scene_change_listener_ptr_->RequestAddScene(SceneName::kTitle,
+    scene_change_listener_ptr_->RequestAddScene(SceneName::kTetris,
                                                 SceneChangeParameter{});
   }
 

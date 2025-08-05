@@ -42,6 +42,7 @@ class TetrisScene final : public IScene {
   TetrisField tetris_field_;
   TetrisRenderer tetris_renderer_;
   NextTetromino next_tetromino_;
+  Tetromino current_tetromino_;
   int tetromino_x_{4};
   int tetromino_y_{-2};
 };
