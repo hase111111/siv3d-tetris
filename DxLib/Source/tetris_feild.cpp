@@ -32,9 +32,15 @@ bool TetrisField::IsValidPosition(const Tetromino& tetromino,
         const int field_x = tetromino_x + x;
         const int field_y = tetromino_y + y;
 
-        if (field_x < 0 || field_x >= kWidth || field_y < 0 ||
-            field_y >= kHeight ||
-            field_[field_y][field_x] != TetrominoColor::kNone) {
+        if (field_x < 0 || field_x >= kWidth || field_y >= kHeight) {
+          return false;
+        }
+
+        if (field_y < 0) {
+          continue;
+        }
+
+        if (field_[field_y][field_x] != TetrominoColor::kNone) {
           return false;
         }
       }

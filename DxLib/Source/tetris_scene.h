@@ -15,6 +15,7 @@
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "tetris_feild.h"
+#include "tetris_input_handler.h"
 #include "tetris_renderer.h"
 
 namespace mytetris {
@@ -39,10 +40,11 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
-  TetrisField tetris_field_;
-  TetrisRenderer tetris_renderer_;
   NextTetromino next_tetromino_;
-  Tetromino current_tetromino_;
+  const std::shared_ptr<TetrisField> tetris_field_ptr_;
+  const std::shared_ptr<Tetromino> tetromino_ptr_;
+  const std::unique_ptr<TetrisInputHandler> tetris_input_handler_ptr_;
+  TetrisRenderer tetris_renderer_;
   int tetromino_x_{4};
   int tetromino_y_{-2};
 };
