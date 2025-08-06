@@ -12,20 +12,26 @@
 namespace mytetris {
 
 TetrisRenderer::TetrisRenderer(
-    const std::shared_ptr<const ResourceContainer> resource_container_ptr)
+    const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
+    const std::shared_ptr<const TetrisField>& tetris_field_ptr,
+    const std::shared_ptr<const Tetromino>& tetromino_ptr)
     : resource_container_ptr_(resource_container_ptr),
+      tetris_field_ptr_(tetris_field_ptr),
+      tetromino_ptr_(tetromino_ptr),
       block_textures_(InitializeBlockTextures(resource_container_ptr)) {}
 
-void TetrisRenderer::Draw(const TetrisField& tetris_field, int render_x,
-                          int render_y, const Tetromino& tetromino,
-                          int tetromino_pos_x, int tetromino_pos_y) const {
-  const float render_x_ = static_cast<float>(render_x) -
-                          block_size_ * (tetris_field.GetWidth() / 2.f - 0.5f);
-  const float render_y_ = static_cast<float>(render_y) -
-                          block_size_ * (tetris_field.GetHeight() / 2.f - 0.5f);
+void TetrisRenderer::Draw(const int render_x, const int render_y,
+                          const int tetromino_pos_x,
+                          const int tetromino_pos_y) const {
+  const float render_x_ =
+      static_cast<float>(render_x) -
+      block_size_ * (tetris_field_ptr_->GetWidth() / 2.f - 0.5f);
+  const float render_y_ =
+      static_cast<float>(render_y) -
+      block_size_ * (tetris_field_ptr_->GetHeight() / 2.f - 0.5f);
 
   // フィールドの描画.
-  for (const auto& [x_, y_, tetromino] : tetris_field) {
+  for (const auto& [x_, y_, tetromino] : *tetris_field_ptr_) {
     if (tetromino == TetrominoColor::kNone) {
       continue;
     }
@@ -41,16 +47,17 @@ void TetrisRenderer::Draw(const TetrisField& tetris_field, int render_x,
   }
 
   // テトリミノの描画.
-  DrawTetromino(tetromino, render_x_, render_y_, tetromino_pos_x,
+  DrawTetromino(*tetromino_ptr_, render_x_, render_y_, tetromino_pos_x,
                 tetromino_pos_y, 1.f);
 
-  const auto [hard_drop_x, hard_drop_y] = tetris_field.GetHardDropPosition(
-      tetromino, tetromino_pos_x, tetromino_pos_y);
+  const auto [hard_drop_x, hard_drop_y] =
+      tetris_field_ptr_->GetHardDropPosition(*tetromino_ptr_, tetromino_pos_x,
+                                             tetromino_pos_y);
 
   // ハードドロップ位置の描画.
   if (hard_drop_x != tetromino_pos_x || hard_drop_y != tetromino_pos_y) {
-    DrawTetromino(tetromino, render_x_, render_y_, hard_drop_x, hard_drop_y,
-                  0.5f);
+    DrawTetromino(*tetromino_ptr_, render_x_, render_y_, hard_drop_x,
+                  hard_drop_y, 0.5f);
   }
 }
 

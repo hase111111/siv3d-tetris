@@ -15,8 +15,8 @@
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "tetris_feild.h"
-#include "tetris_input_handler.h"
 #include "tetris_renderer.h"
+#include "tetris_updater.h"
 
 namespace mytetris {
 
@@ -43,10 +43,8 @@ class TetrisScene final : public IScene {
   NextTetromino next_tetromino_;
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
   const std::shared_ptr<Tetromino> tetromino_ptr_;
-  const std::unique_ptr<TetrisInputHandler> tetris_input_handler_ptr_;
+  const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;
   TetrisRenderer tetris_renderer_;
-  int tetromino_x_{4};
-  int tetromino_y_{-2};
 };
 
 }  // namespace mytetris

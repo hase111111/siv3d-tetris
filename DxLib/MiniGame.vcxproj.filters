@@ -147,7 +147,7 @@
     <ClCompile Include="Source\tetromino.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
-    <ClCompile Include="Source\tetris_input_handler.cpp">
+    <ClCompile Include="Source\tetris_updater.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
   </ItemGroup>
@@ -260,7 +260,7 @@
     <ClInclude Include="Source\Field.h">
       <Filter>ソース ファイル\tetris\Old</Filter>
     </ClInclude>
-    <ClInclude Include="Source\tetris_input_handler.h">
+    <ClInclude Include="Source\tetris_updater.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
   </ItemGroup>

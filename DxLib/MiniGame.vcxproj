@@ -40,7 +40,7 @@
     <ClCompile Include="Source\TetrisMain.cpp" />
     <ClCompile Include="Source\TetrisDefine.cpp" />
     <ClCompile Include="Source\tetris_feild.cpp" />
-    <ClCompile Include="Source\tetris_input_handler.cpp" />
+    <ClCompile Include="Source\tetris_updater.cpp" />
     <ClCompile Include="Source\tetris_renderer.cpp" />
     <ClCompile Include="Source\tetris_scene.cpp" />
     <ClCompile Include="Source\tetromino.cpp" />
@@ -79,7 +79,7 @@
     <ClInclude Include="Source\TetrisMain.h" />
     <ClInclude Include="Source\TetrisDefine.h" />
     <ClInclude Include="Source\tetris_feild.h" />
-    <ClInclude Include="Source\tetris_input_handler.h" />
+    <ClInclude Include="Source\tetris_updater.h" />
     <ClInclude Include="Source\tetris_renderer.h" />
     <ClInclude Include="Source\tetris_scene.h" />
     <ClInclude Include="Source\tetromino.h" />
