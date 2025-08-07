@@ -11,6 +11,7 @@
 #include <tuple>
 
 #include "dxlib_keyboard.h"
+#include "next_tetromino.h"
 #include "tetris_feild.h"
 #include "tetromino.h"
 
@@ -19,8 +20,9 @@ namespace mytetris {
 class TetrisUpdater final {
  public:
   TetrisUpdater(const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-                const std::shared_ptr<const TetrisField>& tetris_field_ptr,
-                const std::shared_ptr<const Tetromino>& tetromino_ptr);
+                const std::shared_ptr<TetrisField>& tetris_field_ptr,
+                const std::shared_ptr<Tetromino>& tetromino_ptr,
+                const std::shared_ptr<NextTetromino>& next_tetromino_ptr);
   ~TetrisUpdater() = default;
 
   void Update();
@@ -30,9 +32,14 @@ class TetrisUpdater final {
   }
 
  private:
+  void UpdateTetrominoPosition();
+  void SetTetromino();
+  void RotateTetromino();
+
   const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
-  const std::shared_ptr<const TetrisField> tetris_field_ptr_;
-  const std::shared_ptr<const Tetromino> tetromino_ptr_;
+  const std::shared_ptr<TetrisField> tetris_field_ptr_;
+  std::shared_ptr<Tetromino> tetromino_ptr_;
+  const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
 
   int tetromino_x_{0}, tetromino_y_{0};
   int count_{0};

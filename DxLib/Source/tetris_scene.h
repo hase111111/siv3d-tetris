@@ -40,7 +40,7 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
-  NextTetromino next_tetromino_;
+  const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
   const std::shared_ptr<Tetromino> tetromino_ptr_;
   const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;

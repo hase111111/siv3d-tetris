@@ -19,19 +19,19 @@ TetrisScene::TetrisScene(
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
       resource_container_ptr_(resource_container_ptr),
-      next_tetromino_{},
+      next_tetromino_ptr_(std::make_shared<NextTetromino>()),
       tetris_field_ptr_(std::make_shared<TetrisField>()),
-      tetromino_ptr_(std::make_shared<Tetromino>(next_tetromino_.GetNext())),
+      tetromino_ptr_(
+          std::make_shared<Tetromino>(next_tetromino_ptr_->GetNext())),
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
-          dxlib_keyboard_ptr_, tetris_field_ptr_, tetromino_ptr_)),
+          dxlib_keyboard_ptr_, tetris_field_ptr_, tetromino_ptr_,
+          next_tetromino_ptr_)),
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
-                       tetromino_ptr_} {}
+                       tetromino_ptr_} {
+  next_tetromino_ptr_->Next();
+}
 
 bool TetrisScene::Update() {
-  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kW) == 1) {
-    next_tetromino_.Next();
-  }
-
   tetris_updater_ptr_->Update();
 
   return true;

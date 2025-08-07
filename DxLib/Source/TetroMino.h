@@ -28,8 +28,8 @@ class Tetromino final {
   std::vector<std::vector<bool>> GetLeftRotatedShape(
       const std::vector<std::vector<bool>>& shape) const;
 
-  const std::vector<std::vector<bool>> shape_;
-  const TetrominoColor color_;
+  std::vector<std::vector<bool>> shape_;
+  TetrominoColor color_;
   int rotation_index_{0};
 };
 

@@ -13,29 +13,39 @@ namespace mytetris {
 
 TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-    const std::shared_ptr<const TetrisField>& tetris_field_ptr,
-    const std::shared_ptr<const Tetromino>& tetromino_ptr)
+    const std::shared_ptr<TetrisField>& tetris_field_ptr,
+    const std::shared_ptr<Tetromino>& tetromino_ptr,
+    const std::shared_ptr<NextTetromino>& next_tetromino_ptr)
     : dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
       tetris_field_ptr_(tetris_field_ptr),
-      tetromino_ptr_(tetromino_ptr) {
+      tetromino_ptr_(tetromino_ptr),
+      next_tetromino_ptr_(next_tetromino_ptr) {
   ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr_);
   ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   ASSERT_NOT_NULL_PTR(tetromino_ptr_);
 }
 
 void TetrisUpdater::Update() {
-  const int kDownCount = 60;
-
   ++count_;
 
+  UpdateTetrominoPosition();
+
+  RotateTetromino();
+
+  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
+    SetTetromino();
+  }
+}
+
+void TetrisUpdater::UpdateTetrominoPosition() {
+  const int kDownCount = 60;
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     // ハードドロップ, validPosition が false になるまで下に落とす.
     while (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
       ++tetromino_y_;
     }
-  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kDown) % 20 ==
-             1) {
+  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kDown) % 5 == 1) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
       count_ = 0;
@@ -57,6 +67,39 @@ void TetrisUpdater::Update() {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ + 1,
                                            tetromino_y_)) {
       ++tetromino_x_;
+    }
+  }
+}
+
+void TetrisUpdater::SetTetromino() {
+  if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
+                                          tetromino_y_)) {
+    return;
+  }
+
+  tetris_field_ptr_->SetTetromino(*tetromino_ptr_, tetromino_x_, tetromino_y_);
+
+  *tetromino_ptr_ = next_tetromino_ptr_->GetNext();
+  next_tetromino_ptr_->Next();
+
+  tetromino_x_ = 0;
+  tetromino_y_ = 0;
+}
+
+void TetrisUpdater::RotateTetromino() {
+  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kA) == 1) {
+    Tetromino left_rotate_tetromino = *tetromino_ptr_;
+    left_rotate_tetromino.LeftRotate();
+    if (tetris_field_ptr_->IsValidPosition(left_rotate_tetromino, tetromino_x_,
+                                           tetromino_y_)) {
+      *tetromino_ptr_ = left_rotate_tetromino;
+    }
+  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kD) == 1) {
+    Tetromino right_rotate_tetromino = *tetromino_ptr_;
+    right_rotate_tetromino.RightRotate();
+    if (tetris_field_ptr_->IsValidPosition(right_rotate_tetromino, tetromino_x_,
+                                           tetromino_y_)) {
+      *tetromino_ptr_ = right_rotate_tetromino;
     }
   }
 }
