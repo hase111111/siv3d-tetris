@@ -38,14 +38,16 @@ bool TetrisScene::Update() {
 }
 
 void TetrisScene::Draw() const {
-  const auto [x, y] = tetris_updater_ptr_->GetPosition();
-  tetris_renderer_.Draw(GameConst::kResolutionX / 2,
-                        GameConst::kResolutionY / 2, x, y);
+  const auto [tetromino_x, tetromino_y] = tetris_updater_ptr_->GetPosition();
+  tetris_renderer_.Draw(
+      GameConst::kResolutionX / 2,
+      GameConst::kResolutionY / 2 -
+          static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
+      tetromino_x, tetromino_y);
 }
 
-void TetrisScene::OnStart(const SceneChangeParameter& parameter) {}
+void TetrisScene::OnStart(const SceneChangeParameter&) {}
 
-void TetrisScene::OnReturnFromOtherScene(
-    const SceneChangeParameter& parameter) {}
+void TetrisScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}
 
 }  // namespace mytetris

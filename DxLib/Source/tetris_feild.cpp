@@ -95,7 +95,7 @@ void TetrisField::ClearLines() {
       // çsÇçÌèúÇµÇƒè„Ç…ãlÇﬂÇÈ.
       for (int clear_y = y; clear_y > 0; --clear_y) {
         for (int x = 1; x < kWidth - 1; ++x) {
-          field_[clear_y][x] = field_[clear_y - 1][x];
+          field_[clear_y][x] = field_[static_cast<size_t>(clear_y) - 1][x];
         }
       }
       // è„í[ÇÃçsÇÕï«Ç≈ñÑÇﬂÇÈ.

@@ -28,6 +28,8 @@ class TetrisRenderer final {
   void Draw(int render_x, int render_y, int tetromino_pos_x,
             int tetromino_pos_y) const;
 
+  inline int GetBlockSize() const { return static_cast<int>(block_size_); }
+
  private:
   std::map<TetrominoColor, TextureView> InitializeBlockTextures(
       const std::shared_ptr<const ResourceContainer> resource_container_ptr_)

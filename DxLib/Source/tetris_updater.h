@@ -32,6 +32,7 @@ class TetrisUpdater final {
   }
 
  private:
+  void SetInitialTetrominoPosition();
   void UpdateTetrominoPosition();
   void SetTetromino();
   void RotateTetromino();

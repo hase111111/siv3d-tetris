@@ -23,6 +23,8 @@ TetrisUpdater::TetrisUpdater(
   ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr_);
   ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   ASSERT_NOT_NULL_PTR(tetromino_ptr_);
+
+  SetInitialTetrominoPosition();
 }
 
 void TetrisUpdater::Update() {
@@ -35,6 +37,13 @@ void TetrisUpdater::Update() {
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     SetTetromino();
   }
+}
+
+void TetrisUpdater::SetInitialTetrominoPosition() {
+  const auto shape = tetromino_ptr_->GetShape();
+  const auto x = (tetris_field_ptr_->GetWidth() - shape.size()) / 2;
+  tetromino_x_ = static_cast<int>(x);
+  tetromino_y_ = 2;
 }
 
 void TetrisUpdater::UpdateTetrominoPosition() {
@@ -83,8 +92,7 @@ void TetrisUpdater::SetTetromino() {
   *tetromino_ptr_ = next_tetromino_ptr_->GetNext();
   next_tetromino_ptr_->Next();
 
-  tetromino_x_ = 4;
-  tetromino_y_ = 0;
+  SetInitialTetrominoPosition();
 }
 
 void TetrisUpdater::RotateTetromino() {

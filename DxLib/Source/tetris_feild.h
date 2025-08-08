@@ -16,7 +16,9 @@
 namespace mytetris {
 
 class TetrisField final {
-  using FieldType = std::array<std::array<TetrominoColor, 12>, 24>;
+  static constexpr int kWidth = 12;
+  static constexpr int kHeight = 27;
+  using FieldType = std::array<std::array<TetrominoColor, kWidth>, kHeight>;
 
  public:
   TetrisField();
@@ -72,9 +74,6 @@ class TetrisField final {
   void ClearLines();
 
  private:
-  static constexpr int kWidth = 12;
-  static constexpr int kHeight = 24;
-
   FieldType InitializeField() const;
 
   FieldType field_{};

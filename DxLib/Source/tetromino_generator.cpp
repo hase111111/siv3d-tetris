@@ -22,12 +22,20 @@ Tetromino TetrominoGenerator::Generate(const TetrominoType type) const {
                        RotationType::kI};
     }
     case TetrominoType::kL: {
-      return Tetromino{{{0, 0, 0, 0}, {0, 0, 1, 0}, {1, 1, 1, 0}, {0, 0, 0, 0}},
+      return Tetromino{{{0, 0, 0, 0, 0},
+                        {0, 0, 0, 1, 0},
+                        {0, 1, 1, 1, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0}},
                        TetrominoColor::kL,
                        RotationType::kNormal};
     }
     case TetrominoType::kJ: {
-      return Tetromino{{{0, 0, 0, 0}, {0, 1, 0, 0}, {0, 1, 1, 1}, {0, 0, 0, 0}},
+      return Tetromino{{{0, 0, 0, 0, 0},
+                        {0, 1, 0, 0, 0},
+                        {0, 1, 1, 1, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0}},
                        TetrominoColor::kJ,
                        RotationType::kNormal};
     }
@@ -37,12 +45,20 @@ Tetromino TetrominoGenerator::Generate(const TetrominoType type) const {
                        RotationType::kNone};
     }
     case TetrominoType::kS: {
-      return Tetromino{{{0, 0, 0, 0}, {0, 0, 1, 1}, {0, 1, 1, 0}, {0, 0, 0, 0}},
+      return Tetromino{{{0, 0, 0, 0, 0},
+                        {0, 0, 1, 1, 0},
+                        {0, 1, 1, 0, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0}},
                        TetrominoColor::kS,
                        RotationType::kNormal};
     }
     case TetrominoType::kZ: {
-      return Tetromino{{{0, 0, 0, 0}, {0, 1, 1, 0}, {0, 0, 1, 1}, {0, 0, 0, 0}},
+      return Tetromino{{{0, 0, 0, 0, 0},
+                        {0, 1, 1, 0, 0},
+                        {0, 0, 1, 1, 0},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0}},
                        TetrominoColor::kZ,
                        RotationType::kNormal};
     }
