@@ -81,6 +81,34 @@ void TetrisField::SetTetromino(const Tetromino& tetromino,
   }
 }
 
+void TetrisField::ClearLines() {
+  // 列がそろっているかチェックし，そろっていたら削除して上に詰める.
+  for (int y = kHeight - 2; y >= 0; --y) {  // 最下段は壁なので除外
+    bool is_full_line = true;
+    for (int x = 1; x < kWidth - 1; ++x) {  // 両端は壁なので除外
+      if (field_[y][x] == TetrominoColor::kNone) {
+        is_full_line = false;
+        break;
+      }
+    }
+    if (is_full_line) {
+      // 行を削除して上に詰める.
+      for (int clear_y = y; clear_y > 0; --clear_y) {
+        for (int x = 1; x < kWidth - 1; ++x) {
+          field_[clear_y][x] = field_[clear_y - 1][x];
+        }
+      }
+      // 上端の行は壁で埋める.
+      for (int x = 1; x < kWidth - 1; ++x) {
+        field_[0][x] = TetrominoColor::kNone;
+      }
+
+      // 行を削除したので再度チェックするために y を進める.
+      ++y;  // 行を削除したので y を進める.
+    }
+  }
+}
+
 TetrisField::FieldType TetrisField::InitializeField() const {
   FieldType field{};
   for (int y = 0; y < kHeight; ++y) {

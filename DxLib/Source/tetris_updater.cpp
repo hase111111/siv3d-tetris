@@ -78,11 +78,12 @@ void TetrisUpdater::SetTetromino() {
   }
 
   tetris_field_ptr_->SetTetromino(*tetromino_ptr_, tetromino_x_, tetromino_y_);
+  tetris_field_ptr_->ClearLines();
 
   *tetromino_ptr_ = next_tetromino_ptr_->GetNext();
   next_tetromino_ptr_->Next();
 
-  tetromino_x_ = 0;
+  tetromino_x_ = 4;
   tetromino_y_ = 0;
 }
 

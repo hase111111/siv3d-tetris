@@ -69,6 +69,8 @@ class TetrisField final {
   void SetTetromino(const Tetromino& tetromino, int tetromino_x,
                     int tetromino_y);
 
+  void ClearLines();
+
  private:
   static constexpr int kWidth = 12;
   static constexpr int kHeight = 24;
