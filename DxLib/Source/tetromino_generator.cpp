@@ -18,27 +18,33 @@ Tetromino TetrominoGenerator::Generate(const TetrominoType type) const {
   switch (type) {
     case TetrominoType::kI: {
       return Tetromino{{{0, 0, 0, 0}, {0, 0, 0, 0}, {1, 1, 1, 1}, {0, 0, 0, 0}},
-                       TetrominoColor::kI};
+                       TetrominoColor::kI,
+                       RotationType::kI};
     }
     case TetrominoType::kL: {
       return Tetromino{{{0, 0, 0, 0}, {0, 0, 1, 0}, {1, 1, 1, 0}, {0, 0, 0, 0}},
-                       TetrominoColor::kL};
+                       TetrominoColor::kL,
+                       RotationType::kNormal};
     }
     case TetrominoType::kJ: {
       return Tetromino{{{0, 0, 0, 0}, {0, 1, 0, 0}, {0, 1, 1, 1}, {0, 0, 0, 0}},
-                       TetrominoColor::kJ};
+                       TetrominoColor::kJ,
+                       RotationType::kNormal};
     }
     case TetrominoType::kO: {
       return Tetromino{{{0, 0, 0, 0}, {0, 1, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 0}},
-                       TetrominoColor::kO};
+                       TetrominoColor::kO,
+                       RotationType::kNone};
     }
     case TetrominoType::kS: {
       return Tetromino{{{0, 0, 0, 0}, {0, 0, 1, 1}, {0, 1, 1, 0}, {0, 0, 0, 0}},
-                       TetrominoColor::kS};
+                       TetrominoColor::kS,
+                       RotationType::kNormal};
     }
     case TetrominoType::kZ: {
       return Tetromino{{{0, 0, 0, 0}, {0, 1, 1, 0}, {0, 0, 1, 1}, {0, 0, 0, 0}},
-                       TetrominoColor::kZ};
+                       TetrominoColor::kZ,
+                       RotationType::kNormal};
     }
     case TetrominoType::kT: {
       return Tetromino{{{0, 0, 0, 0, 0},
@@ -46,11 +52,12 @@ Tetromino TetrominoGenerator::Generate(const TetrominoType type) const {
                         {0, 1, 1, 1, 0},
                         {0, 0, 0, 0, 0},
                         {0, 0, 0, 0, 0}},
-                       TetrominoColor::kT};
+                       TetrominoColor::kT,
+                       RotationType::kNormal};
     }
     default: {
       ASSERT_MUST_NOT_REACH_HERE();
-      return Tetromino{{{0}}, TetrominoColor::kNone};
+      return Tetromino{{{0}}, TetrominoColor::kNone, RotationType::kNone};
     }
   }
 }

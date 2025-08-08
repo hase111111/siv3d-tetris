@@ -26,8 +26,8 @@ static bool IsRectangleShape(const std::vector<std::vector<bool>>& shape) {
 }
 
 Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
-                     TetrominoColor color)
-    : shape_(shape), color_(color) {
+                     const TetrominoColor color, const RotationType rotation)
+    : shape_(shape), color_(color), rotation_type_(rotation) {
   ASSERT(IsRectangleShape(shape), "The shape must be a rectangle.");
 }
 
