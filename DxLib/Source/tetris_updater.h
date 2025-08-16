@@ -48,6 +48,8 @@ class TetrisUpdater final {
 
   int tetromino_x_{0}, tetromino_y_{0};
   int count_{0};
+  int fix_count_{0};
+  int move_count_{0};
 };
 
 }  // namespace mytetris

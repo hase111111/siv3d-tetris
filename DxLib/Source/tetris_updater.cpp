@@ -57,7 +57,18 @@ void TetrisUpdater::Update() {
 
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     SetTetromino();
-    hold_tetromino_ptr_->SetCanHold(true);
+  }
+
+  // テトリミノが下に落ちたらフィールドにセットする.
+  if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
+                                          tetromino_y_ + 1)) {
+    ++fix_count_;
+    if (fix_count_ >= 60 ||
+        move_count_ >= 14) {  // 1秒間下に落ちたらフィールドにセットする.
+      SetTetromino();
+    }
+  } else {
+    fix_count_ = 0;  // 下に落ちていないのでカウントをリセット.
   }
 }
 
@@ -93,11 +104,15 @@ void TetrisUpdater::UpdateTetrominoPosition() {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ - 1,
                                            tetromino_y_)) {
       --tetromino_x_;
+      fix_count_ = 0;  // 左右に動いたのでカウントをリセット.
+      ++move_count_;
     }
   } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kRight) == 1) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ + 1,
                                            tetromino_y_)) {
       ++tetromino_x_;
+      fix_count_ = 0;  // 左右に動いたのでカウントをリセット.
+      ++move_count_;
     }
   }
 }
@@ -115,6 +130,11 @@ void TetrisUpdater::SetTetromino() {
   next_tetromino_ptr_->Next();
 
   SetInitialTetrominoPosition();
+
+  hold_tetromino_ptr_->SetCanHold(true);
+
+  fix_count_ = 0;
+  move_count_ = 0;
 }
 
 void TetrisUpdater::RotateTetromino() {
