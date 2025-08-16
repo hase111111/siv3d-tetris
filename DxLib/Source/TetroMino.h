@@ -30,11 +30,13 @@ class Tetromino final {
 
   inline RotationType GetRotationType() const { return rotation_type_; }
 
-  inline void LeftRotate() { rotation_index_ += 1; }
-  inline void RightRotate() { rotation_index_ += 3; }
+  inline int GetRotationIndex() const { return rotation_index_ % 4; }
+
+  inline void LeftRotate() { rotation_index_ += 3; }
+  inline void RightRotate() { rotation_index_ += 1; }
 
  private:
-  std::vector<std::vector<bool>> GetLeftRotatedShape(
+  std::vector<std::vector<bool>> GetRightRotatedShape(
       const std::vector<std::vector<bool>>& shape) const;
 
   std::vector<std::vector<bool>> shape_;

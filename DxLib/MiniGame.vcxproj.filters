@@ -263,6 +263,9 @@
     <ClInclude Include="Source\tetris_updater.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
+    <ClInclude Include="Source\hold_tetromino.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

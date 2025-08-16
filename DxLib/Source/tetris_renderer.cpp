@@ -18,7 +18,11 @@ TetrisRenderer::TetrisRenderer(
     : resource_container_ptr_(resource_container_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
-      block_textures_(InitializeBlockTextures(resource_container_ptr)) {}
+      block_textures_(InitializeBlockTextures(resource_container_ptr)) {
+  ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+  ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
+  ASSERT_NOT_NULL_PTR(tetromino_ptr_);
+}
 
 void TetrisRenderer::Draw(const int render_x, const int render_y,
                           const int tetromino_pos_x,

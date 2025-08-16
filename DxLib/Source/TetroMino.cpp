@@ -36,13 +36,13 @@ std::vector<std::vector<bool>> Tetromino::GetShape() const {
   std::vector<std::vector<bool>> rotated_shape = shape_;
 
   for (int i = 0; i < rotation_index; ++i) {
-    rotated_shape = GetLeftRotatedShape(rotated_shape);
+    rotated_shape = GetRightRotatedShape(rotated_shape);
   }
 
   return rotated_shape;
 }
 
-std::vector<std::vector<bool>> Tetromino::GetLeftRotatedShape(
+std::vector<std::vector<bool>> Tetromino::GetRightRotatedShape(
     const std::vector<std::vector<bool>>& shape) const {
   std::vector<std::vector<bool>> rotated_shape;
   const int height = static_cast<int>(shape.size());
@@ -51,7 +51,7 @@ std::vector<std::vector<bool>> Tetromino::GetLeftRotatedShape(
 
   for (int i = 0; i < height; ++i) {
     for (int j = 0; j < width; ++j) {
-      rotated_shape[static_cast<size_t>(width - j - 1)][i] = shape[i][j];
+      rotated_shape[j][static_cast<size_t>(height - i - 1)] = shape[i][j];
     }
   }
 

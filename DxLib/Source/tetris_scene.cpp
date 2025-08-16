@@ -23,9 +23,10 @@ TetrisScene::TetrisScene(
       tetris_field_ptr_(std::make_shared<TetrisField>()),
       tetromino_ptr_(
           std::make_shared<Tetromino>(next_tetromino_ptr_->GetNext())),
+      hold_tetromino_ptr_(std::make_shared<HoldTetromino>()),
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
           dxlib_keyboard_ptr_, tetris_field_ptr_, tetromino_ptr_,
-          next_tetromino_ptr_)),
+          next_tetromino_ptr_, hold_tetromino_ptr_)),
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_} {
   next_tetromino_ptr_->Next();

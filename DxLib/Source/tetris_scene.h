@@ -10,6 +10,7 @@
 #include <memory>
 
 #include "dxlib_keyboard.h"
+#include "hold_tetromino.h"
 #include "i_scene.h"
 #include "next_tetromino.h"
 #include "resource_container.h"
@@ -43,6 +44,7 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
   const std::shared_ptr<Tetromino> tetromino_ptr_;
+  const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;
   TetrisRenderer tetris_renderer_;
 };

@@ -64,6 +64,7 @@
     <ClInclude Include="Source\fps_controller.h" />
     <ClInclude Include="Source\game_const.h" />
     <ClInclude Include="Source\game_setting_record.h" />
+    <ClInclude Include="Source\hold_tetromino.h" />
     <ClInclude Include="Source\i_scene.h" />
     <ClInclude Include="Source\game_main_loop.h" />
     <ClInclude Include="Source\Next.h" />
