@@ -150,6 +150,9 @@
     <ClCompile Include="Source\tetris_updater.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
+    <ClCompile Include="Source\next_renderer.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
@@ -264,6 +267,9 @@
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
     <ClInclude Include="Source\hold_tetromino.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\next_renderer.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
   </ItemGroup>

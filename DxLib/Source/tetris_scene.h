@@ -12,6 +12,7 @@
 #include "dxlib_keyboard.h"
 #include "hold_tetromino.h"
 #include "i_scene.h"
+#include "next_renderer.h"
 #include "next_tetromino.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
@@ -47,6 +48,7 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;
   TetrisRenderer tetris_renderer_;
+  NextRenderer next_renderer_;
 };
 
 }  // namespace mytetris
