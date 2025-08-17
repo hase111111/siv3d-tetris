@@ -9,7 +9,7 @@
 
 #include <memory>
 
-#include "next_renderer.h"
+#include "next_tetromino.h"
 #include "resource_container.h"
 
 namespace mytetris {
@@ -17,13 +17,15 @@ namespace mytetris {
 class NextRenderer final {
  public:
   NextRenderer(
-      const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
+      const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
+      const std::shared_ptr<const NextTetromino>& next_tetromino_ptr);
   ~NextRenderer() = default;
 
   void Draw(int render_x, int render_y) const;
 
  private:
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
+  const std::shared_ptr<const NextTetromino> next_tetromino_ptr_;
 };
 
 }  // namespace mytetris

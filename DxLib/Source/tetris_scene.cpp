@@ -28,7 +28,8 @@ TetrisScene::TetrisScene(
           dxlib_keyboard_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_)),
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
-                       tetromino_ptr_} {
+                       tetromino_ptr_},
+      next_renderer_{resource_container_ptr, next_tetromino_ptr_} {
   next_tetromino_ptr_->Next();
 }
 

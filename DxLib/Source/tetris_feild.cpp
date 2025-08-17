@@ -12,7 +12,8 @@ namespace mytetris {
 TetrisField::TetrisField() : field_(InitializeField()) {}
 
 std::tuple<int, int> TetrisField::GetHardDropPosition(
-    const Tetromino& tetromino, int tetromino_x, int tetromino_y) const {
+    const Tetromino& tetromino, const int tetromino_x,
+    const int tetromino_y) const {
   int y = tetromino_y;
   while (IsValidPosition(tetromino, tetromino_x, y + 1)) {
     ++y;
