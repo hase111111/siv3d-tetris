@@ -9,6 +9,8 @@ NextRenderer::NextRenderer(
     : resource_container_ptr_(resource_container_ptr),
       next_tetromino_ptr_(next_tetromino_ptr) {}
 
-void NextRenderer::Draw(int render_x, int render_y) const {}
+void NextRenderer::Draw(const int render_x, const int render_y) const {
+  const auto next = next_tetromino_ptr_->GetNextList();
+}
 
 }  // namespace mytetris

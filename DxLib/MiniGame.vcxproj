@@ -50,6 +50,7 @@
     <ClCompile Include="Source\TetroMinoGetPos.cpp" />
     <ClCompile Include="Source\TetroMinoTurn.cpp" />
     <ClCompile Include="Source\tetromino_generator.cpp" />
+    <ClCompile Include="Source\tetromino_render_util.cpp" />
     <ClCompile Include="Source\texture.cpp" />
     <ClCompile Include="Source\texture_view.cpp" />
     <ClCompile Include="Source\title_back_ground.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="Source\TetroMino_.h" />
     <ClInclude Include="Source\tetromino_color.h" />
     <ClInclude Include="Source\tetromino_generator.h" />
+    <ClInclude Include="Source\tetromino_render_util.h" />
     <ClInclude Include="Source\tetromino_type.h" />
     <ClInclude Include="Source\texture.h" />
     <ClInclude Include="Source\texture_view.h" />

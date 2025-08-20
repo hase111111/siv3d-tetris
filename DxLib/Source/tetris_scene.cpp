@@ -28,7 +28,7 @@ TetrisScene::TetrisScene(
           dxlib_keyboard_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_)),
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
-                       tetromino_ptr_},
+                       tetromino_ptr_, 40.0f},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_} {
   next_tetromino_ptr_->Next();
 }
@@ -46,6 +46,8 @@ void TetrisScene::Draw() const {
       GameConst::kResolutionY / 2 -
           static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
       tetromino_x, tetromino_y);
+
+  next_renderer_.Draw(0, 0);
 }
 
 void TetrisScene::OnStart(const SceneChangeParameter&) {}
