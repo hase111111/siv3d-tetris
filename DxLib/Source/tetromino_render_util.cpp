@@ -27,6 +27,19 @@ std::map<TetrominoColor, TextureView> GetBlockTextureMap(
 
 void DrawTetromino(const Tetromino& tetromino, const TextureView& texture,
                    const float render_x, const float render_y,
-                   const float alpha) {}
+                   const float alpha, const float block_size) {
+  const auto shape = tetromino.GetShape();
+  const auto tex_width = texture.GetWidth();
+  const float ex = block_size / tex_width;
+  for (int y = 0; y < shape.size(); ++y) {
+    for (int x = 0; x < shape[0].size(); ++x) {
+      if (!shape[y][x]) continue;
+      const auto color = tetromino.GetColor();
+      texture.DrawRotatedAlpha(render_x + x * block_size,
+                               render_y + y * block_size, RenderAnchor::Center,
+                               ex, 0.f, alpha);
+    }
+  }
+}
 
 }  // namespace mytetris

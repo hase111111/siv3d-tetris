@@ -21,11 +21,12 @@ class NextRenderer final {
       const std::shared_ptr<const NextTetromino>& next_tetromino_ptr);
   ~NextRenderer() = default;
 
-  void Draw(int render_x, int render_y) const;
+  void Draw(float render_x, float render_y) const;
 
  private:
-  const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
+  const std::map<TetrominoColor, TextureView> block_textures_;
   const std::shared_ptr<const NextTetromino> next_tetromino_ptr_;
+  const float block_size_{30.0f};
 };
 
 }  // namespace mytetris

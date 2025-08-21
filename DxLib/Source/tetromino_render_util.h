@@ -21,6 +21,7 @@ std::map<TetrominoColor, TextureView> GetBlockTextureMap(
     const std::shared_ptr<const ResourceContainer> resource_container_ptr);
 
 void DrawTetromino(const Tetromino& tetromino, const TextureView& texture,
-                   float render_x, float render_y, float alpha);
+                   float render_x, float render_y, float alpha,
+                   float block_size);
 
 }  // namespace mytetris

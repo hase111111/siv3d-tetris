@@ -47,6 +47,7 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
       ASSERT_MUST_NOT_REACH_HERE();
       continue;
     }
+
     const TextureView& texture = it->second;
     texture.DrawRotated(render_x_ + x_ * block_size_,
                         render_y_ + y_ * block_size_, RenderAnchor::Center, 2.f,
@@ -54,8 +55,9 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
   }
 
   // テトリミノの描画.
-  DrawTetromino(*tetromino_ptr_, render_x_, render_y_, tetromino_pos_x,
-                tetromino_pos_y, 1.f);
+  DrawTetromino(*tetromino_ptr_, block_textures_.at(tetromino_ptr_->GetColor()),
+                render_x_ + tetromino_pos_x * block_size_,
+                render_y_ + tetromino_pos_y * block_size_, 1.f, block_size_);
 
   const auto [hard_drop_x, hard_drop_y] =
       tetris_field_ptr_->GetHardDropPosition(*tetromino_ptr_, tetromino_pos_x,
@@ -63,33 +65,10 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
 
   // ハードドロップ位置の描画.
   if (hard_drop_x != tetromino_pos_x || hard_drop_y != tetromino_pos_y) {
-    DrawTetromino(*tetromino_ptr_, render_x_, render_y_, hard_drop_x,
-                  hard_drop_y, 0.5f);
-  }
-}
-
-void TetrisRenderer::DrawTetromino(const Tetromino& tetromino,
-                                   const float render_x, const float render_y,
-                                   const int tetromino_pos_x,
-                                   const int tetromino_pos_y,
-                                   const float alpha) const {
-  const auto shape = tetromino.GetShape();
-  const float offset_x = tetromino_pos_x * block_size_;
-  const float offset_y = tetromino_pos_y * block_size_;
-  for (int y = 0; y < shape.size(); ++y) {
-    for (int x = 0; x < shape[0].size(); ++x) {
-      if (!shape[y][x]) continue;
-      const auto color = tetromino.GetColor();
-      const auto it = block_textures_.find(color);
-      if (it == block_textures_.end()) {
-        ASSERT_MUST_NOT_REACH_HERE();
-        continue;
-      }
-      const TextureView& texture = it->second;
-      texture.DrawRotatedAlpha(render_x + offset_x + x * block_size_,
-                               render_y + offset_y + y * block_size_,
-                               RenderAnchor::Center, 2.f, 0.f, alpha);
-    }
+    DrawTetromino(*tetromino_ptr_,
+                  block_textures_.at(tetromino_ptr_->GetColor()),
+                  render_x_ + hard_drop_x * block_size_,
+                  render_y_ + hard_drop_y * block_size_, 0.5f, block_size_);
   }
 }
 
