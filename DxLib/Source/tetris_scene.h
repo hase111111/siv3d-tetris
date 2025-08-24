@@ -9,6 +9,7 @@
 
 #include <memory>
 
+#include "drop_gauge_renderer.h"
 #include "dxlib_keyboard.h"
 #include "hold_tetromino.h"
 #include "i_scene.h"
@@ -49,6 +50,7 @@ class TetrisScene final : public IScene {
   const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;
   TetrisRenderer tetris_renderer_;
   NextRenderer next_renderer_;
+  DropGaugeRenderer drop_gauge_renderer_;
 };
 
 }  // namespace mytetris

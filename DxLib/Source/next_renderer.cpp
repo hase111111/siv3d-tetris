@@ -23,7 +23,7 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
   for (const auto& tetromino : next) {
     ++cnt;
     DrawTetromino(tetromino, block_textures_.at(tetromino.GetColor()), render_x,
-                  render_y + (next.size() - cnt) * block_size_ * 4, 1.f,
+                  render_y + (next.size() - cnt) * block_size_ * 4.5f, 1.f,
                   block_size_);
   }
 }

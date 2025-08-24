@@ -63,8 +63,7 @@ void TetrisUpdater::Update() {
   if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                           tetromino_y_ + 1)) {
     ++fix_count_;
-    if (fix_count_ >= 60 ||
-        move_count_ >= 14) {  // 1秒間下に落ちたらフィールドにセットする.
+    if (fix_count_ >= fix_count_max_ || move_count_ >= move_count_max_) {
       SetTetromino();
     }
   } else {

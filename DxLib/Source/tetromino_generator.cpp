@@ -71,6 +71,24 @@ Tetromino TetrominoGenerator::Generate(const TetrominoType type) const {
                        TetrominoColor::kT,
                        RotationType::kNormal};
     }
+    case TetrominoType::kYama: {
+      return Tetromino{{{0, 0, 1, 0, 0},
+                        {0, 0, 1, 0, 0},
+                        {1, 0, 1, 0, 1},
+                        {1, 0, 1, 0, 1},
+                        {1, 1, 1, 1, 1}},
+                       TetrominoColor::kJammer,
+                       RotationType::kNormal};
+    }
+    case TetrominoType::kDa: {
+      return Tetromino{{{1, 1, 1, 1, 1},
+                        {1, 0, 1, 0, 1},
+                        {1, 1, 1, 1, 1},
+                        {1, 0, 1, 0, 1},
+                        {1, 1, 1, 1, 1}},
+                       TetrominoColor::kJammer,
+                       RotationType::kNormal};
+    }
     default: {
       ASSERT_MUST_NOT_REACH_HERE();
       return Tetromino{{{0}}, TetrominoColor::kNone, RotationType::kNone};

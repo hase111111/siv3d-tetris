@@ -23,8 +23,9 @@ Tetromino NextTetromino::GetNext() const {
 
 std::vector<Tetromino> NextTetromino::GetNextList() const {
   // 後ろから7つのテトリミノを返す, 足りなければ先頭から埋める.
-  if (next_.size() >= 7) {
-    const auto types = std::vector<TetrominoType>(next_.end() - 7, next_.end());
+  if (next_.size() >= tetrominos_.size()) {
+    const auto types = std::vector<TetrominoType>(
+        next_.end() - tetrominos_.size(), next_.end());
     std::vector<Tetromino> tetrominos;
     tetrominos.reserve(types.size());
     for (const auto& type : types) {
@@ -43,7 +44,7 @@ std::vector<Tetromino> NextTetromino::GetNextList() const {
 
 void NextTetromino::Next() {
   next_.pop_back();
-  if (next_.size() < 7) {
+  if (next_.size() < tetrominos_.size()) {
     // 7個未満なら新しいテトリミノを追加する
     std::vector<TetrominoType> new_tetrominos = MakeNextTetromino();
     next_.insert(next_.begin(), new_tetrominos.begin(), new_tetrominos.end());

@@ -1,5 +1,5 @@
 
-//! @file tetromino_type.h
+//! @file render_util.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -9,16 +9,7 @@
 
 namespace mytetris {
 
-enum class TetrominoType : int {
-  kI = 0,
-  kJ = 1,
-  kL = 2,
-  kO = 3,
-  kS = 4,
-  kZ = 5,
-  kT = 6,
-  kYama = 7,
-  kDa = 8,
-};
+void DrawRect(float left, float top, float right, float bottom,
+              unsigned int color, bool fill);
 
 }  // namespace mytetris

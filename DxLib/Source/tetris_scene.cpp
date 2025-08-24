@@ -36,6 +36,9 @@ TetrisScene::TetrisScene(
 bool TetrisScene::Update() {
   tetris_updater_ptr_->Update();
 
+  drop_gauge_renderer_.SetDropPercent(tetris_updater_ptr_->GetDropGauge());
+  drop_gauge_renderer_.SetMovePercent(tetris_updater_ptr_->GetMoveGauge());
+
   return true;
 }
 
@@ -48,6 +51,9 @@ void TetrisScene::Draw() const {
       tetromino_x, tetromino_y);
 
   next_renderer_.Draw(0, 0);
+
+  drop_gauge_renderer_.Draw(GameConst::kResolutionX - 50.0f,
+                            GameConst::kResolutionY - 50.0f);
 }
 
 void TetrisScene::OnStart(const SceneChangeParameter&) {}
