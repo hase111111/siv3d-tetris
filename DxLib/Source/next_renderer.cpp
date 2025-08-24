@@ -16,12 +16,17 @@ NextRenderer::NextRenderer(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const NextTetromino>& next_tetromino_ptr)
     : block_textures_(GetBlockTextureMap(resource_container_ptr)),
+      wall_texture_(resource_container_ptr->GetTexture("wall.png")),
       next_tetromino_ptr_(next_tetromino_ptr) {}
 
 void NextRenderer::Draw(const float render_x, const float render_y) const {
   int cnt{};
   const auto next = next_tetromino_ptr_->GetNextList();
+  const float wall_ex = 2.0f;
+  const float wall_size = wall_texture_.GetWidth() * wall_ex;
+  const float box_size = wall_size * 4.0f;
 
+  // Next.
   for (const auto& tetromino : next) {
     ++cnt;
 
@@ -31,7 +36,7 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
 
     const int height = GetHeight(tetromino.GetShape());
     const float block_size = height > 4 ? block_size_ / 1.5f : block_size_;
-    const float box_size = block_size_ * 5.0f;
+
     DrawTetrominoCenter(
         tetromino, block_textures_.at(tetromino.GetColor()),
         render_x + box_size / 2.f,
@@ -41,6 +46,28 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
     DrawRect(render_x, render_y + (next.size() - cnt) * box_size,
              render_x + box_size, render_y + (next.size() - cnt + 1) * box_size,
              0xFFFFFF, false);
+  }
+
+  // ÉtÉåÅ[ÉÄ.
+  for (int x = 0; x < box_size / wall_size + 2; ++x) {
+    wall_texture_.DrawRotated(render_x + wall_size * x - wall_size / 2.f,
+                              render_y - wall_size / 2.f, RenderAnchor::Center,
+                              wall_ex, 0.0f);
+
+    wall_texture_.DrawRotated(
+        render_x + wall_size * x - wall_size / 2.f,
+        render_y + wall_size / 2.f + wall_size * 2.f + box_size * count_max_,
+        RenderAnchor::Center, wall_ex, 0.0f);
+  }
+
+  for (int y = 0; y < box_size * count_max_ / wall_size + 4; ++y) {
+    wall_texture_.DrawRotated(render_x - wall_size / 2.f,
+                              render_y + wall_size * y - wall_size / 2.f,
+                              RenderAnchor::Center, wall_ex, 0.0f);
+
+    wall_texture_.DrawRotated(render_x + wall_size / 2.f + box_size,
+                              render_y + wall_size * y - wall_size / 2.f,
+                              RenderAnchor::Center, wall_ex, 0.0f);
   }
 }
 

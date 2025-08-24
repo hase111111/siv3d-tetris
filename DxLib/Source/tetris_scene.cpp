@@ -50,7 +50,7 @@ void TetrisScene::Draw() const {
           static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
       tetromino_x, tetromino_y);
 
-  next_renderer_.Draw(100, 50);
+  next_renderer_.Draw(880, 40);
 
   drop_gauge_renderer_.Draw(GameConst::kResolutionX - 50.0f,
                             GameConst::kResolutionY - 50.0f);

@@ -26,10 +26,12 @@ class NextRenderer final {
 
  private:
   int GetHeight(const std::vector<std::vector<bool>>& shape) const;
+
   const std::map<TetrominoColor, TextureView> block_textures_;
+  const TextureView wall_texture_;
   const std::shared_ptr<const NextTetromino> next_tetromino_ptr_;
   const float block_size_{30.0f};
-  const int count_max_{6};
+  const int count_max_{5};
 };
 
 }  // namespace mytetris
