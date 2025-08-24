@@ -14,6 +14,10 @@ class DropGaugeRenderer final {
   DropGaugeRenderer() = default;
   ~DropGaugeRenderer() = default;
 
+  inline void SetFixPercent(const float percent) {
+    fix_percent = percent < 0.0f ? 0.0f : (percent > 1.0f ? 1.0f : percent);
+  }
+
   inline void SetDropPercent(const float percent) {
     drop_percent = percent < 0.0f ? 0.0f : (percent > 1.0f ? 1.0f : percent);
   }
@@ -29,6 +33,7 @@ class DropGaugeRenderer final {
   const float gauge_length{100.0f};
   const float gauge_thickness{10.0f};
   float drop_percent{0.0f};  // ドロップゲージの割合(0.0f ~ 1.0f)
+  float fix_percent{0.0f};   // 固定ゲージの割合(0.0f ~ 1.0f)
   float move_percent{0.0f};  // 移動ゲージの割合(0.0f ~ 1.0f)
 };
 

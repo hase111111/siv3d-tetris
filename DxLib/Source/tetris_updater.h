@@ -34,6 +34,11 @@ class TetrisUpdater final {
   }
 
   float GetDropGauge() const {
+    return static_cast<float>(drop_count_ % drop_count_max_) /
+           static_cast<float>(drop_count_max_);
+  }
+
+  float GetFixGauge() const {
     return static_cast<float>(fix_count_) / static_cast<float>(fix_count_max_);
   }
 
@@ -56,11 +61,14 @@ class TetrisUpdater final {
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
 
   int tetromino_x_{0}, tetromino_y_{0};
-  int count_{0};
+  int drop_count_{0};
+  int drop_count_max_{45};
   int fix_count_{0};
   const int fix_count_max_{60};
   int move_count_{0};
   const int move_count_max_{14};
+  const int horizontal_interval_{10};
+  const int horizontal_count_{5};
 };
 
 }  // namespace mytetris

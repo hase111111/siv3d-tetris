@@ -32,7 +32,7 @@ TetrisUpdater::TetrisUpdater(
 }
 
 void TetrisUpdater::Update() {
-  ++count_;
+  ++drop_count_;
 
   UpdateTetrominoPosition();
 
@@ -79,7 +79,6 @@ void TetrisUpdater::SetInitialTetrominoPosition() {
 }
 
 void TetrisUpdater::UpdateTetrominoPosition() {
-  const int kDownCount = 60;
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     // ハードドロップ, validPosition が false になるまで下に落とす.
     while (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
@@ -89,17 +88,23 @@ void TetrisUpdater::UpdateTetrominoPosition() {
   } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kDown) % 5 == 1) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
-      count_ = 0;
+      drop_count_ = 0;
       ++tetromino_y_;
     }
-  } else if (count_ % kDownCount == 0) {
+  } else if (drop_count_ % drop_count_max_ == 0) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
       ++tetromino_y_;
     }
   }
 
-  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kLeft) == 1) {
+  const int key_left = dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kLeft);
+  const int key_right =
+      dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kRight);
+
+  if (key_left == 1 ||
+      (key_left > horizontal_interval_ &&
+       (key_left - horizontal_interval_) % horizontal_count_ == 0)) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ - 1,
                                            tetromino_y_)) {
       --tetromino_x_;
@@ -109,7 +114,9 @@ void TetrisUpdater::UpdateTetrominoPosition() {
         ++move_count_;
       }
     }
-  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kRight) == 1) {
+  } else if (key_right == 1 ||
+             (key_right > horizontal_interval_ &&
+              (key_right - horizontal_interval_) % horizontal_count_ == 0)) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ + 1,
                                            tetromino_y_)) {
       ++tetromino_x_;
@@ -151,7 +158,7 @@ void TetrisUpdater::RotateTetromino() {
                                             tetromino_y_ + 1)) {
       fix_count_ = 0;
       ++move_count_;
-      count_ = 0;
+      drop_count_ = 0;
     }
   };
 
@@ -163,7 +170,7 @@ void TetrisUpdater::RotateTetromino() {
                                             tetromino_y_ + 1)) {
       fix_count_ = 0;
       ++move_count_;
-      count_ = 0;
+      drop_count_ = 0;
     }
   };
 
