@@ -24,4 +24,8 @@ void DrawTetromino(const Tetromino& tetromino, const TextureView& texture,
                    float render_x, float render_y, float alpha,
                    float block_size);
 
+void DrawTetrominoCenter(const Tetromino& tetromino, const TextureView& texture,
+                         float render_x, float render_y, float alpha,
+                         float block_size);
+
 }  // namespace mytetris

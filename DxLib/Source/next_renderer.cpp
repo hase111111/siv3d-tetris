@@ -7,6 +7,7 @@
 
 #include "next_renderer.h"
 
+#include "render_util.h"
 #include "tetromino_render_util.h"
 
 namespace mytetris {
@@ -30,10 +31,16 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
 
     const int height = GetHeight(tetromino.GetShape());
     const float block_size = height > 4 ? block_size_ / 1.5f : block_size_;
+    const float box_size = block_size_ * 5.0f;
+    DrawTetrominoCenter(
+        tetromino, block_textures_.at(tetromino.GetColor()),
+        render_x + box_size / 2.f,
+        render_y + (next.size() - cnt) * box_size + box_size / 2.f, 1.f,
+        block_size);
 
-    DrawTetromino(tetromino, block_textures_.at(tetromino.GetColor()), render_x,
-                  render_y + (next.size() - cnt) * block_size_ * 4.5f, 1.f,
-                  block_size);
+    DrawRect(render_x, render_y + (next.size() - cnt) * box_size,
+             render_x + box_size, render_y + (next.size() - cnt + 1) * box_size,
+             0xFFFFFF, false);
   }
 }
 

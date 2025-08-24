@@ -42,4 +42,25 @@ void DrawTetromino(const Tetromino& tetromino, const TextureView& texture,
   }
 }
 
+void DrawTetrominoCenter(const Tetromino& tetromino, const TextureView& texture,
+                         float render_x, float render_y, float alpha,
+                         float block_size) {
+  const auto shape = tetromino.GetShape();
+  const int height = shape.size();
+  const int width = shape[0].size();
+  render_x -= (width * block_size) / 2.f - block_size / 2.f;
+  render_y -= (height * block_size) / 2.f - block_size / 2.f;
+  const auto tex_width = texture.GetWidth();
+  const float ex = block_size / tex_width;
+  for (int y = 0; y < shape.size(); ++y) {
+    for (int x = 0; x < shape[0].size(); ++x) {
+      if (!shape[y][x]) continue;
+      const auto color = tetromino.GetColor();
+      texture.DrawRotatedAlpha(render_x + x * block_size,
+                               render_y + y * block_size, RenderAnchor::Center,
+                               ex, 0.f, alpha);
+    }
+  }
+}
+
 }  // namespace mytetris
