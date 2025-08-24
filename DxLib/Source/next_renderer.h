@@ -8,6 +8,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "next_tetromino.h"
 #include "resource_container.h"
@@ -24,9 +25,11 @@ class NextRenderer final {
   void Draw(float render_x, float render_y) const;
 
  private:
+  int GetHeight(const std::vector<std::vector<bool>>& shape) const;
   const std::map<TetrominoColor, TextureView> block_textures_;
   const std::shared_ptr<const NextTetromino> next_tetromino_ptr_;
   const float block_size_{30.0f};
+  const int count_max_{6};
 };
 
 }  // namespace mytetris

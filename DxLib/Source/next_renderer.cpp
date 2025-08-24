@@ -20,12 +20,60 @@ NextRenderer::NextRenderer(
 void NextRenderer::Draw(const float render_x, const float render_y) const {
   int cnt{};
   const auto next = next_tetromino_ptr_->GetNextList();
+
   for (const auto& tetromino : next) {
     ++cnt;
+
+    if (next.size() - cnt + 1 > count_max_) {
+      continue;
+    }
+
+    const int height = GetHeight(tetromino.GetShape());
+    const float block_size = height > 4 ? block_size_ / 1.5f : block_size_;
+
     DrawTetromino(tetromino, block_textures_.at(tetromino.GetColor()), render_x,
                   render_y + (next.size() - cnt) * block_size_ * 4.5f, 1.f,
-                  block_size_);
+                  block_size);
   }
+}
+
+int NextRenderer::GetHeight(const std::vector<std::vector<bool>>& shape) const {
+  const int height = static_cast<int>(shape[0].size());
+
+  // 上から見て，空の行の数を数える.
+  int empty_row_count = 0;
+  for (int y = 0; y < height; ++y) {
+    bool is_empty = true;
+    for (int x = 0; x < shape.size(); ++x) {
+      if (shape[x][y]) {
+        is_empty = false;
+        break;
+      }
+    }
+    if (is_empty) {
+      ++empty_row_count;
+    } else {
+      break;
+    }
+  }
+
+  // 下から見て，空の行の数を数える.
+  for (int y = height - 1; y >= 0; --y) {
+    bool is_empty = true;
+    for (int x = 0; x < shape.size(); ++x) {
+      if (shape[x][y]) {
+        is_empty = false;
+        break;
+      }
+    }
+    if (is_empty) {
+      ++empty_row_count;
+    } else {
+      break;
+    }
+  }
+
+  return height - empty_row_count;
 }
 
 }  // namespace mytetris
