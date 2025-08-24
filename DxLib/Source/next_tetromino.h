@@ -30,11 +30,8 @@ class NextTetromino final {
   std::vector<TetrominoType> MakeNextTetromino();
 
   const std::vector<TetrominoType> tetrominos_{
-      TetrominoType::kYama, TetrominoType::kDa, TetrominoType::kI,
-      TetrominoType::kJ,    TetrominoType::kL,  TetrominoType::kO,
-      TetrominoType::kS,    TetrominoType::kT,  TetrominoType::kZ,
-      TetrominoType::kI,    TetrominoType::kJ,  TetrominoType::kL,
-      TetrominoType::kO,    TetrominoType::kS,  TetrominoType::kT,
+      TetrominoType::kI, TetrominoType::kJ, TetrominoType::kL,
+      TetrominoType::kO, TetrominoType::kS, TetrominoType::kT,
       TetrominoType::kZ,
   };
 
