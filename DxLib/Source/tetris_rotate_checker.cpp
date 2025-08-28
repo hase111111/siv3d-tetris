@@ -12,7 +12,7 @@
 namespace mytetris {
 
 TetrisRotateChecker::TetrisRotateChecker(
-    const std::shared_ptr<TetrisField>& tetris_field_ptr)
+    const std::shared_ptr<const TetrisField>& tetris_field_ptr)
     : right_offset_(InitializeRightOffset()),
       left_offset_(InitializeLeftOffset()),
       tetris_field_ptr_(tetris_field_ptr) {}
