@@ -290,6 +290,9 @@
     <ClInclude Include="Source\render_util.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Source\tetris_rotate_checker.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

@@ -55,10 +55,6 @@ void TetrisUpdater::Update() {
     hold_tetromino_ptr_->SetCanHold(false);
   }
 
-  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
-    SetTetromino();
-  }
-
   // テトリミノが下に落ちたらフィールドにセットする.
   if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                           tetromino_y_ + 1)) {
@@ -85,7 +81,14 @@ void TetrisUpdater::UpdateTetrominoPosition() {
                                               tetromino_y_ + 1)) {
       ++tetromino_y_;
     }
+
+    // フィールドにセットする.
+    SetTetromino();
+
+    drop_count_ = 0;  // 落下カウントをリセット.
+
   } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kDown) % 5 == 1) {
+    // ソフトドロップ, 指定したフレームに1回下に落とす.
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
       drop_count_ = 0;
@@ -98,31 +101,42 @@ void TetrisUpdater::UpdateTetrominoPosition() {
     }
   }
 
-  const int key_left = dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kLeft);
-  const int key_right =
-      dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kRight);
-
-  if (key_left == 1 ||
-      (key_left > horizontal_interval_ &&
-       (key_left - horizontal_interval_) % horizontal_count_ == 0)) {
+  if (int cnt = dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kLeft);
+      cnt == 1 || (cnt > horizontal_interval_ &&
+                   (cnt - horizontal_interval_) % horizontal_count_ == 0)) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ - 1,
                                            tetromino_y_)) {
-      --tetromino_x_;
+      --tetromino_x_;  // 左に移動.
+
+      // 地面についている場合,
+      // 左右に動かすことで設置までのクールタイムを伸ばすことができる.
+      // ただし，移動回数が多い場合, 強制的に設置させる.
       if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
-        fix_count_ = 0;  // 左右に動いたのでカウントをリセット.
+        // 左右に動いたのでカウントをリセット.
+        fix_count_ = 0;
+
+        // 移動回数をカウント.
         ++move_count_;
       }
     }
-  } else if (key_right == 1 ||
-             (key_right > horizontal_interval_ &&
-              (key_right - horizontal_interval_) % horizontal_count_ == 0)) {
+  } else if (int cnt = dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kRight);
+             cnt == 1 ||
+             (cnt > horizontal_interval_ &&
+              (cnt - horizontal_interval_) % horizontal_count_ == 0)) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ + 1,
                                            tetromino_y_)) {
-      ++tetromino_x_;
+      ++tetromino_x_;  // 右に移動.
+
+      // 地面についている場合,
+      // 左右に動かすことで設置までのクールタイムを伸ばすことができる.
+      // ただし，移動回数が多い場合, 強制的に設置させる.
       if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
-        fix_count_ = 0;  // 左右に動いたのでカウントをリセット.
+        // 左右に動いたのでカウントをリセット.
+        fix_count_ = 0;
+
+        // 移動回数をカウント.
         ++move_count_;
       }
     }

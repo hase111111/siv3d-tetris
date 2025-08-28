@@ -87,6 +87,7 @@
     <ClInclude Include="Source\TetrisMain.h" />
     <ClInclude Include="Source\TetrisDefine.h" />
     <ClInclude Include="Source\tetris_feild.h" />
+    <ClInclude Include="Source\tetris_rotate_checker.h" />
     <ClInclude Include="Source\tetris_updater.h" />
     <ClInclude Include="Source\tetris_renderer.h" />
     <ClInclude Include="Source\tetris_scene.h" />
