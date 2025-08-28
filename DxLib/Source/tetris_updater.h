@@ -29,20 +29,20 @@ class TetrisUpdater final {
 
   void Update();
 
-  std::tuple<int, int> GetPosition() const {
+  inline std::tuple<int, int> GetPosition() const {
     return std::make_tuple(tetromino_x_, tetromino_y_);
   }
 
-  float GetDropGauge() const {
+  inline float GetDropGauge() const {
     return static_cast<float>(drop_count_ % drop_count_max_) /
            static_cast<float>(drop_count_max_);
   }
 
-  float GetFixGauge() const {
+  inline float GetFixGauge() const {
     return static_cast<float>(fix_count_) / static_cast<float>(fix_count_max_);
   }
 
-  float GetMoveGauge() const {
+  inline float GetMoveGauge() const {
     return static_cast<float>(move_count_) /
            static_cast<float>(move_count_max_);
   }
