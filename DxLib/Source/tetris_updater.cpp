@@ -21,7 +21,8 @@ TetrisUpdater::TetrisUpdater(
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
       next_tetromino_ptr_(next_tetromino_ptr),
-      hold_tetromino_ptr_(hold_tetromino_ptr) {
+      hold_tetromino_ptr_(hold_tetromino_ptr),
+      rotate_checker_{tetris_field_ptr} {
   ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr_);
   ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   ASSERT_NOT_NULL_PTR(tetromino_ptr_);
@@ -164,161 +165,40 @@ void TetrisUpdater::SetTetromino() {
 }
 
 void TetrisUpdater::RotateTetromino() {
-  auto activate_left = [this](int x, int y) {
-    tetromino_ptr_->LeftRotate();
-    tetromino_x_ += x;
-    tetromino_y_ += y;
-    if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
-                                            tetromino_y_ + 1)) {
-      fix_count_ = 0;
-      ++move_count_;
-      drop_count_ = 0;
-    }
-  };
-
-  auto activate_right = [this](int x, int y) {
-    tetromino_ptr_->RightRotate();
-    tetromino_x_ += x;
-    tetromino_y_ += y;
-    if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
-                                            tetromino_y_ + 1)) {
-      fix_count_ = 0;
-      ++move_count_;
-      drop_count_ = 0;
-    }
-  };
-
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kA) == 1) {
-    if (CheckRotationCollision(true, 0, 0)) {
-      activate_left(0, 0);
-      return;
-    }
+    const auto result = rotate_checker_.CheckRotation(
+        *tetromino_ptr_, tetromino_x_, tetromino_y_, true);
 
-    if (tetromino_ptr_->GetRotationType() == RotationType::kNone) {
-      return;
-    }
+    if (result.has_value()) {
+      const auto& [offset_x, offset_y] = result.value();
 
-    if (tetromino_ptr_->GetRotationType() == RotationType::kNormal) {
-      // ¶‰E‚ÉŽ²‚ð‚¸‚ç‚·.
-      Tetromino left = *tetromino_ptr_;
-      left.LeftRotate();
-      const int rot_idx = left.GetRotationIndex();
-      int offset_x = 0;
-      int offset_y = 0;
-      if (rot_idx == 0 || rot_idx == 3) {
-        offset_x = 1;
-      } else {
-        offset_x = -1;
-      }
+      tetromino_ptr_->LeftRotate();
+      tetromino_x_ += offset_x;
+      tetromino_y_ += offset_y;
 
-      if (CheckRotationCollision(true, offset_x, offset_y)) {
-        activate_left(offset_x, offset_y);
-        return;
-      }
-
-      // ã‰º‚ÉŽ²‚ð‚¸‚ç‚·.
-      if (rot_idx == 0 || rot_idx == 2) {
-        offset_y = 1;
-      } else {
-        offset_y = -1;
-      }
-
-      if (CheckRotationCollision(true, offset_x, offset_y)) {
-        activate_left(offset_x, offset_y);
-        return;
-      }
-
-      // Œ³‚É–ß‚µ‚Äã‰º‚É‚Q‚Â‚¸‚ç‚·.
-      if (rot_idx == 0 || rot_idx == 2) {
-        offset_x = 0;
-        offset_y = -2;
-      } else {
-        offset_x = 0;
-        offset_y = +2;
-      }
-
-      if (CheckRotationCollision(true, offset_x, offset_y)) {
-        activate_left(offset_x, offset_y);
-        return;
-      }
-
-      // ¶‰E‚ÉŽ²‚ð‚¸‚ç‚·.
-      if (rot_idx == 0 || rot_idx == 3) {
-        offset_x = 1;
-      } else {
-        offset_x = -1;
-      }
-
-      if (CheckRotationCollision(true, offset_x, offset_y)) {
-        activate_left(offset_x, offset_y);
-        return;
+      if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
+                                              tetromino_y_ + 1)) {
+        drop_count_ = 0;
+        fix_count_ = 0;
+        ++move_count_;
       }
     }
-
   } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kD) == 1) {
-    if (CheckRotationCollision(false, 0, 0)) {
-      activate_right(0, 0);
-      return;
-    }
+    const auto result = rotate_checker_.CheckRotation(
+        *tetromino_ptr_, tetromino_x_, tetromino_y_, false);
 
-    if (tetromino_ptr_->GetRotationType() == RotationType::kNone) {
-      return;
-    }
+    if (result.has_value()) {
+      const auto& [offset_x, offset_y] = result.value();
 
-    if (tetromino_ptr_->GetRotationType() == RotationType::kNormal) {
-      // ¶‰E‚ÉŽ²‚ð‚¸‚ç‚·.
-      Tetromino right = *tetromino_ptr_;
-      right.RightRotate();
-      const int rot_idx = right.GetRotationIndex();
-      int offset_x = 0;
-      int offset_y = 0;
-      if (rot_idx == 2 || rot_idx == 3) {
-        offset_x = 1;
-      } else {
-        offset_x = -1;
-      }
+      tetromino_ptr_->RightRotate();
+      tetromino_x_ += offset_x;
+      tetromino_y_ += offset_y;
 
-      if (CheckRotationCollision(false, offset_x, offset_y)) {
-        activate_right(offset_x, offset_y);
-        return;
-      }
-
-      // ã‰º‚ÉŽ²‚ð‚¸‚ç‚·.
-      if (rot_idx == 0 || rot_idx == 2) {
-        offset_y = 1;
-      } else {
-        offset_y = -1;
-      }
-
-      if (CheckRotationCollision(false, offset_x, offset_y)) {
-        activate_right(offset_x, offset_y);
-        return;
-      }
-
-      // Œ³‚É–ß‚µ‚Äã‰º‚É‚Q‚Â‚¸‚ç‚·.
-      if (rot_idx == 0 || rot_idx == 2) {
-        offset_x = 0;
-        offset_y = -2;
-      } else {
-        offset_x = 0;
-        offset_y = +2;
-      }
-
-      if (CheckRotationCollision(false, offset_x, offset_y)) {
-        activate_right(offset_x, offset_y);
-        return;
-      }
-
-      // ¶‰E‚ÉŽ²‚ð‚¸‚ç‚·.
-      if (rot_idx == 2 || rot_idx == 3) {
-        offset_x = 1;
-      } else {
-        offset_x = -1;
-      }
-
-      if (CheckRotationCollision(false, offset_x, offset_y)) {
-        activate_right(offset_x, offset_y);
-        return;
+      if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
+                                              tetromino_y_ + 1)) {
+        fix_count_ = 0;
+        ++move_count_;
+        drop_count_ = 0;
       }
     }
   }

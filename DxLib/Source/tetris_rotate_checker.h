@@ -27,7 +27,6 @@ class TetrisRotateChecker final {
   ~TetrisRotateChecker() = default;
 
   std::optional<std::tuple<int, int>> CheckRotation(const Tetromino& tetromino,
-                                                    int rot_idx,
                                                     int tetromino_x,
                                                     int tetromino_y,
                                                     bool left_rotate) const;
@@ -36,6 +35,8 @@ class TetrisRotateChecker final {
   bool CheckRotationCollision(const Tetromino& tetromino, int tetris_x,
                               int tetris_y, int offset_x, int offset_y,
                               bool left_rotate) const;
+
+  int GetRotatedIndex(const Tetromino& tetromino, bool left_rotate) const;
 
   std::map<std::tuple<RotationType, int>, std::vector<pii>>
   InitializeRightOffset() const;

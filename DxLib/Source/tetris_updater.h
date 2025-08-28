@@ -14,6 +14,7 @@
 #include "hold_tetromino.h"
 #include "next_tetromino.h"
 #include "tetris_feild.h"
+#include "tetris_rotate_checker.h"
 #include "tetromino.h"
 
 namespace mytetris {
@@ -59,6 +60,7 @@ class TetrisUpdater final {
   std::shared_ptr<Tetromino> tetromino_ptr_;
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
+  const TetrisRotateChecker rotate_checker_;
 
   int tetromino_x_{0}, tetromino_y_{0};
   int drop_count_{0};
@@ -67,7 +69,7 @@ class TetrisUpdater final {
   const int fix_count_max_{60};
   int move_count_{0};
   const int move_count_max_{14};
-  const int horizontal_interval_{10};
+  const int horizontal_interval_{5};
   const int horizontal_count_{5};
 };
 

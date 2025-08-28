@@ -43,6 +43,7 @@
     <ClCompile Include="Source\TetrisMain.cpp" />
     <ClCompile Include="Source\TetrisDefine.cpp" />
     <ClCompile Include="Source\tetris_feild.cpp" />
+    <ClCompile Include="Source\tetris_rotate_checker.cpp" />
     <ClCompile Include="Source\tetris_updater.cpp" />
     <ClCompile Include="Source\tetris_renderer.cpp" />
     <ClCompile Include="Source\tetris_scene.cpp" />
