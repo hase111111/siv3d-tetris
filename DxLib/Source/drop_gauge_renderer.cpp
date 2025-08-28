@@ -18,29 +18,29 @@ void DropGaugeRenderer::Draw(const float render_x, const float render_y) const {
 
   // —‰º‚ÌƒQ[ƒW.
   DrawRect(left_x, render_y - gauge_thickness / 2.f, right_x,
-           render_y + gauge_thickness / 2.f, 0xFFA0FFA0, false);
+           render_y + gauge_thickness / 2.f, 0xFF50FF50, false);
   DrawRect(left_x + 2.0f, render_y - gauge_thickness / 2.f + 2.0f,
            left_x + 2.0f + (gauge_length - 4.0f) * drop_percent,
-           render_y + gauge_thickness / 2.f - 2.0f, 0xFFA0FFA0, true);
+           render_y + gauge_thickness / 2.f - 2.0f, 0xFF50FF50, true);
 
   // ŒÅ’è‚ÌƒQ[ƒW.
   DrawRect(left_x, render_y + gauge_thickness / 2.f + dist, right_x,
            render_y + gauge_thickness / 2.f + dist + gauge_thickness,
-           0xFFFFA0A0, false);
+           0xFFFF5050, false);
   DrawRect(left_x + 2.0f, render_y + gauge_thickness / 2.f + dist + 2.0f,
            left_x + 2.0f + (gauge_length - 4.0f) * fix_percent,
            render_y + gauge_thickness / 2.f + dist + gauge_thickness - 2.0f,
-           0xFFFFA0A0, true);
+           0xFFFF5050, true);
 
   // ˆÚ“®‚ÌƒQ[ƒW.
   DrawRect(left_x, render_y + gauge_thickness * 3 / 2 + dist * 2, right_x,
            render_y + gauge_thickness * 3 / 2 + dist * 2 + gauge_thickness,
-           0xFFA0A0FF, false);
+           0xFF5050FF, false);
   DrawRect(
       left_x + 2.0f, render_y + gauge_thickness * 3 / 2 + dist * 2 + 2.0f,
       left_x + 2.0f + (gauge_length - 4.0f) * move_percent,
       render_y + gauge_thickness * 3 / 2 + dist * 2 + gauge_thickness - 2.0f,
-      0xFFA0A0FF, true);
+      0xFF5050FF, true);
 }
 
 }  // namespace mytetris
