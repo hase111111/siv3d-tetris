@@ -9,10 +9,10 @@
 
 #include <memory>
 
-#include "dxlib_keyboard.h"
 #include "fps_controller.h"
 #include "game_setting_record.h"
 #include "i_scene.h"
+#include "key_event_handler.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "scene_name.h"
@@ -25,7 +25,7 @@ class SceneCreator final {
   SceneCreator(
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const FpsController>& fps_controller_ptr,
-      const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
+      const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
       const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
   ~SceneCreator() = default;
@@ -40,7 +40,7 @@ class SceneCreator final {
 
   const std::shared_ptr<const FpsController> fps_controller_ptr_;
 
-  const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
+  const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
 
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
 

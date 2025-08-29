@@ -20,7 +20,7 @@ namespace mytetris {
 
 GameMainLoop::GameMainLoop(
     const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
-    : dxlib_keyboard_ptr_(std::make_shared<DxLibKeyboard>()),
+    : key_event_handler_ptr_(std::make_shared<KeyEventHandler>()),
       fps_controller_ptr_(std::make_shared<FpsController>(60)),
       game_setting_record_ptr_(game_setting_record_ptr),
       scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
@@ -29,7 +29,7 @@ GameMainLoop::GameMainLoop(
   // NULLチェック．
   ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
 
-  ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr_);
+  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
   ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
@@ -38,7 +38,7 @@ GameMainLoop::GameMainLoop(
 
 bool GameMainLoop::Loop() {
   // 入力を取得
-  dxlib_keyboard_ptr_->Update();
+  key_event_handler_ptr_->Update();
 
   // シーンのスタックの一番上を実行する．
   if (!scene_stack_ptr_->UpdateTopScene()) {
@@ -76,7 +76,7 @@ bool GameMainLoop::Loop() {
 
 std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   // NULLチェック．
-  ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr_);
+  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
   ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
@@ -93,7 +93,7 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   }
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
-      scene_change_listener_ptr_, fps_controller_ptr_, dxlib_keyboard_ptr_,
+      scene_change_listener_ptr_, fps_controller_ptr_, key_event_handler_ptr_,
       resource_container, game_setting_record_ptr_);
 
   auto scene_stack_ptr =

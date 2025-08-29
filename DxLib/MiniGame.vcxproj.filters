@@ -75,7 +75,7 @@
     <ClCompile Include="Source\scene_change_parameter.cpp">
       <Filter>ソース ファイル\system\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\dxlib_keyboard.cpp">
+    <ClCompile Include="Source\key_event_handler.cpp">
       <Filter>ソース ファイル\Common\input</Filter>
     </ClCompile>
     <ClCompile Include="Source\dxlib_assert.cpp">
@@ -197,7 +197,7 @@
     <ClInclude Include="Source\scene_change_parameter.h">
       <Filter>ソース ファイル\system\scene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\dxlib_keyboard.h">
+    <ClInclude Include="Source\key_event_handler.h">
       <Filter>ソース ファイル\Common\input</Filter>
     </ClInclude>
     <ClInclude Include="Source\i_scene.h">

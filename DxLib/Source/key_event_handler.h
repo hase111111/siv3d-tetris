@@ -1,5 +1,5 @@
 
-//! @file dxlib_keyboard.h
+//! @file key_event_handler.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -47,9 +47,9 @@ enum class KeyHandle : int {
 };
 
 //! @brief DxLibのキーボード入力を取得するクラス．
-class DxLibKeyboard final {
+class KeyEventHandler final {
  public:
-  DxLibKeyboard();
+  KeyEventHandler();
 
   //! @brief キー入力を更新する．
   //! これを毎フレーム実行しないと，キー入力を取得できない．

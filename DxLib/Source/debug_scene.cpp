@@ -15,19 +15,19 @@ namespace mytetris {
 
 DebugScene::DebugScene(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-    const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr)
+    const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
-      dxlib_keyboard_ptr_(dxlib_keyboard_ptr) {
+      key_event_handler_ptr_(key_event_handler_ptr) {
   ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
-  ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr);
+  ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
 }
 
 bool DebugScene::Update() {
-  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kEscape) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kEscape) == 1) {
     return false;
   }
 
-  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kT) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kT) == 1) {
     scene_change_listener_ptr_->RequestAddScene(SceneName::kTetris,
                                                 SceneChangeParameter{});
   }

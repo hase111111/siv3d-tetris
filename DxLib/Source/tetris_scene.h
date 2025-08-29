@@ -10,9 +10,9 @@
 #include <memory>
 
 #include "drop_gauge_renderer.h"
-#include "dxlib_keyboard.h"
 #include "hold_tetromino.h"
 #include "i_scene.h"
+#include "key_event_handler.h"
 #include "next_renderer.h"
 #include "next_tetromino.h"
 #include "resource_container.h"
@@ -27,7 +27,7 @@ class TetrisScene final : public IScene {
  public:
   TetrisScene(
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-      const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
+      const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
   ~TetrisScene() = default;
 
@@ -41,7 +41,7 @@ class TetrisScene final : public IScene {
 
  private:
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-  const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
+  const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<TetrisField> tetris_field_ptr_;

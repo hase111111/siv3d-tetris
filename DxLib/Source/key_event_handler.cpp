@@ -1,24 +1,24 @@
 
-//! @file dxlib_keyboard.cpp
+//! @file key_event_handler.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
 
-#include "dxlib_keyboard.h"
+#include "key_event_handler.h"
 
 #include <DxLib.h>
 
 namespace mytetris {
 
-DxLibKeyboard::DxLibKeyboard() {
+KeyEventHandler::KeyEventHandler() {
   for (int i = 0; i < kKeyNum; i++) {
     key_releasing_counter_[i] = 0;
     key_pressing_counter_[i] = 0;
   }
 }
 
-void DxLibKeyboard::Update() {
+void KeyEventHandler::Update() {
   char now_key_status[kKeyNum];
   GetHitKeyStateAll(now_key_status);  // ¡‚ÌƒL[‚Ì“ü—Íó‘Ô‚ðŽæ“¾D
 
@@ -44,7 +44,7 @@ void DxLibKeyboard::Update() {
   }
 }
 
-int DxLibKeyboard::GetPressingCount(const KeyHandle key_code) const {
+int KeyEventHandler::GetPressingCount(const KeyHandle key_code) const {
   const int cast_code = static_cast<int>(key_code);
   if (!IsAvailableCode(cast_code)) {
     return -1;
@@ -53,7 +53,7 @@ int DxLibKeyboard::GetPressingCount(const KeyHandle key_code) const {
   return key_pressing_counter_[cast_code];
 }
 
-int DxLibKeyboard::GetReleasingCount(const KeyHandle key_code) const {
+int KeyEventHandler::GetReleasingCount(const KeyHandle key_code) const {
   const int cast_code = static_cast<int>(key_code);
   if (!IsAvailableCode(cast_code)) {
     return -1;
@@ -62,7 +62,7 @@ int DxLibKeyboard::GetReleasingCount(const KeyHandle key_code) const {
   return key_releasing_counter_[cast_code];
 }
 
-bool DxLibKeyboard::IsAnyKeyPressed() const {
+bool KeyEventHandler::IsAnyKeyPressed() const {
   for (int i = 0; i < kKeyNum; i++) {
     if (key_pressing_counter_[i] > 0) {
       return true;
@@ -72,7 +72,7 @@ bool DxLibKeyboard::IsAnyKeyPressed() const {
   return false;
 }
 
-bool DxLibKeyboard::IsAvailableCode(const int key_code) const {
+bool KeyEventHandler::IsAvailableCode(const int key_code) const {
   if (!(0 <= key_code && key_code < kKeyNum)) {
     return false;
   }

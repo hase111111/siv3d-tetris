@@ -9,9 +9,9 @@
 
 #include <memory>
 
-#include "dxlib_keyboard.h"
 #include "fps_controller.h"
 #include "game_setting_record.h"
+#include "key_event_handler.h"
 #include "scene_change_executer.h"
 #include "scene_change_listener.h"
 #include "scene_stack.h"
@@ -33,7 +33,7 @@ class GameMainLoop final {
  private:
   [[nodiscard]] std::shared_ptr<SceneStack> InitializeSceneStack() const;
 
-  const std::shared_ptr<DxLibKeyboard> dxlib_keyboard_ptr_;
+  const std::shared_ptr<KeyEventHandler> key_event_handler_ptr_;
 
   const std::shared_ptr<FpsController> fps_controller_ptr_;
 

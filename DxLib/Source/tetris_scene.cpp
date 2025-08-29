@@ -14,10 +14,10 @@ namespace mytetris {
 
 TetrisScene::TetrisScene(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-    const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
+    const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
-      dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
+      key_event_handler_ptr_(key_event_handler_ptr),
       resource_container_ptr_(resource_container_ptr),
       next_tetromino_ptr_(std::make_shared<NextTetromino>()),
       tetris_field_ptr_(std::make_shared<TetrisField>()),
@@ -25,7 +25,7 @@ TetrisScene::TetrisScene(
           std::make_shared<Tetromino>(next_tetromino_ptr_->GetNext())),
       hold_tetromino_ptr_(std::make_shared<HoldTetromino>()),
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
-          dxlib_keyboard_ptr_, tetris_field_ptr_, tetromino_ptr_,
+          key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_)),
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, 40.0f},

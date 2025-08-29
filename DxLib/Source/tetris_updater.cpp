@@ -12,18 +12,18 @@
 namespace mytetris {
 
 TetrisUpdater::TetrisUpdater(
-    const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
+    const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
     const std::shared_ptr<TetrisField>& tetris_field_ptr,
     const std::shared_ptr<Tetromino>& tetromino_ptr,
     const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
     const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr)
-    : dxlib_keyboard_ptr_(dxlib_keyboard_ptr),
+    : key_event_handler_ptr_(key_event_handler_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
       next_tetromino_ptr_(next_tetromino_ptr),
       hold_tetromino_ptr_(hold_tetromino_ptr),
       rotate_checker_{tetris_field_ptr} {
-  ASSERT_NOT_NULL_PTR(dxlib_keyboard_ptr_);
+  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   ASSERT_NOT_NULL_PTR(tetromino_ptr_);
   ASSERT_NOT_NULL_PTR(next_tetromino_ptr_);
@@ -40,7 +40,7 @@ void TetrisUpdater::Update() {
   RotateTetromino();
 
   if (hold_tetromino_ptr_->CanHold() &&
-      dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kW) == 1) {
+      key_event_handler_ptr_->GetPressingCount(KeyHandle::kW) == 1) {
     if (!hold_tetromino_ptr_->IsHold()) {
       hold_tetromino_ptr_->Hold(*tetromino_ptr_);
       *tetromino_ptr_ = next_tetromino_ptr_->GetNext();
@@ -76,7 +76,7 @@ void TetrisUpdater::SetInitialTetrominoPosition() {
 }
 
 void TetrisUpdater::UpdateTetrominoPosition() {
-  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     // ハードドロップ, validPosition が false になるまで下に落とす.
     while (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
@@ -88,7 +88,8 @@ void TetrisUpdater::UpdateTetrominoPosition() {
 
     drop_count_ = 0;  // 落下カウントをリセット.
 
-  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kDown) % 5 == 1) {
+  } else if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kDown) % 5 ==
+             1) {
     // ソフトドロップ, 指定したフレームに1回下に落とす.
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
@@ -102,7 +103,7 @@ void TetrisUpdater::UpdateTetrominoPosition() {
     }
   }
 
-  if (int cnt = dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kLeft);
+  if (int cnt = key_event_handler_ptr_->GetPressingCount(KeyHandle::kLeft);
       cnt == 1 || (cnt > horizontal_interval_ &&
                    (cnt - horizontal_interval_) % horizontal_count_ == 0)) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ - 1,
@@ -121,7 +122,8 @@ void TetrisUpdater::UpdateTetrominoPosition() {
         ++move_count_;
       }
     }
-  } else if (int cnt = dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kRight);
+  } else if (int cnt =
+                 key_event_handler_ptr_->GetPressingCount(KeyHandle::kRight);
              cnt == 1 ||
              (cnt > horizontal_interval_ &&
               (cnt - horizontal_interval_) % horizontal_count_ == 0)) {
@@ -165,7 +167,7 @@ void TetrisUpdater::SetTetromino() {
 }
 
 void TetrisUpdater::RotateTetromino() {
-  if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kA) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kA) == 1) {
     // 左回転.
 
     // 回転できるかチェックする. 可能な場合はオフセットを取得する.
@@ -188,7 +190,7 @@ void TetrisUpdater::RotateTetromino() {
         ++move_count_;
       }
     }
-  } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kD) == 1) {
+  } else if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kD) == 1) {
     // 右回転.
     const auto result = rotate_checker_.CheckRotation(
         *tetromino_ptr_, tetromino_x_, tetromino_y_, false);

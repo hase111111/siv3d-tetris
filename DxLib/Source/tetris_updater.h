@@ -10,8 +10,8 @@
 #include <memory>
 #include <tuple>
 
-#include "dxlib_keyboard.h"
 #include "hold_tetromino.h"
+#include "key_event_handler.h"
 #include "next_tetromino.h"
 #include "tetris_feild.h"
 #include "tetris_rotate_checker.h"
@@ -21,11 +21,12 @@ namespace mytetris {
 
 class TetrisUpdater final {
  public:
-  TetrisUpdater(const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr,
-                const std::shared_ptr<TetrisField>& tetris_field_ptr,
-                const std::shared_ptr<Tetromino>& tetromino_ptr,
-                const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
-                const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr);
+  TetrisUpdater(
+      const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
+      const std::shared_ptr<TetrisField>& tetris_field_ptr,
+      const std::shared_ptr<Tetromino>& tetromino_ptr,
+      const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
+      const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr);
   ~TetrisUpdater() = default;
 
   void Update();
@@ -55,7 +56,7 @@ class TetrisUpdater final {
   void RotateTetromino();
   bool CheckRotationCollision(bool is_left, int offset_x, int offset_y) const;
 
-  const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
+  const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
   const std::shared_ptr<Tetromino> tetromino_ptr_;
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
