@@ -7,8 +7,8 @@
 
 #include "title_scene.h"
 
-#include "dxlib_assert.h"
 #include "game_const.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -21,9 +21,9 @@ TitleScene::TitleScene(
       resource_container_ptr_(resource_container_ptr),
       title_back_ground_{GameConst::kResolutionX, GameConst::kResolutionY,
                          resource_container_ptr_} {
-  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
 }
 
 bool TitleScene::Update() {

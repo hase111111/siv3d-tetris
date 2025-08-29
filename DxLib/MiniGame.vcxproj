@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Source\debug_scene.cpp" />
     <ClCompile Include="Source\drop_gauge_renderer.cpp" />
-    <ClCompile Include="Source\dxlib_assert.cpp" />
+    <ClCompile Include="Source\my_assert.cpp" />
     <ClCompile Include="Source\key_event_handler.cpp" />
     <ClCompile Include="Source\error_box.cpp" />
     <ClCompile Include="Source\Field.cpp" />
@@ -62,7 +62,7 @@
   <ItemGroup>
     <ClInclude Include="Source\debug_scene.h" />
     <ClInclude Include="Source\drop_gauge_renderer.h" />
-    <ClInclude Include="Source\dxlib_assert.h" />
+    <ClInclude Include="Source\my_assert.h" />
     <ClInclude Include="Source\key_event_handler.h" />
     <ClInclude Include="Source\EnumTetris.h" />
     <ClInclude Include="Source\error_box.h" />

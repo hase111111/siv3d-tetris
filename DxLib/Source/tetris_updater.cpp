@@ -7,7 +7,7 @@
 
 #include "tetris_updater.h"
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -23,11 +23,11 @@ TetrisUpdater::TetrisUpdater(
       next_tetromino_ptr_(next_tetromino_ptr),
       hold_tetromino_ptr_(hold_tetromino_ptr),
       rotate_checker_{tetris_field_ptr} {
-  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
-  ASSERT_NOT_NULL_PTR(tetromino_ptr_);
-  ASSERT_NOT_NULL_PTR(next_tetromino_ptr_);
-  ASSERT_NOT_NULL_PTR(hold_tetromino_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(next_tetromino_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(hold_tetromino_ptr_);
 
   SetInitialTetrominoPosition();
 }

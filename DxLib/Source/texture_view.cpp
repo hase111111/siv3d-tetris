@@ -9,7 +9,7 @@
 
 #include <DxLib.h>
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -85,7 +85,7 @@ std::tuple<int, int> TextureView::GetRenderPos(RenderAnchor anchor) const {
       return {0, 0};
     }
     default: {
-      ASSERT_MUST_NOT_REACH_HERE();
+      DEBUG_ASSERT_MUST_NOT_REACH_HERE();
       return {0, 0};
     }
   }

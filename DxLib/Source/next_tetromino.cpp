@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <random>
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 

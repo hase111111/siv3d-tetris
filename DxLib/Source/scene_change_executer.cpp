@@ -7,7 +7,7 @@
 
 #include "scene_change_executer.h"
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -17,8 +17,8 @@ SceneChangeExecuter::SceneChangeExecuter(
     : scene_change_listener_ptr_{scene_change_listener_ptr},
       scene_stack_ptr_{scene_stack_ptr} {
   // NULL チェック．
-  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
-  ASSERT_NOT_NULL_PTR(scene_stack_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_stack_ptr);
 }
 
 void SceneChangeExecuter::Execute() {

@@ -1,7 +1,6 @@
 #include "Next.h"
 
 #include "DxLib.h"
-#include "dxlib_assert.h"
 #include "next_tetromino.h"
 
 Next::Next() {
@@ -30,7 +29,6 @@ enumMino Next::getTopMino() {
 
   if (_result == enumMino::jammer || _result == enumMino::none ||
       _result == enumMino::wall) {
-    ASSERT_MUST_NOT_REACH_HERE();
   }
 
   return _result;

@@ -9,7 +9,7 @@
 
 #include <DxLib.h>
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -18,8 +18,8 @@ DebugScene::DebugScene(
     const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       key_event_handler_ptr_(key_event_handler_ptr) {
-  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
-  ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
 }
 
 bool DebugScene::Update() {

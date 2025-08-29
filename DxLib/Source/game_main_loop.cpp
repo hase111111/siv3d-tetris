@@ -12,7 +12,7 @@
 #include <format>
 #include <utility>
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 #include "resource_container.h"
 #include "texture.h"
 
@@ -27,13 +27,13 @@ GameMainLoop::GameMainLoop(
       scene_stack_ptr_(InitializeSceneStack()),
       scene_change_executer_{scene_change_listener_ptr_, scene_stack_ptr_} {
   // NULLチェック．
-  ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
 
-  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
-  ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
-  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-  ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
 }
 
 bool GameMainLoop::Loop() {
@@ -76,10 +76,10 @@ bool GameMainLoop::Loop() {
 
 std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   // NULLチェック．
-  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
-  ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
-  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
   const auto resource_container = std::make_shared<ResourceContainer>();
   resource_container->RegisterTexture(

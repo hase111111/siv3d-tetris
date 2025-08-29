@@ -7,7 +7,7 @@
 
 #include "tetromino.h"
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -28,7 +28,7 @@ static bool IsRectangleShape(const std::vector<std::vector<bool>>& shape) {
 Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
                      const TetrominoColor color, const RotationType rotation)
     : shape_(shape), color_(color), rotation_type_(rotation) {
-  ASSERT(IsRectangleShape(shape), "The shape must be a rectangle.");
+  DEBUG_ASSERT(IsRectangleShape(shape), "The shape must be a rectangle.");
 }
 
 Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
@@ -38,7 +38,7 @@ Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
       color_(color),
       rotation_type_(rotation_type),
       rotation_index_(rotation_index) {
-  ASSERT(IsRectangleShape(shape), "The shape must be a rectangle.");
+  DEBUG_ASSERT(IsRectangleShape(shape), "The shape must be a rectangle.");
 }
 
 std::vector<std::vector<bool>> Tetromino::GetShape() const {

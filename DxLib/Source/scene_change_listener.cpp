@@ -7,8 +7,6 @@
 
 #include "scene_change_listener.h"
 
-#include "dxlib_assert.h"
-
 namespace mytetris {
 
 void SceneChangeListener::RequestAddScene(

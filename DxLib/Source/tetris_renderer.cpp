@@ -7,7 +7,7 @@
 
 #include "tetris_renderer.h"
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 #include "tetromino_render_util.h"
 
 namespace mytetris {
@@ -22,9 +22,9 @@ TetrisRenderer::TetrisRenderer(
       tetromino_ptr_(tetromino_ptr),
       block_size_(block_size),
       block_textures_(GetBlockTextureMap(resource_container_ptr)) {
-  ASSERT_NOT_NULL_PTR(resource_container_ptr_);
-  ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
-  ASSERT_NOT_NULL_PTR(tetromino_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
 }
 
 void TetrisRenderer::Draw(const int render_x, const int render_y,
@@ -44,7 +44,7 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
     }
     auto it = block_textures_.find(tetromino);
     if (it == block_textures_.end()) {
-      ASSERT_MUST_NOT_REACH_HERE();
+      DEBUG_ASSERT_MUST_NOT_REACH_HERE();
       continue;
     }
 

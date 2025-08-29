@@ -7,10 +7,6 @@
 
 #include "title_back_ground.h"
 
-#include <DxLib.h>
-
-#include "dxlib_assert.h"
-
 namespace mytetris {
 
 TitleBackGround::TitleBackGround(

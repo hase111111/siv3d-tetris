@@ -9,7 +9,7 @@
 
 #include <vector>
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 #include "tetromino_color.h"
 
 namespace mytetris {
@@ -90,7 +90,7 @@ Tetromino TetrominoGenerator::Generate(const TetrominoType type) const {
                        RotationType::kNormal};
     }
     default: {
-      ASSERT_MUST_NOT_REACH_HERE();
+      DEBUG_ASSERT_MUST_NOT_REACH_HERE();
       return Tetromino{{{0}}, TetrominoColor::kNone, RotationType::kNone};
     }
   }

@@ -8,7 +8,7 @@
 #include "scene_creator.h"
 
 #include "debug_scene.h"
-#include "dxlib_assert.h"
+#include "my_assert.h"
 #include "tetris_scene.h"
 #include "title_scene.h"
 
@@ -26,11 +26,11 @@ SceneCreator::SceneCreator(
       resource_container_ptr_(resource_container_ptr),
       game_setting_record_ptr_(game_setting_record_ptr) {
   // ポインタが nullptr でないことを確認.
-  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-  ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
-  ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  ASSERT_NOT_NULL_PTR(resource_container_ptr_);
-  ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
 }
 
 std::unique_ptr<IScene> SceneCreator::CreateScene(
@@ -51,7 +51,7 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
                                            resource_container_ptr_);
     }
     default: {
-      ASSERT_MUST_NOT_REACH_HERE();
+      DEBUG_ASSERT_MUST_NOT_REACH_HERE();
       return nullptr;
     }
   }  // switch

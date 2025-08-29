@@ -9,7 +9,7 @@
 
 #include <utility>
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -20,13 +20,13 @@ SceneStack::SceneStack(std::unique_ptr<SceneCreator>&& scene_creator_ptr)
 }
 
 bool SceneStack::UpdateTopScene() {
-  ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
+  DEBUG_ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
   return scene_ptr_stack_.top()->Update();
 }
 
 void SceneStack::DrawTopScene() const {
-  ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
+  DEBUG_ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
   scene_ptr_stack_.top()->Draw();
 }
@@ -42,8 +42,8 @@ void SceneStack::AddNewScene(const SceneName scene_name,
 
 void SceneStack::DeleteNowScene(const int delete_num,
                                 const SceneChangeParameter& parameter) {
-  ASSERT(delete_num <= scene_ptr_stack_.size(),
-         "The number of scenes to delete is invalid.");
+  DEBUG_ASSERT(delete_num <= scene_ptr_stack_.size(),
+               "The number of scenes to delete is invalid.");
 
   // ˆø”‚Ì”‚¾‚¯ƒV[ƒ“‚ðíœ‚·‚éD
   for (int i = 0; i < delete_num; ++i) {

@@ -7,7 +7,7 @@
 
 #include "tetris_rotate_checker.h"
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -29,7 +29,7 @@ std::optional<std::tuple<int, int>> TetrisRotateChecker::CheckRotation(
 
   if (it == offset_map.end()) {
     // 見つからない場合はアサートを出す.
-    ASSERT_MUST_NOT_REACH_HERE();
+    DEBUG_ASSERT_MUST_NOT_REACH_HERE();
     return std::nullopt;
   }
 

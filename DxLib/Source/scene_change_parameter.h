@@ -11,7 +11,7 @@
 #include <string>
 #include <variant>
 
-#include "dxlib_assert.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
@@ -46,7 +46,7 @@ class SceneChangeParameter final {
   T GetParameter(const std::string& key) const {
     auto it = parameters_.find(key);
 
-    ASSERT(it != parameters_.end(), "Parameter not found. Key is " + key);
+    DEBUG_ASSERT(it != parameters_.end(), "Parameter not found. Key is " + key);
 
     return std::get<T>(it->second);
   }

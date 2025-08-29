@@ -1,5 +1,5 @@
 
-//! @file dxlib_assert.h
+//! @file my_assert.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -26,8 +26,6 @@ void ErrorAssert(const std::string& conditional_expression,
 
 }  // namespace mytetris
 
-#ifdef _DEBUG
-
 //! @brief エラーが発生したときにエラーメッセージを表示する．
 //! @param expression エラーが発生条件の式(文字列)
 //! @param error_mes エラーメッセージ．
@@ -37,11 +35,6 @@ void ErrorAssert(const std::string& conditional_expression,
       expression, error_mes, location.file_name(), location.function_name(), \
       location.line());
 
-//! @brief エラーが発生したときにエラーメッセージを表示する．
-//! DxLib の動作を止め，独自のエラーメッセージを表示する．
-//! DxLib が初期化されていない場合は，例外を投げるが，そもそも呼び出さないこと．
-//! @param expr TRUE であることが期待される条件
-//! @param error_mes エラーメッセージ
 #define ASSERT(expr, error_mes)                                 \
   do {                                                          \
     if (!(!!(expr))) {                                          \
@@ -60,12 +53,27 @@ void ErrorAssert(const std::string& conditional_expression,
 #define ASSERT_MUST_NOT_REACH_HERE() \
   ASSERT(false, "This part is never reached.")
 
+#ifdef _DEBUG
+
+//! @brief エラーが発生したときにエラーメッセージを表示する．
+//! DxLib の動作を止め，独自のエラーメッセージを表示する．
+//! DxLib が初期化されていない場合は，例外を投げるが，そもそも呼び出さないこと．
+//! @param expr TRUE であることが期待される条件
+//! @param error_mes エラーメッセージ
+#define DEBUG_ASSERT(expr, error_mes) ASSERT(expr, error_mes)
+
+#define DEBUG_ASSERT_NOT_NULL_PTR(ptr) \
+  DEBUG_ASSERT((ptr) != nullptr, "nullptr passed.")
+
+#define DEBUG_ASSERT_MUST_NOT_REACH_HERE() \
+  DEBUG_ASSERT(false, "This part is never reached.")
+
 #else
 
-#define ASSERT(expr, error_mes) ((void)0)
+#define DEBUG_ASSERT(expr, error_mes) ((void)0)
 
-#define ASSERT_NOT_NULL_PTR(ptr) ((void)0)
+#define DEBUG_ASSERT_NOT_NULL_PTR(ptr) ((void)0)
 
-#define ASSERT_MUST_NOT_REACH_HERE() ((void)0)
+#define DEBUG_ASSERT_MUST_NOT_REACH_HERE() ((void)0)
 
 #endif  // _DEBUG
