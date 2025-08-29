@@ -46,8 +46,8 @@ void DrawTetrominoCenter(const Tetromino& tetromino, const TextureView& texture,
                          float render_x, float render_y, float alpha,
                          float block_size) {
   const auto shape = tetromino.GetShape();
-  const int height = shape.size();
-  const int width = shape[0].size();
+  const int height = static_cast<int>(shape.size());
+  const int width = static_cast<int>(shape[0].size());
   render_x -= (width * block_size) / 2.f - block_size / 2.f;
   render_y -= (height * block_size) / 2.f - block_size / 2.f;
   const auto tex_width = texture.GetWidth();

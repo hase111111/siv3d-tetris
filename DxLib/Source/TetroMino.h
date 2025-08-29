@@ -22,7 +22,10 @@ enum class RotationType : int {
 class Tetromino final {
  public:
   Tetromino(const std::vector<std::vector<bool>> shape, TetrominoColor color,
-            RotationType rotation);
+            RotationType rotation_type);
+
+  Tetromino(const std::vector<std::vector<bool>> shape, TetrominoColor color,
+            RotationType rotation_type, int rotation_index);
 
   std::vector<std::vector<bool>> GetShape() const;
 
@@ -34,6 +37,11 @@ class Tetromino final {
 
   inline void LeftRotate() { rotation_index_ += 3; }
   inline void RightRotate() { rotation_index_ += 1; }
+
+  Tetromino GetRotatedLeft() const;
+  Tetromino GetRotatedRight() const;
+
+  void Reshape(const Tetromino& other);
 
  private:
   std::vector<std::vector<bool>> GetRightRotatedShape(

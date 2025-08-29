@@ -31,6 +31,16 @@ Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
   ASSERT(IsRectangleShape(shape), "The shape must be a rectangle.");
 }
 
+Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
+                     TetrominoColor color, RotationType rotation_type,
+                     int rotation_index)
+    : shape_(shape),
+      color_(color),
+      rotation_type_(rotation_type),
+      rotation_index_(rotation_index) {
+  ASSERT(IsRectangleShape(shape), "The shape must be a rectangle.");
+}
+
 std::vector<std::vector<bool>> Tetromino::GetShape() const {
   const int rotation_index = rotation_index_ % 4;
   std::vector<std::vector<bool>> rotated_shape = shape_;
@@ -40,6 +50,21 @@ std::vector<std::vector<bool>> Tetromino::GetShape() const {
   }
 
   return rotated_shape;
+}
+
+Tetromino Tetromino::GetRotatedLeft() const {
+  return Tetromino{shape_, color_, rotation_type_, (rotation_index_ + 3) % 4};
+}
+
+Tetromino Tetromino::GetRotatedRight() const {
+  return Tetromino{shape_, color_, rotation_type_, (rotation_index_ + 1) % 4};
+}
+
+void Tetromino::Reshape(const Tetromino& other) {
+  shape_ = other.shape_;
+  color_ = other.color_;
+  rotation_type_ = other.rotation_type_;
+  rotation_index_ = other.rotation_index_;
 }
 
 std::vector<std::vector<bool>> Tetromino::GetRightRotatedShape(
