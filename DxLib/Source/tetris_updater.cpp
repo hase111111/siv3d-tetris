@@ -166,10 +166,14 @@ void TetrisUpdater::SetTetromino() {
 
 void TetrisUpdater::RotateTetromino() {
   if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kA) == 1) {
+    // 左回転.
+
+    // 回転できるかチェックする. 可能な場合はオフセットを取得する.
     const auto result = rotate_checker_.CheckRotation(
         *tetromino_ptr_, tetromino_x_, tetromino_y_, true);
 
     if (result.has_value()) {
+      // オフセット分位置をずらして回転させる.
       const auto& [offset_x, offset_y] = result.value();
 
       tetromino_ptr_->LeftRotate();
@@ -178,16 +182,20 @@ void TetrisUpdater::RotateTetromino() {
 
       if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
+        // 地面についている場合, 設置までのカウントをリセット.
         drop_count_ = 0;
         fix_count_ = 0;
         ++move_count_;
       }
     }
   } else if (dxlib_keyboard_ptr_->GetPressingCount(KeyHandle::kD) == 1) {
+    // 右回転.
     const auto result = rotate_checker_.CheckRotation(
         *tetromino_ptr_, tetromino_x_, tetromino_y_, false);
 
+    // 回転できるかチェックする. 可能な場合はオフセットを取得する.
     if (result.has_value()) {
+      // オフセット分位置をずらして回転させる.
       const auto& [offset_x, offset_y] = result.value();
 
       tetromino_ptr_->RightRotate();
@@ -196,6 +204,7 @@ void TetrisUpdater::RotateTetromino() {
 
       if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
+        // 地面についている場合, 設置までのカウントをリセット.
         fix_count_ = 0;
         ++move_count_;
         drop_count_ = 0;

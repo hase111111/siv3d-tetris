@@ -49,29 +49,15 @@ std::optional<std::tuple<int, int>> TetrisRotateChecker::CheckRotation(
 bool TetrisRotateChecker::CheckRotationCollision(
     const Tetromino& tetromino, const int tetromino_x, const int tetromino_y,
     const int offset_x, const int offset_y, const bool left_rotate) const {
-  Tetromino rotate_tetromino = tetromino;
-
-  if (left_rotate) {
-    rotate_tetromino.LeftRotate();
-  } else {
-    rotate_tetromino.RightRotate();
-  }
-
   return tetris_field_ptr_->IsValidPosition(
-      rotate_tetromino, tetromino_x + offset_x, tetromino_y + offset_y);
+      left_rotate ? tetromino.GetRotatedLeft() : tetromino.GetRotatedRight(),
+      tetromino_x + offset_x, tetromino_y + offset_y);
 }
 
 int TetrisRotateChecker::GetRotatedIndex(const Tetromino& tetromino,
                                          const bool left_rotate) const {
-  Tetromino rotate_tetromino = tetromino;
-
-  if (left_rotate) {
-    rotate_tetromino.LeftRotate();
-  } else {
-    rotate_tetromino.RightRotate();
-  }
-
-  return rotate_tetromino.GetRotationIndex();
+  return left_rotate ? tetromino.GetRotatedLeft().GetRotationIndex()
+                     : tetromino.GetRotatedRight().GetRotationIndex();
 }
 
 std::map<std::tuple<RotationType, int>, std::vector<TetrisRotateChecker::pii>>
