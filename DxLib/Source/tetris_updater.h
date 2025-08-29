@@ -57,7 +57,7 @@ class TetrisUpdater final {
 
   const std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
-  std::shared_ptr<Tetromino> tetromino_ptr_;
+  const std::shared_ptr<Tetromino> tetromino_ptr_;
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const TetrisRotateChecker rotate_checker_;

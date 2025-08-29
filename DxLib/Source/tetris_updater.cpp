@@ -153,7 +153,7 @@ void TetrisUpdater::SetTetromino() {
   tetris_field_ptr_->SetTetromino(*tetromino_ptr_, tetromino_x_, tetromino_y_);
   tetris_field_ptr_->ClearLines();
 
-  *tetromino_ptr_ = next_tetromino_ptr_->GetNext();
+  tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext());
   next_tetromino_ptr_->Next();
 
   SetInitialTetrominoPosition();
@@ -216,15 +216,10 @@ void TetrisUpdater::RotateTetromino() {
 bool TetrisUpdater::CheckRotationCollision(const bool is_left,
                                            const int offset_x,
                                            const int offset_y) const {
-  Tetromino rotate_tetromino = *tetromino_ptr_;
-  if (is_left) {
-    rotate_tetromino.LeftRotate();
-  } else {
-    rotate_tetromino.RightRotate();
-  }
-
   return tetris_field_ptr_->IsValidPosition(
-      rotate_tetromino, tetromino_x_ + offset_x, tetromino_y_ + offset_y);
+      is_left ? tetromino_ptr_->GetRotatedLeft()
+              : tetromino_ptr_->GetRotatedRight(),
+      tetromino_x_ + offset_x, tetromino_y_ + offset_y);
 }
 
 }  // namespace mytetris
