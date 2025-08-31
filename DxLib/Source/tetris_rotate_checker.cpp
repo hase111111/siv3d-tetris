@@ -95,10 +95,10 @@ TetrisRotateChecker::InitializeRightOffset() const {
       {0, 0}, {1, 0}, {1, -1}, {0, 2}, {1, 2}};
 
   // I のオフセット.
-  result[{RotationType::kI, 0}] = {{0, 0}};
-  result[{RotationType::kI, 1}] = {{0, 0}};
-  result[{RotationType::kI, 2}] = {{0, 0}};
-  result[{RotationType::kI, 3}] = {{0, 0}};
+  result[{RotationType::kI, 0}] = {{0, 0}, {-2, 0}, {1, 0}, {1, 2}, {-2, -1}};
+  result[{RotationType::kI, 1}] = {{0, 0}, {-2, 0}, {1, 0}, {-2, 1}, {1, -2}};
+  result[{RotationType::kI, 2}] = {{0, 0}, {-1, 0}, {2, 0}, {-1, -2}, {2, 1}};
+  result[{RotationType::kI, 3}] = {{0, 0}, {2, 0}, {-1, 0}, {2, -1}, {-1, 2}};
 
   return result;
 }
@@ -124,10 +124,10 @@ TetrisRotateChecker::InitializeLeftOffset() const {
       {0, 0}, {1, 0}, {1, -1}, {0, 2}, {1, 2}};
 
   // I のオフセット.
-  result[{RotationType::kI, 0}] = {{0, 0}};
-  result[{RotationType::kI, 1}] = {{0, 0}};
-  result[{RotationType::kI, 2}] = {{0, 0}};
-  result[{RotationType::kI, 3}] = {{0, 0}};
+  result[{RotationType::kI, 0}] = {{0, 0}, {2, 0}, {-1, 0}, {2, -1}, {-1, 2}};
+  result[{RotationType::kI, 1}] = {{0, 0}, {1, 0}, {-2, 0}, {1, 2}, {-2, -1}};
+  result[{RotationType::kI, 2}] = {{0, 0}, {1, 0}, {-2, 0}, {-2, 1}, {1, -2}};
+  result[{RotationType::kI, 3}] = {{0, 0}, {-1, 0}, {2, 0}, {-1, -2}, {2, 1}};
 
   return result;
 }
