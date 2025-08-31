@@ -183,7 +183,7 @@
 //           m_fieldx -= 3;
 //           m_fieldy += 1;
 //         } else if (m_roll % 4 == 2) {
-//           m_fieldy -= 3;
+//           m_fieldx -= 3;
 //           m_fieldy -= 2;
 //         } else if (m_roll % 4 == 3) {
 //           m_fieldx += 3;
