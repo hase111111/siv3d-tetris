@@ -14,7 +14,7 @@ namespace mytetris {
 void DropGaugeRenderer::Draw(const float render_x, const float render_y) const {
   const float left_x = render_x - gauge_length / 2.f;
   const float right_x = render_x + gauge_length / 2.f;
-  const float dist = 5.0f;
+  const float dist = 3.0f;
 
   // —‰º‚ÌƒQ[ƒW.
   DrawRect(left_x, render_y - gauge_thickness / 2.f, right_x,
@@ -35,12 +35,12 @@ void DropGaugeRenderer::Draw(const float render_x, const float render_y) const {
   // ˆÚ“®‚ÌƒQ[ƒW.
   DrawRect(left_x, render_y + gauge_thickness * 3 / 2 + dist * 2, right_x,
            render_y + gauge_thickness * 3 / 2 + dist * 2 + gauge_thickness,
-           0xFF5050FF, false);
+           0xFFFFFF50, false);
   DrawRect(
       left_x + 2.0f, render_y + gauge_thickness * 3 / 2 + dist * 2 + 2.0f,
       left_x + 2.0f + (gauge_length - 4.0f) * move_percent,
       render_y + gauge_thickness * 3 / 2 + dist * 2 + gauge_thickness - 2.0f,
-      0xFF5050FF, true);
+      0xFFFFFF50, true);
 }
 
 }  // namespace mytetris

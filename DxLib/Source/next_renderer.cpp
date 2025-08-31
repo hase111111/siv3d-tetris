@@ -25,6 +25,7 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
   const float wall_ex = 2.0f;
   const float wall_size = wall_texture_.GetWidth() * wall_ex;
   const float box_size = wall_size * 4.0f;
+  const float offset_y = 40.0f;
 
   // Next.
   for (const auto& tetromino : next) {
@@ -40,12 +41,13 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
     DrawTetrominoCenter(
         tetromino, block_textures_.at(tetromino.GetColor()),
         render_x + box_size / 2.f,
-        render_y + (next.size() - cnt) * box_size + box_size / 2.f, 1.f,
-        block_size);
+        render_y + (next.size() - cnt) * box_size + box_size / 2.f + offset_y,
+        1.f, block_size);
 
-    DrawRect(render_x, render_y + (next.size() - cnt) * box_size,
-             render_x + box_size, render_y + (next.size() - cnt + 1) * box_size,
-             0xFFFFFF, false);
+    DrawRect(render_x, render_y + (next.size() - cnt) * box_size + offset_y,
+             render_x + box_size,
+             render_y + (next.size() - cnt + 1) * box_size + offset_y, 0xFFFFFF,
+             false);
   }
 
   // ÉtÉåÅ[ÉÄ.

@@ -30,7 +30,7 @@ class DropGaugeRenderer final {
   void Draw(float render_x, float render_y) const;
 
  private:
-  const float gauge_length{100.0f};
+  const float gauge_length{158.0f};
   const float gauge_thickness{10.0f};
   float drop_percent{0.0f};  // ドロップゲージの割合(0.0f ~ 1.0f)
   float fix_percent{0.0f};   // 固定ゲージの割合(0.0f ~ 1.0f)

@@ -53,8 +53,7 @@ void TetrisScene::Draw() const {
 
   next_renderer_.Draw(880, 40);
 
-  drop_gauge_renderer_.Draw(GameConst::kResolutionX - 50.0f,
-                            GameConst::kResolutionY - 50.0f);
+  drop_gauge_renderer_.Draw(960, 888);
 }
 
 void TetrisScene::OnStart(const SceneChangeParameter&) {}
