@@ -31,6 +31,8 @@ class TetrisRenderer final {
   inline int GetBlockSize() const { return static_cast<int>(block_size_); }
 
  private:
+  void DrawGrid(int render_x, int render_y) const;
+
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   const std::shared_ptr<const TetrisField> tetris_field_ptr_;
   const std::shared_ptr<const Tetromino> tetromino_ptr_;
