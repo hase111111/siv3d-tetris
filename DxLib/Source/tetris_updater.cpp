@@ -33,7 +33,12 @@ TetrisUpdater::TetrisUpdater(
 }
 
 void TetrisUpdater::Update() {
-  ++drop_count_;
+  if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
+                                         tetromino_y_ + 1)) {
+    ++drop_count_;
+  } else {
+    drop_count_ = 0;  // 地面についているので落下カウントをリセット.
+  }
 
   UpdateTetrominoPosition();
 
