@@ -22,6 +22,7 @@
     <ClCompile Include="Source\debug_scene.cpp" />
     <ClCompile Include="Source\drop_gauge_renderer.cpp" />
     <ClCompile Include="Source\font.cpp" />
+    <ClCompile Include="Source\font_view.cpp" />
     <ClCompile Include="Source\my_assert.cpp" />
     <ClCompile Include="Source\key_event_handler.cpp" />
     <ClCompile Include="Source\error_box.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="Source\debug_scene.h" />
     <ClInclude Include="Source\drop_gauge_renderer.h" />
     <ClInclude Include="Source\font.h" />
+    <ClInclude Include="Source\font_view.h" />
     <ClInclude Include="Source\my_assert.h" />
     <ClInclude Include="Source\key_event_handler.h" />
     <ClInclude Include="Source\error_box.h" />

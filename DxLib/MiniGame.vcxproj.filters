@@ -141,6 +141,9 @@
     <ClCompile Include="Source\font.cpp">
       <Filter>ソース ファイル\resource</Filter>
     </ClCompile>
+    <ClCompile Include="Source\font_view.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
@@ -255,6 +258,9 @@
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
     <ClInclude Include="Source\font.h">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\font_view.h">
       <Filter>ソース ファイル\resource</Filter>
     </ClInclude>
   </ItemGroup>
