@@ -21,10 +21,24 @@ void ResourceContainer::RegisterTexture(
   textures.insert(std::make_pair(name, std::move(texture)));
 }
 
+void ResourceContainer::RegisterFont(const std::string& name,
+                                     std::unique_ptr<const Font>&& font) {
+  DEBUG_ASSERT(fonts.find(name) == fonts.end(),
+               std::format("Font with name {} already exists.", name));
+  // –¾Ž¦“I‚É move ‚·‚é‚½‚ß‚É insert ‚ðŽg—p.
+  fonts.insert(std::make_pair(name, std::move(font)));
+}
+
 TextureView ResourceContainer::GetTexture(const std::string& name) const {
   DEBUG_ASSERT(textures.find(name) != textures.end(),
                std::format("Texture with name {} does not exist.", name));
   return textures.at(name)->GetView();
+}
+
+FontView ResourceContainer::GetFont(const std::string& name) const {
+  DEBUG_ASSERT(fonts.find(name) != fonts.end(),
+               std::format("Font with name {} does not exist.", name));
+  return fonts.at(name)->GetView();
 }
 
 void ResourceContainer::UnloadTexture(const std::string& name) {
@@ -33,6 +47,14 @@ void ResourceContainer::UnloadTexture(const std::string& name) {
     return;
   }
   textures.erase(it);
+}
+
+void ResourceContainer::UnloadFont(const std::string& name) {
+  auto it = fonts.find(name);
+  if (it == fonts.end()) {
+    return;
+  }
+  fonts.erase(it);
 }
 
 }  // namespace mytetris

@@ -263,6 +263,9 @@
     <ClInclude Include="Source\font_view.h">
       <Filter>ソース ファイル\resource</Filter>
     </ClInclude>
+    <ClInclude Include="Source\render_anchor.h">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">

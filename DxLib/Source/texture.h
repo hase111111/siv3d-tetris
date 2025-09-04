@@ -12,17 +12,11 @@
 #include <tuple>
 #include <vector>
 
+#include "render_anchor.h"
+
 namespace mytetris {
 
 class TextureView;
-
-enum class RenderAnchor : int {
-  TopLeft,
-  TopRight,
-  BottomLeft,
-  BottomRight,
-  Center
-};
 
 class Texture final {
  public:

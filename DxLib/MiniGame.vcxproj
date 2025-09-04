@@ -69,6 +69,7 @@
     <ClInclude Include="Source\game_main_loop.h" />
     <ClInclude Include="Source\next_renderer.h" />
     <ClInclude Include="Source\next_tetromino.h" />
+    <ClInclude Include="Source\render_anchor.h" />
     <ClInclude Include="Source\render_util.h" />
     <ClInclude Include="Source\resource_container.h" />
     <ClInclude Include="Source\scene_change_executer.h" />
