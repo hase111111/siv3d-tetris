@@ -19,7 +19,7 @@ namespace mytetris {
 int Font::count_{0};
 
 Font::Font(const std::string& file_name)
-    : handle_(DxLib::LoadFontDataToHandle(file_name.c_str())) {
+    : handle_(DxLib::LoadFontDataToHandle(file_name.c_str(), 1)) {
   ASSERT(handle_ >= 0, std::format("Failed to load font: {} (handle: {})",
                                    file_name, handle_));
   // 1フレーム間に大量のテクスチャのロードが発生することを防ぐため，

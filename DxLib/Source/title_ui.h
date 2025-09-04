@@ -7,15 +7,23 @@
 
 #pragma once
 
-#include "texture.h"
+#include <memory>
+
+#include "font_view.h"
+#include "resource_container.h"
 
 namespace mytetris {
 
 class TitleUI final {
  public:
-  TitleUI() = default;
+  TitleUI(
+      const std::shared_ptr<const ResourceContainer>& resource_container_ptr_);
   ~TitleUI() = default;
+
   void Draw() const;
+
+ private:
+  FontView font_view_;
 };
 
 }  // namespace mytetris

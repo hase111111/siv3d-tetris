@@ -52,6 +52,7 @@
     <ClCompile Include="Source\texture_view.cpp" />
     <ClCompile Include="Source\title_back_ground.cpp" />
     <ClCompile Include="Source\title_scene.cpp" />
+    <ClCompile Include="Source\title_ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\debug_scene.h" />

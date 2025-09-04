@@ -14,6 +14,7 @@
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "title_back_ground.h"
+#include "title_ui.h"
 
 namespace mytetris {
 
@@ -38,6 +39,7 @@ class TitleScene final : public IScene {
   const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   TitleBackGround title_back_ground_;
+  TitleUI title_ui_;
 };
 
 }  // namespace mytetris

@@ -20,7 +20,8 @@ TitleScene::TitleScene(
       key_event_handler_ptr_(key_event_handler_ptr),
       resource_container_ptr_(resource_container_ptr),
       title_back_ground_{GameConst::kResolutionX, GameConst::kResolutionY,
-                         resource_container_ptr_} {
+                         resource_container_ptr_},
+      title_ui_{resource_container_ptr_} {
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
@@ -40,7 +41,10 @@ bool TitleScene::Update() {
   return true;
 }
 
-void TitleScene::Draw() const { title_back_ground_.Draw(); }
+void TitleScene::Draw() const {
+  title_back_ground_.Draw();
+  title_ui_.Draw();
+}
 
 void TitleScene::OnStart(const SceneChangeParameter&) {}
 

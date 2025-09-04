@@ -144,6 +144,9 @@
     <ClCompile Include="Source\font_view.cpp">
       <Filter>ソース ファイル\resource</Filter>
     </ClCompile>
+    <ClCompile Include="Source\title_ui.cpp">
+      <Filter>ソース ファイル\scenes\title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
