@@ -1,2 +1,2 @@
-CreateDXFontData.exe /F"JK丸ゴシック" /B1 /S40 /AA_ZText.txt /O"JKGothic40.dft"
+CreateDXFontData.exe /F"JK丸ゴシック" /B1 /S20 /AA_ZText.txt /O"JKGothic20.dft"
 pause

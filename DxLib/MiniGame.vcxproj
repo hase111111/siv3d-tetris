@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Source\debug_scene.cpp" />
     <ClCompile Include="Source\drop_gauge_renderer.cpp" />
+    <ClCompile Include="Source\fade_effect.cpp" />
     <ClCompile Include="Source\font.cpp" />
     <ClCompile Include="Source\font_view.cpp" />
     <ClCompile Include="Source\my_assert.cpp" />
@@ -57,6 +58,7 @@
   <ItemGroup>
     <ClInclude Include="Source\debug_scene.h" />
     <ClInclude Include="Source\drop_gauge_renderer.h" />
+    <ClInclude Include="Source\fade_effect.h" />
     <ClInclude Include="Source\font.h" />
     <ClInclude Include="Source\font_view.h" />
     <ClInclude Include="Source\my_assert.h" />

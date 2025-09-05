@@ -93,6 +93,8 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   }
   resource_container->RegisterFont(
       "default", std::move(std::make_unique<Font>("dat/font/JKGothic40.dft")));
+  resource_container->RegisterFont(
+      "small", std::move(std::make_unique<Font>("dat/font/JKGothic20.dft")));
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
       scene_change_listener_ptr_, fps_controller_ptr_, key_event_handler_ptr_,

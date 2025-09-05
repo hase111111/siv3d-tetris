@@ -16,12 +16,15 @@ namespace mytetris {
 
 TitleUI::TitleUI(
     const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr,
-    const std::shared_ptr<const ResourceContainer>& resource_container_ptr_)
-    : font_view_(resource_container_ptr_->GetFont("default")),
+    const std::shared_ptr<const ResourceContainer>& resource_container_ptr_,
+    const std::function<void(const SceneChangeParameter&)>& to_game_scene)
+    : font_view_40_(resource_container_ptr_->GetFont("default")),
+      font_view_20_(resource_container_ptr_->GetFont("small")),
       key_event_handler_ptr_(key_event_handler_ptr),
-      title_items_({"GameStart", "SpecialMode", "Setting", "QuitGame"}),
+      title_items_({"Game Start", "Special Mode", "Setting", "Quit Game"}),
       game_mode_items_({"Endless Mode", "Ultra Mode", "Sprint Mode",
-                        "Marathon Mode", "Practice Mode", "Back"}) {}
+                        "Marathon Mode", "Back"}),
+      to_game_scene_(to_game_scene) {}
 
 bool TitleUI::Update() {
   ++counter_;
@@ -60,6 +63,9 @@ void TitleUI::Draw() const {
 }
 
 bool TitleUI::UpdateTitle() {
+  lower_announcement_ =
+      "Use Up/Down key to move, Z key to decide, Esc key to quit.";
+
   if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     mode_index_ += static_cast<int>(title_items_.size()) - 1;
   } else if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kDown) == 1) {
@@ -113,18 +119,37 @@ bool TitleUI::UpdateGameStart() {
   const int idx = mode_index_ % game_mode_items_.size();
 
   switch (idx) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4: {
+    case 0: {
+      lower_announcement_ =
+          "Endless: Play continuously until you top out, no fixed goal.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
-        // ゲーム開始処理をここに実装.
-        // 現在は選択されたモードをコンソールに出力するだけ.
+        to_game_scene_(SceneChangeParameter{});
       }
       return true;
     }
-    case 5: {
+    case 1: {
+      lower_announcement_ =
+          "Ultra: Score as many points as possible in 3 minutes.";
+      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      }
+      return true;
+    }
+    case 2: {
+      lower_announcement_ = "Sprint: Clear 40 lines as fast as possible.";
+      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      }
+      return true;
+    }
+    case 3: {
+      lower_announcement_ =
+          "Marathon: Play continuously until you top out, with a fixed goal of "
+          "150 lines.";
+      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      }
+      return true;
+    }
+    case 4: {
+      lower_announcement_ = "Return to the previous menu.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
         selected_index_ = 0;
         mode_index_ = 0;
@@ -144,24 +169,34 @@ void TitleUI::DrawTitle() const {
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
   for (int i = 0; i < title_items_.size(); ++i) {
-    font_view_.DrawAlpha(GameConst::kResolutionX / 2.0f,
-                         GameConst::kResolutionY / 2.0f + 130 + offset_y * i,
-                         RenderAnchor::Center, title_items_[i].c_str(),
-                         idx == i ? alpha : 0.5f);
+    font_view_40_.DrawAlpha(GameConst::kResolutionX / 2.0f,
+                            GameConst::kResolutionY / 2.0f + 120 + offset_y * i,
+                            RenderAnchor::Center, title_items_[i].c_str(),
+                            idx == i ? alpha : 0.5f);
   }
+
+  // 下部の案内文を描画.
+  font_view_20_.Draw(GameConst::kResolutionX / 2.0f,
+                     GameConst::kResolutionY - 20.f, RenderAnchor::Center,
+                     lower_announcement_.c_str());
 }
 
 void TitleUI::DrawGameStart() const {
-  const float offset_y = 60.f;
+  const float offset_y = 70.f;
   const int idx = mode_index_ % game_mode_items_.size();
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
   for (int i = 0; i < game_mode_items_.size(); ++i) {
-    font_view_.DrawAlpha(GameConst::kResolutionX / 2.0f,
-                         GameConst::kResolutionY / 2.0f + 100 + offset_y * i,
-                         RenderAnchor::Center, game_mode_items_[i].c_str(),
-                         idx == i ? alpha : 0.5f);
+    font_view_40_.DrawAlpha(GameConst::kResolutionX / 2.0f,
+                            GameConst::kResolutionY / 2.0f + 120 + offset_y * i,
+                            RenderAnchor::Center, game_mode_items_[i].c_str(),
+                            idx == i ? alpha : 0.5f);
   }
+
+  // 下部の案内文を描画.
+  font_view_20_.Draw(GameConst::kResolutionX / 2.0f,
+                     GameConst::kResolutionY - 20.f, RenderAnchor::Center,
+                     lower_announcement_.c_str());
 }
 
 }  // namespace mytetris

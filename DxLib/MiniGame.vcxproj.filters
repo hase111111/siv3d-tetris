@@ -147,6 +147,9 @@
     <ClCompile Include="Source\title_ui.cpp">
       <Filter>ソース ファイル\scenes\title</Filter>
     </ClCompile>
+    <ClCompile Include="Source\fade_effect.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="Source\render_anchor.h">
       <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\fade_effect.h">
+      <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
