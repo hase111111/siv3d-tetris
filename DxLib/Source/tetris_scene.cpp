@@ -41,6 +41,17 @@ bool TetrisScene::Update() {
     return true;
   }
 
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kEscape) == 1) {
+    return false;
+  }
+
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+    fade_effect_.Start(FadeType::kFadeOut, [this]() {
+      scene_change_listener_ptr_->RequestDeleteScene(1, {});
+    });
+    return true;
+  }
+
   tetris_updater_ptr_->Update();
 
   tetris_renderer_.SetClearLines(tetris_updater_ptr_->GetClearedLines());

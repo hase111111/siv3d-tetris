@@ -51,7 +51,9 @@ void TitleScene::Draw() const {
 
 void TitleScene::OnStart(const SceneChangeParameter&) {}
 
-void TitleScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}
+void TitleScene::OnReturnFromOtherScene(const SceneChangeParameter&) {
+  fade_effect_.Start(FadeType::kFadeIn, []() {});
+}
 
 void TitleScene::ToTetrisScene(const SceneChangeParameter& parameter) {
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
