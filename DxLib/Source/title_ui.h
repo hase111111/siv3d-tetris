@@ -44,8 +44,8 @@ class TitleUI final {
   const std::vector<std::string> title_items_;
   const std::vector<std::string> game_mode_items_;
   const std::function<void(const SceneChangeParameter&)> to_game_scene_;
-  std::string lower_announcement_;
 
+  std::string lower_announcement_;
   int counter_{0};
   int mode_index_{0};
   int selected_index_{0};
