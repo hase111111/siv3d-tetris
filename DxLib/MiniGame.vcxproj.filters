@@ -22,12 +22,6 @@
     <Filter Include="ソース ファイル\system\scene">
       <UniqueIdentifier>{7a43d1ef-0243-4a31-8061-610d9562ac20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Common">
-      <UniqueIdentifier>{8bc2624c-90ae-4fc1-b7f9-9e7955b838d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Common\input">
-      <UniqueIdentifier>{31b818da-10eb-47a5-b221-eb6dda9010b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\scenes">
       <UniqueIdentifier>{4b2e051b-747e-4cce-9fad-2d69066a4b36}</UniqueIdentifier>
     </Filter>
@@ -43,13 +37,19 @@
     <Filter Include="ソース ファイル\tetris">
       <UniqueIdentifier>{7788b157-1115-4c82-837a-1e3d1dfca80c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\common_">
+      <UniqueIdentifier>{8bc2624c-90ae-4fc1-b7f9-9e7955b838d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\common_\input">
+      <UniqueIdentifier>{31b818da-10eb-47a5-b221-eb6dda9010b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\fps_controller.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClCompile>
     <ClCompile Include="Source\system_main.cpp">
       <Filter>ソース ファイル\system</Filter>
@@ -73,16 +73,16 @@
       <Filter>ソース ファイル\system\scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\key_event_handler.cpp">
-      <Filter>ソース ファイル\Common\input</Filter>
+      <Filter>ソース ファイル\common_\input</Filter>
     </ClCompile>
     <ClCompile Include="Source\my_assert.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClCompile>
     <ClCompile Include="Source\scene_creator.cpp">
       <Filter>ソース ファイル\system\scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\error_box.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClCompile>
     <ClCompile Include="Source\texture.cpp">
       <Filter>ソース ファイル\resource</Filter>
@@ -133,7 +133,7 @@
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
     <ClCompile Include="Source\render_util.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClCompile>
     <ClCompile Include="Source\tetris_rotate_checker.cpp">
       <Filter>ソース ファイル\tetris</Filter>
@@ -148,7 +148,7 @@
       <Filter>ソース ファイル\scenes\title</Filter>
     </ClCompile>
     <ClCompile Include="Source\fade_effect.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClCompile>
     <ClCompile Include="Source\broken_block_renderer.cpp">
       <Filter>ソース ファイル\tetris</Filter>
@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClInclude>
     <ClInclude Include="Source\system_main.h">
       <Filter>ソース ファイル\system</Filter>
@@ -174,7 +174,7 @@
       <Filter>ソース ファイル\system\scene</Filter>
     </ClInclude>
     <ClInclude Include="Source\my_assert.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClInclude>
     <ClInclude Include="Source\scene_change_executer.h">
       <Filter>ソース ファイル\system\scene</Filter>
@@ -186,7 +186,7 @@
       <Filter>ソース ファイル\system\scene</Filter>
     </ClInclude>
     <ClInclude Include="Source\key_event_handler.h">
-      <Filter>ソース ファイル\Common\input</Filter>
+      <Filter>ソース ファイル\common_\input</Filter>
     </ClInclude>
     <ClInclude Include="Source\i_scene.h">
       <Filter>ソース ファイル\system\scene</Filter>
@@ -198,7 +198,7 @@
       <Filter>ソース ファイル\resource</Filter>
     </ClInclude>
     <ClInclude Include="Source\error_box.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClInclude>
     <ClInclude Include="Source\texture.h">
       <Filter>ソース ファイル\resource</Filter>
@@ -261,7 +261,7 @@
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
     <ClInclude Include="Source\render_util.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClInclude>
     <ClInclude Include="Source\tetris_rotate_checker.h">
       <Filter>ソース ファイル\tetris</Filter>
@@ -276,7 +276,7 @@
       <Filter>ソース ファイル\resource</Filter>
     </ClInclude>
     <ClInclude Include="Source\fade_effect.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common_</Filter>
     </ClInclude>
     <ClInclude Include="Source\broken_block_renderer.h">
       <Filter>ソース ファイル\tetris</Filter>
