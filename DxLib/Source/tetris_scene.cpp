@@ -42,6 +42,10 @@ bool TetrisScene::Update() {
 
   tetris_updater_ptr_->Update();
 
+  tetris_renderer_.SetClearLines(tetris_updater_ptr_->GetClearedLines());
+
+  tetris_renderer_.Update();
+
   drop_gauge_renderer_.SetDropPercent(tetris_updater_ptr_->GetDropGauge());
   drop_gauge_renderer_.SetFixPercent(tetris_updater_ptr_->GetFixGauge());
   drop_gauge_renderer_.SetMovePercent(tetris_updater_ptr_->GetMoveGauge());

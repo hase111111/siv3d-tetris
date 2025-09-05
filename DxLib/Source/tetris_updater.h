@@ -49,6 +49,11 @@ class TetrisUpdater final {
            static_cast<float>(move_count_max_);
   }
 
+  inline std::vector<std::tuple<int, std::vector<TetrominoColor>>>
+  GetClearedLines() const {
+    return clear_lines_;
+  }
+
  private:
   void SetInitialTetrominoPosition();
   void UpdateTetrominoPosition();
@@ -62,6 +67,8 @@ class TetrisUpdater final {
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const TetrisRotateChecker rotate_checker_;
+
+  std::vector<std::tuple<int, std::vector<TetrominoColor>>> clear_lines_;
 
   int tetromino_x_{0}, tetromino_y_{0};
   int drop_count_{0};

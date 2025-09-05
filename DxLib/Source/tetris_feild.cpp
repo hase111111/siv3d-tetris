@@ -82,7 +82,11 @@ void TetrisField::SetTetromino(const Tetromino& tetromino,
   }
 }
 
-void TetrisField::ClearLines() {
+std::vector<std::tuple<int, std::vector<TetrominoColor>>>
+TetrisField::ClearLines() {
+  int cnt{kHeight - 2};
+  std::vector<std::tuple<int, std::vector<TetrominoColor>>> cleared_lines;
+
   // 列がそろっているかチェックし，そろっていたら削除して上に詰める.
   for (int y = kHeight - 2; y >= 0; --y) {  // 最下段は壁なので除外
     bool is_full_line = true;
@@ -93,6 +97,13 @@ void TetrisField::ClearLines() {
       }
     }
     if (is_full_line) {
+      // 削除する行を記録.
+      std::vector<TetrominoColor> line;
+      for (int x = 1; x < kWidth - 1; ++x) {
+        line.push_back(field_[y][x]);
+      }
+      cleared_lines.emplace_back(cnt, line);
+
       // 行を削除して上に詰める.
       for (int clear_y = y; clear_y > 0; --clear_y) {
         for (int x = 1; x < kWidth - 1; ++x) {
@@ -107,7 +118,11 @@ void TetrisField::ClearLines() {
       // 行を削除したので再度チェックするために y を進める.
       ++y;  // 行を削除したので y を進める.
     }
+
+    --cnt;
   }
+
+  return cleared_lines;
 }
 
 TetrisField::FieldType TetrisField::InitializeField() const {

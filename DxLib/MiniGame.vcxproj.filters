@@ -150,6 +150,9 @@
     <ClCompile Include="Source\fade_effect.cpp">
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Source\broken_block_renderer.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="Source\fade_effect.h">
       <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\broken_block_renderer.h">
+      <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

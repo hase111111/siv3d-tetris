@@ -9,6 +9,7 @@
 
 #include <array>
 #include <tuple>
+#include <vector>
 
 #include "tetromino.h"
 #include "tetromino_color.h"
@@ -71,7 +72,7 @@ class TetrisField final {
   void SetTetromino(const Tetromino& tetromino, int tetromino_x,
                     int tetromino_y);
 
-  void ClearLines();
+  std::vector<std::tuple<int, std::vector<TetrominoColor>>> ClearLines();
 
  private:
   FieldType InitializeField() const;

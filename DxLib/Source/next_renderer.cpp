@@ -17,6 +17,7 @@ NextRenderer::NextRenderer(
     const std::shared_ptr<const NextTetromino>& next_tetromino_ptr)
     : block_textures_(GetBlockTextureMap(resource_container_ptr)),
       wall_texture_(resource_container_ptr->GetTexture("wall.png")),
+      font_view_(resource_container_ptr->GetFont("small")),
       next_tetromino_ptr_(next_tetromino_ptr) {}
 
 void NextRenderer::Draw(const float render_x, const float render_y) const {
@@ -26,6 +27,10 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
   const float wall_size = wall_texture_.GetWidth() * wall_ex;
   const float box_size = wall_size * 4.0f;
   const float offset_y = 40.0f;
+
+  // Next‚Ì•¶Žš.
+  font_view_.Draw(render_x + block_size_ / 4.f, render_y + block_size_ / 4.f,
+                  RenderAnchor::TopLeft, "Next");
 
   // Next.
   for (const auto& tetromino : next) {

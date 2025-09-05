@@ -22,7 +22,8 @@ TetrisRenderer::TetrisRenderer(
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
       block_size_(block_size),
-      block_textures_(GetBlockTextureMap(resource_container_ptr)) {
+      block_textures_(GetBlockTextureMap(resource_container_ptr)),
+      broken_block_renderer_(resource_container_ptr) {
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
@@ -74,6 +75,21 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
                   block_textures_.at(tetromino_ptr_->GetColor()),
                   render_x_ + hard_drop_x * block_size_,
                   render_y_ + hard_drop_y * block_size_, 0.5f, block_size_);
+  }
+
+  // Á‹ƒ‰ƒCƒ“‚Ì•`‰æ.
+  broken_block_renderer_.Draw(render_x_, render_y_);
+}
+
+void TetrisRenderer::SetClearLines(
+    const std::vector<std::tuple<int, std::vector<TetrominoColor>>>&
+        clear_lines) {
+  // Á‹ƒ‰ƒCƒ“‚Ì•`‰æ.
+  for (const auto& [line_y, colors] : clear_lines) {
+    for (int x = 0; x < colors.size(); ++x) {
+      broken_block_renderer_.SetBrokenBlocks(
+          (x + 1) * block_size_, line_y * block_size_, colors.at(x), x < 6);
+    }
   }
 }
 

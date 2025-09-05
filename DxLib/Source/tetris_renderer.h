@@ -11,6 +11,7 @@
 #include <map>
 #include <memory>
 
+#include "broken_block_renderer.h"
 #include "resource_container.h"
 #include "tetris_feild.h"
 #include "tetromino.h"
@@ -25,8 +26,14 @@ class TetrisRenderer final {
       const std::shared_ptr<const TetrisField>& tetris_field_ptr,
       const std::shared_ptr<const Tetromino>& tetromino_ptr, float block_size);
 
+  inline void Update() { broken_block_renderer_.Update(); }
+
   void Draw(int render_x, int render_y, int tetromino_pos_x,
             int tetromino_pos_y) const;
+
+  void SetClearLines(
+      const std::vector<std::tuple<int, std::vector<TetrominoColor>>>&
+          clear_lines);
 
   inline int GetBlockSize() const { return static_cast<int>(block_size_); }
 
@@ -38,6 +45,8 @@ class TetrisRenderer final {
   const std::shared_ptr<const Tetromino> tetromino_ptr_;
   const std::map<TetrominoColor, TextureView> block_textures_;
   const float block_size_;
+
+  BrokenBlockRenderer broken_block_renderer_;
 };
 
 }  // namespace mytetris

@@ -33,6 +33,8 @@ TetrisUpdater::TetrisUpdater(
 }
 
 void TetrisUpdater::Update() {
+  clear_lines_.clear();
+
   if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                          tetromino_y_ + 1)) {
     ++drop_count_;
@@ -158,7 +160,7 @@ void TetrisUpdater::SetTetromino() {
   }
 
   tetris_field_ptr_->SetTetromino(*tetromino_ptr_, tetromino_x_, tetromino_y_);
-  tetris_field_ptr_->ClearLines();
+  clear_lines_ = tetris_field_ptr_->ClearLines();
 
   tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext());
   next_tetromino_ptr_->Next();

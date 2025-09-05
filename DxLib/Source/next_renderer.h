@@ -10,8 +10,10 @@
 #include <memory>
 #include <vector>
 
+#include "font_view.h"
 #include "next_tetromino.h"
 #include "resource_container.h"
+#include "texture_view.h"
 
 namespace mytetris {
 
@@ -29,6 +31,7 @@ class NextRenderer final {
 
   const std::map<TetrominoColor, TextureView> block_textures_;
   const TextureView wall_texture_;
+  const FontView font_view_;
   const std::shared_ptr<const NextTetromino> next_tetromino_ptr_;
   const float block_size_{30.0f};
   const int count_max_{5};
