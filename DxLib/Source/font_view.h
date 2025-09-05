@@ -24,12 +24,18 @@ class FontView final {
 
   inline int GetRawHandle() const { return handle_; }
 
-  void Draw(float x, float y, RenderAnchor anchor, std::string str) const;
+  void Draw(float x, float y, RenderAnchor anchor,
+            const std::string& str) const;
+
+  void DrawAlpha(float x, float y, RenderAnchor anchor, const std::string& str,
+                 float alpha) const;
 
  private:
-  std::tuple<int, int> GetRenderPos(RenderAnchor anchor) const;
+  std::tuple<int, int> GetRenderPos(RenderAnchor anchor, int width,
+                                    int height) const;
 
   const int handle_;
+  const int font_size_;
 };
 
 }  // namespace mytetris

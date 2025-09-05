@@ -13,33 +13,47 @@
 
 namespace mytetris {
 
-FontView::FontView(const Font& font) : handle_(font.GetRawHandle()) {}
+FontView::FontView(const Font& font)
+    : handle_(font.GetRawHandle()), font_size_(GetFontSizeToHandle(handle_)) {}
 
 bool FontView::IsValid() const { return handle_ >= 0; }
 
-void FontView::Draw(float x, float y, RenderAnchor anchor,
-                    std::string str) const {
-  DrawFormatStringFToHandle(x, y, 0xFFFFFFFF, handle_, str.c_str());
+void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
+                    const std::string& str) const {
+  const int width = GetDrawStringWidthToHandle(
+      str.c_str(), static_cast<int>(str.size()), handle_);
+  const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
+  DrawFormatStringFToHandle(x + dx, y + dy, 0xFFFFFFFF, handle_, str.c_str());
 }
 
-std::tuple<int, int> FontView::GetRenderPos(RenderAnchor anchor) const {
-  const int width = 0;
-  const int height = 0;
+void FontView::DrawAlpha(const float x, const float y,
+                         const RenderAnchor anchor, const std::string& str,
+                         const float alpha) const {
+  const int width = GetDrawStringWidthToHandle(
+      str.c_str(), static_cast<int>(str.size()), handle_);
+  const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
+  SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(alpha * 255));
+  DrawFormatStringFToHandle(x + dx, y + dy, 0xFFFFFFFF, handle_, str.c_str());
+  SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+}
+
+std::tuple<int, int> FontView::GetRenderPos(RenderAnchor anchor, int width,
+                                            int height) const {
   switch (anchor) {
     case RenderAnchor::TopLeft: {
-      return {width / 2, height / 2};
+      return {0, 0};
     }
     case RenderAnchor::TopRight: {
-      return {-width / 2, height / 2};
+      return {-width, 0};
     }
     case RenderAnchor::BottomLeft: {
-      return {width / 2, -height / 2};
+      return {0, -height};
     }
     case RenderAnchor::BottomRight: {
-      return {-width / 2, -height / 2};
+      return {-width, -height};
     }
     case RenderAnchor::Center: {
-      return {0, 0};
+      return {-width / 2, -height / 2};
     }
     default: {
       DEBUG_ASSERT_MUST_NOT_REACH_HERE();

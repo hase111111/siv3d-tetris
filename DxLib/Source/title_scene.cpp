@@ -20,8 +20,8 @@ TitleScene::TitleScene(
       key_event_handler_ptr_(key_event_handler_ptr),
       resource_container_ptr_(resource_container_ptr),
       title_back_ground_{GameConst::kResolutionX, GameConst::kResolutionY,
-                         resource_container_ptr_},
-      title_ui_{resource_container_ptr_} {
+                         resource_container_ptr},
+      title_ui_{key_event_handler_ptr, resource_container_ptr} {
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
@@ -32,13 +32,7 @@ bool TitleScene::Update() {
     return false;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
-    scene_change_listener_ptr_->RequestAddScene(SceneName::kTetris,
-                                                SceneChangeParameter{});
-    return true;
-  }
-
-  return true;
+  return title_ui_.Update();
 }
 
 void TitleScene::Draw() const {
