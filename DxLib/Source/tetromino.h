@@ -40,6 +40,7 @@ class Tetromino final {
 
   Tetromino GetRotatedLeft() const;
   Tetromino GetRotatedRight() const;
+  Tetromino GetResetRotation() const;
 
   void Reshape(const Tetromino& other);
 

@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\common\input">
       <UniqueIdentifier>{31b818da-10eb-47a5-b221-eb6dda9010b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\tetris\render">
+      <UniqueIdentifier>{54d2e6c1-7a0e-4e1b-b852-b95d9a85e370}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -108,9 +111,6 @@
     <ClCompile Include="Source\tetris_feild.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
-    <ClCompile Include="Source\tetris_renderer.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
     <ClCompile Include="Source\next_tetromino.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
@@ -121,15 +121,6 @@
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
     <ClCompile Include="Source\tetris_updater.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\next_renderer.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\tetromino_render_util.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\drop_gauge_renderer.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
     <ClCompile Include="Source\render_util.cpp">
@@ -151,7 +142,22 @@
       <Filter>ソース ファイル\common</Filter>
     </ClCompile>
     <ClCompile Include="Source\broken_block_renderer.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\drop_gauge_renderer.cpp">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\hold_renderer.cpp">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\next_renderer.cpp">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\tetris_renderer.cpp">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\tetromino_render_util.cpp">
+      <Filter>ソース ファイル\tetris\render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +233,6 @@
     <ClInclude Include="Source\tetris_feild.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
-    <ClInclude Include="Source\tetris_renderer.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="Source\tetromino.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
@@ -251,15 +254,6 @@
     <ClInclude Include="Source\hold_tetromino.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
-    <ClInclude Include="Source\next_renderer.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\tetromino_render_util.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\drop_gauge_renderer.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="Source\render_util.h">
       <Filter>ソース ファイル\common</Filter>
     </ClInclude>
@@ -278,8 +272,23 @@
     <ClInclude Include="Source\fade_effect.h">
       <Filter>ソース ファイル\common</Filter>
     </ClInclude>
+    <ClInclude Include="Source\drop_gauge_renderer.h">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClInclude>
     <ClInclude Include="Source\broken_block_renderer.h">
-      <Filter>ソース ファイル\tetris</Filter>
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\hold_renderer.h">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\next_renderer.h">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetris_renderer.h">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetromino_render_util.h">
+      <Filter>ソース ファイル\tetris\render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

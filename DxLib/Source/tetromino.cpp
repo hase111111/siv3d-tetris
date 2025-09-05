@@ -60,6 +60,10 @@ Tetromino Tetromino::GetRotatedRight() const {
   return Tetromino{shape_, color_, rotation_type_, (rotation_index_ + 1) % 4};
 }
 
+Tetromino Tetromino::GetResetRotation() const {
+  return Tetromino{shape_, color_, rotation_type_, 0};
+}
+
 void Tetromino::Reshape(const Tetromino& other) {
   shape_ = other.shape_;
   color_ = other.color_;

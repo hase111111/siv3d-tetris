@@ -11,6 +11,7 @@
 
 #include "drop_gauge_renderer.h"
 #include "fade_effect.h"
+#include "hold_renderer.h"
 #include "hold_tetromino.h"
 #include "i_scene.h"
 #include "key_event_handler.h"
@@ -52,6 +53,7 @@ class TetrisScene final : public IScene {
   TetrisRenderer tetris_renderer_;
   NextRenderer next_renderer_;
   DropGaugeRenderer drop_gauge_renderer_;
+  HoldRenderer hold_renderer_;
   FadeEffect fade_effect_;
 };
 

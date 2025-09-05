@@ -30,6 +30,7 @@ TetrisScene::TetrisScene(
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, 40.0f},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
+      hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
       fade_effect_{30} {
   next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
@@ -64,6 +65,8 @@ void TetrisScene::Draw() const {
   next_renderer_.Draw(880, 40);
 
   drop_gauge_renderer_.Draw(960, 888);
+
+  hold_renderer_.Draw(1060, 20);
 
   fade_effect_.Draw();
 }

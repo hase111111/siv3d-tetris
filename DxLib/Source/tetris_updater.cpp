@@ -79,7 +79,7 @@ void TetrisUpdater::SetInitialTetrominoPosition() {
   const auto shape = tetromino_ptr_->GetShape();
   const auto x = (tetris_field_ptr_->GetWidth() - shape.size()) / 2;
   tetromino_x_ = static_cast<int>(x);
-  tetromino_y_ = 2;
+  tetromino_y_ = 1;
 }
 
 void TetrisUpdater::UpdateTetrominoPosition() {
