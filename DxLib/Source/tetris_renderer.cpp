@@ -84,17 +84,19 @@ void TetrisRenderer::DrawGrid(const int render_x, const int render_y) const {
   const float render_y_ =
       static_cast<float>(render_y) -
       block_size_ * (tetris_field_ptr_->GetHeight() / 2.f - 0.5f);
-  const unsigned int grid_color = 0xFFFFFFFF;  // グリッドの色(暗めの灰色).
-  const float alpha = 0.5f;                    // グリッド線の透明度.
-  const int thickness = 1;                     // 線の太さ.
+  const unsigned int grid_color = 0xFFFFFFFF;   // グリッドの色(暗めの灰色).
+  const unsigned int limit_color = 0xFFFF0000;  // フィールド外枠の色(青色).
+  const float alpha = 0.5f;                     // グリッド線の透明度.
+  const int thickness = 1;                      // 線の太さ.
 
   // 横線の描画.
   for (int y = 0; y <= tetris_field_ptr_->GetHeight() - 2; ++y) {
     const float y_pos = render_y_ + y * block_size_ + block_size_ / 2.0f;
+    const unsigned int color = (y == 5) ? limit_color : grid_color;
     DrawLineAlpha(
         render_x_ + block_size_ / 2.0f, y_pos,
         render_x_ + (tetris_field_ptr_->GetWidth() - 1.5f) * block_size_, y_pos,
-        grid_color, thickness, alpha);
+        color, thickness, alpha);
   }
 
   // 縦線の描画.
