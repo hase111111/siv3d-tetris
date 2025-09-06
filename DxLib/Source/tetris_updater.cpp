@@ -16,12 +16,14 @@ TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<TetrisField>& tetris_field_ptr,
     const std::shared_ptr<Tetromino>& tetromino_ptr,
     const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
-    const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr)
+    const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
+    const std::shared_ptr<TetrisLevel>& tetris_level_ptr)
     : key_event_handler_ptr_(key_event_handler_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
       next_tetromino_ptr_(next_tetromino_ptr),
       hold_tetromino_ptr_(hold_tetromino_ptr),
+      tetris_level_ptr_(tetris_level_ptr),
       rotate_checker_{tetris_field_ptr} {
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
@@ -103,7 +105,9 @@ void TetrisUpdater::UpdateTetrominoPosition() {
       drop_count_ = 0;
       ++tetromino_y_;
     }
-  } else if (drop_count_ % drop_count_max_.GetCount(0) == 0) {
+  } else if (drop_count_ %
+                 drop_count_max_.GetCount(tetris_level_ptr_->GetLevel()) ==
+             0) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
       ++tetromino_y_;

@@ -11,7 +11,7 @@
 
 namespace mytetris {
 
-class TetrisTimer {
+class TetrisTimer final {
  public:
   TetrisTimer() = default;
   ~TetrisTimer() = default;

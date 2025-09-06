@@ -10,15 +10,16 @@
 namespace mytetris {
 
 DropCount::DropCount()
-    : count_list_{60, 50, 45, 40, 36, 32, 28, 24, 20, 16, 12, 8, 4, 2, 1} {}
+    : count_list_{10000, 60, 50, 45, 40, 36, 32, 28,
+                  24,    20, 16, 12, 8,  4,  2,  1} {}
 
 int DropCount::GetCount(const int level) const {
-  if (level < 1) {
+  if (level < 0) {
     return count_list_.front();
-  } else if (level > static_cast<int>(count_list_.size())) {
+  } else if (level >= static_cast<int>(count_list_.size())) {
     return count_list_.back();
   } else {
-    return count_list_[static_cast<size_t>(level) - 1];
+    return count_list_[static_cast<size_t>(level)];
   }
 }
 

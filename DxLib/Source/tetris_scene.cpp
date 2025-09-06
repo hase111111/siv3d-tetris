@@ -24,14 +24,18 @@ TetrisScene::TetrisScene(
       tetromino_ptr_(
           std::make_shared<Tetromino>(next_tetromino_ptr_->GetNext())),
       hold_tetromino_ptr_(std::make_shared<HoldTetromino>()),
+      tetris_level_ptr_(std::make_shared<TetrisLevel>()),
+      tetris_timer_ptr_(std::make_shared<TetrisTimer>()),
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
-          next_tetromino_ptr_, hold_tetromino_ptr_)),
+          next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_)),
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, 40.0f},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
-      fade_effect_{30} {
+      fade_effect_{30},
+      score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
+                            resource_container_ptr_} {
   next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
@@ -53,9 +57,13 @@ bool TetrisScene::Update() {
   }
 
   tetris_updater_ptr_->Update();
+  tetris_timer_ptr_->Update();
 
-  tetris_renderer_.SetClearLines(tetris_updater_ptr_->GetClearedLines());
+  const auto cleared_lines = tetris_updater_ptr_->GetClearedLines();
+  tetris_level_ptr_->AddClearLines(static_cast<int>(cleared_lines.size()));
 
+  // •`‰æ‰æ–Ê‚ÌXV.
+  tetris_renderer_.SetClearLines(cleared_lines);
   tetris_renderer_.Update();
 
   drop_gauge_renderer_.SetDropPercent(tetris_updater_ptr_->GetDropGauge());
@@ -66,18 +74,20 @@ bool TetrisScene::Update() {
 }
 
 void TetrisScene::Draw() const {
+  next_renderer_.Draw(880, 40);
+
+  drop_gauge_renderer_.Draw(960, 888);
+
+  hold_renderer_.Draw(1060, 20);
+
+  score_board_renderer_.Draw(1060, 260);
+
   const auto [tetromino_x, tetromino_y] = tetris_updater_ptr_->GetPosition();
   tetris_renderer_.Draw(
       GameConst::kResolutionX / 2,
       GameConst::kResolutionY / 2 -
           static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
       tetromino_x, tetromino_y);
-
-  next_renderer_.Draw(880, 40);
-
-  drop_gauge_renderer_.Draw(960, 888);
-
-  hold_renderer_.Draw(1060, 20);
 
   fade_effect_.Draw();
 }

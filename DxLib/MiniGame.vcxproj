@@ -43,9 +43,12 @@
     <ClCompile Include="Source\scene_change_parameter.cpp" />
     <ClCompile Include="Source\scene_creator.cpp" />
     <ClCompile Include="Source\scene_stack.cpp" />
+    <ClCompile Include="Source\score_board_renderer.cpp" />
     <ClCompile Include="Source\system_main.cpp" />
     <ClCompile Include="Source\tetris_feild.cpp" />
+    <ClCompile Include="Source\tetris_level.cpp" />
     <ClCompile Include="Source\tetris_rotate_checker.cpp" />
+    <ClCompile Include="Source\tetris_timer.cpp" />
     <ClCompile Include="Source\tetris_updater.cpp" />
     <ClCompile Include="Source\tetris_renderer.cpp" />
     <ClCompile Include="Source\tetris_scene.cpp" />
@@ -87,9 +90,12 @@
     <ClInclude Include="Source\scene_creator.h" />
     <ClInclude Include="Source\scene_name.h" />
     <ClInclude Include="Source\scene_stack.h" />
+    <ClInclude Include="Source\score_board_renderer.h" />
     <ClInclude Include="Source\system_main.h" />
     <ClInclude Include="Source\tetris_feild.h" />
+    <ClInclude Include="Source\tetris_level.h" />
     <ClInclude Include="Source\tetris_rotate_checker.h" />
+    <ClInclude Include="Source\tetris_timer.h" />
     <ClInclude Include="Source\tetris_updater.h" />
     <ClInclude Include="Source\tetris_renderer.h" />
     <ClInclude Include="Source\tetris_scene.h" />

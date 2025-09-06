@@ -162,6 +162,15 @@
     <ClCompile Include="Source\drop_count.cpp">
       <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
+    <ClCompile Include="Source\tetris_timer.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\tetris_level.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\score_board_renderer.cpp">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
@@ -295,6 +304,15 @@
     </ClInclude>
     <ClInclude Include="Source\drop_count.h">
       <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetris_timer.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\tetris_level.h">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\score_board_renderer.h">
+      <Filter>ソース ファイル\tetris\render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
