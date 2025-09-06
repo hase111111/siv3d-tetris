@@ -159,6 +159,9 @@
     <ClCompile Include="Source\tetromino_render_util.cpp">
       <Filter>ソース ファイル\tetris\render</Filter>
     </ClCompile>
+    <ClCompile Include="Source\drop_count.cpp">
+      <Filter>ソース ファイル\tetris</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
@@ -289,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="Source\tetromino_render_util.h">
       <Filter>ソース ファイル\tetris\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\drop_count.h">
+      <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

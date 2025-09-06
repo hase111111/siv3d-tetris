@@ -103,7 +103,7 @@ void TetrisUpdater::UpdateTetrominoPosition() {
       drop_count_ = 0;
       ++tetromino_y_;
     }
-  } else if (drop_count_ % drop_count_max_ == 0) {
+  } else if (drop_count_ % drop_count_max_.GetCount(0) == 0) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
       ++tetromino_y_;

@@ -10,6 +10,7 @@
 #include <memory>
 #include <tuple>
 
+#include "drop_count.h"
 #include "hold_tetromino.h"
 #include "key_event_handler.h"
 #include "next_tetromino.h"
@@ -36,8 +37,8 @@ class TetrisUpdater final {
   }
 
   inline float GetDropGauge() const {
-    return static_cast<float>(drop_count_ % drop_count_max_) /
-           static_cast<float>(drop_count_max_);
+    return static_cast<float>(drop_count_ % drop_count_max_.GetCount(0)) /
+           static_cast<float>(drop_count_max_.GetCount(0));
   }
 
   inline float GetFixGauge() const {
@@ -67,12 +68,12 @@ class TetrisUpdater final {
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const TetrisRotateChecker rotate_checker_;
+  const DropCount drop_count_max_{};
 
   std::vector<std::tuple<int, std::vector<TetrominoColor>>> clear_lines_;
 
   int tetromino_x_{0}, tetromino_y_{0};
   int drop_count_{0};
-  int drop_count_max_{45};
   int fix_count_{0};
   const int fix_count_max_{60};
   int move_count_{0};
