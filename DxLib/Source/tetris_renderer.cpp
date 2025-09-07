@@ -50,7 +50,7 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
   const Tetromino tetromino_copy = *tetromino_ptr_;
 
   // ƒsƒ“ƒ`Žž‚Ì•`‰æ.
-  if (is_pinch) {
+  if (is_pinch && !is_game_over) {
     const float x_size = block_size_ * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size_ * (tetris_field_ptr_->GetHeight() - 2);
     DrawRectAlpha(render_x - x_size / 2.f, render_y_ - y_size / 2.f,
