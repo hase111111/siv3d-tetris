@@ -38,6 +38,9 @@ class SceneStack final {
   //! @param[in] parameter シーンの変更時のパラメータ．
   void DeleteNowScene(int delete_num, const SceneChangeParameter& parameter);
 
+  void DeleteAndAddNewScene(SceneName scene_name, int delete_num,
+                            const SceneChangeParameter& parameter);
+
   //! @brief シーンを全て削除する．
   void DeleteAllScene();
 

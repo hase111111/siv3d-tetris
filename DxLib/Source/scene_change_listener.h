@@ -16,7 +16,13 @@ namespace mytetris {
 
 class SceneChangeListener final {
  public:
-  enum class RequestType { kNone, kAddScene, kDeleteScene, kDeleteAllScene };
+  enum class RequestType {
+    kNone,
+    kAddScene,
+    kDeleteScene,
+    kDeleteAllScene,
+    kDeleteAndAddScene,
+  };
 
   //! @brief シーンの追加をリクエストする．
   //! @param[in] scene_name シーン名．
@@ -32,6 +38,11 @@ class SceneChangeListener final {
 
   //! @brief 全てのシーンの削除をリクエストする．
   void RequestDeleteAllScene();
+
+  //! @brief 同じシーンの再起動をリクエストする．
+  //! @param[in] parameter パラメータ．
+  void RequestDeleteAndAddScene(SceneName scene_name, int delete_num,
+                                const SceneChangeParameter& parameter);
 
   //! @brief リクエストがあるかどうかを返す．
   [[nodiscard]] inline bool HasRequest() const {

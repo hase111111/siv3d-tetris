@@ -65,6 +65,7 @@ class TetrisScene final : public IScene {
   HoldRenderer hold_renderer_;
   FadeEffect fade_effect_;
   ScoreBoardRenderer score_board_renderer_;
+  SceneChangeParameter parameter_;
 };
 
 }  // namespace mytetris

@@ -61,6 +61,20 @@ void SceneStack::DeleteNowScene(const int delete_num,
   scene_ptr_stack_.top()->OnReturnFromOtherScene(parameter);
 }
 
+void SceneStack::DeleteAndAddNewScene(SceneName scene_name, int delete_num,
+                                      const SceneChangeParameter& parameter) {
+  // 引数の数だけシーンを削除する．
+  for (int i = 0; i < delete_num; ++i) {
+    scene_ptr_stack_.pop();
+  }
+
+  auto new_scene_ptr = scene_creator_ptr_->CreateScene(scene_name);
+
+  new_scene_ptr->OnStart(parameter);  // パラメータを渡して，初期化処理を行う．
+
+  scene_ptr_stack_.push(std::move(new_scene_ptr));
+}
+
 void SceneStack::DeleteAllScene() {
   // シーンを全て削除する．
   while (!scene_ptr_stack_.empty()) {

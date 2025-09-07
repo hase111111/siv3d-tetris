@@ -34,6 +34,18 @@ void SceneChangeListener::RequestDeleteAllScene() {
   request_type_ = RequestType::kDeleteAllScene;
 }
 
+void SceneChangeListener::RequestDeleteAndAddScene(
+    const SceneName scene_name, const int delete_num,
+    const SceneChangeParameter& parameter) {
+  // リクエストを設定する．
+  request_type_ = RequestType::kDeleteAndAddScene;
+
+  // パラメータを設定する．
+  scene_name_ = scene_name;
+  parameter_ = parameter;
+  delete_num_ = delete_num;
+}
+
 std::tuple<SceneChangeListener::RequestType, SceneName, SceneChangeParameter,
            int>
 SceneChangeListener::ReceiveRequest() {

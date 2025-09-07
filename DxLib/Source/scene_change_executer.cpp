@@ -45,6 +45,10 @@ void SceneChangeExecuter::Execute() {
       scene_stack_ptr_->DeleteAllScene();
       break;
     }
+    case SceneChangeListener::RequestType::kDeleteAndAddScene: {
+      scene_stack_ptr_->DeleteAndAddNewScene(scene_name, delete_num, parameter);
+      break;
+    }
     default: {
       ASSERT_MUST_NOT_REACH_HERE();
       break;

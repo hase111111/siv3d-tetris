@@ -45,16 +45,28 @@ TetrisScene::TetrisScene(
 
 bool TetrisScene::Update() {
   if (fade_effect_.Update()) {
+    // フェード中は更新しない.
     return true;
   }
 
   if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kEscape) == 1) {
+    // エスケープキーでゲーム終了.
     return false;
   }
 
   if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+    // Zキーでタイトルへ戻る.
     fade_effect_.Start(FadeType::kFadeOut, [this]() {
       scene_change_listener_ptr_->RequestDeleteScene(1, {});
+    });
+    return true;
+  }
+
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kR) == 1) {
+    // Rキーでリトライ.
+    fade_effect_.Start(FadeType::kFadeOut, [this]() {
+      scene_change_listener_ptr_->RequestDeleteAndAddScene(SceneName::kTetris,
+                                                           1, {});
     });
     return true;
   }
@@ -97,7 +109,9 @@ void TetrisScene::Draw() const {
   fade_effect_.Draw();
 }
 
-void TetrisScene::OnStart(const SceneChangeParameter&) {}
+void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
+  parameter_ = parameter;
+}
 
 void TetrisScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}
 
