@@ -29,6 +29,8 @@ class TetrisField final {
 
   bool IsGameOver() const;
 
+  bool IsPinch() const;
+
   class Iterator {
    public:
     using value_type = std::tuple<int, int, TetrominoColor>;

@@ -118,7 +118,8 @@ void TetrisScene::Draw() const {
       GameConst::kResolutionX / 2,
       GameConst::kResolutionY / 2 -
           static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
-      tetromino_x, tetromino_y, tetris_updater_ptr_->IsGameOver());
+      tetromino_x, tetromino_y, tetris_updater_ptr_->IsGameOver(),
+      tetris_updater_ptr_->IsPinch());
 
   pause_renderer_.Draw(is_paused_);
 

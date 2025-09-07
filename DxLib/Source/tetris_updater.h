@@ -60,6 +60,8 @@ class TetrisUpdater final {
 
   inline bool IsGameOver() const { return tetris_field_ptr_->IsGameOver(); }
 
+  inline bool IsPinch() const { return tetris_field_ptr_->IsPinch(); }
+
  private:
   void SetInitialTetrominoPosition();
   void UpdateTetrominoPosition();

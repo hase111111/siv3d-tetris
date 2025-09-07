@@ -27,10 +27,13 @@ class TetrisRenderer final {
       const std::shared_ptr<const TetrisField>& tetris_field_ptr,
       const std::shared_ptr<const Tetromino>& tetromino_ptr, float block_size);
 
-  inline void Update() { broken_block_renderer_.Update(); }
+  inline void Update() {
+    ++counter_;
+    broken_block_renderer_.Update();
+  }
 
   void Draw(int render_x, int render_y, int tetromino_pos_x,
-            int tetromino_pos_y, bool is_game_over) const;
+            int tetromino_pos_y, bool is_game_over, bool is_pinch) const;
 
   void SetClearLines(
       const std::vector<std::tuple<int, std::vector<TetrominoColor>>>&
@@ -49,6 +52,7 @@ class TetrisRenderer final {
   const FontView font_view_;
   const FontView font_view_small_;
 
+  int counter_{0};
   BrokenBlockRenderer broken_block_renderer_;
 };
 

@@ -25,6 +25,20 @@ bool TetrisField::IsGameOver() const {
   return false;
 }
 
+bool TetrisField::IsPinch() const {
+  const int y_ = 9;
+  // 最上段にブロックがあるかどうかで判定.
+  for (int y = 0; y < y_ + 1; ++y) {
+    for (int x = 1; x < kWidth - 1; ++x) {
+      if (field_[y][x] != TetrominoColor::kNone) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 std::tuple<int, int> TetrisField::GetHardDropPosition(
     const Tetromino& tetromino, const int tetromino_x,
     const int tetromino_y) const {

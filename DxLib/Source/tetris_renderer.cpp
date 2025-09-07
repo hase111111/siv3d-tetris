@@ -7,6 +7,8 @@
 
 #include "tetris_renderer.h"
 
+#include <cmath>
+
 #include "my_assert.h"
 #include "render_util.h"
 #include "tetromino_render_util.h"
@@ -26,14 +28,18 @@ TetrisRenderer::TetrisRenderer(
       broken_block_renderer_(resource_container_ptr),
       font_view_(resource_container_ptr->GetFont("default")),
       font_view_small_(resource_container_ptr->GetFont("small")) {
+  // 引数のチェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
 }
 
 void TetrisRenderer::Draw(const int render_x, const int render_y,
                           const int tetromino_pos_x, const int tetromino_pos_y,
-                          bool is_game_over) const {
+                          const bool is_game_over, const bool is_pinch) const {
   const float render_x_ =
       static_cast<float>(render_x) -
       block_size_ * (tetris_field_ptr_->GetWidth() / 2.f - 0.5f);
@@ -42,6 +48,15 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
       block_size_ * (tetris_field_ptr_->GetHeight() / 2.f - 0.5f);
   // shared_ptr では渡せない関数のために, コピーを作成.
   const Tetromino tetromino_copy = *tetromino_ptr_;
+
+  // ピンチ時の描画.
+  if (is_pinch) {
+    const float x_size = block_size_ * (tetris_field_ptr_->GetWidth() - 2);
+    const float y_size = block_size_ * (tetris_field_ptr_->GetHeight() - 2);
+    DrawRectAlpha(render_x - x_size / 2.f, render_y_ - y_size / 2.f,
+                  render_x + x_size / 2.f, render_y + y_size / 2.f, 0x00FF0000,
+                  true, 0.3f * std::powf(std::sinf(counter_ / 15.f), 2.f));
+  }
 
   // グリッドの描画.
   DrawGrid(render_x, render_y);
@@ -84,15 +99,16 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
     const float x_size = block_size_ * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size_ * (tetris_field_ptr_->GetHeight() - 2);
     DrawRectAlpha(render_x - x_size / 2.f, render_y_ - y_size / 2.f,
-                  render_x + x_size, render_y + y_size, 0x00000000, true, 0.5f);
+                  render_x + x_size / 2.f, render_y + y_size / 2.f, 0x00000000,
+                  true, 0.5f);
 
     const std::string game_over_text = "GAME OVER";
-    font_view_.Draw(render_x, render_y - 25.f, RenderAnchor::Center,
-                    game_over_text);
+    font_view_.Draw(static_cast<float>(render_x), render_y - 25.f,
+                    RenderAnchor::Center, game_over_text);
 
     const std::string retry_text = "Press R to Retry";
-    font_view_small_.Draw(render_x, render_y + 25.f, RenderAnchor::Center,
-                          retry_text);
+    font_view_small_.Draw(static_cast<float>(render_x), render_y + 25.f,
+                          RenderAnchor::Center, retry_text);
   }
 
   // 消去ラインの描画.
