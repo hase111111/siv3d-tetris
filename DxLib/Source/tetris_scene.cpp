@@ -66,7 +66,7 @@ bool TetrisScene::Update() {
     // Rキーでリトライ.
     fade_effect_.Start(FadeType::kFadeOut, [this]() {
       scene_change_listener_ptr_->RequestDeleteAndAddScene(SceneName::kTetris,
-                                                           1, {});
+                                                           1, parameter_);
     });
     return true;
   }
