@@ -37,6 +37,7 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\next_renderer.cpp" />
     <ClCompile Include="Source\next_tetromino.cpp" />
+    <ClCompile Include="Source\pause_renderer.cpp" />
     <ClCompile Include="Source\render_util.cpp" />
     <ClCompile Include="Source\resource_container.cpp" />
     <ClCompile Include="Source\scene_change_executer.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="Source\game_main_loop.h" />
     <ClInclude Include="Source\next_renderer.h" />
     <ClInclude Include="Source\next_tetromino.h" />
+    <ClInclude Include="Source\pause_renderer.h" />
     <ClInclude Include="Source\render_anchor.h" />
     <ClInclude Include="Source\render_util.h" />
     <ClInclude Include="Source\resource_container.h" />

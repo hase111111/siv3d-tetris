@@ -19,6 +19,7 @@
 #include "key_event_handler.h"
 #include "next_renderer.h"
 #include "next_tetromino.h"
+#include "pause_renderer.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "score_board_renderer.h"
@@ -66,6 +67,9 @@ class TetrisScene final : public IScene {
   FadeEffect fade_effect_;
   ScoreBoardRenderer score_board_renderer_;
   SceneChangeParameter parameter_;
+  PauseRenderer pause_renderer_;
+
+  bool is_paused_ = false;
 };
 
 }  // namespace mytetris

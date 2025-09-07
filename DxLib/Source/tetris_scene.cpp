@@ -38,7 +38,8 @@ TetrisScene::TetrisScene(
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
       fade_effect_{30},
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
-                            drop_count_ptr_, resource_container_ptr_} {
+                            drop_count_ptr_, resource_container_ptr_},
+      pause_renderer_{resource_container_ptr_} {
   next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
@@ -68,6 +69,16 @@ bool TetrisScene::Update() {
       scene_change_listener_ptr_->RequestDeleteAndAddScene(SceneName::kTetris,
                                                            1, parameter_);
     });
+    return true;
+  }
+
+  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kP) == 1) {
+    // Pキーでポーズ.
+    is_paused_ = !is_paused_;
+  }
+
+  if (is_paused_) {
+    // ポーズ中は更新しない.
     return true;
   }
 
@@ -105,6 +116,8 @@ void TetrisScene::Draw() const {
       GameConst::kResolutionY / 2 -
           static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
       tetromino_x, tetromino_y);
+
+  pause_renderer_.Draw(is_paused_);
 
   fade_effect_.Draw();
 }
