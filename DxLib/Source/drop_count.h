@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <string>
 #include <vector>
 
 namespace mytetris {
@@ -17,6 +18,8 @@ class DropCount {
   ~DropCount() = default;
 
   int GetCount(int level) const;
+
+  std::string GetDisplaySpeed(int level) const;
 
  private:
   const std::vector<int> count_list_;

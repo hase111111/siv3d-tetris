@@ -7,11 +7,13 @@
 
 #include "drop_count.h"
 
+#include <format>
+
 namespace mytetris {
 
 DropCount::DropCount()
-    : count_list_{10000, 60, 50, 45, 40, 36, 32, 28,
-                  24,    20, 16, 12, 8,  4,  2,  1} {}
+    : count_list_{10000, 60, 50, 45, 40, 36, 32, 28, 24,
+                  20,    16, 12, 8,  4,  2,  1,  0} {}
 
 int DropCount::GetCount(const int level) const {
   if (level < 0) {
@@ -20,6 +22,18 @@ int DropCount::GetCount(const int level) const {
     return count_list_.back();
   } else {
     return count_list_[static_cast<size_t>(level)];
+  }
+}
+
+std::string DropCount::GetDisplaySpeed(int level) const {
+  const int count = GetCount(level);
+
+  if (count == 0) {
+    return "Infinity";
+  } else {
+    const float interp = count / 60.0f * 100;
+    const float speed = 101.0f - 1 * interp;
+    return std::format("{}", static_cast<int>(speed));
   }
 }
 

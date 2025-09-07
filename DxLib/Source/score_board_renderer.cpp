@@ -16,15 +16,19 @@ namespace mytetris {
 ScoreBoardRenderer::ScoreBoardRenderer(
     const std::shared_ptr<TetrisTimer>& tetris_timer_ptr,
     const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
+    const std::shared_ptr<DropCount>& drop_count_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : tetris_timer_ptr_(tetris_timer_ptr),
       tetris_level_ptr_(tetris_level_ptr),
       font_view_(resource_container_ptr->GetFont("small")),
+      drop_count_ptr_(drop_count_ptr),
       wall_texture_(resource_container_ptr->GetTexture("wall.png")) {
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(drop_count_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(drop_count_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
 }
 
@@ -64,10 +68,13 @@ void ScoreBoardRenderer::Draw(const int render_x, const int render_y) const {
 
 std::string ScoreBoardRenderer::GetString() const {
   std::string result;
+  result += "Score\n 0 \n\n";
   result += "Time\n " + tetris_timer_ptr_->GetTimeString() + "\n\n";
   result += std::format("Level\n {}\n\n", tetris_level_ptr_->GetLevel());
   result +=
-      std::format("Lines\n {}\n", tetris_level_ptr_->GetTotalClearLines());
+      std::format("Lines\n {}\n\n", tetris_level_ptr_->GetTotalClearLines());
+  result += std::format("Speed\n {}\n", drop_count_ptr_->GetDisplaySpeed(
+                                            tetris_level_ptr_->GetLevel()));
 
   return result;
 }

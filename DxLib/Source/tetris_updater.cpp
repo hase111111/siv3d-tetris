@@ -17,13 +17,15 @@ TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<Tetromino>& tetromino_ptr,
     const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
     const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
-    const std::shared_ptr<TetrisLevel>& tetris_level_ptr)
+    const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
+    const std::shared_ptr<DropCount>& drop_count_ptr)
     : key_event_handler_ptr_(key_event_handler_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
       next_tetromino_ptr_(next_tetromino_ptr),
       hold_tetromino_ptr_(hold_tetromino_ptr),
       tetris_level_ptr_(tetris_level_ptr),
+      drop_count_ptr_(drop_count_ptr),
       rotate_checker_{tetris_field_ptr} {
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
@@ -85,6 +87,7 @@ void TetrisUpdater::SetInitialTetrominoPosition() {
 }
 
 void TetrisUpdater::UpdateTetrominoPosition() {
+  const int max_ = drop_count_ptr_->GetCount(tetris_level_ptr_->GetLevel());
   if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
     // ハードドロップ, validPosition が false になるまで下に落とす.
     while (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
@@ -105,11 +108,15 @@ void TetrisUpdater::UpdateTetrominoPosition() {
       drop_count_ = 0;
       ++tetromino_y_;
     }
-  } else if (drop_count_ %
-                 drop_count_max_.GetCount(tetris_level_ptr_->GetLevel()) ==
-             0) {
+  } else if (max_ != 0 && drop_count_ % max_ == 0) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                            tetromino_y_ + 1)) {
+      ++tetromino_y_;
+    }
+  } else if (max_ == 0) {
+    // レベルが高すぎて落下カウントが0の場合, 毎フレーム下に落とす.
+    while (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
+                                              tetromino_y_ + 1)) {
       ++tetromino_y_;
     }
   }

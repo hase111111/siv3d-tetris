@@ -26,16 +26,18 @@ TetrisScene::TetrisScene(
       hold_tetromino_ptr_(std::make_shared<HoldTetromino>()),
       tetris_level_ptr_(std::make_shared<TetrisLevel>()),
       tetris_timer_ptr_(std::make_shared<TetrisTimer>()),
+      drop_count_ptr_(std::make_shared<DropCount>()),
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
-          next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_)),
+          next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
+          drop_count_ptr_)),
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, 40.0f},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
       fade_effect_{30},
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
-                            resource_container_ptr_} {
+                            drop_count_ptr_, resource_container_ptr_} {
   next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }

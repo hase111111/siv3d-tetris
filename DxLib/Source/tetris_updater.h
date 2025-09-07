@@ -29,7 +29,8 @@ class TetrisUpdater final {
       const std::shared_ptr<Tetromino>& tetromino_ptr,
       const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
       const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
-      const std::shared_ptr<TetrisLevel>& tetris_level_ptr);
+      const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
+      const std::shared_ptr<DropCount>& drop_count_ptr);
   ~TetrisUpdater() = default;
 
   void Update();
@@ -39,7 +40,7 @@ class TetrisUpdater final {
   }
 
   inline float GetDropGauge() const {
-    const int max_ = drop_count_max_.GetCount(tetris_level_ptr_->GetLevel());
+    const int max_ = drop_count_ptr_->GetCount(tetris_level_ptr_->GetLevel());
     return max_ == 0 ? 0 : (drop_count_ % max_) / static_cast<float>(max_);
   }
 
@@ -70,8 +71,8 @@ class TetrisUpdater final {
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const std::shared_ptr<TetrisLevel> tetris_level_ptr_;
+  const std::shared_ptr<DropCount> drop_count_ptr_;
   const TetrisRotateChecker rotate_checker_;
-  const DropCount drop_count_max_{};
 
   std::vector<std::tuple<int, std::vector<TetrominoColor>>> clear_lines_;
 
