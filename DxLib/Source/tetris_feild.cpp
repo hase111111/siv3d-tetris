@@ -11,6 +11,20 @@ namespace mytetris {
 
 TetrisField::TetrisField() : field_(InitializeField()) {}
 
+bool TetrisField::IsGameOver() const {
+  const int y_ = 5;
+  // 最上段にブロックがあるかどうかで判定.
+  for (int y = 0; y < y_ + 1; ++y) {
+    for (int x = 1; x < kWidth - 1; ++x) {
+      if (field_[y][x] != TetrominoColor::kNone) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 std::tuple<int, int> TetrisField::GetHardDropPosition(
     const Tetromino& tetromino, const int tetromino_x,
     const int tetromino_y) const {
@@ -123,6 +137,31 @@ TetrisField::ClearLines() {
   }
 
   return cleared_lines;
+}
+
+std::vector<std::tuple<int, std::vector<TetrominoColor>>>
+TetrisField::GetAllLines() const {
+  std::vector<std::tuple<int, std::vector<TetrominoColor>>> all_lines;
+  for (int y = 0; y < kHeight - 1; ++y) {  // 最下段は壁なので除外
+    std::vector<TetrominoColor> line;
+    for (int x = 1; x < kWidth - 1; ++x) {  // 両端は壁なので除外
+      line.push_back(field_[y][x]);
+    }
+    all_lines.emplace_back(y, line);
+  }
+  return all_lines;
+}
+
+void TetrisField::SetDeathColor() {
+  // wall 以外をすべて Jammer にする.
+  for (int y = 0; y < kHeight; ++y) {
+    for (int x = 0; x < kWidth; ++x) {
+      if (field_[y][x] != TetrominoColor::kWall &&
+          field_[y][x] != TetrominoColor::kNone) {
+        field_[y][x] = TetrominoColor::kJammer;
+      }
+    }
+  }
 }
 
 TetrisField::FieldType TetrisField::InitializeField() const {

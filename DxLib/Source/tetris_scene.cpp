@@ -83,7 +83,10 @@ bool TetrisScene::Update() {
   }
 
   tetris_updater_ptr_->Update();
-  tetris_timer_ptr_->Update();
+
+  if (!tetris_field_ptr_->IsGameOver()) {
+    tetris_timer_ptr_->Update();
+  }
 
   const auto cleared_lines = tetris_updater_ptr_->GetClearedLines();
   tetris_level_ptr_->AddClearLines(static_cast<int>(cleared_lines.size()));
@@ -115,7 +118,7 @@ void TetrisScene::Draw() const {
       GameConst::kResolutionX / 2,
       GameConst::kResolutionY / 2 -
           static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
-      tetromino_x, tetromino_y);
+      tetromino_x, tetromino_y, tetris_updater_ptr_->IsGameOver());
 
   pause_renderer_.Draw(is_paused_);
 

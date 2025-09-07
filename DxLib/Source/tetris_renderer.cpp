@@ -23,15 +23,17 @@ TetrisRenderer::TetrisRenderer(
       tetromino_ptr_(tetromino_ptr),
       block_size_(block_size),
       block_textures_(GetBlockTextureMap(resource_container_ptr)),
-      broken_block_renderer_(resource_container_ptr) {
+      broken_block_renderer_(resource_container_ptr),
+      font_view_(resource_container_ptr->GetFont("default")),
+      font_view_small_(resource_container_ptr->GetFont("small")) {
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
 }
 
 void TetrisRenderer::Draw(const int render_x, const int render_y,
-                          const int tetromino_pos_x,
-                          const int tetromino_pos_y) const {
+                          const int tetromino_pos_x, const int tetromino_pos_y,
+                          bool is_game_over) const {
   const float render_x_ =
       static_cast<float>(render_x) -
       block_size_ * (tetris_field_ptr_->GetWidth() / 2.f - 0.5f);
@@ -75,6 +77,22 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
                   block_textures_.at(tetromino_ptr_->GetColor()),
                   render_x_ + hard_drop_x * block_size_,
                   render_y_ + hard_drop_y * block_size_, 0.5f, block_size_);
+  }
+
+  // ゲームオーバー時の描画.
+  if (is_game_over) {
+    const float x_size = block_size_ * (tetris_field_ptr_->GetWidth() - 2);
+    const float y_size = block_size_ * (tetris_field_ptr_->GetHeight() - 2);
+    DrawRectAlpha(render_x - x_size / 2.f, render_y_ - y_size / 2.f,
+                  render_x + x_size, render_y + y_size, 0x00000000, true, 0.5f);
+
+    const std::string game_over_text = "GAME OVER";
+    font_view_.Draw(render_x, render_y - 25.f, RenderAnchor::Center,
+                    game_over_text);
+
+    const std::string retry_text = "Press R to Retry";
+    font_view_small_.Draw(render_x, render_y + 25.f, RenderAnchor::Center,
+                          retry_text);
   }
 
   // 消去ラインの描画.

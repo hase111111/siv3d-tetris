@@ -12,6 +12,7 @@
 #include <memory>
 
 #include "broken_block_renderer.h"
+#include "font_view.h"
 #include "resource_container.h"
 #include "tetris_feild.h"
 #include "tetromino.h"
@@ -29,7 +30,7 @@ class TetrisRenderer final {
   inline void Update() { broken_block_renderer_.Update(); }
 
   void Draw(int render_x, int render_y, int tetromino_pos_x,
-            int tetromino_pos_y) const;
+            int tetromino_pos_y, bool is_game_over) const;
 
   void SetClearLines(
       const std::vector<std::tuple<int, std::vector<TetrominoColor>>>&
@@ -45,6 +46,8 @@ class TetrisRenderer final {
   const std::shared_ptr<const Tetromino> tetromino_ptr_;
   const std::map<TetrominoColor, TextureView> block_textures_;
   const float block_size_;
+  const FontView font_view_;
+  const FontView font_view_small_;
 
   BrokenBlockRenderer broken_block_renderer_;
 };

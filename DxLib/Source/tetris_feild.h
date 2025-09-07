@@ -27,6 +27,8 @@ class TetrisField final {
   int GetWidth() const { return kWidth; }
   int GetHeight() const { return kHeight; }
 
+  bool IsGameOver() const;
+
   class Iterator {
    public:
     using value_type = std::tuple<int, int, TetrominoColor>;
@@ -73,6 +75,10 @@ class TetrisField final {
                     int tetromino_y);
 
   std::vector<std::tuple<int, std::vector<TetrominoColor>>> ClearLines();
+
+  std::vector<std::tuple<int, std::vector<TetrominoColor>>> GetAllLines() const;
+
+  void SetDeathColor();
 
  private:
   FieldType InitializeField() const;

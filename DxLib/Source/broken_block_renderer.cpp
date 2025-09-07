@@ -54,6 +54,10 @@ void BrokenBlockRenderer::Update() {
 void BrokenBlockRenderer::Draw(const float offset_x,
                                const float offset_y) const {
   for (const auto& [x, y, _vx, _vy, rot, color] : broken_blocks_) {
+    if (color == TetrominoColor::kNone) {
+      continue;
+    }
+
     auto it = block_textures_.find(color);
     if (it == block_textures_.end()) {
       DEBUG_ASSERT_MUST_NOT_REACH_HERE();

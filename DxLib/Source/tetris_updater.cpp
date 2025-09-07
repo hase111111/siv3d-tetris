@@ -37,6 +37,23 @@ TetrisUpdater::TetrisUpdater(
 }
 
 void TetrisUpdater::Update() {
+  if (tetris_field_ptr_->IsGameOver()) {
+    // ゲームオーバー時は更新しない.
+    if (!is_game_over_animation_finished_) {
+      is_game_over_animation_finished_ = true;
+
+      // すべてのラインをクリアラインへ登録する.
+      clear_lines_ = tetris_field_ptr_->GetAllLines();
+
+      // 色を変える.
+      tetris_field_ptr_->SetDeathColor();
+    } else {
+      clear_lines_.clear();
+    }
+
+    return;
+  }
+
   clear_lines_.clear();
 
   if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,

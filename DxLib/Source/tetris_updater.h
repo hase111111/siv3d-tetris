@@ -58,6 +58,8 @@ class TetrisUpdater final {
     return clear_lines_;
   }
 
+  inline bool IsGameOver() const { return tetris_field_ptr_->IsGameOver(); }
+
  private:
   void SetInitialTetrominoPosition();
   void UpdateTetrominoPosition();
@@ -84,6 +86,9 @@ class TetrisUpdater final {
   const int move_count_max_{14};
   const int horizontal_interval_{5};
   const int horizontal_count_{5};
+
+  //! ゲームオーバー時の演出を入れ終わったか確認するフラグ.
+  bool is_game_over_animation_finished_{false};
 };
 
 }  // namespace mytetris
