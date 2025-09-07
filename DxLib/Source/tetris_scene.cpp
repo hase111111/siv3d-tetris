@@ -31,6 +31,7 @@ TetrisScene::TetrisScene(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
           drop_count_ptr_)),
+      description_field_renderer_{resource_container_ptr},
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, 40.0f},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
@@ -83,6 +84,8 @@ void TetrisScene::Draw() const {
   hold_renderer_.Draw(1060, 20);
 
   score_board_renderer_.Draw(1060, 260);
+
+  description_field_renderer_.Draw(20, 20);
 
   const auto [tetromino_x, tetromino_y] = tetris_updater_ptr_->GetPosition();
   tetris_renderer_.Draw(

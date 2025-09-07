@@ -9,6 +9,7 @@
 
 #include <memory>
 
+#include "description_field_renderer.h"
 #include "drop_count.h"
 #include "drop_gauge_renderer.h"
 #include "fade_effect.h"
@@ -57,6 +58,7 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<TetrisTimer> tetris_timer_ptr_;
   const std::shared_ptr<DropCount> drop_count_ptr_;
   const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;
+  DescriptionFieldRenderer description_field_renderer_;
   TetrisRenderer tetris_renderer_;
   NextRenderer next_renderer_;
   DropGaugeRenderer drop_gauge_renderer_;

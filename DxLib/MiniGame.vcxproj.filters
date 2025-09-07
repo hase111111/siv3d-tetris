@@ -171,6 +171,9 @@
     <ClCompile Include="Source\score_board_renderer.cpp">
       <Filter>ソース ファイル\tetris\render</Filter>
     </ClCompile>
+    <ClCompile Include="Source\description_field_renderer.cpp">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\fps_controller.h">
@@ -312,6 +315,9 @@
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
     <ClInclude Include="Source\score_board_renderer.h">
+      <Filter>ソース ファイル\tetris\render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\description_field_renderer.h">
       <Filter>ソース ファイル\tetris\render</Filter>
     </ClInclude>
   </ItemGroup>
