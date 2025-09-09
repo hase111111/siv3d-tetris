@@ -41,7 +41,7 @@ class ScoreBoardRenderer final {
   const std::shared_ptr<TetrisTimer> tetris_timer_ptr_;
   const std::shared_ptr<TetrisLevel> tetris_level_ptr_;
   const std::shared_ptr<DropCount> drop_count_ptr_;
-  TetrisGameMode tetris_game_mode_{};
+  TetrisGameMode tetris_game_mode_;
   FontView font_view_;
   TextureView wall_texture_;
 };

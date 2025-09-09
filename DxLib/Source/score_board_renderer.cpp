@@ -20,6 +20,7 @@ ScoreBoardRenderer::ScoreBoardRenderer(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : tetris_timer_ptr_(tetris_timer_ptr),
       tetris_level_ptr_(tetris_level_ptr),
+      tetris_game_mode_(TetrisGameMode::kEndless),  // ‰¼‚É‰Šú‰».
       font_view_(resource_container_ptr->GetFont("small")),
       drop_count_ptr_(drop_count_ptr),
       wall_texture_(resource_container_ptr->GetTexture("wall.png")) {
