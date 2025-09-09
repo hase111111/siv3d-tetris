@@ -47,6 +47,7 @@
     <ClCompile Include="Source\scene_stack.cpp" />
     <ClCompile Include="Source\score_board_renderer.cpp" />
     <ClCompile Include="Source\system_main.cpp" />
+    <ClCompile Include="Source\tetris_announce.cpp" />
     <ClCompile Include="Source\tetris_feild.cpp" />
     <ClCompile Include="Source\tetris_level.cpp" />
     <ClCompile Include="Source\tetris_rotate_checker.cpp" />
@@ -96,6 +97,7 @@
     <ClInclude Include="Source\scene_stack.h" />
     <ClInclude Include="Source\score_board_renderer.h" />
     <ClInclude Include="Source\system_main.h" />
+    <ClInclude Include="Source\tetris_announce.h" />
     <ClInclude Include="Source\tetris_feild.h" />
     <ClInclude Include="Source\tetris_game_mode.h" />
     <ClInclude Include="Source\tetris_level.h" />

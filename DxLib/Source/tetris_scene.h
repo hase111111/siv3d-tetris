@@ -23,6 +23,7 @@
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "score_board_renderer.h"
+#include "tetris_announce.h"
 #include "tetris_feild.h"
 #include "tetris_game_mode.h"
 #include "tetris_level.h"
@@ -69,6 +70,7 @@ class TetrisScene final : public IScene {
   ScoreBoardRenderer score_board_renderer_;
   SceneChangeParameter parameter_;
   PauseRenderer pause_renderer_;
+  TetrisAnnounce tetris_announce_;
 
   TetrisGameMode tetris_game_mode_;
 

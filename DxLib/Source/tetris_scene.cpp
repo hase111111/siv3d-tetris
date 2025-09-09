@@ -38,9 +38,11 @@ TetrisScene::TetrisScene(
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
       fade_effect_{30},
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
-                            drop_count_ptr_, resource_container_ptr_},
-      pause_renderer_{resource_container_ptr_},
-      tetris_game_mode_{TetrisGameMode::kEndless} {
+                            drop_count_ptr_, resource_container_ptr},
+      pause_renderer_{resource_container_ptr},
+      tetris_game_mode_{TetrisGameMode::kEndless},
+      tetris_announce_{resource_container_ptr, tetris_level_ptr_,
+                       tetris_timer_ptr_} {
   next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
@@ -96,6 +98,8 @@ bool TetrisScene::Update() {
   tetris_renderer_.SetClearLines(cleared_lines);
   tetris_renderer_.Update();
 
+  tetris_announce_.Update();
+
   return true;
 }
 
@@ -122,6 +126,9 @@ void TetrisScene::Draw() const {
 
   pause_renderer_.Draw(is_paused_);
 
+  tetris_announce_.Draw(GameConst::kResolutionX / 2,
+                        GameConst::kResolutionY / 2);
+
   fade_effect_.Draw();
 }
 
@@ -129,6 +136,7 @@ void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
   parameter_ = parameter;
   tetris_game_mode_ = parameter.GetParameter<TetrisGameMode>("GameMode");
   score_board_renderer_.SetGameMode(tetris_game_mode_);
+  tetris_announce_.SetGameMode(tetris_game_mode_);
 }
 
 void TetrisScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}
