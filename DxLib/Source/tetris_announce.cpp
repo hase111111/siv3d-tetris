@@ -136,7 +136,7 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
     const float x_size = block_size * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size * (tetris_field_ptr_->GetHeight() - 2);
     DrawRectAlpha(x - x_size / 2.f, y - y_size / 2.f, x + x_size / 2.f,
-                  y + y_size / 2.f, 0x00000000, true, 0.5f);
+                  y + y_size / 2.f - block_size, 0x00000000, true, 0.5f);
 
     font_view_.DrawAlpha(static_cast<float>(x), static_cast<float>(y) - 50.f,
                          RenderAnchor::Center, announce_text_, 1.0f);
