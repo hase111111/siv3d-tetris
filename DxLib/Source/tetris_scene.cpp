@@ -39,7 +39,8 @@ TetrisScene::TetrisScene(
       fade_effect_{30},
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
                             drop_count_ptr_, resource_container_ptr_},
-      pause_renderer_{resource_container_ptr_} {
+      pause_renderer_{resource_container_ptr_},
+      tetris_game_mode_{TetrisGameMode::kEndless} {
   next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
