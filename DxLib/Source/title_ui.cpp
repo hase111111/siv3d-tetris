@@ -160,6 +160,7 @@ bool TitleUI::UpdateGameStart() {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode",
                                            TetrisGameMode::kMarathon);
+        to_game_scene_(param);
       }
       return true;
     }

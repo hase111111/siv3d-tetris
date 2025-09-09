@@ -19,10 +19,7 @@ TetrisAnnounce::TetrisAnnounce(
     const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr)
     : tetris_level_ptr_(tetris_level_ptr),
       tetris_timer_ptr_(tetris_timer_ptr),
-      font_view_(resource_container_ptr->GetFont("default")) {
-  DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr);
-  DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr);
-}
+      font_view_(resource_container_ptr->GetFont("default")) {}
 
 void TetrisAnnounce::Update() {
   ++counter_;
@@ -44,14 +41,21 @@ void TetrisAnnounce::Update() {
       break;
     }
     case TetrisGameMode::kUltra: {
+      for (int i = 1; i <= 2; ++i) {
+        if (tetris_timer_ptr_->GetTime() >= 3600 * i &&
+            timer_count_ < 3600 * i) {
+          announce_text_ = std::format("{} minute left!", 3 - i);
+          start_time_ = counter_;
+        }
+      }
       break;
     }
     case TetrisGameMode::kMarathon: {
-      for (int i = 1; i <= 19; ++i) {
-        if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
-            total_clear_lines_ < i * 10) {
+      for (int i = 1; i <= 9; ++i) {
+        if (tetris_level_ptr_->GetTotalClearLines() >= i * 20 &&
+            total_clear_lines_ < i * 20) {
           announce_text_ =
-              std::format("{} / 40", tetris_level_ptr_->GetTotalClearLines());
+              std::format("{} / 200", tetris_level_ptr_->GetTotalClearLines());
           start_time_ = counter_;
         }
       }
@@ -70,11 +74,20 @@ void TetrisAnnounce::Update() {
   }
 
   total_clear_lines_ = tetris_level_ptr_->GetTotalClearLines();
+  timer_count_ = tetris_timer_ptr_->GetTime();
 }
 
 void TetrisAnnounce::Draw(const int x, const int y) const {
-  if (counter_ < start_time_ + animation_duration_) {
-    font_view_.DrawAlpha(x, y, RenderAnchor::Center, announce_text_, 1.f);
+  if (!game_end_) {
+    if (counter_ < start_time_ + animation_duration_) {
+      const float alpha = (counter_ - start_time_) % 40 < 20 ? 0.0f : 1.0f;
+
+      font_view_.DrawAlpha(static_cast<float>(x), static_cast<float>(y),
+                           RenderAnchor::Center, announce_text_, alpha);
+    }
+  } else {
+    font_view_.DrawAlpha(static_cast<float>(x), static_cast<float>(y),
+                         RenderAnchor::Center, announce_text_, 1.0f);
   }
 }
 

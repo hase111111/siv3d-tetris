@@ -46,6 +46,8 @@ class TetrisAnnounce final {
   int counter_{0};
   int start_time_{0};
   int total_clear_lines_{0};
+  int timer_count_{0};
+  bool game_end_{false};
 };
 
 }  // namespace mytetris
