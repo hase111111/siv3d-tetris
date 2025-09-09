@@ -12,7 +12,9 @@
 #include <vector>
 
 #include "font_view.h"
+#include "game_end_checker.h"
 #include "resource_container.h"
+#include "tetris_feild.h"
 #include "tetris_game_mode.h"
 #include "tetris_level.h"
 #include "tetris_timer.h"
@@ -24,7 +26,9 @@ class TetrisAnnounce final {
   TetrisAnnounce(
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
       const std::shared_ptr<const TetrisLevel>& tetris_level_ptr,
-      const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr);
+      const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr,
+      const std::shared_ptr<const GameEndChecker>& game_end_checker_ptr,
+      const std::shared_ptr<const TetrisField>& tetris_field_ptr);
   ~TetrisAnnounce() = default;
 
   inline void SetGameMode(const TetrisGameMode game_mode) {
@@ -38,16 +42,19 @@ class TetrisAnnounce final {
  private:
   const std::shared_ptr<const TetrisLevel> tetris_level_ptr_;
   const std::shared_ptr<const TetrisTimer> tetris_timer_ptr_;
+  const std::shared_ptr<const GameEndChecker> game_end_checker_ptr_;
+  const std::shared_ptr<const TetrisField> tetris_field_ptr_;
   const FontView font_view_;
+  const FontView font_view_small_;
   const int animation_duration_{120};
 
   TetrisGameMode game_mode_{TetrisGameMode::kEndless};
   std::string announce_text_{""};
+  std::string announce_text_small_{""};
   int counter_{0};
   int start_time_{0};
   int total_clear_lines_{0};
   int timer_count_{0};
-  bool game_end_{false};
 };
 
 }  // namespace mytetris

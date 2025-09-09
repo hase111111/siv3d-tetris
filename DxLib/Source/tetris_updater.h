@@ -11,6 +11,7 @@
 #include <tuple>
 
 #include "drop_count.h"
+#include "game_end_checker.h"
 #include "hold_tetromino.h"
 #include "key_event_handler.h"
 #include "next_tetromino.h"
@@ -30,7 +31,8 @@ class TetrisUpdater final {
       const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
       const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
       const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
-      const std::shared_ptr<DropCount>& drop_count_ptr);
+      const std::shared_ptr<DropCount>& drop_count_ptr,
+      const std::shared_ptr<GameEndChecker>& game_end_checker_ptr);
   ~TetrisUpdater() = default;
 
   void Update();
@@ -76,6 +78,7 @@ class TetrisUpdater final {
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const std::shared_ptr<TetrisLevel> tetris_level_ptr_;
   const std::shared_ptr<DropCount> drop_count_ptr_;
+  const std::shared_ptr<GameEndChecker> game_end_checker_ptr_;
   const TetrisRotateChecker rotate_checker_;
 
   std::vector<std::tuple<int, std::vector<TetrominoColor>>> clear_lines_;

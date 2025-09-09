@@ -18,7 +18,8 @@ TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
     const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
     const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
-    const std::shared_ptr<DropCount>& drop_count_ptr)
+    const std::shared_ptr<DropCount>& drop_count_ptr,
+    const std::shared_ptr<GameEndChecker>& game_end_checker_ptr)
     : key_event_handler_ptr_(key_event_handler_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
@@ -26,6 +27,7 @@ TetrisUpdater::TetrisUpdater(
       hold_tetromino_ptr_(hold_tetromino_ptr),
       tetris_level_ptr_(tetris_level_ptr),
       drop_count_ptr_(drop_count_ptr),
+      game_end_checker_ptr_(game_end_checker_ptr),
       rotate_checker_{tetris_field_ptr} {
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
@@ -37,9 +39,9 @@ TetrisUpdater::TetrisUpdater(
 }
 
 void TetrisUpdater::Update() {
-  if (tetris_field_ptr_->IsGameOver()) {
+  if (tetris_field_ptr_->IsGameOver() || game_end_checker_ptr_->IsGameEnd()) {
     // ゲームオーバー時は更新しない.
-    if (!is_game_over_animation_finished_) {
+    if (tetris_field_ptr_->IsGameOver() && !is_game_over_animation_finished_) {
       is_game_over_animation_finished_ = true;
 
       // すべてのラインをクリアラインへ登録する.

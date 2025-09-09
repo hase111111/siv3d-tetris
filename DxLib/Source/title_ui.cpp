@@ -144,6 +144,7 @@ bool TitleUI::UpdateGameStart() {
       return true;
     }
     case 2: {
+      // Sprint.
       lower_announcement_ = "Sprint: Clear 40 lines as fast as possible.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
         auto param = SceneChangeParameter{};
@@ -153,6 +154,7 @@ bool TitleUI::UpdateGameStart() {
       return true;
     }
     case 3: {
+      // Marathon.
       lower_announcement_ =
           "Marathon: Play continuously until you top out, with a fixed goal of "
           "200 lines.";

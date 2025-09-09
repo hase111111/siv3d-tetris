@@ -27,6 +27,7 @@
     <ClCompile Include="Source\fade_effect.cpp" />
     <ClCompile Include="Source\font.cpp" />
     <ClCompile Include="Source\font_view.cpp" />
+    <ClCompile Include="Source\game_end_checker.cpp" />
     <ClCompile Include="Source\hold_renderer.cpp" />
     <ClCompile Include="Source\my_assert.cpp" />
     <ClCompile Include="Source\key_event_handler.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="Source\fade_effect.h" />
     <ClInclude Include="Source\font.h" />
     <ClInclude Include="Source\font_view.h" />
+    <ClInclude Include="Source\game_end_checker.h" />
     <ClInclude Include="Source\hold_renderer.h" />
     <ClInclude Include="Source\my_assert.h" />
     <ClInclude Include="Source\key_event_handler.h" />

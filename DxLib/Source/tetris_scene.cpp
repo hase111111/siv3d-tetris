@@ -27,10 +27,12 @@ TetrisScene::TetrisScene(
       tetris_level_ptr_(std::make_shared<TetrisLevel>()),
       tetris_timer_ptr_(std::make_shared<TetrisTimer>()),
       drop_count_ptr_(std::make_shared<DropCount>()),
+      game_end_checker_ptr_(std::make_shared<GameEndChecker>(
+          tetris_level_ptr_, tetris_timer_ptr_)),
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
-          drop_count_ptr_)),
+          drop_count_ptr_, game_end_checker_ptr_)),
       description_field_renderer_{resource_container_ptr},
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, 40.0f},
@@ -42,7 +44,8 @@ TetrisScene::TetrisScene(
       pause_renderer_{resource_container_ptr},
       tetris_game_mode_{TetrisGameMode::kEndless},
       tetris_announce_{resource_container_ptr, tetris_level_ptr_,
-                       tetris_timer_ptr_} {
+                       tetris_timer_ptr_, game_end_checker_ptr_,
+                       tetris_field_ptr_} {
   next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
@@ -87,7 +90,7 @@ bool TetrisScene::Update() {
 
   tetris_updater_ptr_->Update();
 
-  if (!tetris_field_ptr_->IsGameOver()) {
+  if (!tetris_field_ptr_->IsGameOver() && !game_end_checker_ptr_->IsGameEnd()) {
     tetris_timer_ptr_->Update();
   }
 
@@ -137,6 +140,7 @@ void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
   tetris_game_mode_ = parameter.GetParameter<TetrisGameMode>("GameMode");
   score_board_renderer_.SetGameMode(tetris_game_mode_);
   tetris_announce_.SetGameMode(tetris_game_mode_);
+  game_end_checker_ptr_->SetGameMode(tetris_game_mode_);
 }
 
 void TetrisScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}
