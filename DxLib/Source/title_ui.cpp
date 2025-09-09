@@ -11,6 +11,7 @@
 
 #include "game_const.h"
 #include "my_assert.h"
+#include "tetris_game_mode.h"
 
 namespace mytetris {
 
@@ -120,31 +121,45 @@ bool TitleUI::UpdateGameStart() {
 
   switch (idx) {
     case 0: {
+      // Endless.
       lower_announcement_ =
           "Endless: Play continuously until you top out, no fixed goal.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
-        to_game_scene_(SceneChangeParameter{});
+        auto param = SceneChangeParameter{};
+        param.SetParameter<TetrisGameMode>("GameMode",
+                                           TetrisGameMode::kEndless);
+        to_game_scene_(param);
       }
       return true;
     }
     case 1: {
+      // Ultra.
       lower_announcement_ =
           "Ultra: Score as many points as possible in 3 minutes.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+        auto param = SceneChangeParameter{};
+        param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kUltra);
+        to_game_scene_(param);
       }
       return true;
     }
     case 2: {
       lower_announcement_ = "Sprint: Clear 40 lines as fast as possible.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+        auto param = SceneChangeParameter{};
+        param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kSprint);
+        to_game_scene_(param);
       }
       return true;
     }
     case 3: {
       lower_announcement_ =
           "Marathon: Play continuously until you top out, with a fixed goal of "
-          "150 lines.";
+          "200 lines.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+        auto param = SceneChangeParameter{};
+        param.SetParameter<TetrisGameMode>("GameMode",
+                                           TetrisGameMode::kMarathon);
       }
       return true;
     }

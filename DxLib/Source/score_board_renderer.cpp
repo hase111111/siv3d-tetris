@@ -73,8 +73,9 @@ std::string ScoreBoardRenderer::GetString() const {
   result += std::format("Level\n {}\n\n", tetris_level_ptr_->GetLevel());
   result +=
       std::format("Lines\n {}\n\n", tetris_level_ptr_->GetTotalClearLines());
-  result += std::format("Speed\n {}\n", drop_count_ptr_->GetDisplaySpeed(
-                                            tetris_level_ptr_->GetLevel()));
+  result += std::format("Speed\n {}\n\n", drop_count_ptr_->GetDisplaySpeed(
+                                              tetris_level_ptr_->GetLevel()));
+  result += std::format("GameRule\n {}\n\n", ToString(tetris_game_mode_));
 
   return result;
 }

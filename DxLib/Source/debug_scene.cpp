@@ -7,8 +7,6 @@
 
 #include "debug_scene.h"
 
-#include <DxLib.h>
-
 #include "my_assert.h"
 
 namespace mytetris {
@@ -35,9 +33,7 @@ bool DebugScene::Update() {
   return true;
 }
 
-void DebugScene::Draw() const {
-  DrawString(0, 0, "Debug Scene", GetColor(255, 255, 255));
-}
+void DebugScene::Draw() const {}
 
 void DebugScene::OnStart(const SceneChangeParameter&) {}
 

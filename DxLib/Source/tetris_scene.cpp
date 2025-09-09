@@ -128,6 +128,8 @@ void TetrisScene::Draw() const {
 
 void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
   parameter_ = parameter;
+  tetris_game_mode_ = parameter.GetParameter<TetrisGameMode>("GameMode");
+  score_board_renderer_.SetGameMode(tetris_game_mode_);
 }
 
 void TetrisScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}

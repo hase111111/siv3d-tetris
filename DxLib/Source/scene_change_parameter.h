@@ -7,18 +7,19 @@
 
 #pragma once
 
+#include <any>
 #include <map>
 #include <string>
-#include <variant>
 
 #include "my_assert.h"
 
 namespace mytetris {
 
-// パラメータとして利用できるか確認するコンセプト
+// パラメータとして利用できるか確認するコンセプト.
+// 参照でなく，ポインタでもなく，デフォルトコンストラクタが存在するものであること.
 template <typename T>
-concept IsParameter = std::is_same_v<T, int> || std::is_same_v<T, double> ||
-                      std::is_same_v<T, std::string>;
+concept IsParameter = !std::is_reference_v<T> && !std::is_pointer_v<T> &&
+                      std::is_default_constructible_v<T>;
 
 class SceneChangeParameter final {
  public:
@@ -48,14 +49,26 @@ class SceneChangeParameter final {
 
     DEBUG_ASSERT(it != parameters_.end(), "Parameter not found. Key is " + key);
 
-    return std::get<T>(it->second);
+    T result = T{};
+
+    try {
+      result = std::any_cast<T>(it->second);
+    } catch (const std::bad_any_cast& e) {
+      DEBUG_ASSERT(
+          false,
+          "The type of the parameter associated with the specified key is "
+          "different from the type specified in the template. :" +
+              std::string(e.what()));
+    }
+
+    return result;
   }
 
   //! @brief パラメータを全て削除する．
   void Reset();
 
  private:
-  std::map<std::string, std::variant<int, double, std::string>> parameters_;
+  std::map<std::string, std::any> parameters_;
 };
 
 }  // namespace mytetris
