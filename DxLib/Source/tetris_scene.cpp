@@ -95,7 +95,10 @@ bool TetrisScene::Update() {
   }
 
   const auto cleared_lines = tetris_updater_ptr_->GetClearedLines();
-  tetris_level_ptr_->AddClearLines(static_cast<int>(cleared_lines.size()));
+
+  if (!tetris_field_ptr_->IsGameOver()) {
+    tetris_level_ptr_->AddClearLines(static_cast<int>(cleared_lines.size()));
+  }
 
   // •`‰æ‰æ–Ê‚ÌXV.
   tetris_renderer_.SetClearLines(cleared_lines);
