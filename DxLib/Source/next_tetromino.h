@@ -30,7 +30,7 @@ class NextTetromino final {
   void SetGameMode(TetrisGameMode game_mode);
 
  private:
-  std::vector<TetrominoType> MakeNextTetromino();
+  std::vector<TetrominoType> MakeNextTetromino() const;
 
   std::vector<TetrominoType> tetrominos_{TetrominoType::kI};
 

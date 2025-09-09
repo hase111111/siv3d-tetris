@@ -72,7 +72,7 @@ void NextTetromino::SetGameMode(const TetrisGameMode game_mode) {
   next_ = MakeNextTetromino();
 }
 
-std::vector<TetrominoType> NextTetromino::MakeNextTetromino() {
+std::vector<TetrominoType> NextTetromino::MakeNextTetromino() const {
   std::vector<TetrominoType> tetrominos = tetrominos_;
   std::random_device seed_gen;
   std::mt19937 engine(seed_gen());

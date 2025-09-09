@@ -34,15 +34,18 @@ class TitleUI final {
  private:
   bool UpdateTitle();
   bool UpdateGameStart();
+  bool UpdateSpecialMode();
 
   void DrawTitle() const;
   void DrawGameStart() const;
+  void DrawSpecialMode() const;
 
   const FontView font_view_40_;
   const FontView font_view_20_;
   const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
   const std::vector<std::string> title_items_;
   const std::vector<std::string> game_mode_items_;
+  const std::vector<std::string> special_mode_items_;
   const std::function<void(const SceneChangeParameter&)> to_game_scene_;
 
   std::string lower_announcement_;
