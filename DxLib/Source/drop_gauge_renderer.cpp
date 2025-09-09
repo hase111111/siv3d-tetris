@@ -11,7 +11,9 @@
 
 namespace mytetris {
 
-void DropGaugeRenderer::Draw(const float render_x, const float render_y) const {
+void DropGaugeRenderer::Draw(const float render_x, const float render_y,
+                             const float drop_percent, const float fix_percent,
+                             const float move_percent) const {
   const float left_x = render_x - gauge_length / 2.f;
   const float right_x = render_x + gauge_length / 2.f;
   const float dist = 3.0f;

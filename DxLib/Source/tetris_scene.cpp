@@ -96,17 +96,15 @@ bool TetrisScene::Update() {
   tetris_renderer_.SetClearLines(cleared_lines);
   tetris_renderer_.Update();
 
-  drop_gauge_renderer_.SetDropPercent(tetris_updater_ptr_->GetDropGauge());
-  drop_gauge_renderer_.SetFixPercent(tetris_updater_ptr_->GetFixGauge());
-  drop_gauge_renderer_.SetMovePercent(tetris_updater_ptr_->GetMoveGauge());
-
   return true;
 }
 
 void TetrisScene::Draw() const {
   next_renderer_.Draw(880, 40);
 
-  drop_gauge_renderer_.Draw(960, 888);
+  drop_gauge_renderer_.Draw(960, 888, tetris_updater_ptr_->GetDropGauge(),
+                            tetris_updater_ptr_->GetFixGauge(),
+                            tetris_updater_ptr_->GetMoveGauge());
 
   hold_renderer_.Draw(1060, 20);
 
