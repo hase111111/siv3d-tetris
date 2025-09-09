@@ -34,7 +34,7 @@ bool GameEndChecker::IsGameEnd() const {
       }
       return false;
     }
-    case TetrisGameMode::kUeda:
+    case TetrisGameMode::kYamada:
       break;
     case TetrisGameMode::kPentris:
       break;
@@ -66,7 +66,7 @@ void GameEndChecker::SetLimits() {
       clear_lines_limit_ = 200;
       break;
     }
-    case TetrisGameMode::kUeda:
+    case TetrisGameMode::kYamada:
       break;
     case TetrisGameMode::kPentris:
       break;

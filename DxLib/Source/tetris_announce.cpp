@@ -48,7 +48,7 @@ void TetrisAnnounce::Update() {
         announce_text_small_ = "Press R to Restart";
         break;
       }
-      case TetrisGameMode::kUeda:
+      case TetrisGameMode::kYamada:
         break;
       case TetrisGameMode::kPentris:
         break;
@@ -98,7 +98,7 @@ void TetrisAnnounce::Update() {
         }
         break;
       }
-      case TetrisGameMode::kUeda:
+      case TetrisGameMode::kYamada:
         break;
       case TetrisGameMode::kPentris:
         break;

@@ -25,8 +25,8 @@ TitleUI::TitleUI(
       title_items_({"Game Start", "Special Mode", "Setting", "Quit Game"}),
       game_mode_items_({"Endless Mode", "Ultra Mode", "Sprint Mode",
                         "Marathon Mode", "Back"}),
-      special_mode_items_(
-          {"Ueda Mode", "Pentris Mode", "Trick Mode", "Practice Mode", "Back"}),
+      special_mode_items_({"Yamada Mode", "Pentris Mode", "Trick Mode",
+                           "Practice Mode", "Back"}),
       to_game_scene_(to_game_scene) {}
 
 bool TitleUI::Update() {
@@ -202,12 +202,12 @@ bool TitleUI::UpdateSpecialMode() {
 
   switch (idx) {
     case 0: {
-      // Ueda.
+      // Yamada.
       lower_announcement_ =
-          "Ueda: A high-difficulty mode where super-huge blocks fall.";
+          "Yamada: A high-difficulty mode where super-huge blocks fall.";
       if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
         auto param = SceneChangeParameter{};
-        param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kUeda);
+        param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kYamada);
         to_game_scene_(param);
       }
       return true;

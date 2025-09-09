@@ -22,6 +22,14 @@ std::map<TetrominoColor, TextureView> GetBlockTextureMap(
   block_textures.emplace(kT, resource->GetTexture("block_6.png"));
   block_textures.emplace(kJammer, resource->GetTexture("block_7.png"));
   block_textures.emplace(kWall, resource->GetTexture("wall.png"));
+  block_textures.emplace(kOther1, resource->GetTexture("block_8.png"));
+  block_textures.emplace(kOther2, resource->GetTexture("block_9.png"));
+  block_textures.emplace(kOther3, resource->GetTexture("block_10.png"));
+  block_textures.emplace(kOther4, resource->GetTexture("block_11.png"));
+  block_textures.emplace(kOther5, resource->GetTexture("block_12.png"));
+  block_textures.emplace(kOther6, resource->GetTexture("block_13.png"));
+  block_textures.emplace(kOther7, resource->GetTexture("block_14.png"));
+  block_textures.emplace(kOther8, resource->GetTexture("block_15.png"));
   return block_textures;
 }
 

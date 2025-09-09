@@ -16,7 +16,7 @@ enum class TetrisGameMode : int {
   kSprint,
   kUltra,
   kMarathon,
-  kUeda,
+  kYamada,
   kPentris,
   kTrick,
   kPractice,
@@ -32,8 +32,8 @@ inline std::string ToString(const TetrisGameMode game_mode) {
       return "Ultra";
     case TetrisGameMode::kMarathon:
       return "Marathon";
-    case TetrisGameMode::kUeda:
-      return "Ueda";
+    case TetrisGameMode::kYamada:
+      return "Yamada";
     case TetrisGameMode::kPentris:
       return "Pentris";
     case TetrisGameMode::kTrick:

@@ -20,6 +20,14 @@ enum class TetrominoColor : int {
   kT = 7,
   kWall = 8,
   kJammer = 9,
+  kOther1 = 10,
+  kOther2 = 11,
+  kOther3 = 12,
+  kOther4 = 13,
+  kOther5 = 14,
+  kOther6 = 15,
+  kOther7 = 16,
+  kOther8 = 17,
 };
 
 }  // namespace mytetris

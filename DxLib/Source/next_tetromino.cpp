@@ -65,6 +65,39 @@ void NextTetromino::SetGameMode(const TetrisGameMode game_mode) {
       };
       break;
     }
+    case TetrisGameMode::kYamada: {
+      tetrominos_ = {
+          TetrominoType::kI,        TetrominoType::kI,
+          TetrominoType::kI,        TetrominoType::kI,
+          TetrominoType::kJ,        TetrominoType::kJ,
+          TetrominoType::kL,        TetrominoType::kL,
+          TetrominoType::kO,        TetrominoType::kO,
+          TetrominoType::kS,        TetrominoType::kS,
+          TetrominoType::kT,        TetrominoType::kT,
+          TetrominoType::kT,        TetrominoType::kZ,
+          TetrominoType::kZ,        TetrominoType::kYama,
+          TetrominoType::kDa,       TetrominoType::kMiniI,
+          TetrominoType::kOneByTwo, TetrominoType::kOneByTwo,
+          TetrominoType::kOneByTwo, TetrominoType::kOneByTwo,
+          TetrominoType::kOneByOne, TetrominoType::kOneByOne,
+          TetrominoType::kSilentT,  TetrominoType::kPentrisCross,
+      };
+      break;
+    }
+    case TetrisGameMode::kPentris: {
+      tetrominos_ = {
+          TetrominoType::kPentrisI,     TetrominoType::kPentrisJ,
+          TetrominoType::kPentrisJDash, TetrominoType::kPentrisL,
+          TetrominoType::kPentrisLDash, TetrominoType::kPentrisOL,
+          TetrominoType::kPentrisOR,    TetrominoType::kPentrisS,
+          TetrominoType::kPentrisSDash, TetrominoType::kPentrisZ,
+          TetrominoType::kPentrisZDash, TetrominoType::kPentrisTL,
+          TetrominoType::kPentrisTR,    TetrominoType::kPentrisTCenter,
+          TetrominoType::kPentrisOu,    TetrominoType::kPentrisCorner,
+          TetrominoType::kPentrisCross, TetrominoType::kPentrisStep,
+      };
+      break;
+    }
     default:
       break;
   }
