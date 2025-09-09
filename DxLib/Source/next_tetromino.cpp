@@ -51,6 +51,27 @@ void NextTetromino::Next() {
   }
 }
 
+void NextTetromino::SetGameMode(const TetrisGameMode game_mode) {
+  switch (game_mode) {
+    case TetrisGameMode::kEndless:
+    case TetrisGameMode::kSprint:
+    case TetrisGameMode::kUltra:
+    case TetrisGameMode::kMarathon:
+    case TetrisGameMode::kTrick: {
+      tetrominos_ = {
+          TetrominoType::kI, TetrominoType::kJ, TetrominoType::kL,
+          TetrominoType::kO, TetrominoType::kS, TetrominoType::kT,
+          TetrominoType::kZ,
+      };
+      break;
+    }
+    default:
+      break;
+  }
+
+  next_ = MakeNextTetromino();
+}
+
 std::vector<TetrominoType> NextTetromino::MakeNextTetromino() {
   std::vector<TetrominoType> tetrominos = tetrominos_;
   std::random_device seed_gen;

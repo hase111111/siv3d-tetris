@@ -21,8 +21,9 @@ TetrisScene::TetrisScene(
       resource_container_ptr_(resource_container_ptr),
       next_tetromino_ptr_(std::make_shared<NextTetromino>()),
       tetris_field_ptr_(std::make_shared<TetrisField>()),
-      tetromino_ptr_(
-          std::make_shared<Tetromino>(next_tetromino_ptr_->GetNext())),
+      tetromino_ptr_(std::make_shared<Tetromino>(
+          std::vector<std::vector<bool>>{{1}}, TetrominoColor::kI,
+          RotationType::kNormal)),
       hold_tetromino_ptr_(std::make_shared<HoldTetromino>()),
       tetris_level_ptr_(std::make_shared<TetrisLevel>()),
       tetris_timer_ptr_(std::make_shared<TetrisTimer>()),
@@ -46,7 +47,6 @@ TetrisScene::TetrisScene(
       tetris_announce_{resource_container_ptr, tetris_level_ptr_,
                        tetris_timer_ptr_, game_end_checker_ptr_,
                        tetris_field_ptr_} {
-  next_tetromino_ptr_->Next();
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
 
@@ -141,6 +141,10 @@ void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
   score_board_renderer_.SetGameMode(tetris_game_mode_);
   tetris_announce_.SetGameMode(tetris_game_mode_);
   game_end_checker_ptr_->SetGameMode(tetris_game_mode_);
+  next_tetromino_ptr_->SetGameMode(tetris_game_mode_);
+
+  tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext());
+  next_tetromino_ptr_->Next();
 }
 
 void TetrisScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}

@@ -9,6 +9,7 @@
 
 #include <vector>
 
+#include "tetris_game_mode.h"
 #include "tetromino.h"
 #include "tetromino_generator.h"
 #include "tetromino_type.h"
@@ -26,14 +27,12 @@ class NextTetromino final {
 
   void Next();
 
+  void SetGameMode(TetrisGameMode game_mode);
+
  private:
   std::vector<TetrominoType> MakeNextTetromino();
 
-  const std::vector<TetrominoType> tetrominos_{
-      TetrominoType::kI, TetrominoType::kJ, TetrominoType::kL,
-      TetrominoType::kO, TetrominoType::kS, TetrominoType::kT,
-      TetrominoType::kZ,
-  };
+  std::vector<TetrominoType> tetrominos_{TetrominoType::kI};
 
   std::vector<TetrominoType> next_;
   TetrominoGenerator tetromino_generator_;
