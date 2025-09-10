@@ -34,10 +34,14 @@ void TetrisAnnounce::Update() {
     switch (game_mode_) {
       case TetrisGameMode::kEndless:
       case TetrisGameMode::kPractice: {
+        // なにもアナウンスはしない.
         break;
       }
       case TetrisGameMode::kSprint:
-      case TetrisGameMode::kMarathon: {
+      case TetrisGameMode::kMarathon:
+      case TetrisGameMode::kYamada:
+      case TetrisGameMode::kPentris:
+      case TetrisGameMode::kTrick: {
         announce_text_ =
             std::format("CLEAR!\nTime {}", tetris_timer_ptr_->GetTimeString());
         announce_text_small_ = "Press R to Restart";
@@ -48,18 +52,15 @@ void TetrisAnnounce::Update() {
         announce_text_small_ = "Press R to Restart";
         break;
       }
-      case TetrisGameMode::kYamada:
+      default: {
+        DEBUG_ASSERT_MUST_NOT_REACH_HERE();
         break;
-      case TetrisGameMode::kPentris:
-        break;
-      case TetrisGameMode::kTrick:
-        break;
-      default:
-        break;
+      }
     }
   } else {
     switch (game_mode_) {
-      case TetrisGameMode::kEndless: {
+      case TetrisGameMode::kEndless:
+      case TetrisGameMode::kPractice: {
         // なにもアナウンスはしない.
         break;
       }
@@ -99,15 +100,19 @@ void TetrisAnnounce::Update() {
         break;
       }
       case TetrisGameMode::kYamada:
-        break;
       case TetrisGameMode::kPentris:
+      case TetrisGameMode::kTrick: {
+        for (int i = 1; i <= 9; ++i) {
+          if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
+              total_clear_lines_ < i * 10) {
+            announce_text_ = std::format("{} / 100", i * 10);
+            announce_text_small_ = std::format(
+                "{} lines left", 100 - tetris_level_ptr_->GetTotalClearLines());
+            start_time_ = counter_;
+          }
+        }
         break;
-      case TetrisGameMode::kTrick:
-        break;
-      case TetrisGameMode::kPractice:
-        break;
-      default:
-        break;
+      }
     }
 
     total_clear_lines_ = tetris_level_ptr_->GetTotalClearLines();
@@ -136,7 +141,7 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
     const float x_size = block_size * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size * (tetris_field_ptr_->GetHeight() - 2);
     DrawRectAlpha(x - x_size / 2.f, y - y_size / 2.f, x + x_size / 2.f,
-                  y + y_size / 2.f - block_size, 0x00000000, true, 0.5f);
+                  y + y_size / 2.f - block_size * 1.5f, 0x00000000, true, 0.5f);
 
     font_view_.DrawAlpha(static_cast<float>(x), static_cast<float>(y) - 50.f,
                          RenderAnchor::Center, announce_text_, 1.0f);

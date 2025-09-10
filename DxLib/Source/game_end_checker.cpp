@@ -22,7 +22,10 @@ bool GameEndChecker::IsGameEnd() const {
       return false;
     }
     case TetrisGameMode::kSprint:
-    case TetrisGameMode::kMarathon: {
+    case TetrisGameMode::kMarathon:
+    case TetrisGameMode::kYamada:
+    case TetrisGameMode::kPentris:
+    case TetrisGameMode::kTrick: {
       if (tetris_level_ptr_->GetTotalClearLines() >= clear_lines_limit_) {
         return true;
       }
@@ -34,14 +37,9 @@ bool GameEndChecker::IsGameEnd() const {
       }
       return false;
     }
-    case TetrisGameMode::kYamada:
+    default: {
       break;
-    case TetrisGameMode::kPentris:
-      break;
-    case TetrisGameMode::kTrick:
-      break;
-    default:
-      break;
+    }
   }
 
   return false;
@@ -66,14 +64,18 @@ void GameEndChecker::SetLimits() {
       clear_lines_limit_ = 200;
       break;
     }
-    case TetrisGameMode::kYamada:
+    case TetrisGameMode::kYamada: {
+      clear_lines_limit_ = 100;
       break;
-    case TetrisGameMode::kPentris:
+    }
+    case TetrisGameMode::kPentris: {
+      clear_lines_limit_ = 100;
       break;
-    case TetrisGameMode::kTrick:
+    }
+    case TetrisGameMode::kTrick: {
+      clear_lines_limit_ = 100;
       break;
-    default:
-      break;
+    }
   }
 }
 
