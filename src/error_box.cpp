@@ -13,7 +13,7 @@
 
 namespace mytetris {
 
-void mytetris::ShowErrorBox(const std::string& message) {
+void mytetris::ShowErrorBox([[maybe_unused]] const std::string& message) {
 #if defined DXLIB_COMPILE
   MessageBox(NULL, TEXT(message.c_str()), TEXT("Error"), MB_ICONERROR);
 #endif  // defined DXLIB_COMPILE
