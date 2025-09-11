@@ -31,7 +31,6 @@ void HoldRenderer::Draw(const float render_x, const float render_y) const {
   if (hold_tetromino_ptr_->IsHold()) {
     const auto hold_tetromino =
         hold_tetromino_ptr_->GetHoldTetromino().GetResetRotation();
-    const int height = static_cast<int>(hold_tetromino.GetShape()[0].size());
     const float block_size = wall_size / 1.5f;
     DrawTetrominoCenter(hold_tetromino,
                         block_textures_.at(hold_tetromino.GetColor()),
