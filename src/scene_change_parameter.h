@@ -53,7 +53,7 @@ class SceneChangeParameter final {
 
     try {
       result = std::any_cast<T>(it->second);
-    } catch (const std::bad_any_cast& e) {
+    } catch ([[maybe_unused]] const std::bad_any_cast& _) {
       DEBUG_ASSERT(
           false,
           "The type of the parameter associated with the specified key is "
