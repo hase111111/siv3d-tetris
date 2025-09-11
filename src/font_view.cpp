@@ -61,4 +61,5 @@ std::tuple<int, int> FontView::GetRenderPos(RenderAnchor anchor, int width,
     }
   }
 }
+
 }  // namespace mytetris

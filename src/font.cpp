@@ -19,7 +19,8 @@ namespace mytetris {
 int Font::count_{0};
 
 Font::Font(const std::string& file_name)
-    : handle_(DxLib::LoadFontDataToHandle(file_name.c_str(), 1)) {
+    : handle_(DxLib::LoadFontDataToHandle(file_name.c_str(), 1)),
+      font_size_(GetFontSizeToHandle(handle_)) {
   ASSERT(handle_ >= 0, std::format("Failed to load font: {} (handle: {})",
                                    file_name, handle_));
   // 1フレーム間に大量のテクスチャのロードが発生することを防ぐため，
@@ -27,36 +28,39 @@ Font::Font(const std::string& file_name)
   ++count_;
 }
 
-Font::Font(const int raw_handle) : handle_(raw_handle) {
+Font::Font(const int raw_handle)
+    : handle_(raw_handle), font_size_(GetFontSizeToHandle(handle_)) {
   ASSERT(handle_ >= 0, std::format("Failed to load font, handle: {}", handle_));
 }
 
 Font::~Font() { DxLib::DeleteGraph(handle_); }
 
 void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
-  DrawFormatStringFToHandle(x, y, 0xFFFFFFFF, handle_, str.c_str());
+  const int width = GetDrawStringWidthToHandle(
+      str.c_str(), static_cast<int>(str.size()), handle_);
+  const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
+  DrawFormatStringFToHandle(x + dx, y + dy, 0xFFFFFFFF, handle_, str.c_str());
 }
 
 FontView Font::GetView() const { return FontView{*this}; }
 
-std::tuple<int, int> Font::GetRenderPos(RenderAnchor anchor) const {
-  const int width = 0;
-  const int height = 0;
+std::tuple<int, int> Font::GetRenderPos(RenderAnchor anchor, int width,
+                                        int height) const {
   switch (anchor) {
     case RenderAnchor::TopLeft: {
-      return {width / 2, height / 2};
+      return {0, 0};
     }
     case RenderAnchor::TopRight: {
-      return {-width / 2, height / 2};
+      return {-width, 0};
     }
     case RenderAnchor::BottomLeft: {
-      return {width / 2, -height / 2};
+      return {0, -height};
     }
     case RenderAnchor::BottomRight: {
-      return {-width / 2, -height / 2};
+      return {-width, -height};
     }
     case RenderAnchor::Center: {
-      return {0, 0};
+      return {-width / 2, -height / 2};
     }
     default: {
       DEBUG_ASSERT_MUST_NOT_REACH_HERE();

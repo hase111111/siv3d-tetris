@@ -38,9 +38,11 @@ class Font final {
   FontView GetView() const;
 
  private:
-  std::tuple<int, int> GetRenderPos(RenderAnchor anchor) const;
+  std::tuple<int, int> GetRenderPos(RenderAnchor anchor, int width,
+                                    int height) const;
 
   const int handle_;
+  const int font_size_;
   static int count_;
 };
 
