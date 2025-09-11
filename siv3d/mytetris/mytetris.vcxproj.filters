@@ -216,9 +216,6 @@
     <ClCompile Include="..\..\src\fps_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\game_const.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\game_end_checker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
