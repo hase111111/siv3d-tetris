@@ -42,7 +42,6 @@ void DrawTetromino(const Tetromino& tetromino, const TextureView& texture,
   for (int y = 0; y < shape.size(); ++y) {
     for (int x = 0; x < shape[0].size(); ++x) {
       if (!shape[y][x]) continue;
-      const auto color = tetromino.GetColor();
       texture.DrawRotatedAlpha(render_x + x * block_size,
                                render_y + y * block_size, RenderAnchor::Center,
                                ex, 0.f, alpha);
@@ -63,7 +62,6 @@ void DrawTetrominoCenter(const Tetromino& tetromino, const TextureView& texture,
   for (int y = 0; y < shape.size(); ++y) {
     for (int x = 0; x < shape[0].size(); ++x) {
       if (!shape[y][x]) continue;
-      const auto color = tetromino.GetColor();
       texture.DrawRotatedAlpha(render_x + x * block_size,
                                render_y + y * block_size, RenderAnchor::Center,
                                ex, 0.f, alpha);
