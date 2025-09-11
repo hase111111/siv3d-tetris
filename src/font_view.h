@@ -22,7 +22,11 @@ class FontView final {
 
   bool IsValid() const;
 
+#if defined DXLIB_COMPILE
   inline int GetRawHandle() const { return handle_; }
+#elif defined SIV3D_COMPILE
+  inline const std::string& GetRawHandle() const { return handle_; }
+#endif  // defined DXLIB_COMPILE
 
   void Draw(float x, float y, RenderAnchor anchor,
             const std::string& str) const;
@@ -34,7 +38,12 @@ class FontView final {
   std::tuple<int, int> GetRenderPos(RenderAnchor anchor, int width,
                                     int height) const;
 
+#if defined DXLIB_COMPILE
   const int handle_;
+#elif defined SIV3D_COMPILE
+  const std::string handle_;
+#endif  // defined DXLIB_COMPILE
+
   const int font_size_;
 };
 

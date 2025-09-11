@@ -7,7 +7,11 @@
 
 #include "font.h"
 
+#if defined DXLIB_COMPILE
 #include <DxLib.h>
+#elif defined SIV3D_COMPILE
+#include <Siv3D.hpp>
+#endif  // defined DXLIB_COMPILE
 
 #include <format>
 
@@ -17,6 +21,8 @@
 namespace mytetris {
 
 int Font::count_{0};
+
+#if defined DXLIB_COMPILE
 
 Font::Font(const std::string& file_name)
     : handle_(DxLib::LoadFontDataToHandle(file_name.c_str(), 1)),
@@ -41,6 +47,30 @@ void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
   DrawFormatStringFToHandle(x + dx, y + dy, 0xFFFFFFFF, handle_, str.c_str());
 }
+
+#elif defined SIV3D_COMPILE
+
+Font::Font(const std::string& file_name)
+    //! @todo フォントサイズを可変にする.
+    : handle_(file_name.c_str()), font_size_(40) {
+  s3d::String path{file_name.begin(), file_name.end()};
+  s3d::FontAsset::Register(path, FontMethod::MSDF, 48, Typeface::Bold);
+}
+
+Font::~Font() {
+  s3d::String path{handle_.begin(), handle_.end()};
+  s3d::FontAsset::Unregister(path);
+}
+
+void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
+  const s3d::String path{handle_.begin(), handle_.end()};
+  const s3d::String s{str.begin(), str.end()};
+  const int width = s3d::FontAsset(path)(s).region().w;
+  const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
+  s3d::FontAsset(path)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
+}
+
+#endif  // defined DXLIB_COMPILE
 
 FontView Font::GetView() const { return FontView{*this}; }
 

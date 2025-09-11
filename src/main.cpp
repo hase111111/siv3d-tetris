@@ -38,7 +38,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 #include "system_main.h"
 
-static void Main() {
+void Main() {
   using mytetris::SystemMain;
 
   SystemMain system_main;

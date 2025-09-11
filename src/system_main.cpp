@@ -92,7 +92,15 @@ void SystemMain::Main() const {
 
 #elif defined SIV3D_COMPILE
 
-bool SystemMain::Initialize() { return true; }
+bool SystemMain::Initialize() {
+  game_setting_record_ptr_ = std::make_shared<GameSettingRecord>();
+
+  // ウィンドウタイトルを設定する．
+
+  // ウィンドウのサイズを設定する．
+  Window::Resize(GameConst::kResolutionX, GameConst::kResolutionY);
+  return true;
+}
 
 void SystemMain::Main() const {
   GameMainLoop game_main_loop(game_setting_record_ptr_);

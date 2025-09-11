@@ -1,0 +1,4 @@
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+()<>-+*/_{}[]!"#$%&'= 　~|.,
+1234567890:;?/\_

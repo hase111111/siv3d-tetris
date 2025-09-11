@@ -34,14 +34,11 @@ class Texture final {
   ~Texture();
 
   //! @todo friend ŠÖ”‚É‚·‚×‚«
-  inline int GetRawHandle() const {
 #if defined DXLIB_COMPILE
-    return handle_;
+  inline int GetRawHandle() const { return handle_; }
 #elif defined SIV3D_COMPILE
-    // SIV3D”Å–¢‘Î‰.
-    return -1;
+  inline const std::string &GetRawHandle() const { return handle_; }
 #endif  // defined DXLIB_COMPILE
-  }
 
   int GetWidth() const;
 

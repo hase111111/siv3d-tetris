@@ -22,7 +22,11 @@ class TextureView final {
 
   bool IsValid() const;
 
+#if defined DXLIB_COMPILE
   inline int GetRawHandle() const { return handle_; }
+#elif defined SIV3D_COMPILE
+  inline const std::string& GetRawHandle() const { return handle_; }
+#endif  // defined DXLIB_COMPILE
 
   int GetWidth() const;
 
@@ -41,7 +45,11 @@ class TextureView final {
  private:
   std::tuple<int, int> GetRenderPos(RenderAnchor anchor) const;
 
+#if defined DXLIB_COMPILE
   const int handle_;
+#elif defined SIV3D_COMPILE
+  const std::string handle_;
+#endif  // defined DXLIB_COMPILE
 };
 
 }  // namespace mytetris
