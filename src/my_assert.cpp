@@ -7,7 +7,11 @@
 
 #include "my_assert.h"
 
+#if defined DXLIB_COMPILE
 #include <DxLib.h>
+#elif defined SIV3D_COMPILE
+#include <Siv3D.hpp>
+#endif
 
 #include <format>
 #include <string>
@@ -104,7 +108,9 @@ static std::string CollapseTemplate(const std::string& func_name) {
   return result;
 }
 
-bool IsDxLibInitialized() { return DxLib_IsInit() == TRUE; }
+#if defined DXLIB_COMPILE
+
+bool IsInitialized() { return DxLib_IsInit() == TRUE; }
 
 void ErrorAssert(const std::string& conditional_expression,
                  const std::string& error_mes, const std::string& file,
@@ -146,5 +152,38 @@ void ErrorAssert(const std::string& conditional_expression,
   // プログラムを終了する．
   exit(99);
 }
+
+#elif defined SIV3D_COMPILE
+
+bool IsInitialized() { return true; }
+
+void ErrorAssert(const std::string& conditional_expression,
+                 const std::string& error_mes, const std::string& file,
+                 const std::string& func, const int line) {
+  // エラーメッセージを表示する．
+  const std::string full_message = std::format(
+      "Error Condition : {}\n\n"
+      "Error Cause : {}\n\n"
+      "File Name : {}\n\n"
+      "Function Name : {}\n\n"
+      "Function Name Detail : \n{}\n\n"
+      "Line Number : {}\n\n"
+      "Please close this window to exit!",
+      conditional_expression, error_mes, GetFileName(file),
+      GetFuncName(
+          EraseCallingConvention(ErasePrefix(EraseNameSpaceName(func)))),
+      CollapseTemplate(
+          EraseCallingConvention(ErasePrefix(EraseNameSpaceName(func)))),
+      line);
+
+  s3d::String full_message_sv{full_message.begin(), full_message.end()};
+
+  System::MessageBoxOK(full_message_sv);
+
+  // プログラムを終了する．
+  std::terminate();
+}
+
+#endif
 
 }  // namespace mytetris::assert_internal

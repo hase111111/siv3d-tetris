@@ -7,12 +7,18 @@
 
 #include "system_main.h"
 
+#if defined DXLIB_COMPILE
 #include <DxLib.h>
+#elif defined SIV3D_COMPILE
+#include <Siv3D.hpp>
+#endif
 
 #include "game_const.h"
 #include "game_main_loop.h"
 
 namespace mytetris {
+
+#if defined DXLIB_COMPILE
 
 bool SystemMain::Initialize() {
   // 設定ファイルを読み込む．
@@ -83,5 +89,22 @@ void SystemMain::Main() const {
     }
   }
 }
+
+#elif defined SIV3D_COMPILE
+
+bool SystemMain::Initialize() { return true; }
+
+void SystemMain::Main() const {
+  GameMainLoop game_main_loop(game_setting_record_ptr_);
+  while (System::Update()) {
+    if (!game_main_loop.Loop()) {
+      break;
+    }
+  }
+}
+
+void SystemMain::Finalize() const {}
+
+#endif
 
 }  // namespace mytetris

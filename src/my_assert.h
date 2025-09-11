@@ -16,7 +16,7 @@ namespace mytetris {
 
 namespace assert_internal {
 
-bool IsDxLibInitialized();
+bool IsInitialized();
 
 void ErrorAssert(const std::string& conditional_expression,
                  const std::string& error_mes, const std::string& file,
@@ -35,17 +35,17 @@ void ErrorAssert(const std::string& conditional_expression,
       expression, error_mes, location.file_name(), location.function_name(), \
       location.line());
 
-#define ASSERT(expr, error_mes)                                 \
-  do {                                                          \
-    if (!(!!(expr))) {                                          \
-      if (!::mytetris::assert_internal::IsDxLibInitialized()) { \
-        assert(false && "DxLib is not initialized.");           \
-      } else {                                                  \
-        const std::string expr_str = #expr;                     \
-        const std::string message = error_mes;                  \
-        MYTETRIS_INTERNAL_ERROR_MESSAGE(expr_str, message);     \
-      }                                                         \
-    }                                                           \
+#define ASSERT(expr, error_mes)                             \
+  do {                                                      \
+    if (!(!!(expr))) {                                      \
+      if (!::mytetris::assert_internal::IsInitialized()) {  \
+        assert(false && "DxLib is not initialized.");       \
+      } else {                                              \
+        const std::string expr_str = #expr;                 \
+        const std::string message = error_mes;              \
+        MYTETRIS_INTERNAL_ERROR_MESSAGE(expr_str, message); \
+      }                                                     \
+    }                                                       \
   } while (0)
 
 #define ASSERT_NOT_NULL_PTR(ptr) ASSERT((ptr) != nullptr, "nullptr passed.")
