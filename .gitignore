@@ -417,4 +417,4 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-*/siv3d-tetris/siv3d/mytetris/App/*.exe
+*mytetris(debug).exe
