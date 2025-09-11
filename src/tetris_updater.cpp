@@ -140,9 +140,9 @@ void TetrisUpdater::UpdateTetrominoPosition() {
     }
   }
 
-  if (int cnt = key_event_handler_ptr_->GetPressingCount(KeyHandle::kLeft);
-      cnt == 1 || (cnt > horizontal_interval_ &&
-                   (cnt - horizontal_interval_) % horizontal_count_ == 0)) {
+  if (int cnt_l = key_event_handler_ptr_->GetPressingCount(KeyHandle::kLeft);
+      cnt_l == 1 || (cnt_l > horizontal_interval_ &&
+                     (cnt_l - horizontal_interval_) % horizontal_count_ == 0)) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ - 1,
                                            tetromino_y_)) {
       --tetromino_x_;  // ¶‚ÉˆÚ“®.
@@ -159,11 +159,11 @@ void TetrisUpdater::UpdateTetrominoPosition() {
         ++move_count_;
       }
     }
-  } else if (int cnt =
+  } else if (int cnt_r =
                  key_event_handler_ptr_->GetPressingCount(KeyHandle::kRight);
-             cnt == 1 ||
-             (cnt > horizontal_interval_ &&
-              (cnt - horizontal_interval_) % horizontal_count_ == 0)) {
+             cnt_r == 1 ||
+             (cnt_r > horizontal_interval_ &&
+              (cnt_r - horizontal_interval_) % horizontal_count_ == 0)) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ + 1,
                                            tetromino_y_)) {
       ++tetromino_x_;  // ‰E‚ÉˆÚ“®.

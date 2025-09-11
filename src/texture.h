@@ -22,14 +22,26 @@ class Texture final {
  public:
   Texture() = delete;
   Texture(const std::string &file_name);
+
+#if defined DXLIB_COMPILE
   Texture(int raw_handle);
+#endif  // defined DXLIB_COMPILE
+
   Texture(const Texture &) = delete;
   Texture &operator=(const Texture &) = delete;
   Texture(Texture &&) = default;
   Texture &operator=(Texture &&) = default;
   ~Texture();
 
-  inline int GetRawHandle() const { return handle_; }
+  //! @todo friend ä÷êîÇ…Ç∑Ç◊Ç´
+  inline int GetRawHandle() const {
+#if defined DXLIB_COMPILE
+    return handle_;
+#elif defined SIV3D_COMPILE
+    // SIV3Dî≈ñ¢ëŒâû.
+    return -1;
+#endif  // defined DXLIB_COMPILE
+  }
 
   int GetWidth() const;
 
@@ -47,13 +59,20 @@ class Texture final {
  private:
   std::tuple<int, int> GetRenderPos(RenderAnchor anchor) const;
 
+#if defined DXLIB_COMPILE
   const int handle_;
+#elif defined SIV3D_COMPILE
+  const std::string handle_;
+#endif  // defined DXLIB_COMPILE
+
   static int count_;
 };
 
+#if defined DXLIB_COMPILE
 std::vector<std::unique_ptr<Texture>> LoadDivideGraph(const std::string path,
                                                       int x_num, int y_num,
                                                       int all_num, int x_size,
                                                       int y_size);
+#endif
 
 }  // namespace mytetris

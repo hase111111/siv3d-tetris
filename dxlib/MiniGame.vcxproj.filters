@@ -80,9 +80,6 @@
     <ClCompile Include="..\src\fade_effect.cpp">
       <Filter>ソース ファイル\system</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\game_const.cpp">
-      <Filter>ソース ファイル\common</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\font_view.cpp">
       <Filter>ソース ファイル\resource</Filter>
     </ClCompile>

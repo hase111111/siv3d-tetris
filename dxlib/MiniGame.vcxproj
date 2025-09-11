@@ -32,7 +32,6 @@
     <ClCompile Include="..\src\font.cpp" />
     <ClCompile Include="..\src\font_view.cpp" />
     <ClCompile Include="..\src\fps_controller.cpp" />
-    <ClCompile Include="..\src\game_const.cpp" />
     <ClCompile Include="..\src\game_end_checker.cpp" />
     <ClCompile Include="..\src\game_main_loop.cpp" />
     <ClCompile Include="..\src\hold_renderer.cpp" />

@@ -67,11 +67,6 @@ class KeyEventHandler final {
   //! @return 離されているフレーム数．異常な key_code が渡された場合は-1を返す．
   int GetReleasingCount(KeyHandle key_code) const;
 
-  //! @brief どれかのキーが押されているか返す．
-  //! @retval true どれかのキーが押されている．
-  //! @retval false どれも押されていない．
-  bool IsAnyKeyPressed() const;
-
  private:
   static const int kKeyNum = 256;  //!< DxLibにおけるキー総数．
 

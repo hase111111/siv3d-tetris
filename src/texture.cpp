@@ -7,7 +7,11 @@
 
 #include "texture.h"
 
+#if defined DXLIB_COMPILE
 #include <DxLib.h>
+#elif defined SIV3D_COMPILE
+#include <Siv3D.hpp>
+#endif  // defined DXLIB_COMPILE
 
 #include <format>
 
@@ -18,6 +22,7 @@ namespace mytetris {
 
 int Texture::count_{0};
 
+#if defined DXLIB_COMPILE
 Texture::Texture(const std::string& file_name)
     : handle_(DxLib::LoadGraph(file_name.c_str())) {
   ASSERT(handle_ >= 0, std::format("Failed to load texture: {} (handle: {})",
@@ -50,6 +55,29 @@ int Texture::GetHeight() const {
   return 0;
 }
 
+#elif defined SIV3D_COMPILE
+Texture::Texture(const std::string& file_name) : handle_(file_name.c_str()) {
+  s3d::String path{file_name.begin(), file_name.end()};
+  s3d::TextureAsset::Register(path, path);
+}
+
+Texture::~Texture() {
+  s3d::String path{handle_.begin(), handle_.end()};
+  s3d::TextureAsset::Unregister(path);
+}
+
+int Texture::GetWidth() const {
+  s3d::String path{handle_.begin(), handle_.end()};
+  return s3d::TextureAsset(path).width();
+}
+
+int Texture::GetHeight() const {
+  s3d::String path{handle_.begin(), handle_.end()};
+  return s3d::TextureAsset(path).height();
+}
+
+#endif  // defined DXLIB_COMPILE
+
 void Texture::Draw(float x, float y, RenderAnchor anchor) const {
   DrawRotated(x, y, anchor, 1.0f, 0.0f);
 }
@@ -58,8 +86,16 @@ void Texture::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
                           float angle) const {
   const auto [render_x, render_y] = GetRenderPos(anchor);
 
+#if defined DXLIB_COMPILE
   DxLib::DrawRotaGraphF(x + render_x * ex, y + render_y * ex, ex, angle,
                         GetRawHandle(), TRUE);
+#elif defined SIV3D_COMPILE
+  s3d::String path{handle_.begin(), handle_.end()};
+  s3d::TextureAsset(path)
+      .resized(GetWidth() * ex, GetHeight() * ex)
+      .rotated(s3d::Math::ToRadians(angle))
+      .drawAt(s3d::Vec2(x + render_x * ex, y + render_y * ex));
+#endif  // defined DXLIB_COMPILE
 }
 
 TextureView Texture::GetView() const { return TextureView{*this}; }
@@ -90,6 +126,7 @@ std::tuple<int, int> Texture::GetRenderPos(RenderAnchor anchor) const {
   }
 }
 
+#if defined DXLIB_COMPILE
 std::vector<std::unique_ptr<Texture>> LoadDivideGraph(
     const std::string path, const int x_num, const int y_num, const int all_num,
     const int x_size, const int y_size) {
@@ -106,5 +143,6 @@ std::vector<std::unique_ptr<Texture>> LoadDivideGraph(
 
   return ret;
 }
+#endif
 
 }  // namespace mytetris
