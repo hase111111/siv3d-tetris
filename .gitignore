@@ -418,4 +418,6 @@ FodyWeavers.xsd
 *.msp
 
 *mytetris(debug).exe
+*mytetris.exe
 *AS_DEBUG/
+*Screenshots/
