@@ -180,8 +180,11 @@ void ErrorAssert(const std::string& conditional_expression,
 
   System::MessageBoxOK(full_message_sv);
 
+  System::Exit();
+  System::Update();
+
   // プログラムを終了する．
-  std::terminate();
+  std::abort();
 }
 
 #endif

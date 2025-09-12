@@ -99,6 +99,10 @@ bool SystemMain::Initialize() {
 
   // ウィンドウのサイズを設定する．
   Window::Resize(GameConst::kResolutionX, GameConst::kResolutionY);
+
+  // ウィンドウの背景色を設定する．
+  Scene::SetBackground(ColorF{0.0f, 0.0f, 0.0f});
+
   return true;
 }
 

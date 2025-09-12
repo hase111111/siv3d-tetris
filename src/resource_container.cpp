@@ -30,14 +30,14 @@ void ResourceContainer::RegisterFont(const std::string& name,
 }
 
 TextureView ResourceContainer::GetTexture(const std::string& name) const {
-  DEBUG_ASSERT(textures.find(name) != textures.end(),
-               std::format("Texture with name {} does not exist.", name));
+  ASSERT(textures.find(name) != textures.end(),
+         std::format("Texture with name {} does not exist.", name));
   return textures.at(name)->GetView();
 }
 
 FontView ResourceContainer::GetFont(const std::string& name) const {
-  DEBUG_ASSERT(fonts.find(name) != fonts.end(),
-               std::format("Font with name {} does not exist.", name));
+  ASSERT(fonts.find(name) != fonts.end(),
+         std::format("Font with name {} does not exist.", name));
   return fonts.at(name)->GetView();
 }
 
