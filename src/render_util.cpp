@@ -65,7 +65,10 @@ static s3d::ColorF ColorFromUint32(const unsigned int color,
 
 void DrawRect(const float left, const float top, const float right,
               const float bottom, const unsigned int color, const bool fill) {
-  const s3d::RectF rect(left, top, right, bottom);
+  const s3d::Rect rect(static_cast<int32>(left), static_cast<int32>(top),
+                       static_cast<int32>(right - left),
+                       static_cast<int32>(bottom - top));
+
   if (fill) {
     rect.draw(ColorFromUint32(color, 1.0));
   } else {
@@ -75,7 +78,9 @@ void DrawRect(const float left, const float top, const float right,
 
 void DrawRectAlpha(float left, float top, float right, float bottom,
                    unsigned int color, bool fill, float alpha) {
-  const s3d::RectF rect(left, top, right, bottom);
+  const s3d::Rect rect(static_cast<int32>(left), static_cast<int32>(top),
+                       static_cast<int32>(right - left),
+                       static_cast<int32>(bottom - top));
 
   if (fill) {
     rect.draw(ColorFromUint32(color, alpha));
