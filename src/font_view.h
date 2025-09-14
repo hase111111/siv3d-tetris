@@ -16,7 +16,13 @@ namespace mytetris {
 class FontView final {
  public:
   FontView() = delete;
+
+#if defined DXLIB_COMPILE
   FontView(const Font& font);
+#elif defined SIV3D_COMPILE
+  FontView(const Font& font, int font_size);
+#endif  // defined DXLIB_COMPILE
+
   FontView(const FontView&) = default;
   FontView(FontView&&) noexcept = default;
 

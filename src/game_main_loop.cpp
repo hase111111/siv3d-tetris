@@ -100,13 +100,20 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
                                         std::move(tetromino[i]));
   }
 #elif defined SIV3D_COMPILE
-  //! @todo LoadDivideGraphÇSiv3DÇ≈é¿ëïÇ∑ÇÈÅD
+  for (int i = 0; i < 16; ++i) {
+    resource_container->RegisterTexture(
+        std::format("block_{}.png", i),
+        std::make_unique<Texture>(
+            std::format("dat/img/for_siv3d/block_{}.png", i)));
+  }
 #endif
 
   resource_container->RegisterFont(
-      "default", std::move(std::make_unique<Font>("dat/font/JKGothic40.dft")));
+      "default",
+      std::move(std::make_unique<Font>("dat/font/JK-Maru-Gothic-M.otf", 40)));
   resource_container->RegisterFont(
-      "small", std::move(std::make_unique<Font>("dat/font/JKGothic20.dft")));
+      "small",
+      std::move(std::make_unique<Font>("dat/font/JK-Maru-Gothic-M_.otf", 20)));
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
       scene_change_listener_ptr_, fps_controller_ptr_, key_event_handler_ptr_,

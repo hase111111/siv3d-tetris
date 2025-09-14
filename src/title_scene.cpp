@@ -9,6 +9,7 @@
 
 #include "game_const.h"
 #include "my_assert.h"
+#include "render_util.h"
 
 namespace mytetris {
 

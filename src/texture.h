@@ -70,6 +70,6 @@ std::vector<std::unique_ptr<Texture>> LoadDivideGraph(const std::string path,
                                                       int x_num, int y_num,
                                                       int all_num, int x_size,
                                                       int y_size);
-#endif
+#endif  // defined DXLIB_COMPILE
 
 }  // namespace mytetris

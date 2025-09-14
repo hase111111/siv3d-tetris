@@ -21,10 +21,12 @@ class FontView;
 class Font final {
  public:
   Font() = delete;
-  Font(const std::string &file_name);
 
 #if defined DXLIB_COMPILE
+  Font(const std::string &file_name);
   Font(int raw_handle);
+#elif defined SIV3D_COMPILE
+  Font(const std::string &file_name, int font_size);
 #endif  // defined DXLIB_COMPILE
 
   Font(const Font &) = delete;

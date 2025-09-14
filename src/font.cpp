@@ -50,11 +50,10 @@ void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
 
 #elif defined SIV3D_COMPILE
 
-Font::Font(const std::string& file_name)
-    //! @todo フォントサイズを可変にする.
-    : handle_(file_name.c_str()), font_size_(40) {
+Font::Font(const std::string& file_name, const int font_size)
+    : handle_(file_name.c_str()), font_size_(font_size) {
   s3d::String path{file_name.begin(), file_name.end()};
-  s3d::FontAsset::Register(path, FontMethod::MSDF, 48, Typeface::Bold);
+  s3d::FontAsset::Register(path, FontMethod::MSDF, font_size);
 }
 
 Font::~Font() {
@@ -65,14 +64,14 @@ Font::~Font() {
 void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
   const s3d::String s{str.begin(), str.end()};
-  const int width = s3d::FontAsset(path)(s).region().w;
+  const int width = static_cast<int>(s3d::FontAsset(path)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
   s3d::FontAsset(path)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
 }
 
 #endif  // defined DXLIB_COMPILE
 
-FontView Font::GetView() const { return FontView{*this}; }
+FontView Font::GetView() const { return FontView{*this, font_size_}; }
 
 std::tuple<int, int> Font::GetRenderPos(RenderAnchor anchor, int width,
                                         int height) const {

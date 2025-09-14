@@ -45,8 +45,8 @@ void FontView::DrawAlpha(const float x, const float y,
 
 #elif defined SIV3D_COMPILE
 
-FontView::FontView(const Font& font)
-    : handle_(font.GetRawHandle()), font_size_(40) {}
+FontView::FontView(const Font& font, const int font_size)
+    : handle_(font.GetRawHandle()), font_size_(font_size) {}
 
 bool FontView::IsValid() const { return true; }
 
