@@ -54,16 +54,19 @@ bool GameMainLoop::Loop() {
   // 処理が重い場合はここでコマ落ちさせる．
   if (!fps_controller_ptr_->SkipDrawScene()) {
 #if defined DXLIB_COMPILE
+
     // スクリーンを消す．
     if (DxLib::ClearDrawScreen() != 0) {
       return false;
     }
+
 #endif  // defined DXLIB_COMPILE
 
     // 描画する．
     scene_stack_ptr_->DrawTopScene();
 
 #if defined DXLIB_COMPILE
+
     // スクリーンに表示する．
     if (DxLib::ScreenFlip() != 0) {
       return false;
