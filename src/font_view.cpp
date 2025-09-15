@@ -54,7 +54,7 @@ void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
                     const std::string& str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
   s3d::String s{str.begin(), str.end()};
-  const int width = s3d::FontAsset(path)(s).region().w;
+  const int width = static_cast<int>(s3d::FontAsset(path)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
   s3d::FontAsset(path)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
 }
@@ -64,7 +64,7 @@ void FontView::DrawAlpha(const float x, const float y,
                          const float alpha) const {
   const s3d::String path{handle_.begin(), handle_.end()};
   s3d::String s{str.begin(), str.end()};
-  const int width = s3d::FontAsset(path)(s).region().w;
+  const int width = static_cast<int>(s3d::FontAsset(path)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
   s3d::FontAsset(path)(s).draw(s3d::Vec2(x + dx, y + dy),
                                s3d::ColorF{1.0, static_cast<double>(alpha)});
