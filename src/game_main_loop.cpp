@@ -116,11 +116,11 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   }
 
   resource_container->RegisterFont(
-      "default",
-      std::move(std::make_unique<Font>("dat/font/JK-Maru-Gothic-M.otf", 40)));
+      "default", std::move(std::make_unique<Font>(
+                     "dat/font/x10y12pxDonguriDuel.ttf", 40)));
   resource_container->RegisterFont(
-      "small",
-      std::move(std::make_unique<Font>("dat/font/JK-Maru-Gothic-M_.otf", 20)));
+      "small", std::move(std::make_unique<Font>(
+                   "dat/font/x10y12pxDonguriDuel.ttf", 20)));
 
 #endif  // defined DXLIB_COMPILE
 

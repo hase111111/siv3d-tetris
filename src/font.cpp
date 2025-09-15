@@ -54,8 +54,9 @@ FontView Font::GetView() const { return FontView{*this}; }
 
 Font::Font(const std::string& file_name, const int font_size)
     : handle_(file_name.c_str()), font_size_(font_size) {
-  s3d::String path{file_name.begin(), file_name.end()};
-  s3d::FontAsset::Register(path, FontMethod::MSDF, font_size);
+  const s3d::String path{file_name.begin(), file_name.end()};
+  const s3d::String key = U"{}_{}"_fmt(path, font_size_);
+  s3d::FontAsset::Register(key, FontMethod::MSDF, font_size, path);
 }
 
 Font::~Font() {
@@ -65,10 +66,11 @@ Font::~Font() {
 
 void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
+  const s3d::String key = U"{}_{}"_fmt(path, font_size_);
   const s3d::String s{str.begin(), str.end()};
-  const int width = static_cast<int>(s3d::FontAsset(path)(s).region().w);
+  const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
-  s3d::FontAsset(path)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
+  s3d::FontAsset(key)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
 }
 
 FontView Font::GetView() const { return FontView{*this, font_size_}; }
