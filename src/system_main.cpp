@@ -103,7 +103,9 @@ bool SystemMain::Initialize() {
   // ウィンドウの背景色を設定する．
   Scene::SetBackground(ColorF{0.0f, 0.0f, 0.0f});
 
+#if !defined __EMSCRIPTEN__
   Graphics::SetVSyncEnabled(false);
+#endif
 
   return true;
 }

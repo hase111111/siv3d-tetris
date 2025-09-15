@@ -75,8 +75,12 @@ bool GameMainLoop::Loop() {
 #endif  // defined DXLIB_COMPILE
   }
 
+#if !defined __EMSCRIPTEN__
+
   // FPSを調整するための処理．
   fps_controller_ptr_->Wait();
+
+#endif  // !defined __EMSCRIPTEN__
 
   // シーンの変更を実行する．
   scene_change_executer_.Execute();
