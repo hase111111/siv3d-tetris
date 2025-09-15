@@ -68,6 +68,7 @@ bool GameMainLoop::Loop() {
     if (DxLib::ScreenFlip() != 0) {
       return false;
     }
+
 #endif  // defined DXLIB_COMPILE
   }
 
