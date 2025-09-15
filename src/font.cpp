@@ -48,6 +48,8 @@ void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
   DrawFormatStringFToHandle(x + dx, y + dy, 0xFFFFFFFF, handle_, str.c_str());
 }
 
+FontView Font::GetView() const { return FontView{*this}; }
+
 #elif defined SIV3D_COMPILE
 
 Font::Font(const std::string& file_name, const int font_size)
@@ -69,9 +71,9 @@ void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
   s3d::FontAsset(path)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
 }
 
-#endif  // defined DXLIB_COMPILE
-
 FontView Font::GetView() const { return FontView{*this, font_size_}; }
+
+#endif  // defined DXLIB_COMPILE
 
 std::tuple<int, int> Font::GetRenderPos(RenderAnchor anchor, int width,
                                         int height) const {

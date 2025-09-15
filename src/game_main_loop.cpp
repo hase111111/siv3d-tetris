@@ -94,19 +94,26 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
       "wall.png", std::move(std::make_unique<Texture>("dat/img/wall.png")));
 
 #ifdef DXLIB_COMPILE
+
   auto tetromino = LoadDivideGraph("dat/img/blocks.png", 8, 2, 16, 20, 20);
   for (int i = 0; i < 16; ++i) {
     resource_container->RegisterTexture(std::format("block_{}.png", i),
                                         std::move(tetromino[i]));
   }
+
+  resource_container->RegisterFont(
+      "default", std::move(std::make_unique<Font>("dat/font/JKGothic40.dft")));
+  resource_container->RegisterFont(
+      "small", std::move(std::make_unique<Font>("dat/font/JKGothic20.dft")));
+
 #elif defined SIV3D_COMPILE
+
   for (int i = 0; i < 16; ++i) {
     resource_container->RegisterTexture(
         std::format("block_{}.png", i),
         std::make_unique<Texture>(
             std::format("dat/img/for_siv3d/block_{}.png", i)));
   }
-#endif
 
   resource_container->RegisterFont(
       "default",
@@ -114,6 +121,8 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   resource_container->RegisterFont(
       "small",
       std::move(std::make_unique<Font>("dat/font/JK-Maru-Gothic-M_.otf", 20)));
+
+#endif  // defined DXLIB_COMPILE
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
       scene_change_listener_ptr_, fps_controller_ptr_, key_event_handler_ptr_,
