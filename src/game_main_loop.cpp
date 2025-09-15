@@ -11,10 +11,10 @@
 #include <DxLib.h>
 #endif  // defined DXLIB_COMPILE
 
-#include <format>
 #include <utility>
 
 #include "my_assert.h"
+#include "my_format.h"
 #include "resource_container.h"
 #include "texture.h"
 
@@ -110,13 +110,12 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   resource_container->RegisterFont(
       "small", std::move(std::make_unique<Font>("dat/font/JKGothic20.dft")));
 
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
   for (int i = 0; i < 16; ++i) {
     resource_container->RegisterTexture(
-        std::format("block_{}.png", i),
-        std::make_unique<Texture>(
-            std::format("dat/img/for_siv3d/block_{}.png", i)));
+        format("block_{}.png", i),
+        std::make_unique<Texture>(format("dat/img/for_siv3d/block_{}.png", i)));
   }
 
   resource_container->RegisterFont(

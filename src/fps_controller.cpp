@@ -9,7 +9,7 @@
 
 #if defined DXLIB_COMPILE
 #include <Dxlib.h>
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
 #endif  // defined DXLIB_COMPILE
 
@@ -39,7 +39,7 @@ void FpsController::Wait() {
     WaitTimer(wait_time);  // 取得した時間分待つ．
 
     RegisterTime(GetNowCount());  // 現在の時刻を記録する．
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
     s3d::System::Sleep(wait_time);
     RegisterTime(
         static_cast<int>(s3d::Time::GetMillisec()));  // 現在の時刻を記録する．
@@ -107,7 +107,7 @@ bool FpsController::CheckNeedSkipDrawScreen(int* time) const {
   // 実際にかかった時間を求める．
 #if defined DXLIB_COMPILE
   int actually_took_time = GetNowCount() - time_list_.back();
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   int actually_took_time =
       static_cast<int>(s3d::Time::GetMillisec()) - time_list_.back();
 #endif  // defined DXLIB_COMPILE

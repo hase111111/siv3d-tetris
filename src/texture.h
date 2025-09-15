@@ -36,7 +36,7 @@ class Texture final {
   //! @todo friend ä÷êîÇ…Ç∑Ç◊Ç´
 #if defined DXLIB_COMPILE
   inline int GetRawHandle() const { return handle_; }
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   inline const std::string &GetRawHandle() const { return handle_; }
 #endif  // defined DXLIB_COMPILE
 
@@ -58,7 +58,7 @@ class Texture final {
 
 #if defined DXLIB_COMPILE
   const int handle_;
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   const std::string handle_;
 #endif  // defined DXLIB_COMPILE
 

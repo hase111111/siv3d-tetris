@@ -9,7 +9,7 @@
 
 #if defined DXLIB_COMPILE
 #include <DxLib.h>
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
 #endif  // defined DXLIB_COMPILE
 
@@ -23,7 +23,7 @@ TextureView::TextureView(const Texture& texture)
 bool TextureView::IsValid() const {
 #if defined DXLIB_COMPILE
   return handle_ >= 0;
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   return true;
 #endif  // defined DXLIB_COMPILE
 }
@@ -45,7 +45,7 @@ int TextureView::GetHeight() const {
   return 0;
 }
 
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
 int TextureView::GetWidth() const {
   s3d::String path{handle_.begin(), handle_.end()};
@@ -70,7 +70,7 @@ void TextureView::DrawAlpha(float x, float y, RenderAnchor anchor,
   DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
   Draw(x, y, anchor);
   DxLib::SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   const s3d::String path{handle_.begin(), handle_.end()};
   const auto [render_x, render_y] = GetRenderPos(anchor);
 
@@ -89,7 +89,7 @@ void TextureView::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
 #if defined DXLIB_COMPILE
   DxLib::DrawRotaGraphF(x + render_x * ex, y + render_y * ex, ex, angle,
                         handle_, TRUE);
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   s3d::String path{handle_.begin(), handle_.end()};
   s3d::TextureAsset(path)
       .resized(GetWidth() * ex, GetHeight() * ex)
@@ -105,7 +105,7 @@ void TextureView::DrawRotatedAlpha(float x, float y, RenderAnchor anchor,
   DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
   DrawRotated(x, y, anchor, ex, angle);
   DxLib::SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   const s3d::String path{handle_.begin(), handle_.end()};
   const auto [render_x, render_y] = GetRenderPos(anchor);
 

@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
   return 0;
 }
 
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
 #include <Siv3D.hpp>
 

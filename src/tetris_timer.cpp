@@ -7,19 +7,19 @@
 
 #include "tetris_timer.h"
 
-#include <format>
+#include "my_format.h"
 
 namespace mytetris {
 
 void TetrisTimer::Update() { ++cnt; }
 
 std::string TetrisTimer::GetTimeString() const {
-  int total_seconds = cnt / 60;
-  int minutes = total_seconds / 60;
-  int seconds = total_seconds % 60;
-  int milliseconds = (cnt % 60) * (1000 / 60);
+  const int total_seconds = cnt / 60;
+  const int minutes = total_seconds / 60;
+  const int seconds = total_seconds % 60;
+  const int milliseconds = (cnt % 60) * (1000 / 60);
 
-  return std::format("{:02}:{:02}.{:03}", minutes, seconds, milliseconds);
+  return format("{}:{}.{}", minutes, seconds, milliseconds);
 }
 
 }  // namespace mytetris

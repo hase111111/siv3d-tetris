@@ -9,7 +9,7 @@
 
 #if defined DXLIB_COMPILE
 #include <DxLib.h>
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
 #endif
 
@@ -90,7 +90,7 @@ void SystemMain::Main() const {
   }
 }
 
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
 bool SystemMain::Initialize() {
   game_setting_record_ptr_ = std::make_shared<GameSettingRecord>();

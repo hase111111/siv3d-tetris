@@ -9,7 +9,7 @@
 
 #if defined DXLIB_COMPILE
 #include <DxLib.h>
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
 #endif  // defined DXLIB_COMPILE
 
@@ -48,7 +48,7 @@ void KeyEventHandler::Update() {
     }
   }
 }
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
 static s3d::Input ToInput(const KeyHandle handle) {
   switch (handle) {

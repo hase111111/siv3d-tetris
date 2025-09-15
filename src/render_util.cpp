@@ -9,7 +9,7 @@
 
 #if defined DXLIB_COMPILE
 #include <DxLib.h>
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
 #endif  // defined DXLIB_COMPILE
 
@@ -53,7 +53,7 @@ void DrawLineAlpha(float x1, float y1, float x2, float y2, unsigned int color,
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
 static s3d::ColorF ColorFromUint32(const unsigned int color,
                                    const float alpha) {

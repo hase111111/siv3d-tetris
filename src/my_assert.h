@@ -8,7 +8,9 @@
 #pragma once
 
 #include <cassert>
+#ifndef __EMSCRIPTEN__
 #include <source_location>
+#endif  // SIV3D_WEB_COMPILE
 #include <stdexcept>
 #include <string>
 
@@ -26,6 +28,8 @@ void ErrorAssert(const std::string& conditional_expression,
 
 }  // namespace mytetris
 
+#ifndef __EMSCRIPTEN__
+
 //! @brief エラーが発生したときにエラーメッセージを表示する．
 //! @param expression エラーが発生条件の式(文字列)
 //! @param error_mes エラーメッセージ．
@@ -34,6 +38,17 @@ void ErrorAssert(const std::string& conditional_expression,
   ::mytetris::assert_internal::ErrorAssert(                                  \
       expression, error_mes, location.file_name(), location.function_name(), \
       location.line());
+
+#else
+
+//! @brief エラーが発生したときにエラーメッセージを表示する．
+//! @param expression エラーが発生条件の式(文字列).
+//! @param error_mes エラーメッセージ．
+#define MYTETRIS_INTERNAL_ERROR_MESSAGE(expression, error_mes) \
+  ::mytetris::assert_internal::ErrorAssert(                    \
+      expression, error_mes, "unknown_file", "unknown_function", -1);
+
+#endif
 
 #define ASSERT(expr, error_mes)                             \
   do {                                                      \

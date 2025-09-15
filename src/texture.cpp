@@ -9,7 +9,7 @@
 
 #if defined DXLIB_COMPILE
 #include <DxLib.h>
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
 #endif  // defined DXLIB_COMPILE
 
@@ -55,7 +55,7 @@ int Texture::GetHeight() const {
   return 0;
 }
 
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 Texture::Texture(const std::string& file_name) : handle_(file_name.c_str()) {
   s3d::String path{file_name.begin(), file_name.end()};
   s3d::TextureAsset::Register(path, path);
@@ -89,7 +89,7 @@ void Texture::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
 #if defined DXLIB_COMPILE
   DxLib::DrawRotaGraphF(x + render_x * ex, y + render_y * ex, ex, angle,
                         GetRawHandle(), TRUE);
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
   s3d::String path{handle_.begin(), handle_.end()};
   s3d::TextureAsset(path)
       .resized(GetWidth() * ex, GetHeight() * ex)

@@ -9,11 +9,12 @@
 
 #if defined DXLIB_COMPILE
 #include <DxLib.h>
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
 #endif  // defined DXLIB_COMPILE
 
 #include "my_assert.h"
+#include "my_format.h"
 
 namespace mytetris {
 
@@ -43,7 +44,7 @@ void FontView::DrawAlpha(const float x, const float y,
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
-#elif defined SIV3D_COMPILE
+#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
 FontView::FontView(const Font& font, const int font_size)
     : handle_(font.GetRawHandle()), font_size_(font_size) {}
@@ -53,7 +54,8 @@ bool FontView::IsValid() const { return true; }
 void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
                     const std::string& str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
-  const s3d::String key = U"{}_{}"_fmt(path, font_size_);
+  const std::string key_str = format("{}_{}", handle_, font_size_);
+  const s3d::String key{key_str.begin(), key_str.end()};
   s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
@@ -64,7 +66,8 @@ void FontView::DrawAlpha(const float x, const float y,
                          const RenderAnchor anchor, const std::string& str,
                          const float alpha) const {
   const s3d::String path{handle_.begin(), handle_.end()};
-  const s3d::String key = U"{}_{}"_fmt(path, font_size_);
+  const std::string key_str = format("{}_{}", handle_, font_size_);
+  const s3d::String key{key_str.begin(), key_str.end()};
   s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);

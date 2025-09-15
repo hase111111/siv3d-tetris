@@ -33,7 +33,7 @@ std::string DropCount::GetDisplaySpeed(int level) const {
   } else {
     const float interp = count / 60.0f * 100;
     const float speed = 101.0f - 1 * interp;
-    return std::format("{}", static_cast<int>(speed));
+    return std::to_string(static_cast<int>(speed));
   }
 }
 
