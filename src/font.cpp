@@ -26,8 +26,8 @@ int Font::count_{0};
 Font::Font(const std::string& file_name)
     : handle_(DxLib::LoadFontDataToHandle(file_name.c_str(), 1)),
       font_size_(GetFontSizeToHandle(handle_)) {
-  ASSERT(handle_ >= 0, std::format("Failed to load font: {} (handle: {})",
-                                   file_name, handle_));
+  ASSERT(handle_ >= 0,
+         format("Failed to load font: {} (handle: {})", file_name, handle_));
   // 1フレーム間に大量のテクスチャのロードが発生することを防ぐため，
   // ロードした数をカウントする
   ++count_;
@@ -35,7 +35,7 @@ Font::Font(const std::string& file_name)
 
 Font::Font(const int raw_handle)
     : handle_(raw_handle), font_size_(GetFontSizeToHandle(handle_)) {
-  ASSERT(handle_ >= 0, std::format("Failed to load font, handle: {}", handle_));
+  ASSERT(handle_ >= 0, format("Failed to load font, handle: {}", handle_));
 }
 
 Font::~Font() { DxLib::DeleteGraph(handle_); }

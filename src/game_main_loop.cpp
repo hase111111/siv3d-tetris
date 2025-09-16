@@ -105,7 +105,7 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
 
   auto tetromino = LoadDivideGraph("dat/img/blocks.png", 8, 2, 16, 20, 20);
   for (int i = 0; i < 16; ++i) {
-    resource_container->RegisterTexture(std::format("block_{}.png", i),
+    resource_container->RegisterTexture(format("block_{}.png", i),
                                         std::move(tetromino[i]));
   }
 
