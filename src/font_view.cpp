@@ -7,17 +7,17 @@
 
 #include "font_view.h"
 
-#if defined DXLIB_COMPILE
+#if defined(DXLIB_COMPILE)
 #include <DxLib.h>
-#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
+#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
-#endif  // defined DXLIB_COMPILE
+#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
 #include "my_assert.h"
 
 namespace mytetris {
 
-#if defined DXLIB_COMPILE
+#if defined(DXLIB_COMPILE)
 
 FontView::FontView(const Font& font)
     : handle_(font.GetRawHandle()), font_size_(GetFontSizeToHandle(handle_)) {}
@@ -43,7 +43,7 @@ void FontView::DrawAlpha(const float x, const float y,
   SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
-#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
+#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
 FontView::FontView(const Font& font, const int font_size)
     : handle_(font.GetRawHandle()), font_size_(font_size) {}
@@ -55,7 +55,7 @@ void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
   const s3d::String path{handle_.begin(), handle_.end()};
   const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
-  s3d::String s{str.begin(), str.end()};
+  const s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
   s3d::FontAsset(key)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
@@ -67,14 +67,14 @@ void FontView::DrawAlpha(const float x, const float y,
   const s3d::String path{handle_.begin(), handle_.end()};
   const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
-  s3d::String s{str.begin(), str.end()};
+  const s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
   s3d::FontAsset(key)(s).draw(s3d::Vec2(x + dx, y + dy),
                               s3d::ColorF{1.0, static_cast<double>(alpha)});
 }
 
-#endif  // defined DXLIB_COMPILE
+#endif  // defined (SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
 std::tuple<int, int> FontView::GetRenderPos(RenderAnchor anchor, int width,
                                             int height) const {
