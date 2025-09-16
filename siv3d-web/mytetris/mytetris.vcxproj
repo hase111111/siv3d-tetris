@@ -303,6 +303,7 @@
     <ClInclude Include="..\..\src\fade_effect.h" />
     <ClInclude Include="..\..\src\font.h" />
     <ClInclude Include="..\..\src\font_view.h" />
+    <ClInclude Include="..\..\src\fps_addon.h" />
     <ClInclude Include="..\..\src\fps_controller.h" />
     <ClInclude Include="..\..\src\game_const.h" />
     <ClInclude Include="..\..\src\game_end_checker.h" />
@@ -358,6 +359,7 @@
     <ClCompile Include="..\..\src\fade_effect.cpp" />
     <ClCompile Include="..\..\src\font.cpp" />
     <ClCompile Include="..\..\src\font_view.cpp" />
+    <ClCompile Include="..\..\src\fps_addon.cpp" />
     <ClCompile Include="..\..\src\fps_controller.cpp" />
     <ClCompile Include="..\..\src\game_end_checker.cpp" />
     <ClCompile Include="..\..\src\game_main_loop.cpp" />

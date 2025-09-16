@@ -928,6 +928,9 @@
     <ClInclude Include="..\..\src\my_format.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\fps_addon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\title_back_ground.cpp">
@@ -1060,6 +1063,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\texture_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fps_addon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

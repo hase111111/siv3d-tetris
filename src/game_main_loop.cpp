@@ -9,10 +9,13 @@
 
 #if defined(DXLIB_COMPILE)
 #include <DxLib.h>
-#endif  // defined(DXLIB_COMPILE)
+#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
+#include <Siv3D.hpp>
+#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
 #include <utility>
 
+#include "fps_addon.h"
 #include "my_assert.h"
 #include "my_format.h"
 #include "resource_container.h"
@@ -36,8 +39,14 @@ GameMainLoop::GameMainLoop(
   DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
+
+#if defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
+  s3d::Addon::Register(U"FpsController",
+                       std::make_unique<FpsAddon>(fps_controller_ptr_));
+#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 }
 
+#if defined(DXLIB_COMPILE)
 bool GameMainLoop::Loop() {
   // 入力を取得
   key_event_handler_ptr_->Update();
@@ -53,40 +62,51 @@ bool GameMainLoop::Loop() {
 
   // 処理が重い場合はここでコマ落ちさせる．
   if (!fps_controller_ptr_->SkipDrawScene()) {
-#if defined DXLIB_COMPILE
-
     // スクリーンを消す．
     if (DxLib::ClearDrawScreen() != 0) {
       return false;
     }
 
-#endif  // defined DXLIB_COMPILE
-
     // 描画する．
     scene_stack_ptr_->DrawTopScene();
-
-#if defined DXLIB_COMPILE
 
     // スクリーンに表示する．
     if (DxLib::ScreenFlip() != 0) {
       return false;
     }
-
-#endif  // defined DXLIB_COMPILE
   }
-
-#if !defined __EMSCRIPTEN__
 
   // FPSを調整するための処理．
   fps_controller_ptr_->Wait();
-
-#endif  // !defined __EMSCRIPTEN__
 
   // シーンの変更を実行する．
   scene_change_executer_.Execute();
 
   return true;
 }
+#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
+bool GameMainLoop::Loop() {
+  // 入力を取得
+  key_event_handler_ptr_->Update();
+
+  // シーンのスタックの一番上を実行する．
+  if (!scene_stack_ptr_->UpdateTopScene()) {
+    return false;
+  }
+
+  ASSERT(Texture::GetCount() - texture_count_ < 1000,
+         "A large number of textures are generated in a single frame");
+  texture_count_ = Texture::GetCount();
+
+  // 処理が重い場合はここでコマ落ちさせる．
+  scene_stack_ptr_->DrawTopScene();
+
+  // シーンの変更を実行する．
+  scene_change_executer_.Execute();
+
+  return true;
+}
+#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
 std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   // NULLチェック．

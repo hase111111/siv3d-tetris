@@ -32,7 +32,6 @@ class Font final {
   Font(const Font &) = delete;
   Font &operator=(const Font &) = delete;
   Font(Font &&) = default;
-  Font &operator=(Font &&) = default;
   ~Font();
 
 #if defined DXLIB_COMPILE
