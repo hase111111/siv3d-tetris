@@ -343,5 +343,8 @@
     <ClInclude Include="..\src\tetromino_generator.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\my_format.h">
+      <Filter>ソース ファイル\common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

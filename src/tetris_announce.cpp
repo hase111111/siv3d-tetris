@@ -46,7 +46,7 @@ void TetrisAnnounce::Update() {
         break;
       }
       case TetrisGameMode::kUltra: {
-        announce_text_ = format("Time Up!\nScore {}", 0);
+        announce_text_ = nostd::format("Time Up!\nScore {}", 0);
         announce_text_small_ = "Press R to Restart";
         break;
       }
@@ -66,8 +66,8 @@ void TetrisAnnounce::Update() {
         for (int i = 1; i <= 3; ++i) {
           if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
               total_clear_lines_ < i * 10) {
-            announce_text_ = format("{} / 40", i * 10);
-            announce_text_small_ = format(
+            announce_text_ = nostd::format("{} / 40", i * 10);
+            announce_text_small_ = nostd::format(
                 "{} lines left", 40 - tetris_level_ptr_->GetTotalClearLines());
             start_time_ = counter_;
           }
@@ -78,8 +78,8 @@ void TetrisAnnounce::Update() {
         for (int i = 1; i <= 2; ++i) {
           if (tetris_timer_ptr_->GetTime() >= 3600 * i &&
               timer_count_ < 3600 * i) {
-            announce_text_ = format("{} minute passed!", i);
-            announce_text_small_ = format("{} minute left", 3 - i);
+            announce_text_ = nostd::format("{} minute passed!", i);
+            announce_text_small_ = nostd::format("{} minute left", 3 - i);
             start_time_ = counter_;
           }
         }
@@ -89,8 +89,8 @@ void TetrisAnnounce::Update() {
         for (int i = 1; i <= 9; ++i) {
           if (tetris_level_ptr_->GetTotalClearLines() >= i * 20 &&
               total_clear_lines_ < i * 20) {
-            announce_text_ = format("{} / 200", i * 20);
-            announce_text_small_ = format(
+            announce_text_ = nostd::format("{} / 200", i * 20);
+            announce_text_small_ = nostd::format(
                 "{} lines left", 200 - tetris_level_ptr_->GetTotalClearLines());
             start_time_ = counter_;
           }
@@ -103,8 +103,8 @@ void TetrisAnnounce::Update() {
         for (int i = 1; i <= 9; ++i) {
           if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
               total_clear_lines_ < i * 10) {
-            announce_text_ = format("{} / 100", i * 10);
-            announce_text_small_ = format(
+            announce_text_ = nostd::format("{} / 100", i * 10);
+            announce_text_small_ = nostd::format(
                 "{} lines left", 100 - tetris_level_ptr_->GetTotalClearLines());
             start_time_ = counter_;
           }

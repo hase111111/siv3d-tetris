@@ -35,13 +35,13 @@ class GameMainLoop final {
 
   const std::shared_ptr<KeyEventHandler> key_event_handler_ptr_;
 
-  const std::shared_ptr<FpsController> fps_controller_ptr_;
-
   const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
 
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<SceneStack> scene_stack_ptr_;
   SceneChangeExecuter scene_change_executer_;
+
+  FpsController fps_controller_{60};
 
   int texture_count_{0};
 };

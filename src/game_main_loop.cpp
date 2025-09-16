@@ -26,7 +26,6 @@ namespace mytetris {
 GameMainLoop::GameMainLoop(
     const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
     : key_event_handler_ptr_(std::make_shared<KeyEventHandler>()),
-      fps_controller_ptr_(std::make_shared<FpsController>(60)),
       game_setting_record_ptr_(game_setting_record_ptr),
       scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
       scene_stack_ptr_(InitializeSceneStack()),
@@ -35,7 +34,6 @@ GameMainLoop::GameMainLoop(
   DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
 
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  DEBUG_ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
@@ -61,7 +59,7 @@ bool GameMainLoop::Loop() {
   texture_count_ = Texture::GetCount();
 
   // 処理が重い場合はここでコマ落ちさせる．
-  if (!fps_controller_ptr_->SkipDrawScene()) {
+  if (!fps_controller_.SkipDrawScene()) {
     // スクリーンを消す．
     if (DxLib::ClearDrawScreen() != 0) {
       return false;
@@ -77,7 +75,7 @@ bool GameMainLoop::Loop() {
   }
 
   // FPSを調整するための処理．
-  fps_controller_ptr_->Wait();
+  fps_controller_.Wait();
 
   // シーンの変更を実行する．
   scene_change_executer_.Execute();
@@ -124,7 +122,7 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
 
   auto tetromino = LoadDivideGraph("dat/img/blocks.png", 8, 2, 16, 20, 20);
   for (int i = 0; i < 16; ++i) {
-    resource_container->RegisterTexture(format("block_{}.png", i),
+    resource_container->RegisterTexture(nostd::format("block_{}.png", i),
                                         std::move(tetromino[i]));
   }
 

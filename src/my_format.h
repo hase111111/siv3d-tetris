@@ -15,11 +15,16 @@
 
 namespace mytetris {
 
-// format ä÷êî
+namespace internal {
+
 template <typename T>
 inline void my_format_one(std::ostringstream &oss, const T &value) {
   oss << value;
 }
+
+}  // namespace internal
+
+namespace nostd {
 
 template <typename... Args>
 inline std::string format(std::string_view fmt, Args &&...args) {
@@ -31,12 +36,14 @@ inline std::string format(std::string_view fmt, Args &&...args) {
       throw std::runtime_error("my format error");
     }
     oss << fmt.substr(pos, next_pos - pos);
-    my_format_one(oss, arg);
+    internal::my_format_one(oss, arg);
     pos = next_pos + 2;
   };
   (insert_arg(args), ...);
   oss << fmt.substr(pos);
   return oss.str();
 }
+
+}  // namespace nostd
 
 }  // namespace mytetris

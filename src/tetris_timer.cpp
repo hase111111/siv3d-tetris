@@ -19,7 +19,7 @@ std::string TetrisTimer::GetTimeString() const {
   const int seconds = total_seconds % 60;
   const int milliseconds = (cnt % 60) * (1000 / 60);
 
-  return format("{}:{}.{}", minutes, seconds, milliseconds);
+  return nostd::format("{}:{}.{}", minutes, seconds, milliseconds);
 }
 
 }  // namespace mytetris
