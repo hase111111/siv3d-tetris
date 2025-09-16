@@ -7,9 +7,9 @@
 
 #include "game_main_loop.h"
 
-#if defined DXLIB_COMPILE
+#if defined(DXLIB_COMPILE)
 #include <DxLib.h>
-#endif  // defined DXLIB_COMPILE
+#endif  // defined(DXLIB_COMPILE)
 
 #include <utility>
 
@@ -91,7 +91,6 @@ bool GameMainLoop::Loop() {
 std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
   // NULLチェック．
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  DEBUG_ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
@@ -132,8 +131,8 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
 #endif  // defined DXLIB_COMPILE
 
   auto scene_creator_ptr = std::make_unique<SceneCreator>(
-      scene_change_listener_ptr_, fps_controller_ptr_, key_event_handler_ptr_,
-      resource_container, game_setting_record_ptr_);
+      scene_change_listener_ptr_, key_event_handler_ptr_, resource_container,
+      game_setting_record_ptr_);
 
   auto scene_stack_ptr =
       std::make_shared<SceneStack>(std::move(scene_creator_ptr));

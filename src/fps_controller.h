@@ -20,9 +20,6 @@ namespace mytetris {
 //! @n よってこのクラスを使ってFPSを制御する．
 //! FPSは Frames per Second：1秒当たりの画面更新回数のこと．
 //! First Person Shootingのことではない．
-//! @n
-//! 当方のPCのモニターの問題なので，必要ないならば消してしまってもかまわないが，
-//! あったところで問題はないので放置しておいてもらって構わない．
 class FpsController final {
  public:
   FpsController() = delete;
@@ -36,10 +33,6 @@ class FpsController final {
   //! @return 処理が詰まって描画を飛ばしたいときに
   //!  true を返す．その後フラグを false にする．
   bool SkipDrawScene();
-
-  //! @brief 現在のFPSを返す関数．
-  //! @return 現在のFPS．
-  double GetCurrentFps() const;
 
  private:
   //! @brief 現在の時刻を記録する関数．

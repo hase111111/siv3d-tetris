@@ -9,7 +9,6 @@
 
 #include <memory>
 
-#include "fps_controller.h"
 #include "game_setting_record.h"
 #include "i_scene.h"
 #include "key_event_handler.h"
@@ -24,7 +23,6 @@ class SceneCreator final {
  public:
   SceneCreator(
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-      const std::shared_ptr<const FpsController>& fps_controller_ptr,
       const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
       const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
@@ -37,8 +35,6 @@ class SceneCreator final {
 
  private:
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-
-  const std::shared_ptr<const FpsController> fps_controller_ptr_;
 
   const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
 

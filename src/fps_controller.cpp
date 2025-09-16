@@ -7,11 +7,11 @@
 
 #include "fps_controller.h"
 
-#if defined DXLIB_COMPILE
+#if defined(DXLIB_COMPILE)
 #include <Dxlib.h>
-#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
+#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 #include <Siv3D.hpp>
-#endif  // defined DXLIB_COMPILE
+#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
 #include <cmath>
 #include <string>
@@ -35,15 +35,18 @@ void FpsController::Wait() {
   int wait_time = 0;
 
   if (CheckNeedSkipDrawScreen(&wait_time)) {
-#if defined DXLIB_COMPILE
+#if defined(DXLIB_COMPILE)
     WaitTimer(wait_time);  // 取得した時間分待つ．
 
     RegisterTime(GetNowCount());  // 現在の時刻を記録する．
-#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
+
+#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
+
     s3d::System::Sleep(wait_time);
     RegisterTime(
         static_cast<int>(s3d::Time::GetMillisec()));  // 現在の時刻を記録する．
-#endif  // defined DXLIB_COMPILE
+
+#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
   } else {
     // 時間オーバーしているので，コマ落ちの処理をする．
@@ -67,22 +70,6 @@ bool FpsController::SkipDrawScene() {
   }
 
   return false;
-}
-
-double FpsController::GetCurrentFps() const {
-  if (!TargetFpsIsValid()) {
-    return -1.0;
-  }
-
-  // 現在のFPSを求める．
-  if (time_list_.size() < 2) {
-    return -1.0;
-  }
-
-  const double duration = (time_list_.back() - time_list_.front()) /
-                          static_cast<double>(list_max_ - 1);
-
-  return 1000.0 / duration;
 }
 
 void FpsController::RegisterTime(const int now_time) {

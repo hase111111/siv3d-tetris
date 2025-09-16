@@ -16,18 +16,20 @@ namespace mytetris {
 
 SceneCreator::SceneCreator(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-    const std::shared_ptr<const FpsController>& fps_controller_ptr,
     const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
-      fps_controller_ptr_(fps_controller_ptr),
       key_event_handler_ptr_(key_event_handler_ptr),
       resource_container_ptr_(resource_container_ptr),
       game_setting_record_ptr_(game_setting_record_ptr) {
   // ポインタが nullptr でないことを確認.
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
+
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-  DEBUG_ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
@@ -52,7 +54,10 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
     }
     default: {
       DEBUG_ASSERT_MUST_NOT_REACH_HERE();
-      return nullptr;
+      // 仮にタイトルを返す．
+      return std::make_unique<TitleScene>(scene_change_listener_ptr_,
+                                          key_event_handler_ptr_,
+                                          resource_container_ptr_);
     }
   }  // switch
 }
