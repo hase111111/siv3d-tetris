@@ -39,8 +39,7 @@ GameMainLoop::GameMainLoop(
   DEBUG_ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
 
 #if defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
-  s3d::Addon::Register(U"FpsController",
-                       std::make_unique<FpsAddon>(fps_controller_ptr_));
+  s3d::Addon::Register(U"FpsController", std::make_unique<FpsAddon>(60));
 #endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 }
 
@@ -135,8 +134,9 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
 
   for (int i = 0; i < 16; ++i) {
     resource_container->RegisterTexture(
-        format("block_{}.png", i),
-        std::make_unique<Texture>(format("dat/img/for_siv3d/block_{}.png", i)));
+        nostd::format("block_{}.png", i),
+        std::make_unique<Texture>(
+            nostd::format("dat/img/for_siv3d/block_{}.png", i)));
   }
 
   resource_container->RegisterFont(

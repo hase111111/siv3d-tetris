@@ -7,13 +7,8 @@
 
 #include "score_board_renderer.h"
 
-#if !defined __EMSCRIPTEN__
-#include <format>
-#else
-#include "my_format.h"
-#endif  // !defined __EMSCRIPTEN__
-
 #include "my_assert.h"
+#include "my_format.h"
 
 namespace mytetris {
 
@@ -74,20 +69,14 @@ void ScoreBoardRenderer::Draw(const int render_x, const int render_y) const {
 std::string ScoreBoardRenderer::GetString() const {
   std::string result;
 
-#if !defined(__EMSCRIPTEN__)
-  using std::format;
-#else
-  using mytetris::format;
-#endif  // !defined(__EMSCRIPTEN__)
-
   result += "Score\n 0 \n\n";
   result += "Time\n " + tetris_timer_ptr_->GetTimeString() + "\n\n";
-  result += format("Level\n {}\n\n", tetris_level_ptr_->GetLevel());
-  result += format("Lines\n {}\n\n", tetris_level_ptr_->GetTotalClearLines());
+  result += nostd::format("Level\n {}\n\n", tetris_level_ptr_->GetLevel());
   result +=
-      format("Speed\n {}\n\n",
-             drop_count_ptr_->GetDisplaySpeed(tetris_level_ptr_->GetLevel()));
-  result += format("GameRule\n {}\n\n", ToString(tetris_game_mode_));
+      nostd::format("Lines\n {}\n\n", tetris_level_ptr_->GetTotalClearLines());
+  result += nostd::format("Speed\n {}\n\n", drop_count_ptr_->GetDisplaySpeed(
+                                                tetris_level_ptr_->GetLevel()));
+  result += nostd::format("GameRule\n {}\n\n", ToString(tetris_game_mode_));
 
   return result;
 }
