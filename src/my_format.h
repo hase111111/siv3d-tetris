@@ -17,7 +17,7 @@ namespace mytetris {
 
 // format ŠÖ”
 template <typename T>
-inline void myformat_one(std::ostringstream &oss, const T &value) {
+inline void my_format_one(std::ostringstream &oss, const T &value) {
   oss << value;
 }
 
@@ -28,10 +28,10 @@ inline std::string format(std::string_view fmt, Args &&...args) {
   [[maybe_unused]] auto insert_arg = [&](auto &&arg) {
     auto next_pos = fmt.find("{}", pos);
     if (next_pos == std::string_view::npos) {
-      throw std::runtime_error("myformat error");
+      throw std::runtime_error("my format error");
     }
     oss << fmt.substr(pos, next_pos - pos);
-    myformat_one(oss, arg);
+    my_format_one(oss, arg);
     pos = next_pos + 2;
   };
   (insert_arg(args), ...);

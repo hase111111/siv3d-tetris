@@ -14,7 +14,6 @@
 #endif  // defined DXLIB_COMPILE
 
 #include "my_assert.h"
-#include "my_format.h"
 
 namespace mytetris {
 
@@ -54,7 +53,7 @@ bool FontView::IsValid() const { return true; }
 void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
                     const std::string& str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
-  const std::string key_str = format("{}_{}", handle_, font_size_);
+  const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
   s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
@@ -66,7 +65,7 @@ void FontView::DrawAlpha(const float x, const float y,
                          const RenderAnchor anchor, const std::string& str,
                          const float alpha) const {
   const s3d::String path{handle_.begin(), handle_.end()};
-  const std::string key_str = format("{}_{}", handle_, font_size_);
+  const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
   s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);

@@ -15,7 +15,6 @@
 
 #include "font_view.h"
 #include "my_assert.h"
-#include "my_format.h"
 
 namespace mytetris {
 
@@ -54,7 +53,7 @@ FontView Font::GetView() const { return FontView{*this}; }
 Font::Font(const std::string& file_name, const int font_size)
     : handle_(file_name.c_str()), font_size_(font_size) {
   const s3d::String path{file_name.begin(), file_name.end()};
-  const std::string key_str = format("{}_{}", file_name, font_size);
+  const std::string key_str = file_name + "_" + std::to_string(font_size);
   const s3d::String key{key_str.begin(), key_str.end()};
   s3d::FontAsset::Register(key, FontMethod::MSDF, font_size, path);
 }
@@ -66,7 +65,7 @@ Font::~Font() {
 
 void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
-  const std::string key_str = format("{}_{}", handle_, font_size_);
+  const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
   const s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
