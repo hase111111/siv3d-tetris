@@ -29,19 +29,15 @@ Font::Font(const std::string& file_name)
   ASSERT(handle_ >= 0, nostd::format("Failed to load font: {} (handle: {})",
                                      file_name, handle_));
   // 1フレーム間に大量のテクスチャのロードが発生することを防ぐため，
-  // ロードした数をカウントする
+  // ロードした数をカウントする.
+  // Siv3D にはデフォルトである仕様だが, DxLib にはないため，ここで実装する.
   ++count_;
-}
-
-Font::Font(const int raw_handle)
-    : handle_(raw_handle), font_size_(GetFontSizeToHandle(handle_)) {
-  ASSERT(handle_ >= 0,
-         nostd::format("Failed to load font, handle: {}", handle_));
 }
 
 Font::~Font() { DxLib::DeleteGraph(handle_); }
 
-void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
+void Font::Draw(const float x, const float y, const RenderAnchor anchor,
+                const std::string& str) const {
   const int width = GetDrawStringWidthToHandle(
       str.c_str(), static_cast<int>(str.size()), handle_);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
@@ -79,8 +75,9 @@ FontView Font::GetView() const { return FontView{*this, font_size_}; }
 
 #endif  // defined DXLIB_COMPILE
 
-std::tuple<int, int> Font::GetRenderPos(RenderAnchor anchor, int width,
-                                        int height) const {
+std::tuple<int, int> Font::GetRenderPos(const RenderAnchor anchor,
+                                        const int width,
+                                        const int height) const {
   switch (anchor) {
     case RenderAnchor::TopLeft: {
       return {0, 0};
