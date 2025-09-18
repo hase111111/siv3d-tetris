@@ -136,6 +136,12 @@
     <Filter Include="Template Files\Embeddable">
       <UniqueIdentifier>{1155355D-3484-407F-BCE3-BC5EB094E4DD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{d6d7a305-a2fd-48c6-b973-719feb69e413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common\input">
+      <UniqueIdentifier>{8aa73c3b-f06f-450c-924f-6b252d477b63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\engine\font\fontawesome\LICENSE.txt">
