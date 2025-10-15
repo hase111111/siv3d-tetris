@@ -41,7 +41,8 @@ void TetrisAnnounce::Update() {
       case TetrisGameMode::kYamada:
       case TetrisGameMode::kPentris:
       case TetrisGameMode::kTrick: {
-        announce_text_ = "CLEAR!\nTime {}" + tetris_timer_ptr_->GetTimeString();
+        announce_text_ = nostd::format("CLEAR!\nTime {}",
+                                       tetris_timer_ptr_->GetTimeString());
         announce_text_small_ = "Press R to Restart";
         break;
       }

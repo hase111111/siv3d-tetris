@@ -61,7 +61,8 @@ Font::~Font() {
   s3d::FontAsset::Unregister(path);
 }
 
-void Font::Draw(float x, float y, RenderAnchor anchor, std::string str) const {
+void Font::Draw(float x, float y, RenderAnchor anchor,
+                const std::string& str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
   const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
