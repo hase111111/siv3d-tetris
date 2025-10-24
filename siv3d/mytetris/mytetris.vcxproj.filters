@@ -309,6 +309,9 @@
     <ClCompile Include="..\..\src\key_config_data.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tetris_field_effect.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">

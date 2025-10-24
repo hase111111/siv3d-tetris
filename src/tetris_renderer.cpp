@@ -19,10 +19,12 @@ TetrisRenderer::TetrisRenderer(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const TetrisField>& tetris_field_ptr,
     const std::shared_ptr<const Tetromino>& tetromino_ptr,
+    const std::shared_ptr<const TetrisFieldEffect>& tetris_field_effect_ptr,
     const float block_size)
     : resource_container_ptr_(resource_container_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
+      tetris_field_effect_ptr_(tetris_field_effect_ptr),
       block_size_(block_size),
       block_textures_(GetBlockTextureMap(resource_container_ptr)),
       broken_block_renderer_(resource_container_ptr),
@@ -30,11 +32,14 @@ TetrisRenderer::TetrisRenderer(
       font_view_small_(resource_container_ptr->GetFont("small")) {
   // 引数のチェック.
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
-  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr);
-  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_effect_ptr);
+
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_effect_ptr_);
 }
 
 void TetrisRenderer::Update() {
@@ -77,9 +82,11 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
       continue;
     }
 
-    it->second.DrawRotatedAlpha(render_x_ + x_ * block_size_,
-                                render_y_ + y_ * block_size_,
-                                RenderAnchor::Center, 2.f, 0.f, 1.0);
+    const auto [diff_x, diff_y] = tetris_field_effect_ptr_->GetDiff(x_, y_);
+    it->second.DrawRotatedAlpha(render_x_ + x_ * block_size_ + diff_x,
+                                render_y_ + y_ * block_size_ + diff_y,
+                                RenderAnchor::Center, 2.f, 0.f,
+                                tetris_field_effect_ptr_->GetAlpha(x_, y_));
   }
 
   // テトリミノの描画.

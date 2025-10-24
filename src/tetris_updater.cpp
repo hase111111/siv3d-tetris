@@ -19,7 +19,8 @@ TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
     const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
     const std::shared_ptr<DropCount>& drop_count_ptr,
-    const std::shared_ptr<GameEndChecker>& game_end_checker_ptr)
+    const std::shared_ptr<GameEndChecker>& game_end_checker_ptr,
+    const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr)
     : key_event_handler_ptr_(key_event_handler_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
@@ -28,6 +29,7 @@ TetrisUpdater::TetrisUpdater(
       tetris_level_ptr_(tetris_level_ptr),
       drop_count_ptr_(drop_count_ptr),
       game_end_checker_ptr_(game_end_checker_ptr),
+      tetris_field_effect_ptr_(tetris_field_effect_ptr),
       rotate_checker_{tetris_field_ptr} {
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
@@ -201,6 +203,9 @@ void TetrisUpdater::SetTetromino() {
 
   fix_count_ = 0;
   move_count_ = 0;
+
+  // エフェクトをリセット.
+  tetris_field_effect_ptr_->Reset();
 }
 
 void TetrisUpdater::RotateTetromino() {

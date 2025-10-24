@@ -30,13 +30,15 @@ TetrisScene::TetrisScene(
       drop_count_ptr_(std::make_shared<DropCount>()),
       game_end_checker_ptr_(std::make_shared<GameEndChecker>(
           tetris_level_ptr_, tetris_timer_ptr_)),
+      tetris_field_effect_ptr_(
+          std::make_shared<TetrisFieldEffect>(tetris_level_ptr_)),
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
-          drop_count_ptr_, game_end_checker_ptr_)),
+          drop_count_ptr_, game_end_checker_ptr_, tetris_field_effect_ptr_)),
       description_field_renderer_{resource_container_ptr},
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
-                       tetromino_ptr_, 40.0f},
+                       tetromino_ptr_, tetris_field_effect_ptr_, 40.0f},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
       fade_effect_{30},
@@ -103,6 +105,7 @@ bool TetrisScene::Update() {
   // •`‰æ‰æ–Ê‚ÌXV.
   tetris_renderer_.SetClearLines(cleared_lines);
   tetris_renderer_.Update();
+  tetris_field_effect_ptr_->Update();
 
   tetris_announce_.Update();
 
@@ -145,6 +148,9 @@ void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
   tetris_announce_.SetGameMode(tetris_game_mode_);
   game_end_checker_ptr_->SetGameMode(tetris_game_mode_);
   next_tetromino_ptr_->SetGameMode(tetris_game_mode_);
+
+  tetris_field_effect_ptr_->SetActive(tetris_game_mode_ ==
+                                      TetrisGameMode::kTrick);
 
   tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext());
   next_tetromino_ptr_->Next();

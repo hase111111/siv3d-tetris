@@ -147,6 +147,7 @@
     <ClCompile Include="..\..\src\system_main.cpp" />
     <ClCompile Include="..\..\src\tetris_announce.cpp" />
     <ClCompile Include="..\..\src\tetris_feild.cpp" />
+    <ClCompile Include="..\..\src\tetris_field_effect.cpp" />
     <ClCompile Include="..\..\src\tetris_level.cpp" />
     <ClCompile Include="..\..\src\tetris_renderer.cpp" />
     <ClCompile Include="..\..\src\tetris_rotate_checker.cpp" />

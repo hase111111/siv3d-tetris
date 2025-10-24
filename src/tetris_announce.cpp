@@ -99,12 +99,24 @@ void TetrisAnnounce::Update() {
         break;
       }
       case TetrisGameMode::kYamada:
-      case TetrisGameMode::kPentris:
-      case TetrisGameMode::kTrick: {
+      case TetrisGameMode::kPentris: {
         for (int i = 1; i <= 9; ++i) {
           if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
               total_clear_lines_ < i * 10) {
             announce_text_ = nostd::format("{} / 100", i * 10);
+            announce_text_small_ = nostd::format(
+                "{} lines left", 100 - tetris_level_ptr_->GetTotalClearLines());
+            start_time_ = counter_;
+          }
+        }
+        break;
+      }
+      case TetrisGameMode::kTrick: {
+        for (int i = 1; i <= 9; ++i) {
+          if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
+              total_clear_lines_ < i * 10) {
+            announce_text_ =
+                nostd::format("{} / 100 | Effect Changed!", i * 10);
             announce_text_small_ = nostd::format(
                 "{} lines left", 100 - tetris_level_ptr_->GetTotalClearLines());
             start_time_ = counter_;

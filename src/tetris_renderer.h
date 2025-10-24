@@ -15,6 +15,7 @@
 #include "font_view.h"
 #include "resource_container.h"
 #include "tetris_feild.h"
+#include "tetris_field_effect.h"
 #include "tetromino.h"
 #include "texture_view.h"
 
@@ -25,7 +26,9 @@ class TetrisRenderer final {
   TetrisRenderer(
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
       const std::shared_ptr<const TetrisField>& tetris_field_ptr,
-      const std::shared_ptr<const Tetromino>& tetromino_ptr, float block_size);
+      const std::shared_ptr<const Tetromino>& tetromino_ptr,
+      const std::shared_ptr<const TetrisFieldEffect>& tetris_field_effect_ptr,
+      float block_size);
 
   void Update();
 
@@ -44,6 +47,7 @@ class TetrisRenderer final {
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   const std::shared_ptr<const TetrisField> tetris_field_ptr_;
   const std::shared_ptr<const Tetromino> tetromino_ptr_;
+  const std::shared_ptr<const TetrisFieldEffect> tetris_field_effect_ptr_;
   const std::map<TetrominoColor, TextureView> block_textures_;
   const float block_size_;
   const FontView font_view_;
