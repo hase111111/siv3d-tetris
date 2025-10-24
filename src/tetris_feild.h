@@ -17,11 +17,11 @@
 namespace mytetris {
 
 class TetrisField final {
+ public:
   static constexpr int kWidth = 12;
   static constexpr int kHeight = 27;
   using FieldType = std::array<std::array<TetrominoColor, kWidth>, kHeight>;
 
- public:
   TetrisField();
 
   int GetWidth() const { return kWidth; }

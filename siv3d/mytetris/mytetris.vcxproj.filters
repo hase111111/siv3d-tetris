@@ -1130,5 +1130,8 @@
     <ClInclude Include="..\..\src\score_board_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\tetris_field_effect.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

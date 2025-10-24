@@ -27,10 +27,7 @@ class TetrisRenderer final {
       const std::shared_ptr<const TetrisField>& tetris_field_ptr,
       const std::shared_ptr<const Tetromino>& tetromino_ptr, float block_size);
 
-  inline void Update() {
-    ++counter_;
-    broken_block_renderer_.Update();
-  }
+  void Update();
 
   void Draw(int render_x, int render_y, int tetromino_pos_x,
             int tetromino_pos_y, bool is_game_over, bool is_pinch) const;

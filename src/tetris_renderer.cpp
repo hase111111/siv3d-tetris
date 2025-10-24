@@ -37,6 +37,11 @@ TetrisRenderer::TetrisRenderer(
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
 }
 
+void TetrisRenderer::Update() {
+  ++counter_;
+  broken_block_renderer_.Update();
+}
+
 void TetrisRenderer::Draw(const int render_x, const int render_y,
                           const int tetromino_pos_x, const int tetromino_pos_y,
                           const bool is_game_over, const bool is_pinch) const {
@@ -72,9 +77,9 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
       continue;
     }
 
-    it->second.DrawRotated(render_x_ + x_ * block_size_,
-                           render_y_ + y_ * block_size_, RenderAnchor::Center,
-                           2.f, 0.f);
+    it->second.DrawRotatedAlpha(render_x_ + x_ * block_size_,
+                                render_y_ + y_ * block_size_,
+                                RenderAnchor::Center, 2.f, 0.f, 1.0);
   }
 
   // ƒeƒgƒŠƒ~ƒm‚Ì•`‰æ.

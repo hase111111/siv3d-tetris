@@ -405,6 +405,7 @@
     <ClInclude Include="..\..\src\system_main.h" />
     <ClInclude Include="..\..\src\tetris_announce.h" />
     <ClInclude Include="..\..\src\tetris_feild.h" />
+    <ClInclude Include="..\..\src\tetris_field_effect.h" />
     <ClInclude Include="..\..\src\tetris_game_mode.h" />
     <ClInclude Include="..\..\src\tetris_level.h" />
     <ClInclude Include="..\..\src\tetris_renderer.h" />
