@@ -150,6 +150,4 @@ void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
   next_tetromino_ptr_->Next();
 }
 
-void TetrisScene::OnReturnFromOtherScene(const SceneChangeParameter&) {}
-
 }  // namespace mytetris

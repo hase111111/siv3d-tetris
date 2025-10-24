@@ -48,7 +48,7 @@ class TetrisScene final : public IScene {
 
   void OnStart(const SceneChangeParameter& parameter) override;
 
-  void OnReturnFromOtherScene(const SceneChangeParameter& parameter) override;
+  void OnReturnFromOtherScene(const SceneChangeParameter&) override {};
 
  private:
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
