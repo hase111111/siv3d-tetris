@@ -1133,5 +1133,11 @@
     <ClInclude Include="..\..\src\tetris_field_effect.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\key_config_data.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_handle.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

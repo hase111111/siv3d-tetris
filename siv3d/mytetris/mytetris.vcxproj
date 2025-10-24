@@ -387,7 +387,9 @@
     <ClInclude Include="..\..\src\hold_renderer.h" />
     <ClInclude Include="..\..\src\hold_tetromino.h" />
     <ClInclude Include="..\..\src\i_scene.h" />
+    <ClInclude Include="..\..\src\key_config_data.h" />
     <ClInclude Include="..\..\src\key_event_handler.h" />
+    <ClInclude Include="..\..\src\key_handle.h" />
     <ClInclude Include="..\..\src\my_assert.h" />
     <ClInclude Include="..\..\src\next_renderer.h" />
     <ClInclude Include="..\..\src\next_tetromino.h" />
