@@ -76,9 +76,9 @@ bool TitleUI::UpdateTitle() {
   lower_announcement_ =
       "Use Up/Down key to move, Z key to decide, Esc key to quit.";
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kUp) == 1) {
     mode_index_ += static_cast<int>(title_items_.size()) - 1;
-  } else if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kDown) == 1) {
+  } else if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDown) == 1) {
     mode_index_ += 1;
   }
 
@@ -86,28 +86,28 @@ bool TitleUI::UpdateTitle() {
 
   switch (idx) {
     case 0: {
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         selected_index_ = 1;
         mode_index_ = 0;
       }
       return true;
     }
     case 1: {
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         selected_index_ = 2;
         mode_index_ = 0;
       }
       return true;
     }
     case 2: {
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         selected_index_ = 3;
         mode_index_ = 0;
       }
       return true;
     }
     case 3: {
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         return false;  // QuitGame selected
       }
       return true;
@@ -120,9 +120,9 @@ bool TitleUI::UpdateTitle() {
 }
 
 bool TitleUI::UpdateGameStart() {
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kUp) == 1) {
     mode_index_ += static_cast<int>(game_mode_items_.size()) - 1;
-  } else if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kDown) == 1) {
+  } else if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDown) == 1) {
     mode_index_ += 1;
   }
 
@@ -133,7 +133,7 @@ bool TitleUI::UpdateGameStart() {
       // Endless.
       lower_announcement_ =
           "Endless: Play continuously until you top out, no fixed goal.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode",
                                            TetrisGameMode::kEndless);
@@ -145,7 +145,7 @@ bool TitleUI::UpdateGameStart() {
       // Ultra.
       lower_announcement_ =
           "Ultra: Score as many points as possible in 3 minutes.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kUltra);
         to_game_scene_(param);
@@ -155,7 +155,7 @@ bool TitleUI::UpdateGameStart() {
     case 2: {
       // Sprint.
       lower_announcement_ = "Sprint: Clear 40 lines as fast as possible.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kSprint);
         to_game_scene_(param);
@@ -167,7 +167,7 @@ bool TitleUI::UpdateGameStart() {
       lower_announcement_ =
           "Marathon: Play continuously until you top out, with a fixed goal of "
           "200 lines.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode",
                                            TetrisGameMode::kMarathon);
@@ -178,7 +178,7 @@ bool TitleUI::UpdateGameStart() {
     case 4: {
       // Back.
       lower_announcement_ = "Return to the previous menu.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         selected_index_ = 0;
         mode_index_ = 0;
       }
@@ -192,9 +192,9 @@ bool TitleUI::UpdateGameStart() {
 }
 
 bool TitleUI::UpdateSpecialMode() {
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kUp) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kUp) == 1) {
     mode_index_ += static_cast<int>(game_mode_items_.size()) - 1;
-  } else if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kDown) == 1) {
+  } else if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDown) == 1) {
     mode_index_ += 1;
   }
 
@@ -205,7 +205,7 @@ bool TitleUI::UpdateSpecialMode() {
       // Yamada.
       lower_announcement_ =
           "Yamada: A high-difficulty mode where super-huge blocks fall.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kYamada);
         to_game_scene_(param);
@@ -217,7 +217,7 @@ bool TitleUI::UpdateSpecialMode() {
       lower_announcement_ =
           "Pentris: This mode utilizes Pentris, which consists of five "
           "blocks.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode",
                                            TetrisGameMode::kPentris);
@@ -229,7 +229,7 @@ bool TitleUI::UpdateSpecialMode() {
       // Trick.
       lower_announcement_ =
           "Trick: This mode lets you enjoy mysterious visual effects.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode", TetrisGameMode::kTrick);
         to_game_scene_(param);
@@ -240,7 +240,7 @@ bool TitleUI::UpdateSpecialMode() {
       // Practice.
       lower_announcement_ =
           "Practice: This is practice mode. Let's practice hard!";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         auto param = SceneChangeParameter{};
         param.SetParameter<TetrisGameMode>("GameMode",
                                            TetrisGameMode::kPractice);
@@ -251,7 +251,7 @@ bool TitleUI::UpdateSpecialMode() {
     case 4: {
       // Back.
       lower_announcement_ = "Return to the previous menu.";
-      if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         selected_index_ = 0;
         mode_index_ = 0;
       }

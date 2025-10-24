@@ -13,9 +13,17 @@
 #include <Siv3D.hpp>
 #endif  // defined DXLIB_COMPILE
 
+#include "my_assert.h"
+
 namespace mytetris {
 
-KeyEventHandler::KeyEventHandler() {
+KeyEventHandler::KeyEventHandler(
+    const std::shared_ptr<KeyConfigData>& key_config_data_ptr)
+    : key_config_data_ptr_(key_config_data_ptr) {
+  // nullptr チェック．
+  DEBUG_ASSERT_NOT_NULL_PTR(key_config_data_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_config_data_ptr_);
+
   for (int i = 0; i < kKeyNum; i++) {
     key_releasing_counter_[i] = 0;
     key_pressing_counter_[i] = 0;
@@ -147,7 +155,8 @@ void KeyEventHandler::Update() {
 
 #endif
 
-int KeyEventHandler::GetPressingCount(const KeyHandle key_code) const {
+int KeyEventHandler::GetPressingCount(const KeyGroup group) const {
+  const auto key_code = key_config_data_ptr_->Map(group);
   const int cast_code = static_cast<int>(key_code);
   if (!IsAvailableCode(cast_code)) {
     return -1;
@@ -156,7 +165,8 @@ int KeyEventHandler::GetPressingCount(const KeyHandle key_code) const {
   return key_pressing_counter_[cast_code];
 }
 
-int KeyEventHandler::GetReleasingCount(const KeyHandle key_code) const {
+int KeyEventHandler::GetReleasingCount(const KeyGroup group) const {
+  const auto key_code = key_config_data_ptr_->Map(group);
   const int cast_code = static_cast<int>(key_code);
   if (!IsAvailableCode(cast_code)) {
     return -1;

@@ -21,11 +21,11 @@ DebugScene::DebugScene(
 }
 
 bool DebugScene::Update() {
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kEscape) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kGameEnd) == 1) {
     return false;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kT) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
     scene_change_listener_ptr_->RequestAddScene(SceneName::kTetris,
                                                 SceneChangeParameter{});
   }

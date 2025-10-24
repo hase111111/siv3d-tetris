@@ -37,7 +37,7 @@ bool TitleScene::Update() {
     return true;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kEscape) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kGameEnd) == 1) {
     return false;
   }
 

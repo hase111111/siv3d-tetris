@@ -11,6 +11,7 @@
 
 #include "fps_controller.h"
 #include "game_setting_record.h"
+#include "key_config_data.h"
 #include "key_event_handler.h"
 #include "scene_change_executer.h"
 #include "scene_change_listener.h"
@@ -33,6 +34,7 @@ class GameMainLoop final {
  private:
   [[nodiscard]] std::shared_ptr<SceneStack> InitializeSceneStack() const;
 
+  const std::shared_ptr<KeyConfigData> key_config_data_ptr_;
   const std::shared_ptr<KeyEventHandler> key_event_handler_ptr_;
 
   const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;

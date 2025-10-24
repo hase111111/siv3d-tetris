@@ -56,12 +56,12 @@ bool TetrisScene::Update() {
     return true;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kEscape) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kGameEnd) == 1) {
     // エスケープキーでゲーム終了.
     return false;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kZ) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
     // Zキーでタイトルへ戻る.
     fade_effect_.Start(FadeType::kFadeOut, [this]() {
       scene_change_listener_ptr_->RequestDeleteScene(1, {});
@@ -69,7 +69,7 @@ bool TetrisScene::Update() {
     return true;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kR) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kRestart) == 1) {
     // Rキーでリトライ.
     fade_effect_.Start(FadeType::kFadeOut, [this]() {
       scene_change_listener_ptr_->RequestDeleteAndAddScene(SceneName::kTetris,
@@ -78,7 +78,7 @@ bool TetrisScene::Update() {
     return true;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyHandle::kP) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kPause) == 1) {
     // Pキーでポーズ.
     is_paused_ = !is_paused_;
   }
