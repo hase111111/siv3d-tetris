@@ -428,6 +428,7 @@
     <ClInclude Include="..\..\src\title_back_ground.h" />
     <ClInclude Include="..\..\src\title_scene.h" />
     <ClInclude Include="..\..\src\title_ui.h" />
+    <ClInclude Include="..\..\src\version.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

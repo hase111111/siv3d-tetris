@@ -39,6 +39,7 @@ class TitleUI final {
   void DrawTitle() const;
   void DrawGameStart() const;
   void DrawSpecialMode() const;
+  void DrawVersionInfo() const;
 
   const FontView font_view_40_;
   const FontView font_view_20_;

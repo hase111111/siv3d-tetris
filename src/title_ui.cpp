@@ -13,6 +13,7 @@
 #include "my_assert.h"
 #include "my_format.h"
 #include "tetris_game_mode.h"
+#include "version.h"
 
 namespace mytetris {
 
@@ -52,6 +53,8 @@ bool TitleUI::Update() {
 }
 
 void TitleUI::Draw() const {
+  DrawVersionInfo();
+
   switch (selected_index_) {
     case 0: {
       DrawTitle();
@@ -324,6 +327,15 @@ void TitleUI::DrawSpecialMode() const {
   font_view_20_.Draw(GameConst::kResolutionX / 2.0f,
                      GameConst::kResolutionY - 20.f, RenderAnchor::Center,
                      lower_announcement_.c_str());
+}
+
+void TitleUI::DrawVersionInfo() const {
+  // 画面右下にバージョン情報を描画する.
+  const std::string version_info =
+      nostd::format("Version {}", GetVersionString());
+  font_view_20_.Draw(GameConst::kResolutionX - 60.f,
+                     GameConst::kResolutionY - 10.f, RenderAnchor::BottomRight,
+                     version_info.c_str());
 }
 
 }  // namespace mytetris

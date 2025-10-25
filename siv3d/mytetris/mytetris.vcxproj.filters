@@ -1148,5 +1148,8 @@
     <ClInclude Include="..\..\src\key_group.h">
       <Filter>Source Files\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\version.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
