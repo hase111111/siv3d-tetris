@@ -166,6 +166,15 @@
     <Filter Include="Source Files\tetris\renderer">
       <UniqueIdentifier>{3e6e628d-6d7e-474e-a986-65ec3af9e216}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\common\error_handle">
+      <UniqueIdentifier>{0f803c7c-32fb-4580-9abb-396464378cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\fps">
+      <UniqueIdentifier>{b84242e8-aedc-4c6a-9334-615094c2751f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\key_handle">
+      <UniqueIdentifier>{6adc6f74-3690-44ec-8f51-ad5de43a30a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -182,15 +191,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\font.cpp">
       <Filter>Source Files\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fps_addon.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fps_controller.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\key_event_handler.cpp">
-      <Filter>Source Files\common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\debug_scene.cpp">
       <Filter>Source Files\scene\debug_scene</Filter>
@@ -219,25 +219,13 @@
     <ClCompile Include="..\..\src\resource_container.cpp">
       <Filter>Source Files\resource</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\my_assert.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\error_box.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\game_main_loop.cpp">
       <Filter>Source Files\system</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\drop_count.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
-      <Filter>Source Files\tetris</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\game_end_checker.cpp">
-      <Filter>Source Files\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\next_renderer.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\next_tetromino.cpp">
@@ -306,11 +294,32 @@
     <ClCompile Include="..\..\src\score_board_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\key_config_data.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\tetris_field_effect.cpp">
       <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\error_box.cpp">
+      <Filter>Source Files\common\error_handle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\my_assert.cpp">
+      <Filter>Source Files\common\error_handle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fps_addon.cpp">
+      <Filter>Source Files\common\fps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fps_controller.cpp">
+      <Filter>Source Files\common\fps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\key_config_data.cpp">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\key_event_handler.cpp">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\next_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -995,25 +1004,10 @@
     <ClInclude Include="..\..\src\font.h">
       <Filter>Source Files\resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\fps_addon.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\error_box.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\fade_effect.h">
       <Filter>Source Files\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\game_const.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\my_assert.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\key_event_handler.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fps_controller.h">
       <Filter>Source Files\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\render_util.h">
@@ -1076,9 +1070,6 @@
     <ClInclude Include="..\..\src\hold_tetromino.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\next_renderer.h">
-      <Filter>Source Files\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\next_tetromino.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
@@ -1092,9 +1083,6 @@
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\drop_count.h">
-      <Filter>Source Files\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\scene_change_executer.h">
@@ -1139,17 +1127,41 @@
     <ClInclude Include="..\..\src\tetris_field_effect.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\key_config_data.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\key_handle.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\key_group.h">
-      <Filter>Source Files\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\version.h">
       <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\error_box.h">
+      <Filter>Source Files\common\error_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\my_assert.h">
+      <Filter>Source Files\common\error_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fps_controller.h">
+      <Filter>Source Files\common\fps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fps_addon.h">
+      <Filter>Source Files\common\fps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_config_data.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_event_handler.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_group.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_handle.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\my_format.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\next_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

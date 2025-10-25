@@ -136,11 +136,44 @@
     <Filter Include="Template Files\Embeddable">
       <UniqueIdentifier>{1155355D-3484-407F-BCE3-BC5EB094E4DD}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\common">
-      <UniqueIdentifier>{d6d7a305-a2fd-48c6-b973-719feb69e413}</UniqueIdentifier>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{938419d8-e470-45c9-92db-0486f8e3d764}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\common\input">
-      <UniqueIdentifier>{8aa73c3b-f06f-450c-924f-6b252d477b63}</UniqueIdentifier>
+    <Filter Include="Source Files\common\error_handle">
+      <UniqueIdentifier>{5918840d-79cf-48d4-8883-61605115d46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\fps">
+      <UniqueIdentifier>{04ed1dbb-d9c9-4576-89f3-9389f4ddd444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\key_handle">
+      <UniqueIdentifier>{4cd8dd95-aa52-4d4f-a475-f0815ad749cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\resource">
+      <UniqueIdentifier>{a43923b6-775c-4d90-b3ca-d5b95341d736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scene">
+      <UniqueIdentifier>{c4acf4d5-9d67-494c-9847-c363e21a7c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scene\debug_scene">
+      <UniqueIdentifier>{806abe51-af1e-44ff-b482-2cf4e93a7750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scene\tetris_scene">
+      <UniqueIdentifier>{984a2dfe-24dc-4677-b322-e895c6934e8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scene\title_scene">
+      <UniqueIdentifier>{17d74af9-c217-45d9-9340-85f795fcabec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system">
+      <UniqueIdentifier>{f2a41849-75e6-4736-98ae-87f3ac12096f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system\scene_controll">
+      <UniqueIdentifier>{72fb75b8-19d1-49e7-9f0e-7725acb9e678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tetris">
+      <UniqueIdentifier>{bd5eee47-8cbc-44e1-a954-a449f06307c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tetris\renderer">
+      <UniqueIdentifier>{599d320a-f8f7-4137-99b4-cc15bf3c4b05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -775,304 +808,325 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\tetris_updater.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetromino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetromino_color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetromino_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetromino_render_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetromino_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\texture_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\title_back_ground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\title_scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\title_ui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\broken_block_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\debug_scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\description_field_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\drop_count.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\error_box.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fade_effect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\font_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fps_controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\game_const.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\game_end_checker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\game_main_loop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\game_setting_record.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\hold_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\hold_tetromino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\i_scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\key_event_handler.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\my_format.h">
+      <Filter>Source Files\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\my_assert.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\common\error_handle</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\next_renderer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\error_box.h">
+      <Filter>Source Files\common\error_handle</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\next_tetromino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\pause_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\render_anchor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\render_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\resource_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\scene_change_executer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\scene_change_listener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\scene_change_parameter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\scene_creator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\scene_name.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\scene_stack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\score_board_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\system_main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_announce.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_feild.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_game_mode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_rotate_checker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\tetris_timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\my_format.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\fade_effect.h">
+      <Filter>Source Files\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\fps_addon.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\common\fps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fps_controller.h">
+      <Filter>Source Files\common\fps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\version.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\render_util.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\render_anchor.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_event_handler.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_config_data.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_group.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\key_handle.h">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game_const.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\font_view.h">
+      <Filter>Source Files\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\font.h">
+      <Filter>Source Files\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\texture.h">
+      <Filter>Source Files\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\texture_view.h">
+      <Filter>Source Files\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\resource_container.h">
+      <Filter>Source Files\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\debug_scene.h">
+      <Filter>Source Files\scene\debug_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_scene.h">
+      <Filter>Source Files\scene\tetris_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\title_scene.h">
+      <Filter>Source Files\scene\title_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\title_ui.h">
+      <Filter>Source Files\scene\title_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\title_back_ground.h">
+      <Filter>Source Files\scene\title_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\i_scene.h">
+      <Filter>Source Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\system_main.h">
+      <Filter>Source Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game_setting_record.h">
+      <Filter>Source Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game_main_loop.h">
+      <Filter>Source Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scene_stack.h">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scene_change_executer.h">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scene_change_listener.h">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scene_change_parameter.h">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scene_creator.h">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\scene_name.h">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetromino_type.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\drop_count.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game_end_checker.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hold_tetromino.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\next_tetromino.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_announce.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_feild.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_game_mode.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_level.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_rotate_checker.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_timer.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_updater.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetromino.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetromino_color.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetromino_generator.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\broken_block_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\description_field_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\hold_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\next_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pause_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\score_board_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_renderer.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetromino_render_util.h">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_field_effect.h">
+      <Filter>Source Files\tetris</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\title_back_ground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\title_scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\title_ui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\broken_block_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\debug_scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\description_field_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\drop_count.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\error_box.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fade_effect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\font_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fps_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\game_end_checker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\game_main_loop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\hold_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\key_event_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\common\error_handle</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\my_assert.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\next_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\next_tetromino.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\pause_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\render_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\resource_container.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\scene_change_executer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\scene_change_listener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\scene_change_parameter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\scene_creator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\scene_stack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\score_board_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\system_main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_announce.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_feild.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_rotate_checker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_updater.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetromino.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetromino_generator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetromino_render_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\texture_view.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\common\error_handle</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\fps_addon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\common\fps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fps_controller.cpp">
+      <Filter>Source Files\common\fps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fade_effect.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\key_event_handler.cpp">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\key_config_data.cpp">
+      <Filter>Source Files\common\key_handle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\font_view.cpp">
+      <Filter>Source Files\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\font.cpp">
+      <Filter>Source Files\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\resource_container.cpp">
+      <Filter>Source Files\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\texture_view.cpp">
+      <Filter>Source Files\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\texture.cpp">
+      <Filter>Source Files\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\debug_scene.cpp">
+      <Filter>Source Files\scene\debug_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_scene.cpp">
+      <Filter>Source Files\scene\tetris_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\title_scene.cpp">
+      <Filter>Source Files\scene\title_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\title_ui.cpp">
+      <Filter>Source Files\scene\title_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\title_back_ground.cpp">
+      <Filter>Source Files\scene\title_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\system_main.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game_main_loop.cpp">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scene_change_executer.cpp">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scene_change_listener.cpp">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scene_change_parameter.cpp">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scene_creator.cpp">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scene_stack.cpp">
+      <Filter>Source Files\system\scene_controll</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\drop_count.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game_end_checker.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\next_tetromino.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_announce.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_feild.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_level.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_rotate_checker.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_timer.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_updater.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetromino.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetromino_generator.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\broken_block_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\description_field_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\hold_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\next_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pause_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\score_board_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_renderer.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetromino_render_util.cpp">
+      <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\render_util.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_field_effect.cpp">
+      <Filter>Source Files\tetris</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

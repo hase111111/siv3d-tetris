@@ -394,6 +394,7 @@
     <ClInclude Include="..\..\src\key_group.h" />
     <ClInclude Include="..\..\src\key_handle.h" />
     <ClInclude Include="..\..\src\my_assert.h" />
+    <ClInclude Include="..\..\src\my_format.h" />
     <ClInclude Include="..\..\src\next_renderer.h" />
     <ClInclude Include="..\..\src\next_tetromino.h" />
     <ClInclude Include="..\..\src\pause_renderer.h" />
