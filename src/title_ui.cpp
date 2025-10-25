@@ -11,6 +11,7 @@
 
 #include "game_const.h"
 #include "my_assert.h"
+#include "my_format.h"
 #include "tetris_game_mode.h"
 
 namespace mytetris {
@@ -51,7 +52,6 @@ bool TitleUI::Update() {
 }
 
 void TitleUI::Draw() const {
-  // UI‚Ì•`‰æˆ—‚ð‚±‚±‚ÉŽÀ‘•.
   switch (selected_index_) {
     case 0: {
       DrawTitle();
@@ -73,8 +73,15 @@ void TitleUI::Draw() const {
 }
 
 bool TitleUI::UpdateTitle() {
+  const auto up_key = KeyHandleToString(
+      key_event_handler_ptr_->GetKeyHandleFromKeyGroup(KeyGroup::kUp));
+  const auto down_key = KeyHandleToString(
+      key_event_handler_ptr_->GetKeyHandleFromKeyGroup(KeyGroup::kDown));
+  const auto decide_key = KeyHandleToString(
+      key_event_handler_ptr_->GetKeyHandleFromKeyGroup(KeyGroup::kDecide));
   lower_announcement_ =
-      "Use Up/Down key to move, Z key to decide, Esc key to quit.";
+      nostd::format("Use {}/{} key to move, {} key to decide, Esc key to quit.",
+                    up_key, down_key, decide_key);
 
   if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kUp) == 1) {
     mode_index_ += static_cast<int>(title_items_.size()) - 1;

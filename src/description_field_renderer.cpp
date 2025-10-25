@@ -7,12 +7,49 @@
 
 #include "description_field_renderer.h"
 
+#include "my_assert.h"
+#include "my_format.h"
+
 namespace mytetris {
 
 DescriptionFieldRenderer::DescriptionFieldRenderer(
-    const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
-    : font_view_(resource_container_ptr->GetFont("small")),
-      wall_texture_(resource_container_ptr->GetTexture("wall.png")) {}
+    const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
+    const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
+    const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr)
+    : key_ptr_(key_event_handler_ptr),
+      tetris_timer_ptr_(tetris_timer_ptr),
+      font_view_(resource_container_ptr->GetFont("small")),
+      wall_texture_(resource_container_ptr->GetTexture("wall.png")) {
+  // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr_);
+}
+
+void DescriptionFieldRenderer::Update() {
+  std::vector<KeyGroup> keys_to_check{
+      KeyGroup::kLeft,     KeyGroup::kRight,     KeyGroup::kDown, KeyGroup::kUp,
+      KeyGroup::kRotateCW, KeyGroup::kRotateCCW, KeyGroup::kHold,
+  };
+
+  for (const auto& key : keys_to_check) {
+    if (key_ptr_->GetPressingCount(key) == 1) {
+      ++input_counter;
+
+      if (key == KeyGroup::kUp) {
+        ++hard_drop_counter;
+      }
+
+      input_history_.push_back(
+          KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(key)));
+      if (static_cast<int>(input_history_.size()) > max_history_size_) {
+        input_history_.erase(input_history_.begin());
+      }
+    }
+  }
+}
 
 void DescriptionFieldRenderer::Draw(const int render_x,
                                     const int render_y) const {
@@ -29,6 +66,10 @@ void DescriptionFieldRenderer::Draw(const int render_x,
 
     wall_texture_.DrawRotated(render_x + wall_size * x - wall_size / 2.f,
                               render_y - wall_size / 2.f + box_size_y,
+                              RenderAnchor::TopLeft, wall_ex, 0.0f);
+
+    wall_texture_.DrawRotated(render_x + wall_size * x - wall_size / 2.f,
+                              render_y - wall_size + box_size_y / 2.f,
                               RenderAnchor::TopLeft, wall_ex, 0.0f);
   }
 
@@ -47,23 +88,77 @@ void DescriptionFieldRenderer::Draw(const int render_x,
                   "Controls:");
   font_view_.Draw(render_x + wall_size, render_y + wall_size * 2.f,
                   RenderAnchor::TopLeft, GetString());
+
+  // 下の文字.
+  font_view_.Draw(
+      render_x + wall_size * 3 / 4.0f,
+      render_y + wall_size * 3 / 4.0f - wall_size / 2.f + box_size_y / 2.f,
+      RenderAnchor::TopLeft, "Input History:");
+
+  // キー入力の履歴を表示する.
+  for (size_t i = 0; i < input_history_.size(); ++i) {
+    font_view_.Draw(
+        render_x + wall_size,
+        render_y + wall_size * 3 / 4.0f - wall_size / 2.f + box_size_y / 2.f +
+            20 * static_cast<float>(i + 1),
+        RenderAnchor::TopLeft,
+        nostd::format(
+            "{}: {}",
+            i + 1 + std::max<int>(0, input_counter - max_history_size_),
+            input_history_[i]));
+  }
+
+  font_view_.Draw(
+      render_x + box_size_x / 2.f,
+      render_y + wall_size * 3 / 4.0f - wall_size / 2.f + box_size_y / 2.f,
+      RenderAnchor::TopLeft, "Input per Sec:");
+
+  const auto time = tetris_timer_ptr_->GetTime();
+  font_view_.Draw(
+      render_x + box_size_x / 2.f,
+      render_y + wall_size * 3 / 4.f + wall_size / 2.f + box_size_y / 2.f,
+      RenderAnchor::TopLeft,
+      nostd::format(" {} input/sec",
+                    time == 0 ? 0 : input_counter * 60.f / time));
+
+  font_view_.Draw(
+      render_x + box_size_x / 2.f,
+      render_y + wall_size * 3 / 4.f + wall_size * 3.f / 2.f + box_size_y / 2.f,
+      RenderAnchor::TopLeft, "HardDrop per sec:");
+  font_view_.Draw(
+      render_x + box_size_x / 2.f,
+      render_y + wall_size * 3 / 4.f + wall_size * 5.f / 2.f + box_size_y / 2.f,
+      RenderAnchor::TopLeft,
+      nostd::format(" {} drop/sec",
+                    time == 0 ? 0 : hard_drop_counter * 60.f / time));
 }
 
 std::string DescriptionFieldRenderer::GetString() const {
-  return std::string(
-      "Move Left: Left Arrow\n"
-      "Move Right: Right Arrow\n"
-      "Soft Drop: Down Arrow\n"
-      "Hard Drop: Up Arrow\n"
-      "Rotate Clockwise: D\n"
-      "Rotate Inverse: A\n"
-      "Hold: W\n"
+  using enum KeyGroup;
+  return nostd::format(
+      "Move Left: {}\n"
+      "Move Right: {}\n"
+      "Soft Drop: {}\n"
+      "Hard Drop: {}\n"
+      "Rotate Clockwise: {}\n"
+      "Rotate Inverse: {}\n"
+      "Hold: {}\n"
       "\n"
-      "Back to Menu: Z\n"
-      "Pause: P\n"
-      "Reset: R\n"
+      "Back to Menu: {}\n"
+      "Pause: {}\n"
+      "Reset: {}\n"
       "End Game: Esc\n"
-      "\n");
+      "\n",
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kLeft)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kRight)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kDown)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kUp)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kRotateCW)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kRotateCCW)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kHold)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kToMenu)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kPause)),
+      KeyHandleToString(key_ptr_->GetKeyHandleFromKeyGroup(kRestart)));
 }
 
 }  // namespace mytetris

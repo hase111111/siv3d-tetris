@@ -36,7 +36,8 @@ TetrisScene::TetrisScene(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
           drop_count_ptr_, game_end_checker_ptr_, tetris_field_effect_ptr_)),
-      description_field_renderer_{resource_container_ptr},
+      description_field_renderer_{resource_container_ptr, key_event_handler_ptr,
+                                  tetris_timer_ptr_},
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, tetris_field_effect_ptr_, 40.0f},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
@@ -106,6 +107,7 @@ bool TetrisScene::Update() {
   tetris_renderer_.SetClearLines(cleared_lines);
   tetris_renderer_.Update();
   tetris_field_effect_ptr_->Update();
+  description_field_renderer_.Update();
 
   tetris_announce_.Update();
 

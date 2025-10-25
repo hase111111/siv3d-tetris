@@ -39,6 +39,10 @@ class KeyEventHandler final {
 
   std::optional<KeyHandle> GetInputKeyHandle() const;
 
+  KeyHandle GetKeyHandleFromKeyGroup(KeyGroup group) const {
+    return key_config_data_ptr_->Map(group);
+  }
+
  private:
   static const int kKeyNum = 256;  //!< DxLib‚É‚¨‚¯‚éƒL[‘”D
 
