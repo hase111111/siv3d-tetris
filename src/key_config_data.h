@@ -17,6 +17,7 @@ struct KeyConfigData final {
         decide_key(KeyHandle::kZ),
         pause_key(KeyHandle::kP),
         restart_key(KeyHandle::kR),
+        to_menu_key(KeyHandle::kM),
         game_end_key(KeyHandle::kEscape) {}
 
   KeyHandle Map(KeyGroup key_group) const;
@@ -31,6 +32,7 @@ struct KeyConfigData final {
   KeyHandle decide_key;
   KeyHandle pause_key;
   KeyHandle restart_key;
+  KeyHandle to_menu_key;
   KeyHandle game_end_key;
 };
 

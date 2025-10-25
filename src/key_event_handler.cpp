@@ -60,8 +60,6 @@ void KeyEventHandler::Update() {
 
 static s3d::Input ToInput(const KeyHandle handle) {
   switch (handle) {
-    case KeyHandle::kEscape:
-      return s3d::KeyEscape;
     case KeyHandle::kA:
       return s3d::KeyA;
     case KeyHandle::kB:
@@ -114,6 +112,20 @@ static s3d::Input ToInput(const KeyHandle handle) {
       return s3d::KeyY;
     case KeyHandle::kZ:
       return s3d::KeyZ;
+    case KeyHandle::kLShift:
+      return s3d::KeyLShift;
+    case KeyHandle::kRShift:
+      return s3d::KeyRShift;
+    case KeyHandle::kLControl:
+      return s3d::KeyLControl;
+    case KeyHandle::kRControl:
+      return s3d::KeyRControl;
+    case KeyHandle::kLAlt:
+      return s3d::KeyLAlt;
+    case KeyHandle::kRAlt:
+      return s3d::KeyRAlt;
+    case KeyHandle::kEscape:
+      return s3d::KeyEscape;
     case KeyHandle::kSpace:
       return s3d::KeySpace;
     case KeyHandle::kLeft:
@@ -124,6 +136,56 @@ static s3d::Input ToInput(const KeyHandle handle) {
       return s3d::KeyUp;
     case KeyHandle::kDown:
       return s3d::KeyDown;
+    case KeyHandle::kDelete:
+      return s3d::KeyDelete;
+    case KeyHandle::kMinus:
+      return s3d::KeyMinus;
+    case KeyHandle::kPrevTrack:
+      return s3d::KeyPreviousTrack;
+    case KeyHandle::kYen:
+      return s3d::KeyYen_JIS;
+    case KeyHandle::kAt:
+      return s3d::KeyGraveAccent;
+    case KeyHandle::kLBracket:
+      return s3d::KeyLBracket;
+    case KeyHandle::kRBracket:
+      return s3d::KeyRBracket;
+    case KeyHandle::kSemicolon:
+      return s3d::KeySemicolon_JIS;
+    case KeyHandle::kColon:
+      return s3d::KeyColon_JIS;
+    case KeyHandle::kComma:
+      return s3d::KeyComma;
+    case KeyHandle::kPeriod:
+      return s3d::KeyPeriod;
+    case KeyHandle::kSlash:
+      return s3d::KeySlash;
+    case KeyHandle::kEnter:
+      return s3d::KeyEnter;
+    case KeyHandle::k0:
+      return s3d::Key0;
+    case KeyHandle::k1:
+      return s3d::Key1;
+    case KeyHandle::k2:
+      return s3d::Key2;
+    case KeyHandle::k3:
+      return s3d::Key3;
+    case KeyHandle::k4:
+      return s3d::Key4;
+    case KeyHandle::k5:
+      return s3d::Key5;
+    case KeyHandle::k6:
+      return s3d::Key6;
+    case KeyHandle::k7:
+      return s3d::Key7;
+    case KeyHandle::k8:
+      return s3d::Key8;
+    case KeyHandle::k9:
+      return s3d::Key9;
+    case KeyHandle::kTab:
+      return s3d::KeyTab;
+    case KeyHandle::kBack:
+      return s3d::KeyBackspace;
     default:
       // Ç±Ç±Ç…ÇÕóàÇ»Ç¢ÇÕÇ∏ÅD
       //! @todo C++ÇÃédólè„Ç±Ç±Ç…óàÇƒÇµÇ‹Ç§.

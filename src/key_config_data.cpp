@@ -26,6 +26,8 @@ KeyHandle KeyConfigData::Map(const KeyGroup key_group) const {
       return decide_key;
     case KeyGroup::kRestart:
       return restart_key;
+    case KeyGroup::kToMenu:
+      return to_menu_key;
     case KeyGroup::kGameEnd:
       return game_end_key;
     default:

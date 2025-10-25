@@ -13,6 +13,7 @@ enum class KeyGroup : int {
   kPause,
   kDecide,
   kRestart,
+  kToMenu,
   kGameEnd,
 };
 

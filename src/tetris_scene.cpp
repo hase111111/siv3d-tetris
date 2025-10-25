@@ -63,7 +63,7 @@ bool TetrisScene::Update() {
     return false;
   }
 
-  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
+  if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kToMenu) == 1) {
     // Zキーでタイトルへ戻る.
     fade_effect_.Start(FadeType::kFadeOut, [this]() {
       scene_change_listener_ptr_->RequestDeleteScene(1, {});
