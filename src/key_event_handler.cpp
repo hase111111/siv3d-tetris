@@ -237,6 +237,23 @@ int KeyEventHandler::GetReleasingCount(const KeyGroup group) const {
   return key_releasing_counter_[cast_code];
 }
 
+std::optional<KeyHandle> KeyEventHandler::GetInputKeyHandle() const {
+  // 全入力をチェックして，
+  // 押されているキーのうち，
+  // 最初に見つけたキーのKeyHandleを返す．
+  for (const auto& handle : key_list) {
+    const auto cast_code = static_cast<int>(handle);
+    if (!IsAvailableCode(cast_code)) {
+      continue;
+    }
+    if (key_pressing_counter_[cast_code] > 0) {
+      return handle;
+    }
+  }
+
+  return std::nullopt;
+}
+
 bool KeyEventHandler::IsAvailableCode(const int key_code) const {
   if (!(0 <= key_code && key_code < kKeyNum)) {
     return false;

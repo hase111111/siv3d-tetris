@@ -7,6 +7,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace mytetris {
 
@@ -75,6 +76,30 @@ enum class KeyHandle : int {
   k9 = 0x0A,
   kTab = 0x0F,
   kBack = 0x0E,
+};
+
+inline const std::vector<KeyHandle> key_list{
+    KeyHandle::kA,         KeyHandle::kB,         KeyHandle::kC,
+    KeyHandle::kD,         KeyHandle::kE,         KeyHandle::kF,
+    KeyHandle::kG,         KeyHandle::kH,         KeyHandle::kI,
+    KeyHandle::kJ,         KeyHandle::kK,         KeyHandle::kL,
+    KeyHandle::kM,         KeyHandle::kN,         KeyHandle::kO,
+    KeyHandle::kP,         KeyHandle::kQ,         KeyHandle::kR,
+    KeyHandle::kS,         KeyHandle::kT,         KeyHandle::kU,
+    KeyHandle::kV,         KeyHandle::kW,         KeyHandle::kX,
+    KeyHandle::kY,         KeyHandle::kZ,         KeyHandle::kLShift,
+    KeyHandle::kRShift,    KeyHandle::kLControl,  KeyHandle::kRControl,
+    KeyHandle::kLAlt,      KeyHandle::kRAlt,      KeyHandle::kEscape,
+    KeyHandle::kSpace,     KeyHandle::kLeft,      KeyHandle::kUp,
+    KeyHandle::kRight,     KeyHandle::kDown,      KeyHandle::kDelete,
+    KeyHandle::kMinus,     KeyHandle::kPrevTrack, KeyHandle::kYen,
+    KeyHandle::kAt,        KeyHandle::kLBracket,  KeyHandle::kRBracket,
+    KeyHandle::kSemicolon, KeyHandle::kColon,     KeyHandle::kComma,
+    KeyHandle::kPeriod,    KeyHandle::kSlash,     KeyHandle::kEnter,
+    KeyHandle::k0,         KeyHandle::k1,         KeyHandle::k2,
+    KeyHandle::k3,         KeyHandle::k4,         KeyHandle::k5,
+    KeyHandle::k6,         KeyHandle::k7,         KeyHandle::k8,
+    KeyHandle::k9,         KeyHandle::kTab,       KeyHandle::kBack,
 };
 
 inline std::string KeyHandleToString(const KeyHandle key_handle) {

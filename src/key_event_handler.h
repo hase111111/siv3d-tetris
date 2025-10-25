@@ -9,6 +9,7 @@
 
 #include <array>
 #include <memory>
+#include <optional>
 
 #include "key_config_data.h"
 #include "key_handle.h"
@@ -35,6 +36,8 @@ class KeyEventHandler final {
   //! 例えばZキーだったら，KEY_INPUT_Z となる．
   //! @return 離されているフレーム数．異常な key_code が渡された場合は-1を返す．
   int GetReleasingCount(KeyGroup group) const;
+
+  std::optional<KeyHandle> GetInputKeyHandle() const;
 
  private:
   static const int kKeyNum = 256;  //!< DxLibにおけるキー総数．
