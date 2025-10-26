@@ -14,6 +14,7 @@
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "setting_back.h"
+#include "setting_ui.h"
 
 namespace mytetris {
 
@@ -38,6 +39,7 @@ class SettingScene final : public IScene {
   const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
   const SettingBack setting_back_;
 
+  SettingUI setting_ui_;
   FadeEffect fade_effect_{30};
 };
 
