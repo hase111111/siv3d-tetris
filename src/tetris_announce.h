@@ -35,6 +35,9 @@ class TetrisAnnounce final {
     game_mode_ = game_mode;
   }
 
+  void SetClearLineAnnounce(int line_num, int combo, bool is_tspin,
+                            bool is_btb);
+
   void Update();
 
   void Draw(int x, int y) const;
@@ -51,10 +54,12 @@ class TetrisAnnounce final {
   TetrisGameMode game_mode_{TetrisGameMode::kEndless};
   std::string announce_text_{""};
   std::string announce_text_small_{""};
-  int counter_{0};
-  int start_time_{0};
-  int total_clear_lines_{0};
-  int timer_count_{0};
+  std::vector<std::string> clear_line_announce_{};
+  int counter_{0};                //!< アナウンス用カウンター.
+  int start_time_{0};             //!< アナウンス開始時のタイマー値.
+  int clear_line_start_time_{0};  //!< クリアラインアナウンス開始時のタイマー値.
+  int total_clear_lines_{0};      //!< 最後に記録したクリアライン数.
+  int timer_count_{0};            //<! 最後に記録したタイマー値.
 };
 
 }  // namespace mytetris

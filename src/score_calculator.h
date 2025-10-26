@@ -1,12 +1,15 @@
 ﻿#pragma once
 
+#include <memory>
 #include <vector>
+
+#include "tetris_announce.h"
 
 namespace mytetris {
 
 class ScoreCalculator final {
  public:
-  ScoreCalculator() = default;
+  ScoreCalculator(const std::shared_ptr<TetrisAnnounce>& tetris_announce_ptr);
   ~ScoreCalculator() = default;
 
   void Update();
@@ -30,6 +33,7 @@ class ScoreCalculator final {
 
   bool IsBtbActive(int lines_num, bool is_tspin) const;
 
+  const std::shared_ptr<TetrisAnnounce> tetris_announce_ptr_;
   const int drop_score_{1};
   const int hard_drop_score_{2};
   const std::vector<int> line_clear_scores_{100, 300, 500, 800, 1200};

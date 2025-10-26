@@ -26,6 +26,39 @@ TetrisAnnounce::TetrisAnnounce(
       font_view_(resource_container_ptr->GetFont("default")),
       font_view_small_(resource_container_ptr->GetFont("small")) {}
 
+void TetrisAnnounce::SetClearLineAnnounce(int line_num, int combo,
+                                          bool is_tspin, bool is_btb) {
+  clear_line_announce_.clear();
+
+  if (is_tspin && line_num == 3) {
+    clear_line_announce_.push_back("T-Spin Triple!");
+  } else if (is_tspin && line_num == 2) {
+    clear_line_announce_.push_back("T-Spin Double!");
+  } else if (is_tspin && line_num == 1) {
+    clear_line_announce_.push_back("T-Spin Single!");
+  } else if (line_num == 4) {
+    clear_line_announce_.push_back("Tetris!");
+  } else if (4 < line_num) {
+    clear_line_announce_.push_back("Tetris+!");
+  } else if (line_num == 3) {
+    clear_line_announce_.push_back("Triple!");
+  } else if (line_num == 2) {
+    clear_line_announce_.push_back("Double!");
+  } else if (line_num == 1) {
+    clear_line_announce_.push_back("Single!");
+  }
+
+  if (is_btb) {
+    clear_line_announce_.push_back("Back To Back!");
+  }
+
+  if (combo >= 2) {
+    clear_line_announce_.push_back(nostd::format("{} Combo!", combo));
+  }
+
+  clear_line_start_time_ = counter_;
+}
+
 void TetrisAnnounce::Update() {
   ++counter_;
 
@@ -126,8 +159,7 @@ void TetrisAnnounce::Update() {
         for (int i = 1; i <= 9; ++i) {
           if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
               total_clear_lines_ < i * 10) {
-            announce_text_ =
-                nostd::format("{} / 100 | Effect Changed!", i * 10);
+            announce_text_ = nostd::format("{} / 100 | Effect Change", i * 10);
             announce_text_small_ = nostd::format(
                 "{} lines left", 100 - tetris_level_ptr_->GetTotalClearLines());
             start_time_ = counter_;
@@ -144,11 +176,14 @@ void TetrisAnnounce::Update() {
 
 void TetrisAnnounce::Draw(const int x, const int y) const {
   if (tetris_field_ptr_->IsGameOver()) {
+    // ゲームオーバー時は表示しない.
     return;
   }
 
   if (!game_end_checker_ptr_->IsGameEnd()) {
+    // ゲーム中.
     if (counter_ < start_time_ + animation_duration_) {
+      // アニメーション中のみ表示.
       const float alpha = (counter_ - start_time_) % 40 < 20 ? 0.0f : 1.0f;
 
       font_view_.DrawAlpha(static_cast<float>(x), static_cast<float>(y),
@@ -158,7 +193,20 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
           static_cast<float>(x), static_cast<float>(y) + 50.f,
           RenderAnchor::Center, announce_text_small_, alpha);
     }
+
+    // クリアラインアナウンス表示.
+    if (!clear_line_announce_.empty() &&
+        counter_ < clear_line_start_time_ + animation_duration_) {
+      const float alpha =
+          (counter_ - clear_line_start_time_) % 40 < 20 ? 0.0f : 1.0f;
+      for (size_t i = 0; i < clear_line_announce_.size(); ++i) {
+        font_view_.DrawAlpha(
+            static_cast<float>(x), static_cast<float>(y) - 350.f + i * 40.f,
+            RenderAnchor::Center, clear_line_announce_[i], alpha);
+      }
+    }
   } else {
+    // ゲームクリア時.
     const float block_size = 40.f;
     const float x_size = block_size * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size * (tetris_field_ptr_->GetHeight() - 2);

@@ -63,8 +63,9 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<TetrisLevel> tetris_level_ptr_;
   const std::shared_ptr<TetrisTimer> tetris_timer_ptr_;
   const std::shared_ptr<DropCount> drop_count_ptr_;
-  const std::shared_ptr<ScoreCalculator> score_calculator_ptr_;
   const std::shared_ptr<GameEndChecker> game_end_checker_ptr_;
+  const std::shared_ptr<TetrisAnnounce> tetris_announce_ptr_;
+  const std::shared_ptr<ScoreCalculator> score_calculator_ptr_;
   const std::shared_ptr<TetrisFieldEffect> tetris_field_effect_ptr_;
   const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;
   DescriptionFieldRenderer description_field_renderer_;
@@ -76,7 +77,6 @@ class TetrisScene final : public IScene {
   ScoreBoardRenderer score_board_renderer_;
   SceneChangeParameter parameter_;
   PauseRenderer pause_renderer_;
-  TetrisAnnounce tetris_announce_;
 
   TetrisGameMode tetris_game_mode_;
 

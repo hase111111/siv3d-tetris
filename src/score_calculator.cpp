@@ -1,6 +1,16 @@
 ﻿#include "score_calculator.h"
 
+#include "my_assert.h"
+
 namespace mytetris {
+
+ScoreCalculator::ScoreCalculator(
+    const std::shared_ptr<TetrisAnnounce>& tetris_announce_ptr)
+    : tetris_announce_ptr_(tetris_announce_ptr) {
+  // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_announce_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_announce_ptr_);
+}
 
 void ScoreCalculator::Update() {
   if (score_difference_ > 0) {
@@ -15,7 +25,7 @@ void ScoreCalculator::Update() {
 }
 
 void ScoreCalculator::AddScore(const int lines_num, const bool is_tspin,
-                               bool is_perfect_clear) {
+                               const bool is_perfect_clear) {
   if (lines_num <= 0) {
     // ラインを消していない場合はスコアを加算しない.
     return;
@@ -48,6 +58,10 @@ void ScoreCalculator::AddScore(const int lines_num, const bool is_tspin,
   if (is_btb_active_) {
     diff = static_cast<int>(diff * btb_multiplier_);
   }
+
+  // アナウンス設定.
+  tetris_announce_ptr_->SetClearLineAnnounce(lines_num, combo_num_, is_tspin,
+                                             is_btb_active_);
 
   // BTB 状態更新.
   is_btb_active_ = IsBtbActive(lines_num, is_tspin);
