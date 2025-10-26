@@ -48,7 +48,7 @@ TetrisScene::TetrisScene(
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
                             drop_count_ptr_, score_calculator_ptr_,
                             resource_container_ptr},
-      pause_renderer_{resource_container_ptr},
+      pause_renderer_{resource_container_ptr, key_event_handler_ptr},
       tetris_game_mode_{TetrisGameMode::kEndless},
       tetris_announce_{resource_container_ptr, tetris_level_ptr_,
                        tetris_timer_ptr_, game_end_checker_ptr_,
