@@ -13,14 +13,7 @@ TetrisFieldEffect::TetrisFieldEffect(
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr_);
 
-  // diff_, speed_ をリセット.
-  for (int x = 0; x < TetrisField::kWidth - 1; ++x) {
-    for (int y = 0; y < TetrisField::kHeight - 1; ++y) {
-      diff_[x][y] = {0, 0};
-      speed_[x][y] = {0, 0};
-      alpha_[x][y] = 1.0;
-    }
-  }
+  ResetFieldEffects();
 }
 
 void TetrisFieldEffect::Update() {
@@ -37,6 +30,8 @@ void TetrisFieldEffect::Update() {
       tetris_level_ptr_->GetTotalClearLines() / 10) {
     // 10ラインごとにエフェクトを変更.
     ChangeEffect();
+
+    ResetFieldEffects();
   }
 
   last_total_clear_lines_ = tetris_level_ptr_->GetTotalClearLines();
@@ -46,14 +41,7 @@ void TetrisFieldEffect::Reset() {
   // カウントをリセット.
   cnt_ = 0;
 
-  // diff_, speed_ をリセット.
-  for (int x = 0; x < TetrisField::kWidth - 1; ++x) {
-    for (int y = 0; y < TetrisField::kHeight - 1; ++y) {
-      diff_[x][y] = {0, 0};
-      speed_[x][y] = {0, 0};
-      alpha_[x][y] = 1.0;
-    }
-  }
+  ResetFieldEffects();
 }
 
 float TetrisFieldEffect::GetAlpha(const int x, const int y) const {
@@ -103,6 +91,31 @@ void TetrisFieldEffect::UpdateEffect() {
       SinMove();
       break;
     }
+    case EffectType::kBlinkAndSinMove: {
+      Blink();
+      SinMove();
+      break;
+    }
+    case EffectType::kBlinkAndShake: {
+      Blink();
+      RandomShake();
+      break;
+    }
+    case EffectType::kRandomBlinkAndShake: {
+      RandomBlind();
+      RandomShake();
+      break;
+    }
+    case EffectType::kRandomBlinkAndSin: {
+      RandomBlind();
+      SinMove();
+      break;
+    }
+    case EffectType::kBlindAndRandomMove: {
+      Blind();
+      RandomMove();
+      break;
+    }
     case EffectType::kNone:
     default:
       break;
@@ -110,7 +123,7 @@ void TetrisFieldEffect::UpdateEffect() {
 }
 
 void TetrisFieldEffect::Blind() {
-  const float time = 45;
+  const float time = 60;
   const float alpha = cnt_ < time ? (time - cnt_) / time : 0.0f;
   for (int x = 1; x < TetrisField::kWidth - 1; ++x) {
     for (int y = 1; y < TetrisField::kHeight - 1; ++y) {
@@ -206,6 +219,17 @@ void TetrisFieldEffect::ChangeEffect() {
     std::uniform_int_distribution<int> dist(
         0, static_cast<int>(EffectType::kNone) - 1);
     effect_type_ = static_cast<EffectType>(dist(engine));
+  }
+}
+
+void TetrisFieldEffect::ResetFieldEffects() {
+  // diff_, speed_ をリセット.
+  for (int x = 0; x < TetrisField::kWidth - 1; ++x) {
+    for (int y = 0; y < TetrisField::kHeight - 1; ++y) {
+      diff_[x][y] = {0, 0};
+      speed_[x][y] = {0, 0};
+      alpha_[x][y] = 1.0;
+    }
   }
 }
 

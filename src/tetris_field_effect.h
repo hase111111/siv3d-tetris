@@ -25,7 +25,12 @@ enum class EffectType : int {
   kRandomShake = 3,
   kRandomMove = 4,
   kSinMove = 5,
-  kNone = 6,
+  kBlinkAndSinMove = 6,
+  kBlinkAndShake = 7,
+  kRandomBlinkAndShake = 8,
+  kRandomBlinkAndSin = 9,
+  kBlindAndRandomMove = 10,
+  kNone = 11,
 };
 
 class TetrisFieldEffect final {
@@ -56,6 +61,8 @@ class TetrisFieldEffect final {
   void SinMove();
 
   void ChangeEffect();
+
+  void ResetFieldEffects();
 
   const std::shared_ptr<const TetrisLevel> tetris_level_ptr_;
 
