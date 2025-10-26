@@ -137,6 +137,10 @@ void TetrisUpdater::UpdateTetrominoPosition() {
       ++cnt;
     }
 
+    if (cnt != 0) {
+      last_move_is_spin = false;
+    }
+
     // ハードドロップした分スコアを加算.
     score_calculator_ptr_->AddDropScore(cnt, true);
 
@@ -152,6 +156,8 @@ void TetrisUpdater::UpdateTetrominoPosition() {
                                            tetromino_y_ + 1)) {
       drop_count_ = 0;
       ++tetromino_y_;
+      last_move_is_spin = false;
+
       // ソフトドロップした分スコアを加算.
       score_calculator_ptr_->AddDropScore(1, false);
     }
@@ -174,6 +180,7 @@ void TetrisUpdater::UpdateTetrominoPosition() {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ - 1,
                                            tetromino_y_)) {
       --tetromino_x_;  // 左に移動.
+      last_move_is_spin = false;
 
       // 地面についている場合,
       // 左右に動かすことで設置までのクールタイムを伸ばすことができる.
@@ -195,6 +202,7 @@ void TetrisUpdater::UpdateTetrominoPosition() {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_ + 1,
                                            tetromino_y_)) {
       ++tetromino_x_;  // 右に移動.
+      last_move_is_spin = false;
 
       // 地面についている場合,
       // 左右に動かすことで設置までのクールタイムを伸ばすことができる.
@@ -227,7 +235,7 @@ void TetrisUpdater::SetTetromino() {
     // ラインをクリアした場合スコアを加算.
     score_calculator_ptr_->AddScore(
         static_cast<int>(clear_lines_.size()),
-        tetromino_ptr_->GetColor() == TetrominoColor::kT &&
+        tetromino_ptr_->GetColor() == TetrominoColor::kT && last_move_is_spin &&
             tetris_field_ptr_->IsOccupiedCorners(tetromino_x_, tetromino_y_,
                                                  true),
         tetris_field_ptr_->IsEmpty());
@@ -238,6 +246,7 @@ void TetrisUpdater::SetTetromino() {
 
   tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext());
   next_tetromino_ptr_->Next();
+  last_move_is_spin = false;
 
   SetInitialTetrominoPosition();
 
@@ -265,6 +274,7 @@ void TetrisUpdater::RotateTetromino() {
       tetromino_ptr_->LeftRotate();
       tetromino_x_ += offset_x;
       tetromino_y_ += offset_y;
+      last_move_is_spin = true;
 
       if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
@@ -288,6 +298,7 @@ void TetrisUpdater::RotateTetromino() {
       tetromino_ptr_->RightRotate();
       tetromino_x_ += offset_x;
       tetromino_y_ += offset_y;
+      last_move_is_spin = true;
 
       if (!tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {

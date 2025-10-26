@@ -94,6 +94,7 @@ class TetrisUpdater final {
   int fix_count_{0};
   const int fix_count_max_{60};
   int move_count_{0};
+  bool last_move_is_spin{false};
   const int move_count_max_{14};
   const int horizontal_interval_{5};
   const int horizontal_count_{5};
