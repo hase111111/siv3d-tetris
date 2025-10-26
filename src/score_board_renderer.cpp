@@ -88,6 +88,8 @@ std::string ScoreBoardRenderer::GetString() const {
   result += nostd::format("GameRule\n {}\n\n", ToString(tetris_game_mode_));
   result +=
       nostd::format("Combo\n {}\n\n", score_calculator_ptr_->GetComboNum());
+  result += nostd::format(
+      " {}\n\n", score_calculator_ptr_->IsBtbActive() ? "Back to Back" : "");
 
   return result;
 }

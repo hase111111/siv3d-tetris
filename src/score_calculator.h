@@ -23,6 +23,8 @@ class ScoreCalculator final {
 
   inline int GetComboNum() const { return combo_num_; }
 
+  inline bool IsBtbActive() const { return is_btb_active_; }
+
  private:
   int Get(const std::vector<int> v, int idx) const;
 

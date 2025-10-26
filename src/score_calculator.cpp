@@ -24,6 +24,13 @@ void ScoreCalculator::AddScore(const int lines_num, const bool is_tspin,
   // コンボ数を加算.
   ++combo_num_;
 
+  // BTB 判定.
+  if (is_tspin || lines_num >= 4) {
+    is_btb_active_ = true;
+  } else {
+    is_btb_active_ = false;
+  }
+
   // コンボボーナス加算.
   int diff{0};
   diff += Get(combo_bonus_, combo_num_ - 1);
@@ -33,6 +40,11 @@ void ScoreCalculator::AddScore(const int lines_num, const bool is_tspin,
     diff += Get(perfect_clear_scores_, lines_num - 1);
   } else {
     diff += Get(line_clear_scores_, lines_num - 1);
+  }
+
+  // BTB ボーナス加算.
+  if (is_btb_active_) {
+    diff = static_cast<int>(diff * btb_multiplier_);
   }
 
   score_ += diff;
