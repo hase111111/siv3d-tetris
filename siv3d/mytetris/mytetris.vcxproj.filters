@@ -181,6 +181,12 @@
     <Filter Include="Source Files\scene\setting_scene">
       <UniqueIdentifier>{768dc9ec-6811-426d-8e8a-bd70593f254e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\resource\font">
+      <UniqueIdentifier>{7a6973d4-ee73-4984-9350-d5b2583dbfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\resource\texture">
+      <UniqueIdentifier>{f50c469f-5f0e-4081-b7b1-2f48867a9fea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -191,12 +197,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\fade_effect.cpp">
       <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\font_view.cpp">
-      <Filter>Source Files\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\font.cpp">
-      <Filter>Source Files\resource</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\debug_scene.cpp">
       <Filter>Source Files\scene\debug_scene</Filter>
@@ -216,12 +216,6 @@
     <ClCompile Include="..\..\src\title_ui.cpp">
       <Filter>Source Files\scene\title_scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\texture_view.cpp">
-      <Filter>Source Files\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\texture.cpp">
-      <Filter>Source Files\resource</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\resource_container.cpp">
       <Filter>Source Files\resource</Filter>
     </ClCompile>
@@ -235,9 +229,6 @@
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\next_tetromino.cpp">
-      <Filter>Source Files\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\render_util.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tetris_feild.cpp">
@@ -338,6 +329,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\setting_ui.cpp">
       <Filter>Source Files\scene\setting_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\render_util.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\font.cpp">
+      <Filter>Source Files\resource\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\font_view.cpp">
+      <Filter>Source Files\resource\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\texture.cpp">
+      <Filter>Source Files\resource\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\texture_view.cpp">
+      <Filter>Source Files\resource\texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1010,18 +1016,6 @@
     <ClInclude Include="..\..\src\resource_container.h">
       <Filter>Source Files\resource</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\texture.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\texture_view.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\font_view.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\font.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\fade_effect.h">
       <Filter>Source Files\common</Filter>
     </ClInclude>
@@ -1195,6 +1189,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\setting_ui.h">
       <Filter>Source Files\scene\setting_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\font_view.h">
+      <Filter>Source Files\resource\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\font.h">
+      <Filter>Source Files\resource\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\texture.h">
+      <Filter>Source Files\resource\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\texture_view.h">
+      <Filter>Source Files\resource\texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

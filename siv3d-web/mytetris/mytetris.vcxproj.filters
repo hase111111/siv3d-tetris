@@ -175,6 +175,18 @@
     <Filter Include="Source Files\tetris\renderer">
       <UniqueIdentifier>{599d320a-f8f7-4137-99b4-cc15bf3c4b05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\resource\font">
+      <UniqueIdentifier>{412a4a38-3876-4c7f-9394-2e53613cfe49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\resource\texture">
+      <UniqueIdentifier>{608120ae-57a7-455e-a68a-63cc60ce8f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scene\setting_scene">
+      <UniqueIdentifier>{4cae9e9c-3356-4db8-99f7-0b395c663c5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tetris\renderer\ui">
+      <UniqueIdentifier>{3dec1dd6-077b-448a-9c51-a929736978c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\engine\font\fontawesome\LICENSE.txt">
@@ -850,18 +862,6 @@
     <ClInclude Include="..\..\src\game_const.h">
       <Filter>Source Files\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\font_view.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\font.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\texture.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\texture_view.h">
-      <Filter>Source Files\resource</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\resource_container.h">
       <Filter>Source Files\resource</Filter>
     </ClInclude>
@@ -925,9 +925,6 @@
     <ClInclude Include="..\..\src\next_tetromino.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\tetris_announce.h">
-      <Filter>Source Files\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\tetris_feild.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
@@ -958,22 +955,10 @@
     <ClInclude Include="..\..\src\broken_block_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\description_field_renderer.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\hold_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\next_renderer.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\pause_renderer.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\score_board_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\tetris_renderer.h">
@@ -983,6 +968,48 @@
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\tetris_field_effect.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calc_util.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\font_view.h">
+      <Filter>Source Files\resource\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\font.h">
+      <Filter>Source Files\resource\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\texture.h">
+      <Filter>Source Files\resource\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\texture_view.h">
+      <Filter>Source Files\resource\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\setting_back.h">
+      <Filter>Source Files\scene\setting_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\setting_scene.h">
+      <Filter>Source Files\scene\setting_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\setting_ui.h">
+      <Filter>Source Files\scene\setting_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\description_field_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pause_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\score_board_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_announce.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\score_calculator.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1008,19 +1035,7 @@
     <ClCompile Include="..\..\src\key_config_data.cpp">
       <Filter>Source Files\common\key_handle</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\font_view.cpp">
-      <Filter>Source Files\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\font.cpp">
-      <Filter>Source Files\resource</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\resource_container.cpp">
-      <Filter>Source Files\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\texture_view.cpp">
-      <Filter>Source Files\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\texture.cpp">
       <Filter>Source Files\resource</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\debug_scene.cpp">
@@ -1065,13 +1080,7 @@
     <ClCompile Include="..\..\src\game_end_checker.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\main.cpp">
-      <Filter>Source Files\tetris</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\next_tetromino.cpp">
-      <Filter>Source Files\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\tetris_announce.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tetris_feild.cpp">
@@ -1098,22 +1107,10 @@
     <ClCompile Include="..\..\src\broken_block_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\description_field_renderer.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\hold_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\next_renderer.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\pause_renderer.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\score_board_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tetris_renderer.cpp">
@@ -1126,6 +1123,48 @@
       <Filter>Source Files\common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tetris_field_effect.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\font.cpp">
+      <Filter>Source Files\resource\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\font_view.cpp">
+      <Filter>Source Files\resource\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\texture.cpp">
+      <Filter>Source Files\resource\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\texture_view.cpp">
+      <Filter>Source Files\resource\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\setting_back.cpp">
+      <Filter>Source Files\scene\setting_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\setting_scene.cpp">
+      <Filter>Source Files\scene\setting_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\setting_ui.cpp">
+      <Filter>Source Files\scene\setting_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\description_field_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pause_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\score_board_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_announce.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\score_calculator.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
   </ItemGroup>
