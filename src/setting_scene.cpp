@@ -13,7 +13,12 @@ SettingScene::SettingScene(
       key_event_handler_ptr_(key_event_handler_ptr),
       game_setting_record_ptr_(game_setting_record_ptr),
       setting_back_{resource_container_ptr},
-      setting_ui_{resource_container_ptr, []() {}} {
+      setting_ui_{resource_container_ptr, key_event_handler_ptr,
+                  game_setting_record_ptr, [this]() {
+                    fade_effect_.Start(FadeType::kFadeOut, [this]() {
+                      scene_change_listener_ptr_->RequestDeleteAllScene();
+                    });
+                  }} {
   // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);

@@ -27,9 +27,12 @@ TitleScene::TitleScene(
           std::bind(&TitleScene::ToTetrisScene, this, std::placeholders::_1),
           std::bind(&TitleScene::ToSettingScene, this)},
       fade_effect_{30} {
+  // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+
+  fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
 
 bool TitleScene::Update() {
