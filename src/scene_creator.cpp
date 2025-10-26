@@ -9,6 +9,7 @@
 
 #include "debug_scene.h"
 #include "my_assert.h"
+#include "setting_scene.h"
 #include "tetris_scene.h"
 #include "title_scene.h"
 
@@ -51,6 +52,11 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
       return std::make_unique<TetrisScene>(scene_change_listener_ptr_,
                                            key_event_handler_ptr_,
                                            resource_container_ptr_);
+    }
+    case SceneName::kSetting: {
+      return std::make_unique<SettingScene>(scene_change_listener_ptr_,
+                                            key_event_handler_ptr_,
+                                            resource_container_ptr_);
     }
     default: {
       DEBUG_ASSERT_MUST_NOT_REACH_HERE();

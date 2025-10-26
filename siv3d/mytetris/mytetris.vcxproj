@@ -145,6 +145,8 @@
     <ClCompile Include="..\..\src\scene_stack.cpp" />
     <ClCompile Include="..\..\src\score_board_renderer.cpp" />
     <ClCompile Include="..\..\src\score_calculator.cpp" />
+    <ClCompile Include="..\..\src\setting_back.cpp" />
+    <ClCompile Include="..\..\src\setting_scene.cpp" />
     <ClCompile Include="..\..\src\system_main.cpp" />
     <ClCompile Include="..\..\src\tetris_announce.cpp" />
     <ClCompile Include="..\..\src\tetris_feild.cpp" />
@@ -411,6 +413,8 @@
     <ClInclude Include="..\..\src\scene_stack.h" />
     <ClInclude Include="..\..\src\score_board_renderer.h" />
     <ClInclude Include="..\..\src\score_calculator.h" />
+    <ClInclude Include="..\..\src\setting_back.h" />
+    <ClInclude Include="..\..\src\setting_scene.h" />
     <ClInclude Include="..\..\src\system_main.h" />
     <ClInclude Include="..\..\src\tetris_announce.h" />
     <ClInclude Include="..\..\src\tetris_feild.h" />

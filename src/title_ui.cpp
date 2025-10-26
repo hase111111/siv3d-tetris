@@ -20,7 +20,8 @@ namespace mytetris {
 TitleUI::TitleUI(
     const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr_,
-    const std::function<void(const SceneChangeParameter&)>& to_game_scene)
+    const std::function<void(const SceneChangeParameter&)>& to_game_scene,
+    const std::function<void()>& to_setting_scene)
     : font_view_40_(resource_container_ptr_->GetFont("default")),
       font_view_20_(resource_container_ptr_->GetFont("small")),
       key_event_handler_ptr_(key_event_handler_ptr),
@@ -29,7 +30,8 @@ TitleUI::TitleUI(
                         "Marathon Mode", "Back"}),
       special_mode_items_({"Yamada Mode", "Pentris Mode", "Trick Mode",
                            "Practice Mode", "Back"}),
-      to_game_scene_(to_game_scene) {}
+      to_game_scene_(to_game_scene),
+      to_setting_scene_(to_setting_scene) {}
 
 bool TitleUI::Update() {
   ++counter_;
@@ -110,9 +112,9 @@ bool TitleUI::UpdateTitle() {
       return true;
     }
     case 2: {
+      // Setting.
       if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
-        selected_index_ = 3;
-        mode_index_ = 0;
+        to_setting_scene_();
       }
       return true;
     }

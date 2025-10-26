@@ -1,5 +1,4 @@
-
-//! @file title_scene.h
+//! @file setting_scene.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -14,18 +13,17 @@
 #include "key_event_handler.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
-#include "title_back_ground.h"
-#include "title_ui.h"
+#include "setting_back.h"
 
 namespace mytetris {
 
-class TitleScene final : public IScene {
+class SettingScene final : public IScene {
  public:
-  TitleScene(
+  SettingScene(
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
-  ~TitleScene() = default;
+  ~SettingScene() = default;
 
   bool Update() override;
 
@@ -33,18 +31,14 @@ class TitleScene final : public IScene {
 
   void OnStart(const SceneChangeParameter& parameter) override;
 
-  void OnReturnFromOtherScene(const SceneChangeParameter& parameter) override;
+  void OnReturnFromOtherScene(const SceneChangeParameter&) override {};
 
  private:
-  void ToTetrisScene(const SceneChangeParameter& parameter);
-  void ToSettingScene();
-
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
-  const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
-  TitleBackGround title_back_ground_;
-  TitleUI title_ui_;
-  FadeEffect fade_effect_;
+  const SettingBack setting_back_;
+
+  FadeEffect fade_effect_{30};
 };
 
 }  // namespace mytetris

@@ -24,7 +24,8 @@ TitleScene::TitleScene(
                          resource_container_ptr},
       title_ui_{
           key_event_handler_ptr, resource_container_ptr,
-          std::bind(&TitleScene::ToTetrisScene, this, std::placeholders::_1)},
+          std::bind(&TitleScene::ToTetrisScene, this, std::placeholders::_1),
+          std::bind(&TitleScene::ToSettingScene, this)},
       fade_effect_{30} {
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
@@ -60,6 +61,13 @@ void TitleScene::ToTetrisScene(const SceneChangeParameter& parameter) {
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   fade_effect_.Start(FadeType::kFadeOut, [this, parameter]() {
     scene_change_listener_ptr_->RequestAddScene(SceneName::kTetris, parameter);
+  });
+}
+
+void TitleScene::ToSettingScene() {
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+  fade_effect_.Start(FadeType::kFadeOut, [this]() {
+    scene_change_listener_ptr_->RequestAddScene(SceneName::kSetting, {});
   });
 }
 

@@ -13,6 +13,7 @@ enum class SceneName {
   kDebug,
   kTetris,
   kTitle,
+  kSetting,
 };
 
 }  // namespace mytetris
