@@ -12,6 +12,7 @@
 
 #include "drop_count.h"
 #include "game_end_checker.h"
+#include "game_setting_record.h"
 #include "hold_tetromino.h"
 #include "key_event_handler.h"
 #include "next_tetromino.h"
@@ -36,7 +37,8 @@ class TetrisUpdater final {
       const std::shared_ptr<DropCount>& drop_count_ptr,
       const std::shared_ptr<ScoreCalculator>& score_calculator_ptr,
       const std::shared_ptr<GameEndChecker>& game_end_checker_ptr,
-      const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr);
+      const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr,
+      const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
   ~TetrisUpdater() = default;
 
   void Update();
@@ -96,8 +98,10 @@ class TetrisUpdater final {
   int move_count_{0};
   bool last_move_is_spin{false};
   const int move_count_max_{14};
-  const int horizontal_interval_{5};
-  const int horizontal_count_{5};
+  const int horizontal_interval_;
+  const int horizontal_count_;
+  const bool hard_drop_lock_;
+  const bool soft_drop_lock_;
 
   //! ゲームオーバー時の演出を入れ終わったか確認するフラグ.
   bool is_game_over_animation_finished_{false};

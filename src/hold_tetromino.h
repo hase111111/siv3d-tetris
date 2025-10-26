@@ -15,7 +15,7 @@ namespace mytetris {
 
 class HoldTetromino {
  public:
-  HoldTetromino() = default;
+  HoldTetromino(const bool allow_hold) : allow_hold_(allow_hold) {}
 
   bool IsHold() const { return hold_tetromino_.has_value(); }
 
@@ -23,12 +23,13 @@ class HoldTetromino {
 
   Tetromino GetHoldTetromino() const { return *hold_tetromino_; }
 
-  bool CanHold() const { return can_hold_; }
+  bool CanHold() const { return allow_hold_ && can_hold_; }
 
   void SetCanHold(bool can_hold) { can_hold_ = can_hold; }
 
  private:
   std::optional<Tetromino> hold_tetromino_{std::nullopt};
+  const bool allow_hold_;
   bool can_hold_{true};
 };
 

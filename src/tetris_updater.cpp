@@ -21,7 +21,8 @@ TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<DropCount>& drop_count_ptr,
     const std::shared_ptr<ScoreCalculator>& score_calculator_ptr,
     const std::shared_ptr<GameEndChecker>& game_end_checker_ptr,
-    const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr)
+    const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr,
+    const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
     : key_event_handler_ptr_(key_event_handler_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
@@ -32,7 +33,11 @@ TetrisUpdater::TetrisUpdater(
       score_calculator_ptr_(score_calculator_ptr),
       game_end_checker_ptr_(game_end_checker_ptr),
       tetris_field_effect_ptr_(tetris_field_effect_ptr),
-      rotate_checker_{tetris_field_ptr} {
+      rotate_checker_{tetris_field_ptr},
+      horizontal_interval_{game_setting_record_ptr->delayed_auto_shift_},
+      horizontal_count_{game_setting_record_ptr->auto_repeat_rate_},
+      hard_drop_lock_{game_setting_record_ptr->hard_drop_lock},
+      soft_drop_lock_{game_setting_record_ptr->soft_drop_lock} {
   // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr);
@@ -145,7 +150,9 @@ void TetrisUpdater::UpdateTetrominoPosition() {
     score_calculator_ptr_->AddDropScore(cnt, true);
 
     // フィールドにセットする.
-    SetTetromino();
+    if (hard_drop_lock_) {
+      SetTetromino();
+    }
 
     drop_count_ = 0;  // 落下カウントをリセット.
 
@@ -160,6 +167,17 @@ void TetrisUpdater::UpdateTetrominoPosition() {
 
       // ソフトドロップした分スコアを加算.
       score_calculator_ptr_->AddDropScore(1, false);
+
+      // すぐ下が地面の場合フィールドにセットする.
+      if (soft_drop_lock_ &&
+          !tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
+                                              tetromino_y_ + 1)) {
+        SetTetromino();
+      }
+    } else {
+      if (soft_drop_lock_) {
+        SetTetromino();
+      }
     }
   } else if (max_ != 0 && drop_count_ % max_ == 0) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,

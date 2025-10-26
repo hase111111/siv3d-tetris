@@ -28,7 +28,7 @@ class TetrisRenderer final {
       const std::shared_ptr<const TetrisField>& tetris_field_ptr,
       const std::shared_ptr<const Tetromino>& tetromino_ptr,
       const std::shared_ptr<const TetrisFieldEffect>& tetris_field_effect_ptr,
-      float block_size);
+      float block_size, bool ghost_tetromino_enabled);
 
   void Update();
 
@@ -52,6 +52,7 @@ class TetrisRenderer final {
   const float block_size_;
   const FontView font_view_;
   const FontView font_view_small_;
+  const bool ghost_tetromino_enabled_;
 
   int counter_{0};
   BrokenBlockRenderer broken_block_renderer_;

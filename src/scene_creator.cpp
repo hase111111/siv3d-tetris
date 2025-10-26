@@ -19,7 +19,7 @@ SceneCreator::SceneCreator(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
     const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
-    const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
+    const std::shared_ptr<GameSettingRecord>& game_setting_record_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       key_event_handler_ptr_(key_event_handler_ptr),
       resource_container_ptr_(resource_container_ptr),
@@ -49,14 +49,14 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
                                           resource_container_ptr_);
     }
     case SceneName::kTetris: {
-      return std::make_unique<TetrisScene>(scene_change_listener_ptr_,
-                                           key_event_handler_ptr_,
-                                           resource_container_ptr_);
+      return std::make_unique<TetrisScene>(
+          scene_change_listener_ptr_, key_event_handler_ptr_,
+          resource_container_ptr_, game_setting_record_ptr_);
     }
     case SceneName::kSetting: {
-      return std::make_unique<SettingScene>(scene_change_listener_ptr_,
-                                            key_event_handler_ptr_,
-                                            resource_container_ptr_);
+      return std::make_unique<SettingScene>(
+          scene_change_listener_ptr_, key_event_handler_ptr_,
+          resource_container_ptr_, game_setting_record_ptr_);
     }
     default: {
       DEBUG_ASSERT_MUST_NOT_REACH_HERE();

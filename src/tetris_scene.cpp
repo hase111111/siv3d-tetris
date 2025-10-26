@@ -15,7 +15,8 @@ namespace mytetris {
 TetrisScene::TetrisScene(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
     const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
-    const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
+    const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
+    const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       key_event_handler_ptr_(key_event_handler_ptr),
       resource_container_ptr_(resource_container_ptr),
@@ -24,7 +25,8 @@ TetrisScene::TetrisScene(
       tetromino_ptr_(std::make_shared<Tetromino>(
           std::vector<std::vector<bool>>{{1}}, TetrominoColor::kI,
           RotationType::kNormal)),
-      hold_tetromino_ptr_(std::make_shared<HoldTetromino>()),
+      hold_tetromino_ptr_(
+          std::make_shared<HoldTetromino>(game_setting_record_ptr->allow_hold)),
       tetris_level_ptr_(std::make_shared<TetrisLevel>()),
       tetris_timer_ptr_(std::make_shared<TetrisTimer>()),
       drop_count_ptr_(std::make_shared<DropCount>()),
@@ -41,12 +43,16 @@ TetrisScene::TetrisScene(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
           drop_count_ptr_, score_calculator_ptr_, game_end_checker_ptr_,
-          tetris_field_effect_ptr_)),
+          tetris_field_effect_ptr_, game_setting_record_ptr)),
       description_field_renderer_{resource_container_ptr, key_event_handler_ptr,
                                   game_end_checker_ptr_, tetris_field_ptr_,
                                   tetris_timer_ptr_},
-      tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
-                       tetromino_ptr_, tetris_field_effect_ptr_, 40.0f},
+      tetris_renderer_{resource_container_ptr,
+                       tetris_field_ptr_,
+                       tetromino_ptr_,
+                       tetris_field_effect_ptr_,
+                       40.0f,
+                       game_setting_record_ptr->display_ghost_tetromino},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
       fade_effect_{30},

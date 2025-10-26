@@ -24,7 +24,7 @@ namespace mytetris {
 class GameMainLoop final {
  public:
   explicit GameMainLoop(
-      const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
+      const std::shared_ptr<GameSettingRecord>& game_setting_record_ptr);
   ~GameMainLoop() = default;
 
   //! @brief メインループ内で1フレームごとに行う処理を呼ぶ．
@@ -37,7 +37,7 @@ class GameMainLoop final {
   const std::shared_ptr<KeyConfigData> key_config_data_ptr_;
   const std::shared_ptr<KeyEventHandler> key_event_handler_ptr_;
 
-  const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
+  const std::shared_ptr<GameSettingRecord> game_setting_record_ptr_;
 
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<SceneStack> scene_stack_ptr_;

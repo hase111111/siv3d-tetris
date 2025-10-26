@@ -24,7 +24,7 @@
 namespace mytetris {
 
 GameMainLoop::GameMainLoop(
-    const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
+    const std::shared_ptr<GameSettingRecord>& game_setting_record_ptr)
     : key_config_data_ptr_(std::make_shared<KeyConfigData>()),
       key_event_handler_ptr_(
           std::make_shared<KeyEventHandler>(key_config_data_ptr_)),

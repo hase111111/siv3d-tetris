@@ -9,6 +9,7 @@
 #include <memory>
 
 #include "fade_effect.h"
+#include "game_setting_record.h"
 #include "i_scene.h"
 #include "key_event_handler.h"
 #include "resource_container.h"
@@ -23,7 +24,8 @@ class SettingScene final : public IScene {
   SettingScene(
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
-      const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
+      const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
+      const std::shared_ptr<GameSettingRecord>& game_setting_record_ptr);
   ~SettingScene() = default;
 
   bool Update() override;
@@ -37,6 +39,7 @@ class SettingScene final : public IScene {
  private:
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
   const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
+  const std::shared_ptr<GameSettingRecord> game_setting_record_ptr_;
   const SettingBack setting_back_;
 
   SettingUI setting_ui_;

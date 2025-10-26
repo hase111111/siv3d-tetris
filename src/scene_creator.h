@@ -25,7 +25,7 @@ class SceneCreator final {
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
-      const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
+      const std::shared_ptr<GameSettingRecord>& game_setting_record_ptr);
   ~SceneCreator() = default;
 
   //! @brief ƒV[ƒ“‚ğ¶¬‚·‚éD
@@ -40,7 +40,7 @@ class SceneCreator final {
 
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
 
-  const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
+  const std::shared_ptr<GameSettingRecord> game_setting_record_ptr_;
 };
 
 }  // namespace mytetris

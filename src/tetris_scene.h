@@ -14,6 +14,7 @@
 #include "drop_gauge_renderer.h"
 #include "fade_effect.h"
 #include "game_end_checker.h"
+#include "game_setting_record.h"
 #include "hold_renderer.h"
 #include "hold_tetromino.h"
 #include "i_scene.h"
@@ -41,7 +42,8 @@ class TetrisScene final : public IScene {
   TetrisScene(
       const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
       const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
-      const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
+      const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
+      const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
   ~TetrisScene() = default;
 
   bool Update() override;
