@@ -13,23 +13,29 @@
 namespace mytetris {
 
 ScoreBoardRenderer::ScoreBoardRenderer(
-    const std::shared_ptr<TetrisTimer>& tetris_timer_ptr,
-    const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
-    const std::shared_ptr<DropCount>& drop_count_ptr,
+    const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr,
+    const std::shared_ptr<const TetrisLevel>& tetris_level_ptr,
+    const std::shared_ptr<const DropCount>& drop_count_ptr,
+    const std::shared_ptr<const ScoreCalculator>& score_calculator_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : tetris_timer_ptr_(tetris_timer_ptr),
       tetris_level_ptr_(tetris_level_ptr),
       tetris_game_mode_(TetrisGameMode::kEndless),  // 仮に初期化.
       font_view_(resource_container_ptr->GetFont("small")),
       drop_count_ptr_(drop_count_ptr),
+      score_calculator_ptr_(score_calculator_ptr),
       wall_texture_(resource_container_ptr->GetTexture("wall.png")) {
+  // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr);
-  DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr);
-  DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(drop_count_ptr);
-  DEBUG_ASSERT_NOT_NULL_PTR(drop_count_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(score_calculator_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
+
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(drop_count_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(score_calculator_ptr_);
 }
 
 void ScoreBoardRenderer::Draw(const int render_x, const int render_y) const {
@@ -69,7 +75,10 @@ void ScoreBoardRenderer::Draw(const int render_x, const int render_y) const {
 std::string ScoreBoardRenderer::GetString() const {
   std::string result;
 
-  result += "Score\n 0 \n\n";
+  const auto diff = score_calculator_ptr_->GetScoreDifference();
+  result +=
+      nostd::format("Score\n {} \n{}\n\n", score_calculator_ptr_->GetScore(),
+                    diff == 0 ? "" : nostd::format("(diff +{})", diff));
   result += "Time\n " + tetris_timer_ptr_->GetTimeString() + "\n\n";
   result += nostd::format("Level\n {}\n\n", tetris_level_ptr_->GetLevel());
   result +=
@@ -77,6 +86,8 @@ std::string ScoreBoardRenderer::GetString() const {
   result += nostd::format("Speed\n {}\n\n", drop_count_ptr_->GetDisplaySpeed(
                                                 tetris_level_ptr_->GetLevel()));
   result += nostd::format("GameRule\n {}\n\n", ToString(tetris_game_mode_));
+  result +=
+      nostd::format("Combo\n {}\n\n", score_calculator_ptr_->GetComboNum());
 
   return result;
 }

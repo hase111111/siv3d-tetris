@@ -39,6 +39,44 @@ bool TetrisField::IsPinch() const {
   return false;
 }
 
+bool TetrisField::IsEmpty() const {
+  // 壁を除いて全て空かどうかで判定.
+  for (int y = 0; y < kHeight - 1; ++y) {   // 最下段は壁なので除外
+    for (int x = 1; x < kWidth - 1; ++x) {  // 両端は壁なので除外
+      if (field_[y][x] != TetrominoColor::kNone) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+bool TetrisField::IsOccupiedCorners(int tetromino_x, int tetromino_y,
+                                    bool allow_wall) const {
+  int occupied_corners = 0;
+  const std::array<std::tuple<int, int>, 4> corners = {
+      std::make_tuple(tetromino_x - 1, tetromino_y - 1),
+      std::make_tuple(tetromino_x + 1, tetromino_y - 1),
+      std::make_tuple(tetromino_x - 1, tetromino_y + 1),
+      std::make_tuple(tetromino_x + 1, tetromino_y + 1),
+  };
+  for (const auto& [corner_x, corner_y] : corners) {
+    if (corner_x < 0 || corner_x >= kWidth || corner_y < 0 ||
+        corner_y >= kHeight) {
+      // フィールド外は埋まっているとみなす.
+      ++occupied_corners;
+    } else {
+      const TetrominoColor color = field_[corner_y][corner_x];
+      if (color != TetrominoColor::kNone &&
+          (allow_wall || color != TetrominoColor::kWall)) {
+        ++occupied_corners;
+      }
+    }
+  }
+
+  return occupied_corners >= 3;
+}
+
 std::tuple<int, int> TetrisField::GetHardDropPosition(
     const Tetromino& tetromino, const int tetromino_x,
     const int tetromino_y) const {

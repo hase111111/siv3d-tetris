@@ -28,6 +28,7 @@ TetrisScene::TetrisScene(
       tetris_level_ptr_(std::make_shared<TetrisLevel>()),
       tetris_timer_ptr_(std::make_shared<TetrisTimer>()),
       drop_count_ptr_(std::make_shared<DropCount>()),
+      score_calculator_ptr_(std::make_shared<ScoreCalculator>()),
       game_end_checker_ptr_(std::make_shared<GameEndChecker>(
           tetris_level_ptr_, tetris_timer_ptr_)),
       tetris_field_effect_ptr_(
@@ -35,7 +36,8 @@ TetrisScene::TetrisScene(
       tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
-          drop_count_ptr_, game_end_checker_ptr_, tetris_field_effect_ptr_)),
+          drop_count_ptr_, score_calculator_ptr_, game_end_checker_ptr_,
+          tetris_field_effect_ptr_)),
       description_field_renderer_{resource_container_ptr, key_event_handler_ptr,
                                   tetris_timer_ptr_},
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
@@ -44,7 +46,8 @@ TetrisScene::TetrisScene(
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
       fade_effect_{30},
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
-                            drop_count_ptr_, resource_container_ptr},
+                            drop_count_ptr_, score_calculator_ptr_,
+                            resource_container_ptr},
       pause_renderer_{resource_container_ptr},
       tetris_game_mode_{TetrisGameMode::kEndless},
       tetris_announce_{resource_container_ptr, tetris_level_ptr_,
@@ -108,6 +111,7 @@ bool TetrisScene::Update() {
   tetris_renderer_.Update();
   tetris_field_effect_ptr_->Update();
   description_field_renderer_.Update();
+  score_calculator_ptr_->Update();
 
   tetris_announce_.Update();
 
@@ -135,10 +139,10 @@ void TetrisScene::Draw() const {
       tetromino_x, tetromino_y, tetris_updater_ptr_->IsGameOver(),
       tetris_updater_ptr_->IsPinch());
 
-  pause_renderer_.Draw(is_paused_);
-
   tetris_announce_.Draw(GameConst::kResolutionX / 2,
                         GameConst::kResolutionY / 2);
+
+  pause_renderer_.Draw(is_paused_);
 
   fade_effect_.Draw();
 }

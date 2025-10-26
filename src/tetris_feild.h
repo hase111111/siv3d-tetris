@@ -31,6 +31,12 @@ class TetrisField final {
 
   bool IsPinch() const;
 
+  bool IsEmpty() const;
+
+  //! @brief T-spin 判定用に指定したマスの4隅が埋まっているかを返す.
+  bool IsOccupiedCorners(int tetromino_x, int tetromino_y,
+                         bool allow_wall) const;
+
   class Iterator {
    public:
     using value_type = std::tuple<int, int, TetrominoColor>;

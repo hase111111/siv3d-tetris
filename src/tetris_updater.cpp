@@ -19,6 +19,7 @@ TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
     const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
     const std::shared_ptr<DropCount>& drop_count_ptr,
+    const std::shared_ptr<ScoreCalculator>& score_calculator_ptr,
     const std::shared_ptr<GameEndChecker>& game_end_checker_ptr,
     const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr)
     : key_event_handler_ptr_(key_event_handler_ptr),
@@ -28,14 +29,32 @@ TetrisUpdater::TetrisUpdater(
       hold_tetromino_ptr_(hold_tetromino_ptr),
       tetris_level_ptr_(tetris_level_ptr),
       drop_count_ptr_(drop_count_ptr),
+      score_calculator_ptr_(score_calculator_ptr),
       game_end_checker_ptr_(game_end_checker_ptr),
       tetris_field_effect_ptr_(tetris_field_effect_ptr),
       rotate_checker_{tetris_field_ptr} {
+  // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(next_tetromino_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(hold_tetromino_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(drop_count_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(score_calculator_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_end_checker_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_effect_ptr);
+
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(next_tetromino_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(hold_tetromino_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_level_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(drop_count_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(score_calculator_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_end_checker_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_effect_ptr_);
 
   SetInitialTetrominoPosition();
 }
@@ -111,10 +130,15 @@ void TetrisUpdater::UpdateTetrominoPosition() {
   const int max_ = drop_count_ptr_->GetCount(tetris_level_ptr_->GetLevel());
   if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kUp) == 1) {
     // ハードドロップ, validPosition が false になるまで下に落とす.
+    int cnt{0};
     while (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
                                               tetromino_y_ + 1)) {
       ++tetromino_y_;
+      ++cnt;
     }
+
+    // ハードドロップした分スコアを加算.
+    score_calculator_ptr_->AddDropScore(cnt, true);
 
     // フィールドにセットする.
     SetTetromino();
@@ -128,6 +152,8 @@ void TetrisUpdater::UpdateTetrominoPosition() {
                                            tetromino_y_ + 1)) {
       drop_count_ = 0;
       ++tetromino_y_;
+      // ソフトドロップした分スコアを加算.
+      score_calculator_ptr_->AddDropScore(1, false);
     }
   } else if (max_ != 0 && drop_count_ % max_ == 0) {
     if (tetris_field_ptr_->IsValidPosition(*tetromino_ptr_, tetromino_x_,
@@ -193,6 +219,15 @@ void TetrisUpdater::SetTetromino() {
 
   tetris_field_ptr_->SetTetromino(*tetromino_ptr_, tetromino_x_, tetromino_y_);
   clear_lines_ = tetris_field_ptr_->ClearLines();
+
+  if (clear_lines_.size() > 0) {
+    // ラインをクリアした場合スコアを加算.
+    score_calculator_ptr_->AddScore(static_cast<int>(clear_lines_.size()),
+                                    false, tetris_field_ptr_->IsEmpty());
+  } else {
+    // ラインをクリアしていない場合コンボをリセット.
+    score_calculator_ptr_->ResetCombo();
+  }
 
   tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext());
   next_tetromino_ptr_->Next();

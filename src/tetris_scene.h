@@ -24,6 +24,7 @@
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "score_board_renderer.h"
+#include "score_calculator.h"
 #include "tetris_announce.h"
 #include "tetris_feild.h"
 #include "tetris_field_effect.h"
@@ -62,6 +63,7 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<TetrisLevel> tetris_level_ptr_;
   const std::shared_ptr<TetrisTimer> tetris_timer_ptr_;
   const std::shared_ptr<DropCount> drop_count_ptr_;
+  const std::shared_ptr<ScoreCalculator> score_calculator_ptr_;
   const std::shared_ptr<GameEndChecker> game_end_checker_ptr_;
   const std::shared_ptr<TetrisFieldEffect> tetris_field_effect_ptr_;
   const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;

@@ -7,6 +7,7 @@
 
 #include "description_field_renderer.h"
 
+#include "calc_util.h"
 #include "my_assert.h"
 #include "my_format.h"
 
@@ -118,8 +119,9 @@ void DescriptionFieldRenderer::Draw(const int render_x,
       render_x + box_size_x / 2.f,
       render_y + wall_size * 3 / 4.f + wall_size / 2.f + box_size_y / 2.f,
       RenderAnchor::TopLeft,
-      nostd::format(" {} input/sec",
-                    time == 0 ? 0 : input_counter * 60.f / time));
+      nostd::format(
+          " {} input/sec",
+          time == 0 ? "0" : RoundToString(input_counter * 60.f / time, 3)));
 
   font_view_.Draw(
       render_x + box_size_x / 2.f,
@@ -129,8 +131,9 @@ void DescriptionFieldRenderer::Draw(const int render_x,
       render_x + box_size_x / 2.f,
       render_y + wall_size * 3 / 4.f + wall_size * 5.f / 2.f + box_size_y / 2.f,
       RenderAnchor::TopLeft,
-      nostd::format(" {} drop/sec",
-                    time == 0 ? 0 : hard_drop_counter * 60.f / time));
+      nostd::format(
+          " {} drop/sec",
+          time == 0 ? "0" : RoundToString(hard_drop_counter * 60.f / time, 3)));
 
   font_view_.Draw(
       render_x + box_size_x / 2.f,
@@ -143,8 +146,9 @@ void DescriptionFieldRenderer::Draw(const int render_x,
       nostd::format(
           " {} drop/input",
           input_counter == 0
-              ? 0
-              : hard_drop_counter / static_cast<float>(input_counter)));
+              ? "0"
+              : RoundToString(
+                    hard_drop_counter / static_cast<float>(input_counter), 3)));
 }
 
 std::string DescriptionFieldRenderer::GetString() const {

@@ -175,6 +175,9 @@
     <Filter Include="Source Files\common\key_handle">
       <UniqueIdentifier>{6adc6f74-3690-44ec-8f51-ad5de43a30a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tetris\renderer\ui">
+      <UniqueIdentifier>{8f2f77d5-0371-4337-9d42-87d32a5b1c0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -234,9 +237,6 @@
     <ClCompile Include="..\..\src\render_util.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\tetris_announce.cpp">
-      <Filter>Source Files\tetris</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\tetris_feild.cpp">
       <Filter>Source Files\tetris</Filter>
     </ClCompile>
@@ -276,22 +276,13 @@
     <ClCompile Include="..\..\src\broken_block_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\description_field_renderer.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\hold_renderer.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\pause_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tetris_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tetromino_render_util.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\score_board_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\tetris_field_effect.cpp">
@@ -315,11 +306,26 @@
     <ClCompile Include="..\..\src\key_event_handler.cpp">
       <Filter>Source Files\common\key_handle</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\next_renderer.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\score_board_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\description_field_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\drop_gauge_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pause_renderer.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\score_calculator.cpp">
+      <Filter>Source Files\tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_announce.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1037,9 +1043,6 @@
     <ClInclude Include="..\..\src\tetromino_type.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\tetris_announce.h">
-      <Filter>Source Files\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\tetris_feild.h">
       <Filter>Source Files\tetris</Filter>
     </ClInclude>
@@ -1103,25 +1106,16 @@
     <ClInclude Include="..\..\src\scene_stack.h">
       <Filter>Source Files\system\scene_controll</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\description_field_renderer.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\broken_block_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\hold_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\pause_renderer.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\tetris_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\tetromino_render_util.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\score_board_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\tetris_field_effect.h">
@@ -1157,11 +1151,29 @@
     <ClInclude Include="..\..\src\my_format.h">
       <Filter>Source Files\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
-      <Filter>Source Files\tetris\renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\next_renderer.h">
       <Filter>Source Files\tetris\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\score_board_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\drop_gauge_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\description_field_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pause_renderer.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\score_calculator.h">
+      <Filter>Source Files\tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_announce.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calc_util.h">
+      <Filter>Source Files\common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
