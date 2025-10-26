@@ -155,6 +155,7 @@ void TetrisScene::OnStart(const SceneChangeParameter& parameter) {
   tetris_announce_ptr_->SetGameMode(tetris_game_mode_);
   game_end_checker_ptr_->SetGameMode(tetris_game_mode_);
   next_tetromino_ptr_->SetGameMode(tetris_game_mode_);
+  tetris_level_ptr_->SetGameMode(tetris_game_mode_);
 
   tetris_field_effect_ptr_->SetActive(tetris_game_mode_ ==
                                       TetrisGameMode::kTrick);

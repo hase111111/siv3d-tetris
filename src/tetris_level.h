@@ -9,6 +9,8 @@
 
 #include <string>
 
+#include "tetris_game_mode.h"
+
 namespace mytetris {
 
 class TetrisLevel final {
@@ -22,11 +24,17 @@ class TetrisLevel final {
 
   int GetLevel() const;
 
+  inline void SetGameMode(const TetrisGameMode game_mode) {
+    game_mode_ = game_mode;
+  }
+
   inline int GetTotalClearLines() const { return total_clear_lines_; }
 
  private:
-  int total_clear_lines_{0};
   const int max_level_{20};
+
+  TetrisGameMode game_mode_{};
+  int total_clear_lines_{0};
 };
 
 }  // namespace mytetris

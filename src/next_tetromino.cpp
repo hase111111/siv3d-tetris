@@ -57,6 +57,7 @@ void NextTetromino::SetGameMode(const TetrisGameMode game_mode) {
     case TetrisGameMode::kSprint:
     case TetrisGameMode::kUltra:
     case TetrisGameMode::kMarathon:
+    case TetrisGameMode::kPractice:
     case TetrisGameMode::kTrick: {
       tetrominos_ = {
           TetrominoType::kI, TetrominoType::kJ, TetrominoType::kL,
