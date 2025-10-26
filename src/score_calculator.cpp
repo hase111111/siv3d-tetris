@@ -69,6 +69,8 @@ void ScoreCalculator::AddScore(const int lines_num, const bool is_tspin,
   score_ += diff;
   score_difference_ += diff;
   diff_display_counter_ = 0;
+
+  tetris_announce_ptr_->SetScore(score_);
 }
 
 void ScoreCalculator::AddDropScore(const int drop_distance,

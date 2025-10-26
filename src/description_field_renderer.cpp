@@ -16,20 +16,34 @@ namespace mytetris {
 DescriptionFieldRenderer::DescriptionFieldRenderer(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
+    const std::shared_ptr<const GameEndChecker>& game_end_checker_ptr,
+    const std::shared_ptr<const TetrisField>& tetris_field_ptr,
     const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr)
     : key_ptr_(key_event_handler_ptr),
+      game_end_checker_ptr_(game_end_checker_ptr),
+      tetris_field_ptr_(tetris_field_ptr),
       tetris_timer_ptr_(tetris_timer_ptr),
       font_view_(resource_container_ptr->GetFont("small")),
       wall_texture_(resource_container_ptr->GetTexture("wall.png")) {
   // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_end_checker_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr);
+
   DEBUG_ASSERT_NOT_NULL_PTR(key_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_end_checker_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_timer_ptr_);
 }
 
 void DescriptionFieldRenderer::Update() {
+  // ゲーム終了時は入力をカウントしない.
+  if (game_end_checker_ptr_->IsGameEnd() || tetris_field_ptr_->IsGameOver()) {
+    return;
+  }
+
   std::vector<KeyGroup> keys_to_check{
       KeyGroup::kLeft,     KeyGroup::kRight,     KeyGroup::kDown, KeyGroup::kUp,
       KeyGroup::kRotateCW, KeyGroup::kRotateCCW, KeyGroup::kHold,

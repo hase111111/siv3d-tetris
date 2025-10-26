@@ -38,6 +38,8 @@ class TetrisAnnounce final {
   void SetClearLineAnnounce(int line_num, int combo, bool is_tspin,
                             bool is_btb);
 
+  inline void SetScore(const int score) { score_ = score; }
+
   void Update();
 
   void Draw(int x, int y) const;
@@ -60,6 +62,7 @@ class TetrisAnnounce final {
   int clear_line_start_time_{0};  //!< クリアラインアナウンス開始時のタイマー値.
   int total_clear_lines_{0};      //!< 最後に記録したクリアライン数.
   int timer_count_{0};            //<! 最後に記録したタイマー値.
+  int score_{0};                  //!< 最後に記録したスコア.
 };
 
 }  // namespace mytetris

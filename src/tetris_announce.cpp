@@ -80,7 +80,7 @@ void TetrisAnnounce::Update() {
         break;
       }
       case TetrisGameMode::kUltra: {
-        announce_text_ = nostd::format("Time Up!\nScore {}", 0);
+        announce_text_ = nostd::format("Time Up!\nScore {}", score_);
         announce_text_small_ = "Press R to Restart";
         break;
       }

@@ -43,6 +43,7 @@ TetrisScene::TetrisScene(
           drop_count_ptr_, score_calculator_ptr_, game_end_checker_ptr_,
           tetris_field_effect_ptr_)),
       description_field_renderer_{resource_container_ptr, key_event_handler_ptr,
+                                  game_end_checker_ptr_, tetris_field_ptr_,
                                   tetris_timer_ptr_},
       tetris_renderer_{resource_container_ptr, tetris_field_ptr_,
                        tetromino_ptr_, tetris_field_effect_ptr_, 40.0f},
