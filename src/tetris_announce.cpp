@@ -98,14 +98,25 @@ void TetrisAnnounce::Update() {
         }
         break;
       }
-      case TetrisGameMode::kYamada:
-      case TetrisGameMode::kPentris: {
+      case TetrisGameMode::kYamada: {
         for (int i = 1; i <= 9; ++i) {
           if (tetris_level_ptr_->GetTotalClearLines() >= i * 10 &&
               total_clear_lines_ < i * 10) {
             announce_text_ = nostd::format("{} / 100", i * 10);
             announce_text_small_ = nostd::format(
                 "{} lines left", 100 - tetris_level_ptr_->GetTotalClearLines());
+            start_time_ = counter_;
+          }
+        }
+        break;
+      }
+      case TetrisGameMode::kPentris: {
+        for (int i = 1; i <= 9; ++i) {
+          if (tetris_level_ptr_->GetTotalClearLines() >= i * 3 &&
+              total_clear_lines_ < i * 3) {
+            announce_text_ = nostd::format("{} / 30", i * 3);
+            announce_text_small_ = nostd::format(
+                "{} lines left", 30 - tetris_level_ptr_->GetTotalClearLines());
             start_time_ = counter_;
           }
         }

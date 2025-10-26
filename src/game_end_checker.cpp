@@ -69,7 +69,7 @@ void GameEndChecker::SetLimits() {
       break;
     }
     case TetrisGameMode::kPentris: {
-      clear_lines_limit_ = 100;
+      clear_lines_limit_ = 30;
       break;
     }
     case TetrisGameMode::kTrick: {
