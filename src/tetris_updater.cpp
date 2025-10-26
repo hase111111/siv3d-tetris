@@ -217,13 +217,20 @@ void TetrisUpdater::SetTetromino() {
     return;
   }
 
+  // テトリミノをフィールドに固定.
   tetris_field_ptr_->SetTetromino(*tetromino_ptr_, tetromino_x_, tetromino_y_);
+
+  // ラインクリア処理.
   clear_lines_ = tetris_field_ptr_->ClearLines();
 
   if (clear_lines_.size() > 0) {
     // ラインをクリアした場合スコアを加算.
-    score_calculator_ptr_->AddScore(static_cast<int>(clear_lines_.size()),
-                                    false, tetris_field_ptr_->IsEmpty());
+    score_calculator_ptr_->AddScore(
+        static_cast<int>(clear_lines_.size()),
+        tetromino_ptr_->GetColor() == TetrominoColor::kT &&
+            tetris_field_ptr_->IsOccupiedCorners(tetromino_x_, tetromino_y_,
+                                                 true),
+        tetris_field_ptr_->IsEmpty());
   } else {
     // ラインをクリアしていない場合コンボをリセット.
     score_calculator_ptr_->ResetCombo();

@@ -28,6 +28,8 @@ class ScoreCalculator final {
  private:
   int Get(const std::vector<int> v, int idx) const;
 
+  bool IsBtbActive(int lines_num, bool is_tspin) const;
+
   const int drop_score_{1};
   const int hard_drop_score_{2};
   const std::vector<int> line_clear_scores_{100, 300, 500, 800, 1200};

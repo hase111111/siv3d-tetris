@@ -55,10 +55,10 @@ bool TetrisField::IsOccupiedCorners(int tetromino_x, int tetromino_y,
                                     bool allow_wall) const {
   int occupied_corners = 0;
   const std::array<std::tuple<int, int>, 4> corners = {
-      std::make_tuple(tetromino_x - 1, tetromino_y - 1),
-      std::make_tuple(tetromino_x + 1, tetromino_y - 1),
-      std::make_tuple(tetromino_x - 1, tetromino_y + 1),
       std::make_tuple(tetromino_x + 1, tetromino_y + 1),
+      std::make_tuple(tetromino_x + 4, tetromino_y + 1),
+      std::make_tuple(tetromino_x + 1, tetromino_y + 4),
+      std::make_tuple(tetromino_x + 4, tetromino_y + 4),
   };
   for (const auto& [corner_x, corner_y] : corners) {
     if (corner_x < 0 || corner_x >= kWidth || corner_y < 0 ||
