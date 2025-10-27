@@ -1,9 +1,10 @@
 #include "tetris_field_effect.h"
 
+#include <Siv3D.hpp>
 #include <random>
+#include <set>
 
 #include "my_assert.h"
-
 namespace mytetris {
 
 TetrisFieldEffect::TetrisFieldEffect(
@@ -215,10 +216,23 @@ void TetrisFieldEffect::ChangeEffect() {
   std::uint32_t seed = seed_gen();
   std::mt19937 engine(seed);
   const auto past = effect_type_;
-  while (past == effect_type_) {
+
+  std::vector<EffectType> banned_effects;
+  banned_effects.push_back(EffectType::kNone);
+  banned_effects.push_back(EffectType::kSinMove);
+  banned_effects.push_back(EffectType::kBlinkAndSinMove);
+  banned_effects.push_back(EffectType::kRandomBlinkAndSin);
+
+  while (true) {
     std::uniform_int_distribution<int> dist(
         0, static_cast<int>(EffectType::kNone) - 1);
     effect_type_ = static_cast<EffectType>(dist(engine));
+
+    if (std::find(banned_effects.begin(), banned_effects.end(), effect_type_) ==
+            banned_effects.end() &&
+        effect_type_ != past) {
+      break;
+    }
   }
 }
 
