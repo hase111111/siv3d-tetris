@@ -23,7 +23,12 @@ class TetrisField final {
 
   TetrisField();
 
+  //! @brief Tetris フィールドの幅を返す.
+  //! @return フィールドの幅(ただし, 壁を含む).
   int GetWidth() const { return kWidth; }
+
+  //! @brief Tetris フィールドの高さを返す.
+  //! @return フィールドの高さ(ただし, 床を含む).
   int GetHeight() const { return kHeight; }
 
   bool IsGameOver() const;
@@ -71,13 +76,27 @@ class TetrisField final {
   Iterator begin() const { return Iterator(field_, 0); }
   Iterator end() const { return Iterator(field_, kWidth * kHeight); }
 
+  //! @brief テトリミノをハードドロップしたときの位置を返す.
+  //! @param tetromino テトリミノの形状.
+  //! @param tetromino_x テトリミノの x 座標.
+  //! @param tetromino_y テトリミノの y 座標.
+  //! @return ハードドロップ後のテトリミノの (x, y) 座標.
   std::tuple<int, int> GetHardDropPosition(const Tetromino& tetromino,
                                            int tetromino_x,
                                            int tetromino_y) const;
 
+  //! @brief テトリミノを指定した位置に置けるかを返す.
+  //! @param tetromino テトリミノの形状.
+  //! @param tetromino_x テトリミノの x 座標.
+  //! @param tetromino_y テトリミノの y 座標.
+  //! @return 置ける場合は true, 置けない場合は false.
   bool IsValidPosition(const Tetromino& tetromino, int tetromino_x,
                        int tetromino_y) const;
 
+  //! @brief テトリミノを指定した位置にセットする.
+  //! @param tetromino テトリミノの形状.
+  //! @param tetromino_x テトリミノの x 座標.
+  //! @param tetromino_y テトリミノの y 座標.
   void SetTetromino(const Tetromino& tetromino, int tetromino_x,
                     int tetromino_y);
 
