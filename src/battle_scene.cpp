@@ -14,7 +14,7 @@ BattleScene::BattleScene(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr) {}
 
-bool BattleScene::Update() { return false; }
+bool BattleScene::Update() { return true; }
 
 void BattleScene::Draw() const {}
 

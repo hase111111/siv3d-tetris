@@ -187,6 +187,9 @@
     <Filter Include="Source Files\resource\texture">
       <UniqueIdentifier>{f50c469f-5f0e-4081-b7b1-2f48867a9fea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\scene\battle_scene">
+      <UniqueIdentifier>{a3ecef6c-5135-4738-91e2-2391fd7fb717}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -344,6 +347,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\texture_view.cpp">
       <Filter>Source Files\resource\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\battle_scene.cpp">
+      <Filter>Source Files\scene\battle_scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1201,6 +1207,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\texture_view.h">
       <Filter>Source Files\resource\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\battle_scene.h">
+      <Filter>Source Files\scene\battle_scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

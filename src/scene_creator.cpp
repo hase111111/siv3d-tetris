@@ -7,6 +7,7 @@
 
 #include "scene_creator.h"
 
+#include "battle_scene.h"
 #include "debug_scene.h"
 #include "my_assert.h"
 #include "setting_scene.h"
@@ -55,6 +56,11 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(
     }
     case SceneName::kSetting: {
       return std::make_unique<SettingScene>(
+          scene_change_listener_ptr_, key_event_handler_ptr_,
+          resource_container_ptr_, game_setting_record_ptr_);
+    }
+    case SceneName::kBattle: {
+      return std::make_unique<BattleScene>(
           scene_change_listener_ptr_, key_event_handler_ptr_,
           resource_container_ptr_, game_setting_record_ptr_);
     }

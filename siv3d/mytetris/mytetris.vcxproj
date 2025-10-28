@@ -115,6 +115,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\battle_scene.cpp" />
     <ClCompile Include="..\..\src\broken_block_renderer.cpp" />
     <ClCompile Include="..\..\src\debug_scene.cpp" />
     <ClCompile Include="..\..\src\description_field_renderer.cpp" />
@@ -375,6 +376,7 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\battle_scene.h" />
     <ClInclude Include="..\..\src\broken_block_renderer.h" />
     <ClInclude Include="..\..\src\calc_util.h" />
     <ClInclude Include="..\..\src\debug_scene.h" />
