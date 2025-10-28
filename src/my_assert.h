@@ -1,4 +1,3 @@
-
 //! @file my_assert.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -22,7 +21,7 @@ bool IsInitialized();
 
 void ErrorAssert(const std::string& conditional_expression,
                  const std::string& error_mes, const std::string& file,
-                 const std::string& func, const int line);
+                 const std::string& func, int line);
 
 }  // namespace assert_internal
 
@@ -54,7 +53,7 @@ void ErrorAssert(const std::string& conditional_expression,
   do {                                                      \
     if (!(!!(expr))) {                                      \
       if (!::mytetris::assert_internal::IsInitialized()) {  \
-        assert(false && "DxLib is not initialized.");       \
+        assert(false && "Engine is not initialized.");      \
       } else {                                              \
         const std::string expr_str = #expr;                 \
         const std::string message = error_mes;              \

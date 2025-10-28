@@ -1,13 +1,10 @@
-
-//! @file tetris_updater.h
+//! @file drop_count.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
 
 #include "drop_count.h"
-
-#include <format>
 
 namespace mytetris {
 
@@ -25,7 +22,7 @@ int DropCount::GetCount(const int level) const {
   }
 }
 
-std::string DropCount::GetDisplaySpeed(int level) const {
+std::string DropCount::GetDisplaySpeed(const int level) const {
   const int count = GetCount(level);
 
   if (count == 0) {

@@ -1,22 +1,20 @@
-
 //! @file error_box.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
 
+#if defined DXLIB_COMPILE
 #include "error_box.h"
 
-#if defined DXLIB_COMPILE
 #include <DxLib.h>
-#endif  // defined DXLIB_COMPILE
 
 namespace mytetris {
 
-void mytetris::ShowErrorBox([[maybe_unused]] const std::string& message) {
-#if defined DXLIB_COMPILE
+void mytetris::ShowErrorBox(const std::string& message) {
   MessageBox(NULL, TEXT(message.c_str()), TEXT("Error"), MB_ICONERROR);
-#endif  // defined DXLIB_COMPILE
 }
 
 }  // namespace mytetris
+
+#endif  // defined DXLIB_COMPILE

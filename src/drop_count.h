@@ -1,5 +1,4 @@
-
-//! @file tetris_updater.h
+//! @file drop_count.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -12,7 +11,7 @@
 
 namespace mytetris {
 
-class DropCount {
+class DropCount final {
  public:
   DropCount();
   ~DropCount() = default;

@@ -1,4 +1,3 @@
-
 //! @file error_box.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -7,6 +6,8 @@
 
 #pragma once
 
+#if defined DXLIB_COMPILE
+
 #include <string>
 
 namespace mytetris {
@@ -14,3 +15,5 @@ namespace mytetris {
 void ShowErrorBox(const std::string& message);
 
 }  // namespace mytetris
+
+#endif  // defined DXLIB_COMPILE

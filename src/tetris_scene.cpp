@@ -1,4 +1,3 @@
-
 //! @file tetris_scene.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa

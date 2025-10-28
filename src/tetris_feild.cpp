@@ -1,4 +1,3 @@
-
 //! @file tetris_field.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -41,8 +40,8 @@ bool TetrisField::IsPinch() const {
 
 bool TetrisField::IsEmpty() const {
   // 壁を除いて全て空かどうかで判定.
-  for (int y = 0; y < kHeight - 1; ++y) {   // 最下段は壁なので除外
-    for (int x = 1; x < kWidth - 1; ++x) {  // 両端は壁なので除外
+  for (int y = 0; y < kHeight - 1; ++y) {   // 最下段は壁なので除外.
+    for (int x = 1; x < kWidth - 1; ++x) {  // 両端は壁なので除外.
       if (field_[y][x] != TetrominoColor::kNone) {
         return false;
       }
@@ -51,8 +50,9 @@ bool TetrisField::IsEmpty() const {
   return true;
 }
 
-bool TetrisField::IsOccupiedCorners(int tetromino_x, int tetromino_y,
-                                    bool allow_wall) const {
+bool TetrisField::IsOccupiedCorners(const int tetromino_x,
+                                    const int tetromino_y,
+                                    const bool allow_wall) const {
   int occupied_corners = 0;
   const std::array<std::tuple<int, int>, 4> corners = {
       std::make_tuple(tetromino_x + 1, tetromino_y + 1),
@@ -218,6 +218,8 @@ void TetrisField::SetDeathColor() {
 
 TetrisField::FieldType TetrisField::InitializeField() const {
   FieldType field{};
+
+  // まず, すべて kNone で初期化.
   for (int y = 0; y < kHeight; ++y) {
     for (int x = 0; x < kWidth; ++x) {
       field[y][x] = TetrominoColor::kNone;

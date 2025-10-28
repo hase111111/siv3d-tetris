@@ -1,5 +1,4 @@
-
-//! @file render_util.cpp
+﻿//! @file render_util.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -55,12 +54,17 @@ void DrawLineAlpha(float x1, float y1, float x2, float y2, unsigned int color,
 
 #elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
 
+//! @brief 0xRRGGBB形式の色から s3d::ColorF を生成する.
+//! internal な関数.
+//! @param color 0xRRGGBB形式の色.
+//! @param alpha 0.0 〜 1.0
+//! @return s3d::ColorF オブジェクト.
 static s3d::ColorF ColorFromUint32(const unsigned int color,
                                    const float alpha) {
   const int b = color & 0xFF;
   const int g = (color >> 8) & 0xFF;
   const int r = (color >> 16) & 0xFF;
-  return s3d::ColorF(r / 255.0, g / 255.0, b / 255.0, alpha);
+  return s3d::ColorF{r / 255.0, g / 255.0, b / 255.0, alpha};
 }
 
 void DrawRect(const float left, const float top, const float right,
@@ -94,8 +98,9 @@ void DrawLine(const float x1, const float y1, const float x2, const float y2,
   s3d::Line(x1, y1, x2, y2).draw(thickness, ColorFromUint32(color, 1.0));
 }
 
-void DrawLineAlpha(float x1, float y1, float x2, float y2, unsigned int color,
-                   float thickness, float alpha) {
+void DrawLineAlpha(const float x1, const float y1, const float x2,
+                   const float y2, const unsigned int color,
+                   const float thickness, const float alpha) {
   s3d::Line(x1, y1, x2, y2).draw(thickness, ColorFromUint32(color, alpha));
 }
 
