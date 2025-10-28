@@ -1,3 +1,9 @@
+//! @file setting_scene.h
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #include "setting_scene.h"
 
 #include "my_assert.h"
@@ -10,8 +16,6 @@ SettingScene::SettingScene(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<GameSettingRecord>& game_setting_record_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
-      key_event_handler_ptr_(key_event_handler_ptr),
-      game_setting_record_ptr_(game_setting_record_ptr),
       setting_back_{resource_container_ptr},
       setting_ui_{resource_container_ptr, key_event_handler_ptr,
                   game_setting_record_ptr, [this]() {
@@ -25,13 +29,13 @@ SettingScene::SettingScene(
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
 
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
 
   // フェードを始める.
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
 
 bool SettingScene::Update() {
+  // フェードエフェクトの更新.
   if (fade_effect_.Update()) {
     return true;
   }
@@ -48,7 +52,5 @@ void SettingScene::Draw() const {
 
   fade_effect_.Draw();
 }
-
-void SettingScene::OnStart(const SceneChangeParameter&) {}
 
 }  // namespace mytetris

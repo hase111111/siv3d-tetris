@@ -1,4 +1,3 @@
-
 //! @file resource_container.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -39,22 +38,6 @@ FontView ResourceContainer::GetFont(const std::string& name) const {
   ASSERT(fonts.find(name) != fonts.end(),
          std::format("Font with name {} does not exist.", name));
   return fonts.at(name)->GetView();
-}
-
-void ResourceContainer::UnloadTexture(const std::string& name) {
-  auto it = textures.find(name);
-  if (it == textures.end()) {
-    return;
-  }
-  textures.erase(it);
-}
-
-void ResourceContainer::UnloadFont(const std::string& name) {
-  auto it = fonts.find(name);
-  if (it == fonts.end()) {
-    return;
-  }
-  fonts.erase(it);
 }
 
 }  // namespace mytetris

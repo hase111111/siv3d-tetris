@@ -1,4 +1,3 @@
-
 //! @file title_back_ground.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -10,7 +9,7 @@
 namespace mytetris {
 
 TitleBackGround::TitleBackGround(
-    int window_size_x, int window_size_y,
+    const int window_size_x, const int window_size_y,
     const std::shared_ptr<const ResourceContainer>& container)
     : title_texture_(container->GetTexture("title.png")),
       wall_texture_(container->GetTexture("wall.png")),

@@ -32,14 +32,12 @@ class SettingScene final : public IScene {
 
   void Draw() const override;
 
-  void OnStart(const SceneChangeParameter& parameter) override;
+  void OnStart(const SceneChangeParameter&) override {};
 
   void OnReturnFromOtherScene(const SceneChangeParameter&) override {};
 
  private:
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-  const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr_;
-  const std::shared_ptr<GameSettingRecord> game_setting_record_ptr_;
   const SettingBack setting_back_;
 
   SettingUI setting_ui_;

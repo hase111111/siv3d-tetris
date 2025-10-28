@@ -1,4 +1,3 @@
-
 //! @file resource_container.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -64,17 +63,6 @@ class ResourceContainer final {
   inline bool HasFont(const std::string& name) const {
     return fonts.find(name) != fonts.end();
   }
-
-  //! @brief 登録したテクスチャを削除する.
-  //! 削除した後，GetTexture()で取得した TextureRef は無効になるので注意.
-  //! キーが存在しない場合は何もしない.
-  //! @param[in] name 削除するテクスチャのキー.
-  void UnloadTexture(const std::string& name);
-
-  //! @brief 登録したフォントを削除する.
-  //! 削除した後，GetFont()で取得した FontRef は無効になるので注意.
-  //! キーが存在しない場合は何もしない.
-  void UnloadFont(const std::string& name);
 
  private:
   std::map<std::string, std::unique_ptr<const Texture>> textures;
