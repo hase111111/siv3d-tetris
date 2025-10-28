@@ -5,22 +5,25 @@ root = true
 
 # Visual C++ コード スタイルの設定
 
-cpp_generate_documentation_comments = doxygen
+cpp_generate_documentation_comments = doxygen_double_slash_exclamation
 
 # Visual C++ の書式設定
 
+indent_style = spaces
+indent_size = 2
+tab_width= 2
 cpp_indent_braces = false
-cpp_indent_multi_line_relative_to = statement_begin
-cpp_indent_within_parentheses = align_to_parenthesis # indent
-cpp_indent_preserve_within_parentheses = true
+cpp_indent_multi_line_relative_to = innermost_parenthesis
+cpp_indent_within_parentheses = indent
+cpp_indent_preserve_within_parentheses = false
 cpp_indent_case_contents = true
-cpp_indent_case_labels = true
+cpp_indent_case_labels = false
 cpp_indent_case_contents_when_block = false
 cpp_indent_lambda_braces_when_parameter = true
 cpp_indent_goto_labels = one_left
 cpp_indent_preprocessor = leftmost_column
 cpp_indent_access_specifiers = false
-cpp_indent_namespace_contents = false
+cpp_indent_namespace_contents = true
 cpp_indent_preserve_comments = false
 cpp_new_line_before_open_brace_namespace = ignore
 cpp_new_line_before_open_brace_type = ignore
@@ -69,11 +72,11 @@ cpp_space_around_ternary_operator = insert
 cpp_use_unreal_engine_macro_formatting = true
 cpp_wrap_preserve_blocks = one_liners
 
-
-# Visual C++ クリーンアップ設定を含める
+# Visual C++ インクルード クリーンアップ設定
 
 cpp_include_cleanup_add_missing_error_tag_type = suggestion
 cpp_include_cleanup_remove_unused_error_tag_type = dimmed
+cpp_include_cleanup_optimize_unused_error_tag_type = suggestion
 cpp_include_cleanup_sort_after_edits = false
 cpp_sort_includes_error_tag_type = none
 cpp_sort_includes_priority_case_sensitive = false
@@ -81,14 +84,15 @@ cpp_sort_includes_priority_style = quoted
 cpp_includes_style = default
 cpp_includes_use_forward_slash = true
 
-
 # 保存時の文字コードおよび改行コード
 end_of_line = crlf
 charset = utf-8-bom
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[*]
+
 # 辞書
 spelling_use_default_exclusion_dictionary = true
 spelling_error_severity = warning
-spelling_exclusion_path = .\exclusion.dic
+spelling_exclusion_path = ./exclusion.dic

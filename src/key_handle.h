@@ -51,7 +51,6 @@ enum class KeyHandle : int {
   kRight = 0xCD,
   kDown = 0xD0,
   kDelete = 0xD3,
-  // 一番上の行
   kMinus = 0x0C,      // -
   kPrevTrack = 0x90,  // ^
   kYen = 0x7D,        // ￥

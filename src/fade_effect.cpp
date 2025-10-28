@@ -1,4 +1,9 @@
-﻿
+﻿//! @file fade_effect.cpp
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #include "fade_effect.h"
 
 #include "game_const.h"
@@ -7,7 +12,7 @@
 namespace mytetris {
 
 FadeEffect::FadeEffect(const int fade_time) : fade_time_(fade_time) {
-  // 最初はフェード完了状態にする
+  // 最初はフェード完了状態にする.
   counter_ = fade_time_ + 1;
 }
 

@@ -1,4 +1,3 @@
-
 //! @file key_event_handler.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -18,6 +17,7 @@ namespace mytetris {
 
 //! @brief DxLibのキーボード入力を取得するクラス．
 class KeyEventHandler final {
+  static constexpr int kKeyNum = 256;  //!< DxLibにおけるキー総数．
  public:
   KeyEventHandler(const std::shared_ptr<KeyConfigData>& key_event_handler_ptr);
 
@@ -44,8 +44,6 @@ class KeyEventHandler final {
   }
 
  private:
-  static const int kKeyNum = 256;  //!< DxLibにおけるキー総数．
-
   //! @brief keyCodeが有効なキー番号か返す．
   //! @param[in] keyCode どのキーを調べたいか，
   //! 例えばZキーだったら，KEY_INPUT_Z となる．

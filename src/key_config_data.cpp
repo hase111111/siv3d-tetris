@@ -1,3 +1,9 @@
+//! @file key_config_data.cpp
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #include "key_config_data.h"
 
 #include "my_assert.h"

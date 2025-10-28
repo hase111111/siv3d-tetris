@@ -1,4 +1,3 @@
-
 //! @file key_event_handler.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -238,8 +237,7 @@ int KeyEventHandler::GetReleasingCount(const KeyGroup group) const {
 }
 
 std::optional<KeyHandle> KeyEventHandler::GetInputKeyHandle() const {
-  // 全入力をチェックして，
-  // 押されているキーのうち，
+  // 全入力をチェックして, 押されているキーのうち，
   // 最初に見つけたキーのKeyHandleを返す．
   for (const auto& handle : key_list) {
     const auto cast_code = static_cast<int>(handle);
