@@ -7,13 +7,17 @@
 #include "title_back_ground.h"
 
 #include "game_const.h"
+#include "my_assert.h"
 
 namespace mytetris {
 
 TitleBackGround::TitleBackGround(
     const std::shared_ptr<const ResourceContainer>& container)
     : title_texture_(container->GetTexture("title.png")),
-      wall_texture_(container->GetTexture("wall.png")) {}
+      wall_texture_(container->GetTexture("wall.png")) {
+  // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(container);
+}
 
 void TitleBackGround::Draw() const {
   title_texture_.DrawRotated(
@@ -27,7 +31,7 @@ void TitleBackGround::Draw() const {
                              game_const::kResolutionEx)
           : 0;
 
-  for (int i = 0; i < wall_num; ++i) {
+  for (int i{0}; i < wall_num; ++i) {
     const float i_ = static_cast<float>(i);
     wall_texture_.DrawRotated(
         0.f,

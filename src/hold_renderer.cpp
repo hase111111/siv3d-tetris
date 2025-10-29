@@ -1,4 +1,3 @@
-
 //! @file hold_tetromino.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -7,6 +6,7 @@
 
 #include "hold_renderer.h"
 
+#include "game_const.h"
 #include "my_assert.h"
 #include "render_util.h"
 #include "tetromino_render_util.h"
@@ -20,7 +20,11 @@ HoldRenderer::HoldRenderer(
       wall_texture_(resource_container_ptr->GetTexture("wall.png")),
       hold_tetromino_ptr_(hold_tetromino_ptr),
       font_view_(resource_container_ptr->GetFont("small")) {
+  // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(hold_tetromino_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
+
+  DEBUG_ASSERT_NOT_NULL_PTR(hold_tetromino_ptr_);
 }
 
 void HoldRenderer::Draw(const float render_x, const float render_y) const {
@@ -41,7 +45,7 @@ void HoldRenderer::Draw(const float render_x, const float render_y) const {
   // 文字.
   font_view_.Draw(render_x + wall_size * 3 / 4.0f,
                   render_y + wall_size * 3 / 4.0f, RenderAnchor::TopLeft,
-                  "Hold");
+                  "Hold", game_const::kResolutionEx);
 
   // フレーム.
   if (!hold_tetromino_ptr_->CanHold()) {

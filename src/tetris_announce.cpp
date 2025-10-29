@@ -1,4 +1,3 @@
-
 //! @file tetris_announce.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -7,6 +6,7 @@
 
 #include "tetris_announce.h"
 
+#include "game_const.h"
 #include "my_assert.h"
 #include "my_format.h"
 #include "render_util.h"
@@ -26,8 +26,9 @@ TetrisAnnounce::TetrisAnnounce(
       font_view_(resource_container_ptr->GetFont("default")),
       font_view_small_(resource_container_ptr->GetFont("small")) {}
 
-void TetrisAnnounce::SetClearLineAnnounce(int line_num, int combo,
-                                          bool is_tspin, bool is_btb) {
+void TetrisAnnounce::SetClearLineAnnounce(const int line_num, const int combo,
+                                          const bool is_tspin,
+                                          const bool is_btb) {
   clear_line_announce_.clear();
 
   if (is_tspin && line_num == 3) {
@@ -187,11 +188,13 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
       const float alpha = (counter_ - start_time_) % 40 < 20 ? 0.0f : 1.0f;
 
       font_view_.DrawAlpha(static_cast<float>(x), static_cast<float>(y),
-                           RenderAnchor::Center, announce_text_, alpha);
+                           RenderAnchor::Center, announce_text_,
+                           game_const::kResolutionEx, alpha);
 
-      font_view_small_.DrawAlpha(
-          static_cast<float>(x), static_cast<float>(y) + 50.f,
-          RenderAnchor::Center, announce_text_small_, alpha);
+      font_view_small_.DrawAlpha(static_cast<float>(x),
+                                 static_cast<float>(y) + 50.f,
+                                 RenderAnchor::Center, announce_text_small_,
+                                 game_const::kResolutionEx, alpha);
     }
 
     // クリアラインアナウンス表示.
@@ -200,9 +203,10 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
       const float alpha =
           (counter_ - clear_line_start_time_) % 40 < 20 ? 0.0f : 1.0f;
       for (size_t i = 0; i < clear_line_announce_.size(); ++i) {
-        font_view_.DrawAlpha(
-            static_cast<float>(x), static_cast<float>(y) - 350.f + i * 40.f,
-            RenderAnchor::Center, clear_line_announce_[i], alpha);
+        font_view_.DrawAlpha(static_cast<float>(x),
+                             static_cast<float>(y) - 350.f + i * 40.f,
+                             RenderAnchor::Center, clear_line_announce_[i],
+                             game_const::kResolutionEx, alpha);
       }
     }
   } else {
@@ -213,12 +217,13 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
     DrawRectAlpha(x - x_size / 2.f, y - y_size / 2.f, x + x_size / 2.f,
                   y + y_size / 2.f - block_size * 1.5f, 0x00000000, true, 0.5f);
 
-    font_view_.DrawAlpha(static_cast<float>(x), static_cast<float>(y) - 50.f,
-                         RenderAnchor::Center, announce_text_, 1.0f);
+    font_view_.Draw(static_cast<float>(x), static_cast<float>(y) - 50.f,
+                    RenderAnchor::Center, announce_text_,
+                    game_const::kResolutionEx);
 
-    font_view_small_.DrawAlpha(
-        static_cast<float>(x), static_cast<float>(y) + 50.f,
-        RenderAnchor::Center, announce_text_small_, 1.0f);
+    font_view_small_.Draw(static_cast<float>(x), static_cast<float>(y) + 50.f,
+                          RenderAnchor::Center, announce_text_small_,
+                          game_const::kResolutionEx);
   }
 }
 

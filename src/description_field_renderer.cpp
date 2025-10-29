@@ -1,4 +1,3 @@
-
 //! @file description_field_renderer.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -8,6 +7,7 @@
 #include "description_field_renderer.h"
 
 #include "calc_util.h"
+#include "game_const.h"
 #include "my_assert.h"
 #include "my_format.h"
 
@@ -100,15 +100,16 @@ void DescriptionFieldRenderer::Draw(const int render_x,
   // ï∂éö.
   font_view_.Draw(render_x + wall_size * 3 / 4.0f,
                   render_y + wall_size * 3 / 4.0f, RenderAnchor::TopLeft,
-                  "Controls:");
+                  "Controls:", game_const::kResolutionEx);
   font_view_.Draw(render_x + wall_size, render_y + wall_size * 2.f,
-                  RenderAnchor::TopLeft, GetString());
+                  RenderAnchor::TopLeft, GetString(),
+                  game_const::kResolutionEx);
 
   // â∫ÇÃï∂éö.
   font_view_.Draw(
       render_x + wall_size * 3 / 4.0f,
       render_y + wall_size * 3 / 4.0f - wall_size / 2.f + box_size_y / 2.f,
-      RenderAnchor::TopLeft, "Input History:");
+      RenderAnchor::TopLeft, "Input History:", game_const::kResolutionEx);
 
   // ÉLÅ[ì¸óÕÇÃóöóÇï\é¶Ç∑ÇÈ.
   for (size_t i = 0; i < input_history_.size(); ++i) {
@@ -120,13 +121,14 @@ void DescriptionFieldRenderer::Draw(const int render_x,
         nostd::format(
             "{}: {}",
             i + 1 + std::max<int>(0, input_counter - max_history_size_),
-            input_history_[i]));
+            input_history_[i]),
+        game_const::kResolutionEx);
   }
 
   font_view_.Draw(
       render_x + box_size_x / 2.f,
       render_y + wall_size * 3 / 4.0f - wall_size / 2.f + box_size_y / 2.f,
-      RenderAnchor::TopLeft, "Input per Sec:");
+      RenderAnchor::TopLeft, "Input per Sec:", game_const::kResolutionEx);
 
   const auto time = tetris_timer_ptr_->GetTime();
   font_view_.Draw(
@@ -135,12 +137,13 @@ void DescriptionFieldRenderer::Draw(const int render_x,
       RenderAnchor::TopLeft,
       nostd::format(
           " {} input/sec",
-          time == 0 ? "0.000" : RoundToString(input_counter * 60.f / time, 3)));
+          time == 0 ? "0.000" : RoundToString(input_counter * 60.f / time, 3)),
+      game_const::kResolutionEx);
 
   font_view_.Draw(
       render_x + box_size_x / 2.f,
       render_y + wall_size * 3 / 4.f + wall_size * 3.f / 2.f + box_size_y / 2.f,
-      RenderAnchor::TopLeft, "HardDrop per Sec:");
+      RenderAnchor::TopLeft, "HardDrop per Sec:", game_const::kResolutionEx);
   font_view_.Draw(
       render_x + box_size_x / 2.f,
       render_y + wall_size * 3 / 4.f + wall_size * 5.f / 2.f + box_size_y / 2.f,
@@ -148,12 +151,13 @@ void DescriptionFieldRenderer::Draw(const int render_x,
       nostd::format(" {} drop/sec",
                     time == 0
                         ? "0.000"
-                        : RoundToString(hard_drop_counter * 60.f / time, 3)));
+                        : RoundToString(hard_drop_counter * 60.f / time, 3)),
+      game_const::kResolutionEx);
 
   font_view_.Draw(
       render_x + box_size_x / 2.f,
       render_y + wall_size * 3 / 4.f + wall_size * 7.f / 2.f + box_size_y / 2.f,
-      RenderAnchor::TopLeft, "HardDrop per Input:");
+      RenderAnchor::TopLeft, "HardDrop per Input:", game_const::kResolutionEx);
   font_view_.Draw(
       render_x + box_size_x / 2.f,
       render_y + wall_size * 3 / 4.f + wall_size * 9.f / 2.f + box_size_y / 2.f,
@@ -163,7 +167,8 @@ void DescriptionFieldRenderer::Draw(const int render_x,
           input_counter == 0
               ? "0.000"
               : RoundToString(
-                    hard_drop_counter / static_cast<float>(input_counter), 3)));
+                    hard_drop_counter / static_cast<float>(input_counter), 3)),
+      game_const::kResolutionEx);
 }
 
 std::string DescriptionFieldRenderer::GetString() const {

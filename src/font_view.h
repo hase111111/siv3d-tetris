@@ -1,4 +1,3 @@
-
 //! @file font_view.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -34,11 +33,11 @@ class FontView final {
   inline const std::string& GetRawHandle() const { return handle_; }
 #endif  // defined DXLIB_COMPILE
 
-  void Draw(float x, float y, RenderAnchor anchor,
-            const std::string& str) const;
+  void Draw(float x, float y, RenderAnchor anchor, const std::string& str,
+            float ex) const;
 
   void DrawAlpha(float x, float y, RenderAnchor anchor, const std::string& str,
-                 float alpha) const;
+                 float ex, float alpha) const;
 
  private:
   std::tuple<int, int> GetRenderPos(RenderAnchor anchor, int width,

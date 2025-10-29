@@ -8,6 +8,7 @@
 
 #include <cmath>
 
+#include "game_const.h"
 #include "my_assert.h"
 #include "render_util.h"
 #include "tetromino_render_util.h"
@@ -118,11 +119,13 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
 
     const std::string game_over_text = "GAME OVER";
     font_view_.Draw(static_cast<float>(render_x), render_y - 25.f,
-                    RenderAnchor::Center, game_over_text);
+                    RenderAnchor::Center, game_over_text,
+                    game_const::kResolutionEx);
 
     const std::string retry_text = "Press R to Retry";
     font_view_small_.Draw(static_cast<float>(render_x), render_y + 25.f,
-                          RenderAnchor::Center, retry_text);
+                          RenderAnchor::Center, retry_text,
+                          game_const::kResolutionEx);
   }
 
   // Á‹ƒ‰ƒCƒ“‚Ì•`‰æ.

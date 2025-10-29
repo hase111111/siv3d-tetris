@@ -1,4 +1,3 @@
-
 //! @file score_board_renderer.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -7,6 +6,7 @@
 
 #include "score_board_renderer.h"
 
+#include "game_const.h"
 #include "my_assert.h"
 #include "my_format.h"
 
@@ -47,9 +47,10 @@ void ScoreBoardRenderer::Draw(const int render_x, const int render_y) const {
   // ï∂éö.
   font_view_.Draw(render_x + wall_size * 3 / 4.0f,
                   render_y + wall_size * 3 / 4.0f, RenderAnchor::TopLeft,
-                  "Score Board");
+                  "Score Board", game_const::kResolutionEx);
   font_view_.Draw(render_x + wall_size * 3 / 4.f, render_y + wall_size * 2.f,
-                  RenderAnchor::TopLeft, GetString());
+                  RenderAnchor::TopLeft, GetString(),
+                  game_const::kResolutionEx);
 
   // ÉtÉåÅ[ÉÄ.
   for (int x = 0; x < box_size_x / wall_size; ++x) {

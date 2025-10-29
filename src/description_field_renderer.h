@@ -1,4 +1,3 @@
-
 //! @file description_field_renderer.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa

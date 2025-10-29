@@ -284,13 +284,14 @@ void TitleUI::DrawTitle() const {
     font_view_40_.DrawAlpha(
         game_const::kResolutionX / 2.0f,
         game_const::kResolutionY / 2.0f + 120 + offset_y * i,
-        RenderAnchor::Center, title_items_[i].c_str(), idx == i ? alpha : 0.5f);
+        RenderAnchor::Center, title_items_[i].c_str(), idx == i ? alpha : 0.5f,
+        game_const::kResolutionEx);
   }
 
   // ‰º•”‚ÌˆÄ“à•¶‚ð•`‰æ.
   font_view_20_.Draw(game_const::kResolutionX / 2.0f,
                      game_const::kResolutionY - 20.f, RenderAnchor::Center,
-                     lower_announcement_.c_str());
+                     lower_announcement_.c_str(), game_const::kResolutionEx);
 }
 
 void TitleUI::DrawGameStart() const {
@@ -303,13 +304,13 @@ void TitleUI::DrawGameStart() const {
         game_const::kResolutionX / 2.0f,
         game_const::kResolutionY / 2.0f + 120 + offset_y * i,
         RenderAnchor::Center, game_mode_items_[i].c_str(),
-        idx == i ? alpha : 0.5f);
+        idx == i ? alpha : 0.5f, game_const::kResolutionEx);
   }
 
   // ‰º•”‚ÌˆÄ“à•¶‚ð•`‰æ.
   font_view_20_.Draw(game_const::kResolutionX / 2.0f,
                      game_const::kResolutionY - 20.f, RenderAnchor::Center,
-                     lower_announcement_.c_str());
+                     lower_announcement_.c_str(), game_const::kResolutionEx);
 }
 
 void TitleUI::DrawSpecialMode() const {
@@ -322,13 +323,14 @@ void TitleUI::DrawSpecialMode() const {
         game_const::kResolutionX / 2.0f,
         game_const::kResolutionY / 2.0f + 120 + offset_y * i,
         RenderAnchor::Center, special_mode_items_[i].c_str(),
-        idx == i ? alpha : 0.5f);
+        idx == i ? alpha : 0.5f, game_const::kResolutionEx);
   }
 
   // ‰º•”‚ÌˆÄ“à•¶‚ð•`‰æ.
   font_view_20_.Draw(game_const::kResolutionXF / 2.0f,
                      game_const::kResolutionYF * 47.f / 48.f,
-                     RenderAnchor::Center, lower_announcement_.c_str());
+                     RenderAnchor::Center, lower_announcement_.c_str(),
+                     game_const::kResolutionEx);
 }
 
 void TitleUI::DrawVersionInfo() const {
@@ -337,7 +339,8 @@ void TitleUI::DrawVersionInfo() const {
       nostd::format("Version {}", GetVersionString());
   font_view_20_.Draw(game_const::kResolutionXF * 61.f / 64.f,
                      game_const::kResolutionYF * 95.f / 96.f,
-                     RenderAnchor::BottomRight, version_info.c_str());
+                     RenderAnchor::BottomRight, version_info.c_str(),
+                     game_const::kResolutionEx);
 }
 
 }  // namespace mytetris

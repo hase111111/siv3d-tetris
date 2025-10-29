@@ -71,7 +71,8 @@ void SettingUI::Draw() const {
     // ƒ‰ƒxƒ‹‚ğ•`‰æ.
     const float alpha = label.is_disabled ? 0.2f : 1.0f;
     font_view_40_.DrawAlpha(label_x, start_y + y_offset * counter,
-                            RenderAnchor::TopLeft, label.label_name, alpha);
+                            RenderAnchor::TopLeft, label.label_name,
+                            game_const::kResolutionEx, alpha);
     counter++;
     for (const auto& item : label.setting_items) {
       // €–Ú‚ğ•`‰æ.
@@ -80,12 +81,12 @@ void SettingUI::Draw() const {
                             : ((actual_index == selected_index) ? 1.0f : 0.5f);
       font_view_40_.DrawAlpha(value_x, start_y + y_offset * counter,
                               RenderAnchor::TopLeft, item.item_name,
-                              alpha_item);
+                              game_const::kResolutionEx, alpha_item);
 
       // ’l‚ğ•`‰æ.
       font_view_40_.DrawAlpha(value_x + 600, start_y + y_offset * counter,
                               RenderAnchor::TopLeft, item.val_func(),
-                              alpha_item);
+                              game_const::kResolutionEx, alpha_item);
 
       counter++;
 
@@ -98,7 +99,7 @@ void SettingUI::Draw() const {
   // ‰æ–Ê‚Ìˆê”Ô‰º‚É–ß‚é€–Ú‚ğ•`‰æ.
   font_view_40_.DrawAlpha(
       game_const::kResolutionX / 2.f, game_const::kResolutionY - 80.f,
-      RenderAnchor::Center, "Back To Menu",
+      RenderAnchor::Center, "Back To Menu", game_const::kResolutionEx,
       selected_index == GetTotalSettingItemCount() - 1 ? 1.0f : 0.5f);
 }
 

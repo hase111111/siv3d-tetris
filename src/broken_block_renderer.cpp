@@ -24,11 +24,13 @@ void BrokenBlockRenderer::SetBrokenBlocks(const float x, const float y,
   // óêêîÇ≈éUÇÁÇ∑.
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::uniform_real_distribution<float> dis_x(5.0f, 10.0f);
-  std::uniform_real_distribution<float> dis_y(-5.f, 5.f);
+  std::uniform_real_distribution<float> dis_x(
+      5.0f * game_const::kResolutionEx, 10.0f * game_const::kResolutionEx);
+  std::uniform_real_distribution<float> dis_y(-5.f * game_const::kResolutionEx,
+                                              5.f * game_const::kResolutionEx);
 
   const float vx = left ? -1 * dis_x(gen) : dis_x(gen);
-  const float vy = -20.f + dis_y(gen);
+  const float vy = -20.f * game_const::kResolutionEx + dis_y(gen);
   broken_blocks_.emplace_back(x, y, vx, vy, 0.f, color);
 }
 
@@ -63,7 +65,7 @@ void BrokenBlockRenderer::Draw(const float offset_x,
       continue;
     }
     it->second.DrawRotated(x + offset_x, y + offset_y, RenderAnchor::Center,
-                           2.f, rot);
+                           2.f * game_const::kResolutionEx, rot);
   }
 }
 

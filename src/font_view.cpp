@@ -1,4 +1,3 @@
-
 //! @file font_view.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -51,33 +50,45 @@ FontView::FontView(const Font& font, const int font_size)
 bool FontView::IsValid() const { return true; }
 
 void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
-                    const std::string& str) const {
+                    const std::string& str, const float ex) const {
+  // ï`âÊÇÃÇΩÇﬂÇÃíËêî.
   const s3d::String path{handle_.begin(), handle_.end()};
   const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
   const s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
-  s3d::FontAsset(key)(s).draw(s3d::Vec2(x + dx, y + dy), s3d::Palette::White);
+  const int actual_font_size = static_cast<int>(font_size_ * ex);
+
+  // ï`âÊèàóù.
+  s3d::FontAsset(key)(s).draw(actual_font_size,
+                              s3d::Vec2(x + dx * ex, y + dy * ex),
+                              s3d::Palette::White);
 }
 
 void FontView::DrawAlpha(const float x, const float y,
                          const RenderAnchor anchor, const std::string& str,
-                         const float alpha) const {
+                         const float ex, const float alpha) const {
+  // ï`âÊÇÃÇΩÇﬂÇÃíËêî.
   const s3d::String path{handle_.begin(), handle_.end()};
   const std::string key_str = handle_ + "_" + std::to_string(font_size_);
   const s3d::String key{key_str.begin(), key_str.end()};
   const s3d::String s{str.begin(), str.end()};
   const int width = static_cast<int>(s3d::FontAsset(key)(s).region().w);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
-  s3d::FontAsset(key)(s).draw(s3d::Vec2(x + dx, y + dy),
+  const int actual_font_size = static_cast<int>(font_size_ * ex);
+
+  // ï`âÊèàóù.
+  s3d::FontAsset(key)(s).draw(actual_font_size,
+                              s3d::Vec2(x + dx * ex, y + dy * ex),
                               s3d::ColorF{1.0, static_cast<double>(alpha)});
 }
 
 #endif  // defined (SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
-std::tuple<int, int> FontView::GetRenderPos(RenderAnchor anchor, int width,
-                                            int height) const {
+std::tuple<int, int> FontView::GetRenderPos(const RenderAnchor anchor,
+                                            const int width,
+                                            const int height) const {
   switch (anchor) {
     case RenderAnchor::TopLeft: {
       return {0, 0};

@@ -41,11 +41,11 @@ void PauseRenderer::Draw(const bool is_paused) const {
           key_event_handler_ptr_->GetKeyHandleFromKeyGroup(KeyGroup::kPause)));
   font_view_.Draw(game_const::kResolutionX / 2.f,
                   game_const::kResolutionY / 2.f - 25.f, RenderAnchor::Center,
-                  pause_text);
+                  pause_text, game_const::kResolutionEx);
 
-  font_view_small_.Draw(game_const::kResolutionX / 2.f,
-                        game_const::kResolutionY / 2.f + 35.f,
-                        RenderAnchor::Center, resume_text);
+  font_view_small_.Draw(
+      game_const::kResolutionX / 2.f, game_const::kResolutionY / 2.f + 35.f,
+      RenderAnchor::Center, resume_text, game_const::kResolutionEx);
 }
 
 }  // namespace mytetris

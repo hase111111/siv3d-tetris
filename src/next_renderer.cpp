@@ -1,4 +1,3 @@
-
 //! @file next_renderer.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -7,6 +6,7 @@
 
 #include "next_renderer.h"
 
+#include "game_const.h"
 #include "render_util.h"
 #include "tetromino_render_util.h"
 
@@ -30,7 +30,7 @@ void NextRenderer::Draw(const float render_x, const float render_y) const {
 
   // Next‚Ì•¶Žš.
   font_view_.Draw(render_x + block_size_ / 4.f, render_y + block_size_ / 4.f,
-                  RenderAnchor::TopLeft, "Next");
+                  RenderAnchor::TopLeft, "Next", game_const::kResolutionEx);
 
   // Next.
   for (const auto& tetromino : next) {

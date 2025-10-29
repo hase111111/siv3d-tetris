@@ -46,7 +46,8 @@ void SettingBack::Draw() const {
   }
 
   // ¶ã‚É"Setting"‚Ì•¶š‚ğ•`‰æ.
-  font_view_40_.Draw(60.f, 60.f, RenderAnchor::TopLeft, "Setting");
+  font_view_40_.Draw(60.f, 60.f, RenderAnchor::TopLeft, "Setting",
+                     game_const::kResolutionEx);
 }
 
 }  // namespace mytetris
