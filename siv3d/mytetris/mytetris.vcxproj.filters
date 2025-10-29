@@ -190,6 +190,9 @@
     <Filter Include="Source Files\scene\battle_scene">
       <UniqueIdentifier>{a3ecef6c-5135-4738-91e2-2391fd7fb717}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\scene\title_scene\ui">
+      <UniqueIdentifier>{00335be4-9021-4885-b548-debf1310ef22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -212,12 +215,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\system_main.cpp">
       <Filter>Source Files\system</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\title_back_ground.cpp">
-      <Filter>Source Files\scene\title_scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\title_ui.cpp">
-      <Filter>Source Files\scene\title_scene</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\resource_container.cpp">
       <Filter>Source Files\resource</Filter>
@@ -350,6 +347,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\battle_scene.cpp">
       <Filter>Source Files\scene\battle_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\title_back_ground.cpp">
+      <Filter>Source Files\scene\title_scene\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\title_ui.cpp">
+      <Filter>Source Files\scene\title_scene\ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1040,12 +1043,6 @@
     <ClInclude Include="..\..\src\debug_scene.h">
       <Filter>Source Files\scene\debug_scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\title_ui.h">
-      <Filter>Source Files\scene\title_scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\title_back_ground.h">
-      <Filter>Source Files\scene\title_scene</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\title_scene.h">
       <Filter>Source Files\scene\title_scene</Filter>
     </ClInclude>
@@ -1210,6 +1207,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\battle_scene.h">
       <Filter>Source Files\scene\battle_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\title_back_ground.h">
+      <Filter>Source Files\scene\title_scene\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\title_ui.h">
+      <Filter>Source Files\scene\title_scene\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,8 +8,10 @@
 
 namespace mytetris::game_const {
 
+// 4:3 ‚Ì‰ğ‘œ“x‚ğ’è‹`‚·‚éD
+
 static constexpr int kResolutionX = 960;
-static constexpr int kResolutionY = 540;
+static constexpr int kResolutionY = 720;
 static constexpr float kResolutionXF = static_cast<float>(kResolutionX);
 static constexpr float kResolutionYF = static_cast<float>(kResolutionY);
 

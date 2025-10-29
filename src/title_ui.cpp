@@ -30,7 +30,12 @@ TitleUI::TitleUI(
       special_mode_items_({"Yamada Mode", "Pentris Mode", "Trick Mode",
                            "Practice Mode", "Back"}),
       to_game_scene_(to_game_scene),
-      to_setting_scene_(to_setting_scene) {}
+      to_setting_scene_(to_setting_scene) {
+  // nullptr É`ÉFÉbÉN.
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
+}
 
 bool TitleUI::Update() {
   ++counter_;
@@ -281,17 +286,18 @@ void TitleUI::DrawTitle() const {
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
   for (int i = 0; i < title_items_.size(); ++i) {
-    font_view_40_.DrawAlpha(
-        game_const::kResolutionX / 2.0f,
-        game_const::kResolutionY / 2.0f + 120 + offset_y * i,
-        RenderAnchor::Center, title_items_[i].c_str(), idx == i ? alpha : 0.5f,
-        game_const::kResolutionEx);
+    font_view_40_.DrawAlpha(game_const::kResolutionX / 2.0f,
+                            game_const::kResolutionY * 5.f / 8.f +
+                                offset_y * game_const::kResolutionEx * i,
+                            RenderAnchor::Center, title_items_[i].c_str(),
+                            game_const::kResolutionEx, idx == i ? alpha : 0.5f);
   }
 
   // â∫ïîÇÃàƒì‡ï∂Çï`âÊ.
   font_view_20_.Draw(game_const::kResolutionX / 2.0f,
-                     game_const::kResolutionY - 20.f, RenderAnchor::Center,
-                     lower_announcement_.c_str(), game_const::kResolutionEx);
+                     game_const::kResolutionYF * 47.f / 48.f,
+                     RenderAnchor::Center, lower_announcement_.c_str(),
+                     game_const::kResolutionEx);
 }
 
 void TitleUI::DrawGameStart() const {
@@ -300,17 +306,18 @@ void TitleUI::DrawGameStart() const {
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
   for (int i = 0; i < game_mode_items_.size(); ++i) {
-    font_view_40_.DrawAlpha(
-        game_const::kResolutionX / 2.0f,
-        game_const::kResolutionY / 2.0f + 120 + offset_y * i,
-        RenderAnchor::Center, game_mode_items_[i].c_str(),
-        idx == i ? alpha : 0.5f, game_const::kResolutionEx);
+    font_view_40_.DrawAlpha(game_const::kResolutionX / 2.0f,
+                            game_const::kResolutionY * 5.f / 8.f +
+                                offset_y * i * game_const::kResolutionEx,
+                            RenderAnchor::Center, game_mode_items_[i].c_str(),
+                            game_const::kResolutionEx, idx == i ? alpha : 0.5f);
   }
 
   // â∫ïîÇÃàƒì‡ï∂Çï`âÊ.
   font_view_20_.Draw(game_const::kResolutionX / 2.0f,
-                     game_const::kResolutionY - 20.f, RenderAnchor::Center,
-                     lower_announcement_.c_str(), game_const::kResolutionEx);
+                     game_const::kResolutionYF * 47.f / 48.f,
+                     RenderAnchor::Center, lower_announcement_.c_str(),
+                     game_const::kResolutionEx);
 }
 
 void TitleUI::DrawSpecialMode() const {
@@ -318,12 +325,13 @@ void TitleUI::DrawSpecialMode() const {
   const int idx = mode_index_ % special_mode_items_.size();
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
-  for (int i = 0; i < special_mode_items_.size(); ++i) {
-    font_view_40_.DrawAlpha(
-        game_const::kResolutionX / 2.0f,
-        game_const::kResolutionY / 2.0f + 120 + offset_y * i,
-        RenderAnchor::Center, special_mode_items_[i].c_str(),
-        idx == i ? alpha : 0.5f, game_const::kResolutionEx);
+  for (int i{0}; i < special_mode_items_.size(); ++i) {
+    font_view_40_.DrawAlpha(game_const::kResolutionX / 2.0f,
+                            game_const::kResolutionY * 5.f / 8.f +
+                                offset_y * i * game_const::kResolutionEx,
+                            RenderAnchor::Center,
+                            special_mode_items_[i].c_str(),
+                            game_const::kResolutionEx, idx == i ? alpha : 0.5f);
   }
 
   // â∫ïîÇÃàƒì‡ï∂Çï`âÊ.
