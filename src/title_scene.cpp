@@ -18,7 +18,6 @@ TitleScene::TitleScene(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       key_event_handler_ptr_(key_event_handler_ptr),
-      resource_container_ptr_(resource_container_ptr),
       title_back_ground_{resource_container_ptr},
       title_ui_{
           key_event_handler_ptr, resource_container_ptr,
@@ -26,9 +25,12 @@ TitleScene::TitleScene(
           std::bind(&TitleScene::ToSettingScene, this)},
       fade_effect_{30} {
   // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
+
   DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
-  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
 
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }

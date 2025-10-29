@@ -1,3 +1,9 @@
+//! @file setting_ui.cpp
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #include "setting_ui.h"
 
 #include "game_const.h"
@@ -58,10 +64,10 @@ void SettingUI::Update() {
 }
 
 void SettingUI::Draw() const {
-  const float label_x = 100;
-  const float value_x = 220;
-  const float start_y = 130;
-  const float y_offset = 50;
+  const float label_x = game_const::kResolutionXF * 5.f / 64.f;
+  const float value_x = game_const::kResolutionXF * 11.f / 64.f;
+  const float start_y = game_const::kResolutionYF * 13.f / 96.f;
+  const float y_offset = game_const::kResolutionYF * 5.f / 96.f;
 
   int counter{0};
   int actual_index{0};
@@ -84,7 +90,8 @@ void SettingUI::Draw() const {
                               game_const::kResolutionEx, alpha_item);
 
       // ’l‚ð•`‰æ.
-      font_view_40_.DrawAlpha(value_x + 600, start_y + y_offset * counter,
+      font_view_40_.DrawAlpha(value_x + game_const::kResolutionXF * 15.f / 32.f,
+                              start_y + y_offset * counter,
                               RenderAnchor::TopLeft, item.val_func(),
                               game_const::kResolutionEx, alpha_item);
 
