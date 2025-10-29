@@ -6,17 +6,17 @@
 
 #pragma once
 
-namespace mytetris {
+namespace mytetris::game_const {
 
-class GameConst {
- public:
-  static constexpr int kResolutionX = 1280;
-  static constexpr int kResolutionY = 960;
+static constexpr int kResolutionX = 960;
+static constexpr int kResolutionY = 540;
+static constexpr float kResolutionXF = static_cast<float>(kResolutionX);
+static constexpr float kResolutionYF = static_cast<float>(kResolutionY);
 
-  static constexpr char kWindowTitle[] = "Tetris";
+//! @brief このゲームは1280x720を基準にデザインされているため，
+//! その解像度に対する比率を定義する．
+static constexpr float kResolutionEx = kResolutionXF / 1280.f;
 
- private:
-  GameConst() = delete;
-};
+static constexpr char kWindowTitle[] = "Tetris";
 
-}  // namespace mytetris
+}  // namespace mytetris::game_const

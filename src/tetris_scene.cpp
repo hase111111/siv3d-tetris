@@ -139,14 +139,14 @@ void TetrisScene::Draw() const {
 
   const auto [tetromino_x, tetromino_y] = tetris_updater_ptr_->GetPosition();
   tetris_renderer_.Draw(
-      GameConst::kResolutionX / 2,
-      GameConst::kResolutionY / 2 -
+      game_const::kResolutionX / 2,
+      game_const::kResolutionY / 2 -
           static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
       tetromino_x, tetromino_y, tetris_updater_ptr_->IsGameOver(),
       tetris_updater_ptr_->IsPinch());
 
-  tetris_announce_ptr_->Draw(GameConst::kResolutionX / 2,
-                             GameConst::kResolutionY / 2);
+  tetris_announce_ptr_->Draw(game_const::kResolutionX / 2,
+                             game_const::kResolutionY / 2);
 
   pause_renderer_.Draw(is_paused_);
 

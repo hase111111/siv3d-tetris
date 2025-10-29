@@ -19,8 +19,7 @@ TitleScene::TitleScene(
     : scene_change_listener_ptr_(scene_change_listener_ptr),
       key_event_handler_ptr_(key_event_handler_ptr),
       resource_container_ptr_(resource_container_ptr),
-      title_back_ground_{GameConst::kResolutionX, GameConst::kResolutionY,
-                         resource_container_ptr},
+      title_back_ground_{resource_container_ptr},
       title_ui_{
           key_event_handler_ptr, resource_container_ptr,
           std::bind(&TitleScene::ToTetrisScene, this, std::placeholders::_1),

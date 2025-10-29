@@ -24,8 +24,8 @@ void SettingBack::Draw() const {
   const float wall_ex{2.f};
   const float wall_size{40.f};
 
-  const int screen_width = GameConst::kResolutionX;
-  const int screen_height = GameConst::kResolutionY;
+  const int screen_width = game_const::kResolutionX;
+  const int screen_height = game_const::kResolutionY;
 
   // è„â∫ÇÃòg.
   for (int x = 0; x < screen_width / wall_size + 1; ++x) {

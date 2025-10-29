@@ -281,15 +281,15 @@ void TitleUI::DrawTitle() const {
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
   for (int i = 0; i < title_items_.size(); ++i) {
-    font_view_40_.DrawAlpha(GameConst::kResolutionX / 2.0f,
-                            GameConst::kResolutionY / 2.0f + 120 + offset_y * i,
-                            RenderAnchor::Center, title_items_[i].c_str(),
-                            idx == i ? alpha : 0.5f);
+    font_view_40_.DrawAlpha(
+        game_const::kResolutionX / 2.0f,
+        game_const::kResolutionY / 2.0f + 120 + offset_y * i,
+        RenderAnchor::Center, title_items_[i].c_str(), idx == i ? alpha : 0.5f);
   }
 
   // ‰º•”‚ÌˆÄ“à•¶‚ð•`‰æ.
-  font_view_20_.Draw(GameConst::kResolutionX / 2.0f,
-                     GameConst::kResolutionY - 20.f, RenderAnchor::Center,
+  font_view_20_.Draw(game_const::kResolutionX / 2.0f,
+                     game_const::kResolutionY - 20.f, RenderAnchor::Center,
                      lower_announcement_.c_str());
 }
 
@@ -299,15 +299,16 @@ void TitleUI::DrawGameStart() const {
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
   for (int i = 0; i < game_mode_items_.size(); ++i) {
-    font_view_40_.DrawAlpha(GameConst::kResolutionX / 2.0f,
-                            GameConst::kResolutionY / 2.0f + 120 + offset_y * i,
-                            RenderAnchor::Center, game_mode_items_[i].c_str(),
-                            idx == i ? alpha : 0.5f);
+    font_view_40_.DrawAlpha(
+        game_const::kResolutionX / 2.0f,
+        game_const::kResolutionY / 2.0f + 120 + offset_y * i,
+        RenderAnchor::Center, game_mode_items_[i].c_str(),
+        idx == i ? alpha : 0.5f);
   }
 
   // ‰º•”‚ÌˆÄ“à•¶‚ð•`‰æ.
-  font_view_20_.Draw(GameConst::kResolutionX / 2.0f,
-                     GameConst::kResolutionY - 20.f, RenderAnchor::Center,
+  font_view_20_.Draw(game_const::kResolutionX / 2.0f,
+                     game_const::kResolutionY - 20.f, RenderAnchor::Center,
                      lower_announcement_.c_str());
 }
 
@@ -317,26 +318,26 @@ void TitleUI::DrawSpecialMode() const {
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 
   for (int i = 0; i < special_mode_items_.size(); ++i) {
-    font_view_40_.DrawAlpha(GameConst::kResolutionX / 2.0f,
-                            GameConst::kResolutionY / 2.0f + 120 + offset_y * i,
-                            RenderAnchor::Center,
-                            special_mode_items_[i].c_str(),
-                            idx == i ? alpha : 0.5f);
+    font_view_40_.DrawAlpha(
+        game_const::kResolutionX / 2.0f,
+        game_const::kResolutionY / 2.0f + 120 + offset_y * i,
+        RenderAnchor::Center, special_mode_items_[i].c_str(),
+        idx == i ? alpha : 0.5f);
   }
 
   // ‰º•”‚ÌˆÄ“à•¶‚ð•`‰æ.
-  font_view_20_.Draw(GameConst::kResolutionX / 2.0f,
-                     GameConst::kResolutionY - 20.f, RenderAnchor::Center,
-                     lower_announcement_.c_str());
+  font_view_20_.Draw(game_const::kResolutionXF / 2.0f,
+                     game_const::kResolutionYF * 47.f / 48.f,
+                     RenderAnchor::Center, lower_announcement_.c_str());
 }
 
 void TitleUI::DrawVersionInfo() const {
   // ‰æ–Ê‰E‰º‚Éƒo[ƒWƒ‡ƒ“î•ñ‚ð•`‰æ‚·‚é.
   const std::string version_info =
       nostd::format("Version {}", GetVersionString());
-  font_view_20_.Draw(GameConst::kResolutionX - 60.f,
-                     GameConst::kResolutionY - 10.f, RenderAnchor::BottomRight,
-                     version_info.c_str());
+  font_view_20_.Draw(game_const::kResolutionXF * 61.f / 64.f,
+                     game_const::kResolutionYF * 95.f / 96.f,
+                     RenderAnchor::BottomRight, version_info.c_str());
 }
 
 }  // namespace mytetris

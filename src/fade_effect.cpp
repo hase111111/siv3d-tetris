@@ -39,12 +39,13 @@ void FadeEffect::Start(const FadeType fade_type,
 
 void FadeEffect::Draw() const {
   if (fade_type_ == FadeType::kFadeOut) {
-    DrawRectAlpha(0.f, 0.f, static_cast<float>(GameConst::kResolutionX),
-                  static_cast<float>(GameConst::kResolutionY), 0x00000000, true,
-                  counter_ / static_cast<float>(fade_time_));
+    DrawRectAlpha(0.f, 0.f, static_cast<float>(game_const::kResolutionX),
+                  static_cast<float>(game_const::kResolutionY), 0x00000000,
+                  true, counter_ / static_cast<float>(fade_time_));
   } else {
-    DrawRectAlpha(0.f, 0.f, static_cast<float>(GameConst::kResolutionX),
-                  static_cast<float>(GameConst::kResolutionY), 0x00000000, true,
+    DrawRectAlpha(0.f, 0.f, static_cast<float>(game_const::kResolutionX),
+                  static_cast<float>(game_const::kResolutionY), 0x00000000,
+                  true,
                   (fade_time_ - counter_) / static_cast<float>(fade_time_));
   }
 }

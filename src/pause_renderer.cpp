@@ -1,4 +1,3 @@
-
 //! @file pause_renderer.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -32,7 +31,7 @@ void PauseRenderer::Draw(const bool is_paused) const {
     return;
   }
 
-  DrawRectAlpha(0, 0, GameConst::kResolutionX, GameConst::kResolutionY,
+  DrawRectAlpha(0, 0, game_const::kResolutionX, game_const::kResolutionY,
                 0x00000000, true, 0.5f);
 
   const std::string pause_text = "PAUSE";
@@ -40,12 +39,12 @@ void PauseRenderer::Draw(const bool is_paused) const {
       "Press {} to Restart",
       KeyHandleToString(
           key_event_handler_ptr_->GetKeyHandleFromKeyGroup(KeyGroup::kPause)));
-  font_view_.Draw(GameConst::kResolutionX / 2.f,
-                  GameConst::kResolutionY / 2.f - 25.f, RenderAnchor::Center,
+  font_view_.Draw(game_const::kResolutionX / 2.f,
+                  game_const::kResolutionY / 2.f - 25.f, RenderAnchor::Center,
                   pause_text);
 
-  font_view_small_.Draw(GameConst::kResolutionX / 2.f,
-                        GameConst::kResolutionY / 2.f + 35.f,
+  font_view_small_.Draw(game_const::kResolutionX / 2.f,
+                        game_const::kResolutionY / 2.f + 35.f,
                         RenderAnchor::Center, resume_text);
 }
 

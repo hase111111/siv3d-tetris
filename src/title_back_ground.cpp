@@ -6,33 +6,37 @@
 
 #include "title_back_ground.h"
 
+#include "game_const.h"
+
 namespace mytetris {
 
 TitleBackGround::TitleBackGround(
-    const int window_size_x, const int window_size_y,
     const std::shared_ptr<const ResourceContainer>& container)
     : title_texture_(container->GetTexture("title.png")),
-      wall_texture_(container->GetTexture("wall.png")),
-      window_size_x_(window_size_x),
-      window_size_y_(window_size_y) {}
+      wall_texture_(container->GetTexture("wall.png")) {}
 
 void TitleBackGround::Draw() const {
-  title_texture_.DrawRotated(window_size_x_ / 2.f, window_size_y_ * 4.f / 12.f,
-                             RenderAnchor::Center, 2.0, 0.0);
+  title_texture_.DrawRotated(
+      game_const::kResolutionXF / 2.f, game_const::kResolutionYF / 3.f,
+      RenderAnchor::Center, 2.0 * game_const::kResolutionEx, 0.0);
 
   const int wall_num =
       (wall_texture_.GetHeight() != 0)
-          ? (window_size_y_ /
-             static_cast<int>(wall_texture_.GetHeight() * wall_ex_))
+          ? static_cast<int>(game_const::kResolutionYF /
+                             wall_texture_.GetHeight() * wall_ex_ *
+                             game_const::kResolutionEx)
           : 0;
 
   for (int i = 0; i < wall_num; ++i) {
     const float i_ = static_cast<float>(i);
-    wall_texture_.DrawRotated(0.f, i_ * wall_texture_.GetHeight() * wall_ex_,
-                              RenderAnchor::TopLeft, wall_ex_, 0.f);
-    wall_texture_.DrawRotated(static_cast<float>(window_size_x_),
-                              i_ * wall_texture_.GetHeight() * wall_ex_,
-                              RenderAnchor::TopRight, wall_ex_, 0.f);
+    wall_texture_.DrawRotated(
+        0.f,
+        i_ * wall_texture_.GetHeight() * wall_ex_ * game_const::kResolutionEx,
+        RenderAnchor::TopLeft, wall_ex_ * game_const::kResolutionEx, 0.f);
+    wall_texture_.DrawRotated(
+        static_cast<float>(game_const::kResolutionXF),
+        i_ * wall_texture_.GetHeight() * wall_ex_ * game_const::kResolutionEx,
+        RenderAnchor::TopRight, wall_ex_ * game_const::kResolutionEx, 0.f);
   }
 }
 

@@ -97,7 +97,7 @@ void SettingUI::Draw() const {
 
   // ‰æ–Ê‚Ìˆê”Ô‰º‚É–ß‚é€–Ú‚ğ•`‰æ.
   font_view_40_.DrawAlpha(
-      GameConst::kResolutionX / 2.f, GameConst::kResolutionY - 80.f,
+      game_const::kResolutionX / 2.f, game_const::kResolutionY - 80.f,
       RenderAnchor::Center, "Back To Menu",
       selected_index == GetTotalSettingItemCount() - 1 ? 1.0f : 0.5f);
 }

@@ -1,4 +1,3 @@
-
 //! @file system_main.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -98,7 +97,7 @@ bool SystemMain::Initialize() {
   // ウィンドウタイトルを設定する．
 
   // ウィンドウのサイズを設定する．
-  Window::Resize(GameConst::kResolutionX, GameConst::kResolutionY);
+  Window::Resize(game_const::kResolutionX, game_const::kResolutionY);
 
   // ウィンドウの背景色を設定する．
   Scene::SetBackground(ColorF{0.0f, 0.0f, 0.0f});

@@ -1,4 +1,3 @@
-
 //! @file broken_block_renderer.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -46,7 +45,7 @@ void BrokenBlockRenderer::Update() {
       std::remove_if(broken_blocks_.begin(), broken_blocks_.end(),
                      [](const auto& block) {
                        return std::get<1>(block) >
-                              GameConst::kResolutionY * 2.f;
+                              game_const::kResolutionY * 2.f;
                      }),
       broken_blocks_.end());
 }

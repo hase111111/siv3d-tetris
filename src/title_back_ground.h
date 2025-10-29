@@ -16,7 +16,6 @@ namespace mytetris {
 class TitleBackGround final {
  public:
   TitleBackGround(
-      int window_size_x, int window_size_y,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
   ~TitleBackGround() = default;
 
@@ -25,8 +24,6 @@ class TitleBackGround final {
  private:
   const TextureView title_texture_;
   const TextureView wall_texture_;
-  const int window_size_x_;
-  const int window_size_y_;
   const float wall_ex_{2.0f};
 };
 
