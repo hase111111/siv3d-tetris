@@ -1,4 +1,3 @@
-
 //! @file game_main_loop.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa

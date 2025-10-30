@@ -21,8 +21,8 @@ SettingBack::SettingBack(
 
 void SettingBack::Draw() const {
   // âÊñ ÇògÇ«ÇÈÇÊÇ§Ç…ï`âÊ.
-  const float wall_ex{2.f};
-  const float wall_size{40.f};
+  const float wall_ex{2.f * game_const::kResolutionEx};
+  const float wall_size{40.f * game_const::kResolutionEx};
 
   const int screen_width = game_const::kResolutionX;
   const int screen_height = game_const::kResolutionY;
@@ -46,7 +46,9 @@ void SettingBack::Draw() const {
   }
 
   // ç∂è„Ç…"Setting"ÇÃï∂éöÇï`âÊ.
-  font_view_40_.Draw(60.f, 60.f, RenderAnchor::TopLeft, "Setting",
+  font_view_40_.Draw(game_const::kResolutionXF * 3.f / 64.f,
+                     game_const::kResolutionYF * 1.f / 16.f,
+                     RenderAnchor::TopLeft, "Setting",
                      game_const::kResolutionEx);
 }
 
