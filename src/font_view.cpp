@@ -24,7 +24,7 @@ FontView::FontView(const Font& font)
 bool FontView::IsValid() const { return handle_ >= 0; }
 
 void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
-                    const std::string& str) const {
+                    const std::string& str, const float ex) const {
   const int width = GetDrawStringWidthToHandle(
       str.c_str(), static_cast<int>(str.size()), handle_);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);
@@ -33,7 +33,7 @@ void FontView::Draw(const float x, const float y, const RenderAnchor anchor,
 
 void FontView::DrawAlpha(const float x, const float y,
                          const RenderAnchor anchor, const std::string& str,
-                         const float alpha) const {
+                         const float ex, const float alpha) const {
   const int width = GetDrawStringWidthToHandle(
       str.c_str(), static_cast<int>(str.size()), handle_);
   const auto [dx, dy] = GetRenderPos(anchor, width, font_size_);

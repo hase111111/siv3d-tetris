@@ -27,8 +27,8 @@ bool SystemMain::Initialize() {
   DxLib::SetWindowIconID(333);
 
   DxLib::SetUseCharCodeFormat(
-      DX_CHARCODEFORMAT_UTF8);             // 文字コードをUTF-8に設定する．
-  SetWindowText(GameConst::kWindowTitle);  // ウィンドウタイトルを付ける．
+      DX_CHARCODEFORMAT_UTF8);              // 文字コードをUTF-8に設定する．
+  SetWindowText(game_const::kWindowTitle);  // ウィンドウタイトルを付ける．
   DxLib::SetAlwaysRunFlag(TRUE);  // ウィンドウがノンアクティブでも実行．
   DxLib::SetOutApplicationLogValidFlag(FALSE);  // ログ出力しない．
   DxLib::SetDoubleStartValidFlag(FALSE);        // 二重起動を許可しない．
@@ -38,7 +38,7 @@ bool SystemMain::Initialize() {
   // ゲーム画面の解像度を設定する．
   // 色の bit 数。通常32で良いが軽くするなら16にする．
   const int color_bit = 32;
-  DxLib::SetGraphMode(GameConst::kResolutionX, GameConst::kResolutionY,
+  DxLib::SetGraphMode(game_const::kResolutionX, game_const::kResolutionY,
                       color_bit);
 
   // フルスクリーン設定．
@@ -50,7 +50,8 @@ bool SystemMain::Initialize() {
     DxLib::SetWindowSizeChangeEnableFlag(FALSE, FALSE);
 
     // 画面サイズ設定．
-    const double ex_rate = 960.0 / static_cast<double>(GameConst::kResolutionX);
+    const double ex_rate =
+        1280.0 / static_cast<double>(game_const::kResolutionX);
 
     // ウィンドウサイズを変更したい時はここに倍率を指定する．
     DxLib::SetWindowSizeExtendRate(ex_rate);

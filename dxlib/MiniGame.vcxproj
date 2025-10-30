@@ -22,6 +22,7 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\battle_scene.cpp" />
     <ClCompile Include="..\src\broken_block_renderer.cpp" />
     <ClCompile Include="..\src\debug_scene.cpp" />
     <ClCompile Include="..\src\description_field_renderer.cpp" />
@@ -31,10 +32,12 @@
     <ClCompile Include="..\src\fade_effect.cpp" />
     <ClCompile Include="..\src\font.cpp" />
     <ClCompile Include="..\src\font_view.cpp" />
+    <ClCompile Include="..\src\fps_addon.cpp" />
     <ClCompile Include="..\src\fps_controller.cpp" />
     <ClCompile Include="..\src\game_end_checker.cpp" />
     <ClCompile Include="..\src\game_main_loop.cpp" />
     <ClCompile Include="..\src\hold_renderer.cpp" />
+    <ClCompile Include="..\src\key_config_data.cpp" />
     <ClCompile Include="..\src\key_event_handler.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\my_assert.cpp" />
@@ -49,9 +52,14 @@
     <ClCompile Include="..\src\scene_creator.cpp" />
     <ClCompile Include="..\src\scene_stack.cpp" />
     <ClCompile Include="..\src\score_board_renderer.cpp" />
+    <ClCompile Include="..\src\score_calculator.cpp" />
+    <ClCompile Include="..\src\setting_back.cpp" />
+    <ClCompile Include="..\src\setting_scene.cpp" />
+    <ClCompile Include="..\src\setting_ui.cpp" />
     <ClCompile Include="..\src\system_main.cpp" />
     <ClCompile Include="..\src\tetris_announce.cpp" />
     <ClCompile Include="..\src\tetris_feild.cpp" />
+    <ClCompile Include="..\src\tetris_field_effect.cpp" />
     <ClCompile Include="..\src\tetris_level.cpp" />
     <ClCompile Include="..\src\tetris_renderer.cpp" />
     <ClCompile Include="..\src\tetris_rotate_checker.cpp" />
@@ -68,7 +76,9 @@
     <ClCompile Include="..\src\title_ui.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\battle_scene.h" />
     <ClInclude Include="..\src\broken_block_renderer.h" />
+    <ClInclude Include="..\src\calc_util.h" />
     <ClInclude Include="..\src\debug_scene.h" />
     <ClInclude Include="..\src\description_field_renderer.h" />
     <ClInclude Include="..\src\drop_count.h" />
@@ -77,6 +87,7 @@
     <ClInclude Include="..\src\fade_effect.h" />
     <ClInclude Include="..\src\font.h" />
     <ClInclude Include="..\src\font_view.h" />
+    <ClInclude Include="..\src\fps_addon.h" />
     <ClInclude Include="..\src\fps_controller.h" />
     <ClInclude Include="..\src\game_const.h" />
     <ClInclude Include="..\src\game_end_checker.h" />
@@ -85,7 +96,10 @@
     <ClInclude Include="..\src\hold_renderer.h" />
     <ClInclude Include="..\src\hold_tetromino.h" />
     <ClInclude Include="..\src\i_scene.h" />
+    <ClInclude Include="..\src\key_config_data.h" />
     <ClInclude Include="..\src\key_event_handler.h" />
+    <ClInclude Include="..\src\key_group.h" />
+    <ClInclude Include="..\src\key_handle.h" />
     <ClInclude Include="..\src\my_assert.h" />
     <ClInclude Include="..\src\my_format.h" />
     <ClInclude Include="..\src\next_renderer.h" />
@@ -101,9 +115,14 @@
     <ClInclude Include="..\src\scene_name.h" />
     <ClInclude Include="..\src\scene_stack.h" />
     <ClInclude Include="..\src\score_board_renderer.h" />
+    <ClInclude Include="..\src\score_calculator.h" />
+    <ClInclude Include="..\src\setting_back.h" />
+    <ClInclude Include="..\src\setting_scene.h" />
+    <ClInclude Include="..\src\setting_ui.h" />
     <ClInclude Include="..\src\system_main.h" />
     <ClInclude Include="..\src\tetris_announce.h" />
     <ClInclude Include="..\src\tetris_feild.h" />
+    <ClInclude Include="..\src\tetris_field_effect.h" />
     <ClInclude Include="..\src\tetris_game_mode.h" />
     <ClInclude Include="..\src\tetris_level.h" />
     <ClInclude Include="..\src\tetris_renderer.h" />
@@ -121,6 +140,7 @@
     <ClInclude Include="..\src\title_back_ground.h" />
     <ClInclude Include="..\src\title_scene.h" />
     <ClInclude Include="..\src\title_ui.h" />
+    <ClInclude Include="..\src\version.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

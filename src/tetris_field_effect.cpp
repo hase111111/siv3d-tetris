@@ -1,6 +1,5 @@
 #include "tetris_field_effect.h"
 
-#include <Siv3D.hpp>
 #include <random>
 #include <set>
 
