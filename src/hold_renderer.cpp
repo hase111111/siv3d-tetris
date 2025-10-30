@@ -28,8 +28,8 @@ HoldRenderer::HoldRenderer(
 }
 
 void HoldRenderer::Draw(const float render_x, const float render_y) const {
-  const float wall_size{40.f};
-  const float wall_ex{2.f};
+  const float wall_size{40.f * game_const::kResolutionEx};
+  const float wall_ex{2.f * game_const::kResolutionEx};
   const float box_size{wall_size * 5.f};
 
   if (hold_tetromino_ptr_->IsHold()) {

@@ -68,7 +68,7 @@ void DescriptionFieldRenderer::Update() {
 
 void DescriptionFieldRenderer::Draw(const int render_x,
                                     const int render_y) const {
-  const float wall_size{40.f};
+  const float wall_size{40.f * game_const::kResolutionEx};
   const float wall_ex{2.f};
   const float box_size_x{wall_size * 10.f};
   const float box_size_y{wall_size * 23.f};
@@ -77,29 +77,32 @@ void DescriptionFieldRenderer::Draw(const int render_x,
   for (int x = 0; x < box_size_x / wall_size; ++x) {
     wall_texture_.DrawRotated(render_x + wall_size * x - wall_size / 2.f,
                               render_y - wall_size / 2.f, RenderAnchor::TopLeft,
-                              wall_ex, 0.0f);
+                              wall_ex * game_const::kResolutionEx, 0.0f);
 
     wall_texture_.DrawRotated(render_x + wall_size * x - wall_size / 2.f,
                               render_y - wall_size / 2.f + box_size_y,
-                              RenderAnchor::TopLeft, wall_ex, 0.0f);
+                              RenderAnchor::TopLeft,
+                              wall_ex * game_const::kResolutionEx, 0.0f);
 
     wall_texture_.DrawRotated(render_x + wall_size * x - wall_size / 2.f,
                               render_y - wall_size + box_size_y / 2.f,
-                              RenderAnchor::TopLeft, wall_ex, 0.0f);
+                              RenderAnchor::TopLeft,
+                              wall_ex * game_const::kResolutionEx, 0.0f);
   }
 
   for (int y = 0; y < box_size_y / wall_size + 1; ++y) {
-    wall_texture_.DrawRotated(render_x - wall_size / 2.f,
-                              render_y + wall_size * y - wall_size / 2.f,
-                              RenderAnchor::TopLeft, wall_ex, 0.0f);
+    wall_texture_.DrawRotated(
+        render_x - wall_size / 2.f, render_y + wall_size * y - wall_size / 2.f,
+        RenderAnchor::TopLeft, wall_ex * game_const::kResolutionEx, 0.0f);
     wall_texture_.DrawRotated(render_x - wall_size / 2.f + box_size_x,
                               render_y + wall_size * y - wall_size / 2.f,
-                              RenderAnchor::TopLeft, wall_ex, 0.0f);
+                              RenderAnchor::TopLeft,
+                              wall_ex * game_const::kResolutionEx, 0.0f);
   }
 
   // •¶Žš.
-  font_view_.Draw(render_x + wall_size * 3 / 4.0f,
-                  render_y + wall_size * 3 / 4.0f, RenderAnchor::TopLeft,
+  font_view_.Draw(render_x + wall_size * 3.f / 4.0f,
+                  render_y + wall_size * 3.f / 4.0f, RenderAnchor::TopLeft,
                   "Controls:", game_const::kResolutionEx);
   font_view_.Draw(render_x + wall_size, render_y + wall_size * 2.f,
                   RenderAnchor::TopLeft, GetString(),

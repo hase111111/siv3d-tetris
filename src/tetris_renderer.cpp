@@ -86,7 +86,8 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
     const auto [diff_x, diff_y] = tetris_field_effect_ptr_->GetDiff(x_, y_);
     it->second.DrawRotatedAlpha(render_x_ + x_ * block_size_ + diff_x,
                                 render_y_ + y_ * block_size_ + diff_y,
-                                RenderAnchor::Center, 2.f, 0.f,
+                                RenderAnchor::Center,
+                                2.f * game_const::kResolutionEx, 0.f,
                                 tetris_field_effect_ptr_->GetAlpha(x_, y_));
   }
 
@@ -118,12 +119,14 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
                   true, 0.5f);
 
     const std::string game_over_text = "GAME OVER";
-    font_view_.Draw(static_cast<float>(render_x), render_y - 25.f,
+    font_view_.Draw(static_cast<float>(render_x),
+                    render_y - 25.f * game_const::kResolutionEx,
                     RenderAnchor::Center, game_over_text,
                     game_const::kResolutionEx);
 
     const std::string retry_text = "Press R to Retry";
-    font_view_small_.Draw(static_cast<float>(render_x), render_y + 25.f,
+    font_view_small_.Draw(static_cast<float>(render_x),
+                          render_y + 25.f * game_const::kResolutionEx,
                           RenderAnchor::Center, retry_text,
                           game_const::kResolutionEx);
   }

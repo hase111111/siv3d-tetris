@@ -191,10 +191,11 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
                            RenderAnchor::Center, announce_text_,
                            game_const::kResolutionEx, alpha);
 
-      font_view_small_.DrawAlpha(static_cast<float>(x),
-                                 static_cast<float>(y) + 50.f,
-                                 RenderAnchor::Center, announce_text_small_,
-                                 game_const::kResolutionEx, alpha);
+      font_view_small_.DrawAlpha(
+          static_cast<float>(x),
+          static_cast<float>(y) + 50.f * game_const::kResolutionEx,
+          RenderAnchor::Center, announce_text_small_, game_const::kResolutionEx,
+          alpha);
     }
 
     // クリアラインアナウンス表示.
@@ -204,26 +205,30 @@ void TetrisAnnounce::Draw(const int x, const int y) const {
           (counter_ - clear_line_start_time_) % 40 < 20 ? 0.0f : 1.0f;
       for (size_t i = 0; i < clear_line_announce_.size(); ++i) {
         font_view_.DrawAlpha(static_cast<float>(x),
-                             static_cast<float>(y) - 350.f + i * 40.f,
+                             static_cast<float>(y) -
+                                 350.f * game_const::kResolutionEx +
+                                 i * 40.f * game_const::kResolutionEx,
                              RenderAnchor::Center, clear_line_announce_[i],
                              game_const::kResolutionEx, alpha);
       }
     }
   } else {
     // ゲームクリア時.
-    const float block_size = 40.f;
+    const float block_size = 40.f * game_const::kResolutionEx;
     const float x_size = block_size * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size * (tetris_field_ptr_->GetHeight() - 2);
     DrawRectAlpha(x - x_size / 2.f, y - y_size / 2.f, x + x_size / 2.f,
                   y + y_size / 2.f - block_size * 1.5f, 0x00000000, true, 0.5f);
 
-    font_view_.Draw(static_cast<float>(x), static_cast<float>(y) - 50.f,
+    font_view_.Draw(static_cast<float>(x),
+                    static_cast<float>(y) - 50.f * game_const::kResolutionEx,
                     RenderAnchor::Center, announce_text_,
                     game_const::kResolutionEx);
 
-    font_view_small_.Draw(static_cast<float>(x), static_cast<float>(y) + 50.f,
-                          RenderAnchor::Center, announce_text_small_,
-                          game_const::kResolutionEx);
+    font_view_small_.Draw(
+        static_cast<float>(x),
+        static_cast<float>(y) + 50.f * game_const::kResolutionEx,
+        RenderAnchor::Center, announce_text_small_, game_const::kResolutionEx);
   }
 }
 

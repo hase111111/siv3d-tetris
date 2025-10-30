@@ -50,7 +50,7 @@ TetrisScene::TetrisScene(
                        tetris_field_ptr_,
                        tetromino_ptr_,
                        tetris_field_effect_ptr_,
-                       40.0f,
+                       40.0f * game_const::kResolutionEx,
                        game_setting_record_ptr->display_ghost_tetromino},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
       hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
@@ -125,17 +125,23 @@ bool TetrisScene::Update() {
 }
 
 void TetrisScene::Draw() const {
-  next_renderer_.Draw(880, 40);
+  next_renderer_.Draw(game_const::kResolutionXF * 11.f / 16.f,
+                      game_const::kResolutionYF * 1.f / 24.f);
 
-  drop_gauge_renderer_.Draw(960, 888, tetris_updater_ptr_->GetDropGauge(),
+  drop_gauge_renderer_.Draw(game_const::kResolutionXF * 3.f / 4.f,
+                            game_const::kResolutionYF * 37.f / 40.f,
+                            tetris_updater_ptr_->GetDropGauge(),
                             tetris_updater_ptr_->GetFixGauge(),
                             tetris_updater_ptr_->GetMoveGauge());
 
-  hold_renderer_.Draw(1060, 20);
+  hold_renderer_.Draw(game_const::kResolutionXF * 53.f / 64.f,
+                      game_const::kResolutionYF * 1.f / 48.f);
 
-  score_board_renderer_.Draw(1060, 260);
+  score_board_renderer_.Draw(game_const::kResolutionXF * 53.f / 64.f,
+                             game_const::kResolutionYF * 13.f / 48.f);
 
-  description_field_renderer_.Draw(20, 20);
+  description_field_renderer_.Draw(game_const::kResolutionXF * 1.f / 64.f,
+                                   game_const::kResolutionYF * 1.f / 48.f);
 
   const auto [tetromino_x, tetromino_y] = tetris_updater_ptr_->GetPosition();
   tetris_renderer_.Draw(

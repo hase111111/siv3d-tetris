@@ -32,7 +32,7 @@ class NextRenderer final {
   const TextureView wall_texture_;
   const FontView font_view_;
   const std::shared_ptr<const NextTetromino> next_tetromino_ptr_;
-  const float block_size_{30.0f};
+  const float block_size_;
   const int count_max_{5};
 };
 

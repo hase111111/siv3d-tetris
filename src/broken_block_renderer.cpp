@@ -38,7 +38,7 @@ void BrokenBlockRenderer::Update() {
   for (auto& [x, y, vx, vy, rot, color] : broken_blocks_) {
     x += vx;
     y += vy;
-    vy += 1.5f;  // 重力加速度
+    vy += 1.5f * game_const::kResolutionEx;  // 重力加速度
     rot += vx < 0.f ? -0.3f : 0.3f;
   }
 

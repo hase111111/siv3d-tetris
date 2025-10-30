@@ -7,6 +7,7 @@
 #include "next_renderer.h"
 
 #include "game_const.h"
+#include "my_assert.h"
 #include "render_util.h"
 #include "tetromino_render_util.h"
 
@@ -18,15 +19,22 @@ NextRenderer::NextRenderer(
     : block_textures_(GetBlockTextureMap(resource_container_ptr)),
       wall_texture_(resource_container_ptr->GetTexture("wall.png")),
       font_view_(resource_container_ptr->GetFont("small")),
-      next_tetromino_ptr_(next_tetromino_ptr) {}
+      next_tetromino_ptr_(next_tetromino_ptr),
+      block_size_{30.f * game_const::kResolutionEx} {
+  // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(next_tetromino_ptr);
+
+  DEBUG_ASSERT_NOT_NULL_PTR(next_tetromino_ptr_);
+}
 
 void NextRenderer::Draw(const float render_x, const float render_y) const {
   int cnt{};
   const auto next = next_tetromino_ptr_->GetNextList();
-  const float wall_ex = 2.0f;
+  const float wall_ex = 2.0f * game_const::kResolutionEx;
   const float wall_size = wall_texture_.GetWidth() * wall_ex;
   const float box_size = wall_size * 4.0f;
-  const float offset_y = 40.0f;
+  const float offset_y = 40.0f * game_const::kResolutionEx;
 
   // Nextの文字.
   font_view_.Draw(render_x + block_size_ / 4.f, render_y + block_size_ / 4.f,

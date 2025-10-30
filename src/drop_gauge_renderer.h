@@ -11,7 +11,7 @@ namespace mytetris {
 
 class DropGaugeRenderer final {
  public:
-  DropGaugeRenderer() = default;
+  DropGaugeRenderer();
   ~DropGaugeRenderer() = default;
 
   // ドロップゲージの描画を行う.
@@ -19,8 +19,8 @@ class DropGaugeRenderer final {
             float fix_percent, float move_percent) const;
 
  private:
-  const float gauge_length{158.0f};
-  const float gauge_thickness{10.0f};
+  const float gauge_length_;
+  const float gauge_thickness_;
 };
 
 }  // namespace mytetris
