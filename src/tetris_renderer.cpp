@@ -49,15 +49,13 @@ void TetrisRenderer::Update() {
   broken_block_renderer_.Update();
 }
 
-void TetrisRenderer::Draw(const int render_x, const int render_y,
+void TetrisRenderer::Draw(const float render_x, const float render_y,
                           const int tetromino_pos_x, const int tetromino_pos_y,
                           const bool is_game_over, const bool is_pinch) const {
   const float render_x_ =
-      static_cast<float>(render_x) -
-      block_size_ * (tetris_field_ptr_->GetWidth() / 2.f - 0.5f);
+      render_x - block_size_ * (tetris_field_ptr_->GetWidth() / 2.f - 0.5f);
   const float render_y_ =
-      static_cast<float>(render_y) -
-      block_size_ * (tetris_field_ptr_->GetHeight() / 2.f - 0.5f);
+      render_y - block_size_ * (tetris_field_ptr_->GetHeight() / 2.f - 0.5f);
   // shared_ptr ‚Å‚Í“n‚¹‚È‚¢ŠÖ”‚Ì‚½‚ß‚É, ƒRƒs[‚ðì¬.
   const Tetromino tetromino_copy = *tetromino_ptr_;
 
@@ -84,11 +82,13 @@ void TetrisRenderer::Draw(const int render_x, const int render_y,
       continue;
     }
 
+    const float ex = block_size_ / it->second.GetWidth();
+
     const auto [diff_x, diff_y] = tetris_field_effect_ptr_->GetDiff(x_, y_);
     it->second.DrawRotatedAlpha(render_x_ + x_ * block_size_ + diff_x,
                                 render_y_ + y_ * block_size_ + diff_y,
                                 RenderAnchor::Center,
-                                2.f * game_const::kResolutionEx, 0.f,
+                                ex * game_const::kResolutionEx, 0.f,
                                 tetris_field_effect_ptr_->GetAlpha(x_, y_));
   }
 
@@ -148,7 +148,8 @@ void TetrisRenderer::SetClearLines(
   }
 }
 
-void TetrisRenderer::DrawGrid(const int render_x, const int render_y) const {
+void TetrisRenderer::DrawGrid(const float render_x,
+                              const float render_y) const {
   const float render_x_ =
       static_cast<float>(render_x) -
       block_size_ * (tetris_field_ptr_->GetWidth() / 2.f - 0.5f);

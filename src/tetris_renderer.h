@@ -31,7 +31,7 @@ class TetrisRenderer final {
 
   void Update();
 
-  void Draw(int render_x, int render_y, int tetromino_pos_x,
+  void Draw(float render_x, float render_y, int tetromino_pos_x,
             int tetromino_pos_y, bool is_game_over, bool is_pinch) const;
 
   void SetClearLines(
@@ -41,7 +41,7 @@ class TetrisRenderer final {
   inline int GetBlockSize() const { return static_cast<int>(block_size_); }
 
  private:
-  void DrawGrid(int render_x, int render_y) const;
+  void DrawGrid(float render_x, float render_y) const;
 
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   const std::shared_ptr<const TetrisField> tetris_field_ptr_;

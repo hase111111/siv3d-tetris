@@ -10,6 +10,7 @@
 
 #include "game_setting_record.h"
 #include "i_scene.h"
+#include "i_tetris_field_effect.h"
 #include "key_event_handler.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
@@ -36,10 +37,9 @@ class BattleScene final : public IScene {
   void OnReturnFromOtherScene(const SceneChangeParameter&) override {};
 
  private:
-  // const std::shared_ptr<TetrisField> player_tetris_field_ptr_;
-  // const std::shared_ptr<Tetromino> player_tetromino_ptr_;
-  // const std::shared_ptr<TetrisFieldEffect> tetris_field_effect_ptr_;
-  // TetrisRenderer player_tetris_renderer_;
+  const std::shared_ptr<TetrisField> player_tetris_field_ptr_;
+  const std::shared_ptr<Tetromino> player_tetromino_ptr_;
+  TetrisRenderer player_tetris_renderer_;
 };
 
 }  // namespace mytetris

@@ -22,9 +22,7 @@ TetrisScene::TetrisScene(
       resource_container_ptr_(resource_container_ptr),
       next_tetromino_ptr_(std::make_shared<NextTetromino>()),
       tetris_field_ptr_(std::make_shared<TetrisField>()),
-      tetromino_ptr_(std::make_shared<Tetromino>(
-          std::vector<std::vector<bool>>{{1}}, TetrominoColor::kI,
-          RotationType::kNormal)),
+      tetromino_ptr_(std::make_shared<Tetromino>()),
       hold_tetromino_ptr_(
           std::make_shared<HoldTetromino>(game_setting_record_ptr->allow_hold)),
       tetris_level_ptr_(std::make_shared<TetrisLevel>()),

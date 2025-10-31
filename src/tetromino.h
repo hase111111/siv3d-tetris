@@ -20,6 +20,8 @@ enum class RotationType : int {
 
 class Tetromino final {
  public:
+  Tetromino();
+
   Tetromino(const std::vector<std::vector<bool>> shape, TetrominoColor color,
             RotationType rotation_type);
 

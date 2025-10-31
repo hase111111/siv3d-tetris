@@ -25,6 +25,11 @@ static bool IsRectangleShape(const std::vector<std::vector<bool>>& shape) {
   return true;
 }
 
+Tetromino::Tetromino()
+    : shape_(std::vector<std::vector<bool>>{{true}}),
+      color_(TetrominoColor::kI),
+      rotation_type_(RotationType::kNormal) {}
+
 Tetromino::Tetromino(const std::vector<std::vector<bool>> shape,
                      const TetrominoColor color, const RotationType rotation)
     : shape_(shape), color_(color), rotation_type_(rotation) {
