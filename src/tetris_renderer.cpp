@@ -11,6 +11,7 @@
 #include "game_const.h"
 #include "my_assert.h"
 #include "render_util.h"
+#include "tetris_field_effect.h"
 #include "tetromino_render_util.h"
 
 namespace mytetris {
@@ -19,7 +20,7 @@ TetrisRenderer::TetrisRenderer(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const TetrisField>& tetris_field_ptr,
     const std::shared_ptr<const Tetromino>& tetromino_ptr,
-    const std::shared_ptr<const TetrisFieldEffect>& tetris_field_effect_ptr,
+    const std::shared_ptr<const ITetrisFieldEffect>& tetris_field_effect_ptr,
     const float block_size, bool ghost_tetromino_enabled)
     : resource_container_ptr_(resource_container_ptr),
       tetris_field_ptr_(tetris_field_ptr),

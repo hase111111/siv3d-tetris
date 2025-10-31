@@ -7,6 +7,7 @@
 #include "tetris_scene.h"
 
 #include "game_const.h"
+#include "tetris_field_effect.h"
 #include "tetromino_generator.h"
 
 namespace mytetris {

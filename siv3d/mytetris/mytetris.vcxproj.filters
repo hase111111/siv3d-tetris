@@ -196,6 +196,9 @@
     <Filter Include="Source Files\scene\setting_scene\ui">
       <UniqueIdentifier>{7625b42c-6fe7-4664-9bcc-d45087137235}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tetris\effect">
+      <UniqueIdentifier>{ba1c5f3d-fad6-46f4-b062-87b0c50f8f78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -282,9 +285,6 @@
     <ClCompile Include="..\..\src\tetromino_render_util.cpp">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\tetris_field_effect.cpp">
-      <Filter>Source Files\tetris</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\error_box.cpp">
       <Filter>Source Files\common\error_handle</Filter>
     </ClCompile>
@@ -356,6 +356,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\setting_ui.cpp">
       <Filter>Source Files\scene\setting_scene\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_field_effect.cpp">
+      <Filter>Source Files\tetris\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_field_effect_nothing.cpp">
+      <Filter>Source Files\tetris\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1130,9 +1136,6 @@
     <ClInclude Include="..\..\src\tetromino_render_util.h">
       <Filter>Source Files\tetris\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\tetris_field_effect.h">
-      <Filter>Source Files\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\version.h">
       <Filter>Source Files\common</Filter>
     </ClInclude>
@@ -1216,6 +1219,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\setting_ui.h">
       <Filter>Source Files\scene\setting_scene\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_field_effect.h">
+      <Filter>Source Files\tetris\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\i_tetris_field_effect.h">
+      <Filter>Source Files\tetris\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_field_effect_nothing.h">
+      <Filter>Source Files\tetris\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

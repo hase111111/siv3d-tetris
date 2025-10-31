@@ -13,11 +13,11 @@
 #include "game_end_checker.h"
 #include "game_setting_record.h"
 #include "hold_tetromino.h"
+#include "i_tetris_field_effect.h"
 #include "key_event_handler.h"
 #include "next_tetromino.h"
 #include "score_calculator.h"
 #include "tetris_feild.h"
-#include "tetris_field_effect.h"
 #include "tetris_level.h"
 #include "tetris_rotate_checker.h"
 #include "tetromino.h"
@@ -36,7 +36,7 @@ class TetrisUpdater final {
       const std::shared_ptr<DropCount>& drop_count_ptr,
       const std::shared_ptr<ScoreCalculator>& score_calculator_ptr,
       const std::shared_ptr<GameEndChecker>& game_end_checker_ptr,
-      const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr,
+      const std::shared_ptr<ITetrisFieldEffect>& tetris_field_effect_ptr,
       const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
   ~TetrisUpdater() = default;
 
@@ -85,7 +85,7 @@ class TetrisUpdater final {
   const std::shared_ptr<DropCount> drop_count_ptr_;
   const std::shared_ptr<ScoreCalculator> score_calculator_ptr_;
   const std::shared_ptr<GameEndChecker> game_end_checker_ptr_;
-  const std::shared_ptr<TetrisFieldEffect> tetris_field_effect_ptr_;
+  const std::shared_ptr<ITetrisFieldEffect> tetris_field_effect_ptr_;
   const TetrisRotateChecker rotate_checker_;
 
   std::vector<std::tuple<int, std::vector<TetrominoColor>>> clear_lines_;

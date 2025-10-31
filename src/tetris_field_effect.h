@@ -1,5 +1,4 @@
-﻿
-//! @file tetris_field_effect.h
+﻿//! @file tetris_field_effect.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -12,6 +11,7 @@
 #include <tuple>
 #include <vector>
 
+#include "i_tetris_field_effect.h"
 #include "tetris_feild.h"
 #include "tetris_game_mode.h"
 #include "tetris_level.h"
@@ -33,7 +33,7 @@ enum class EffectType : int {
   kNone = 11,
 };
 
-class TetrisFieldEffect final {
+class TetrisFieldEffect final : public ITetrisFieldEffect {
   template <typename T>
   using Field =
       std::array<std::array<T, TetrisField::kHeight>, TetrisField::kWidth>;
@@ -41,15 +41,15 @@ class TetrisFieldEffect final {
  public:
   TetrisFieldEffect(const std::shared_ptr<const TetrisLevel>& tetris_level_ptr);
 
-  void Update();
+  void Update() override;
 
-  void Reset();
+  void Reset() override;
 
-  float GetAlpha(int x, int y) const;
+  float GetAlpha(int x, int y) const override;
 
-  std::pair<int, int> GetDiff(int x, int y) const;
+  std::pair<int, int> GetDiff(int x, int y) const override;
 
-  void SetActive(bool is_active) { is_active_ = is_active; }
+  void SetActive(bool is_active) override { is_active_ = is_active; }
 
  private:
   void UpdateEffect();

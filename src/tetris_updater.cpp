@@ -20,7 +20,7 @@ TetrisUpdater::TetrisUpdater(
     const std::shared_ptr<DropCount>& drop_count_ptr,
     const std::shared_ptr<ScoreCalculator>& score_calculator_ptr,
     const std::shared_ptr<GameEndChecker>& game_end_checker_ptr,
-    const std::shared_ptr<TetrisFieldEffect>& tetris_field_effect_ptr,
+    const std::shared_ptr<ITetrisFieldEffect>& tetris_field_effect_ptr,
     const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
     : key_event_handler_ptr_(key_event_handler_ptr),
       tetris_field_ptr_(tetris_field_ptr),
