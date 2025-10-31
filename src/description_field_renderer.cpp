@@ -66,8 +66,8 @@ void DescriptionFieldRenderer::Update() {
   }
 }
 
-void DescriptionFieldRenderer::Draw(const int render_x,
-                                    const int render_y) const {
+void DescriptionFieldRenderer::Draw(const float render_x,
+                                    const float render_y) const {
   const float wall_size{40.f * game_const::kResolutionEx};
   const float wall_ex{2.f};
   const float box_size_x{wall_size * 10.f};
@@ -119,7 +119,7 @@ void DescriptionFieldRenderer::Draw(const int render_x,
     font_view_.Draw(
         render_x + wall_size,
         render_y + wall_size * 3 / 4.0f - wall_size / 2.f + box_size_y / 2.f +
-            20 * static_cast<float>(i + 1),
+            20 * game_const::kResolutionEx * static_cast<float>(i + 1),
         RenderAnchor::TopLeft,
         nostd::format(
             "{}: {}",

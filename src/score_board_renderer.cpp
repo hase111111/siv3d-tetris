@@ -38,7 +38,8 @@ ScoreBoardRenderer::ScoreBoardRenderer(
   DEBUG_ASSERT_NOT_NULL_PTR(score_calculator_ptr_);
 }
 
-void ScoreBoardRenderer::Draw(const int render_x, const int render_y) const {
+void ScoreBoardRenderer::Draw(const float render_x,
+                              const float render_y) const {
   const float wall_size{40.f * game_const::kResolutionEx};
   const float wall_ex{2.f * game_const::kResolutionEx};
   const float box_size_x{wall_size * 5.f};

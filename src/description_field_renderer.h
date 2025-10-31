@@ -32,7 +32,7 @@ class DescriptionFieldRenderer final {
 
   void Update();
 
-  void Draw(int x, int y) const;
+  void Draw(float x, float y) const;
 
  private:
   std::string GetString() const;
