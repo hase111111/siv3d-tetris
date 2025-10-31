@@ -8,14 +8,19 @@
 
 #include <memory>
 
+#include "game_end_checker.h"
 #include "game_setting_record.h"
+#include "hold_renderer.h"
+#include "hold_tetromino.h"
 #include "i_scene.h"
 #include "i_tetris_field_effect.h"
 #include "key_event_handler.h"
+#include "next_tetromino.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
 #include "tetris_feild.h"
 #include "tetris_renderer.h"
+#include "tetris_updater.h"
 
 namespace mytetris {
 
@@ -37,9 +42,23 @@ class BattleScene final : public IScene {
   void OnReturnFromOtherScene(const SceneChangeParameter&) override {};
 
  private:
+  const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
+  const float block_size_;
   const std::shared_ptr<TetrisField> player_tetris_field_ptr_;
   const std::shared_ptr<Tetromino> player_tetromino_ptr_;
+  const std::shared_ptr<NextTetromino> player_next_ptr_;
+  const std::shared_ptr<HoldTetromino> player_hold_ptr_;
+  TetrisUpdater player_tetris_updater_;
   TetrisRenderer player_tetris_renderer_;
+  HoldRenderer player_hold_renderer_;
+
+  const std::shared_ptr<TetrisField> enemy_tetris_field_ptr_;
+  const std::shared_ptr<Tetromino> enemy_tetromino_ptr_;
+  const std::shared_ptr<NextTetromino> enemy_next_ptr_;
+  const std::shared_ptr<HoldTetromino> enemy_hold_ptr_;
+  TetrisUpdater enemy_tetris_updater_;
+  TetrisRenderer enemy_tetris_renderer_;
+  HoldRenderer enemy_hold_renderer_;
 };
 
 }  // namespace mytetris

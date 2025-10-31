@@ -128,6 +128,7 @@
     <ClCompile Include="..\..\src\fps_addon.cpp" />
     <ClCompile Include="..\..\src\fps_controller.cpp" />
     <ClCompile Include="..\..\src\game_end_checker.cpp" />
+    <ClCompile Include="..\..\src\game_end_checker_nothing.cpp" />
     <ClCompile Include="..\..\src\game_main_loop.cpp" />
     <ClCompile Include="..\..\src\hold_renderer.cpp" />
     <ClCompile Include="..\..\src\key_config_data.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="..\..\src\scene_stack.cpp" />
     <ClCompile Include="..\..\src\score_board_renderer.cpp" />
     <ClCompile Include="..\..\src\score_calculator.cpp" />
+    <ClCompile Include="..\..\src\score_calculator_nothing.cpp" />
     <ClCompile Include="..\..\src\setting_back.cpp" />
     <ClCompile Include="..\..\src\setting_scene.cpp" />
     <ClCompile Include="..\..\src\setting_ui.cpp" />
@@ -392,11 +394,14 @@
     <ClInclude Include="..\..\src\fps_controller.h" />
     <ClInclude Include="..\..\src\game_const.h" />
     <ClInclude Include="..\..\src\game_end_checker.h" />
+    <ClInclude Include="..\..\src\game_end_checker_nothing.h" />
     <ClInclude Include="..\..\src\game_main_loop.h" />
     <ClInclude Include="..\..\src\game_setting_record.h" />
     <ClInclude Include="..\..\src\hold_renderer.h" />
     <ClInclude Include="..\..\src\hold_tetromino.h" />
+    <ClInclude Include="..\..\src\i_game_end_checker.h" />
     <ClInclude Include="..\..\src\i_scene.h" />
+    <ClInclude Include="..\..\src\i_score_calculator.h" />
     <ClInclude Include="..\..\src\i_tetris_field_effect.h" />
     <ClInclude Include="..\..\src\key_config_data.h" />
     <ClInclude Include="..\..\src\key_event_handler.h" />
@@ -418,6 +423,7 @@
     <ClInclude Include="..\..\src\scene_stack.h" />
     <ClInclude Include="..\..\src\score_board_renderer.h" />
     <ClInclude Include="..\..\src\score_calculator.h" />
+    <ClInclude Include="..\..\src\score_calculator_nothing.h" />
     <ClInclude Include="..\..\src\setting_back.h" />
     <ClInclude Include="..\..\src\setting_scene.h" />
     <ClInclude Include="..\..\src\setting_ui.h" />

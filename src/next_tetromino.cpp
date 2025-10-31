@@ -1,4 +1,3 @@
-
 //! @file next_tetromino.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa

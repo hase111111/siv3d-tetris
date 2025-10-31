@@ -16,7 +16,7 @@ namespace mytetris {
 DescriptionFieldRenderer::DescriptionFieldRenderer(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
-    const std::shared_ptr<const GameEndChecker>& game_end_checker_ptr,
+    const std::shared_ptr<const IGameEndChecker>& game_end_checker_ptr,
     const std::shared_ptr<const TetrisField>& tetris_field_ptr,
     const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr)
     : key_ptr_(key_event_handler_ptr),

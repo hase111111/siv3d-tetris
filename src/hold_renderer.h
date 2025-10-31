@@ -20,7 +20,8 @@ class HoldRenderer final {
  public:
   HoldRenderer(
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
-      const std::shared_ptr<const HoldTetromino>& hold_tetromino_ptr);
+      const std::shared_ptr<const HoldTetromino>& hold_tetromino_ptr,
+      float block_size);
 
   void Draw(float x, float y) const;
 
@@ -29,6 +30,7 @@ class HoldRenderer final {
   const std::map<TetrominoColor, TextureView> block_textures_;
   const TextureView wall_texture_;
   const FontView font_view_;
+  const float wall_size_;
 };
 
 }  // namespace mytetris

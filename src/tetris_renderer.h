@@ -40,6 +40,14 @@ class TetrisRenderer final {
 
   inline int GetBlockSize() const { return static_cast<int>(block_size_); }
 
+  float GetRenderWidth() const {
+    return block_size_ * tetris_field_ptr_->GetWidth();
+  }
+
+  float GetRenderHeight() const {
+    return block_size_ * tetris_field_ptr_->GetHeight();
+  }
+
  private:
   void DrawGrid(float render_x, float render_y) const;
 

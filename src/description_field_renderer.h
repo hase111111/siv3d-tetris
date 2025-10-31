@@ -11,7 +11,7 @@
 #include <vector>
 
 #include "font_view.h"
-#include "game_end_checker.h"
+#include "i_game_end_checker.h"
 #include "key_event_handler.h"
 #include "resource_container.h"
 #include "tetris_feild.h"
@@ -25,7 +25,7 @@ class DescriptionFieldRenderer final {
   DescriptionFieldRenderer(
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
       const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr,
-      const std::shared_ptr<const GameEndChecker>& game_end_checker_ptr,
+      const std::shared_ptr<const IGameEndChecker>& game_end_checker_ptr,
       const std::shared_ptr<const TetrisField>& tetris_field_ptr,
       const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr);
   ~DescriptionFieldRenderer() = default;
@@ -38,7 +38,7 @@ class DescriptionFieldRenderer final {
   std::string GetString() const;
 
   const std::shared_ptr<const KeyEventHandler> key_ptr_;
-  const std::shared_ptr<const GameEndChecker> game_end_checker_ptr_;
+  const std::shared_ptr<const IGameEndChecker> game_end_checker_ptr_;
   const std::shared_ptr<const TetrisField> tetris_field_ptr_;
   const std::shared_ptr<const TetrisTimer> tetris_timer_ptr_;
   const FontView font_view_;

@@ -16,7 +16,7 @@ ScoreBoardRenderer::ScoreBoardRenderer(
     const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr,
     const std::shared_ptr<const TetrisLevel>& tetris_level_ptr,
     const std::shared_ptr<const DropCount>& drop_count_ptr,
-    const std::shared_ptr<const ScoreCalculator>& score_calculator_ptr,
+    const std::shared_ptr<const IScoreCalculator>& score_calculator_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr)
     : tetris_timer_ptr_(tetris_timer_ptr),
       tetris_level_ptr_(tetris_level_ptr),

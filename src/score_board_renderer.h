@@ -11,8 +11,8 @@
 
 #include "drop_count.h"
 #include "font_view.h"
+#include "i_score_calculator.h"
 #include "resource_container.h"
-#include "score_calculator.h"
 #include "tetris_game_mode.h"
 #include "tetris_level.h"
 #include "tetris_timer.h"
@@ -26,7 +26,7 @@ class ScoreBoardRenderer final {
       const std::shared_ptr<const TetrisTimer>& tetris_timer_ptr,
       const std::shared_ptr<const TetrisLevel>& tetris_level_ptr,
       const std::shared_ptr<const DropCount>& drop_count_ptr,
-      const std::shared_ptr<const ScoreCalculator>& score_calculator_ptr,
+      const std::shared_ptr<const IScoreCalculator>& score_calculator_ptr,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr);
   ~ScoreBoardRenderer() = default;
 
@@ -42,7 +42,7 @@ class ScoreBoardRenderer final {
   const std::shared_ptr<const TetrisTimer> tetris_timer_ptr_;
   const std::shared_ptr<const TetrisLevel> tetris_level_ptr_;
   const std::shared_ptr<const DropCount> drop_count_ptr_;
-  const std::shared_ptr<const ScoreCalculator> score_calculator_ptr_;
+  const std::shared_ptr<const IScoreCalculator> score_calculator_ptr_;
   TetrisGameMode tetris_game_mode_;
   FontView font_view_;
   TextureView wall_texture_;

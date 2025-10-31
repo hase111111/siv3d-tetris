@@ -1,32 +1,39 @@
-﻿#pragma once
+﻿//! @file score_calculator.h
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
+#pragma once
 
 #include <memory>
 #include <vector>
 
+#include "i_score_calculator.h"
 #include "tetris_announce.h"
 
 namespace mytetris {
 
-class ScoreCalculator final {
+class ScoreCalculator final : public IScoreCalculator {
  public:
   ScoreCalculator(const std::shared_ptr<TetrisAnnounce>& tetris_announce_ptr);
   ~ScoreCalculator() = default;
 
-  void Update();
+  void Update() override;
 
-  void AddScore(int lines_num, bool is_tspin, bool is_perfect_clear);
+  void AddScore(int lines_num, bool is_tspin, bool is_perfect_clear) override;
 
-  void AddDropScore(int drop_distance, bool is_hard_drop);
+  void AddDropScore(int drop_distance, bool is_hard_drop) override;
 
-  inline void ResetCombo() { combo_num_ = 0; }
+  inline void ResetCombo() override { combo_num_ = 0; }
 
-  inline int GetScore() const { return score_; }
+  inline int GetScore() const override { return score_; }
 
-  inline int GetScoreDifference() const { return score_difference_; }
+  inline int GetScoreDifference() const override { return score_difference_; }
 
-  inline int GetComboNum() const { return combo_num_; }
+  inline int GetComboNum() const override { return combo_num_; }
 
-  inline bool IsBtbActive() const { return is_btb_active_; }
+  inline bool IsBtbActive() const override { return is_btb_active_; }
 
  private:
   int Get(const std::vector<int> v, int idx) const;

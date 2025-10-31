@@ -1,4 +1,3 @@
-
 //! @file game_end_checker.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
@@ -9,13 +8,14 @@
 
 #include <memory>
 
+#include "i_game_end_checker.h"
 #include "tetris_game_mode.h"
 #include "tetris_level.h"
 #include "tetris_timer.h"
 
 namespace mytetris {
 
-class GameEndChecker {
+class GameEndChecker final : public IGameEndChecker {
  public:
   GameEndChecker(const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
                  const std::shared_ptr<TetrisTimer>& tetris_timer_ptr);

@@ -7,6 +7,8 @@
 #include "tetris_scene.h"
 
 #include "game_const.h"
+#include "game_end_checker.h"
+#include "score_calculator.h"
 #include "tetris_field_effect.h"
 #include "tetromino_generator.h"
 
@@ -52,7 +54,11 @@ TetrisScene::TetrisScene(
                        40.0f * game_const::kResolutionEx,
                        game_setting_record_ptr->display_ghost_tetromino},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
-      hold_renderer_{resource_container_ptr, hold_tetromino_ptr_},
+      hold_renderer_{
+          resource_container_ptr,
+          hold_tetromino_ptr_,
+          40.0f * game_const::kResolutionEx,
+      },
       fade_effect_{30},
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
                             drop_count_ptr_, score_calculator_ptr_,
@@ -144,9 +150,8 @@ void TetrisScene::Draw() const {
 
   const auto [tetromino_x, tetromino_y] = tetris_updater_ptr_->GetPosition();
   tetris_renderer_.Draw(
-      game_const::kResolutionX / 2,
-      game_const::kResolutionY / 2 -
-          static_cast<int>(tetris_renderer_.GetBlockSize() * 1.5f),
+      game_const::kResolutionXF / 2.f,
+      game_const::kResolutionYF / 2.f - tetris_renderer_.GetBlockSize() * 1.5f,
       tetromino_x, tetromino_y, tetris_updater_ptr_->IsGameOver(),
       tetris_updater_ptr_->IsPinch());
 
