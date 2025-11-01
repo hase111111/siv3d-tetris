@@ -1,4 +1,4 @@
-//! @file drop_count.h
+//! @file drop_count_for_battle.h
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -13,17 +13,14 @@
 
 namespace mytetris {
 
-class DropCount final : public IDropCount {
+class DropCountForBattle final : public IDropCount {
  public:
-  DropCount();
-  ~DropCount() = default;
+  DropCountForBattle() = default;
+  ~DropCountForBattle() = default;
 
   int GetCount(int level) const override;
 
   std::string GetDisplaySpeed(int level) const override;
-
- private:
-  const std::vector<int> count_list_;
 };
 
 }  // namespace mytetris

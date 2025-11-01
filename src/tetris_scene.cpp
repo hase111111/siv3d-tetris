@@ -6,6 +6,7 @@
 
 #include "tetris_scene.h"
 
+#include "drop_count.h"
 #include "game_const.h"
 #include "game_end_checker.h"
 #include "input_bridge_keyboard.h"

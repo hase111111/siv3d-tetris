@@ -120,6 +120,7 @@
     <ClCompile Include="..\..\src\debug_scene.cpp" />
     <ClCompile Include="..\..\src\description_field_renderer.cpp" />
     <ClCompile Include="..\..\src\drop_count.cpp" />
+    <ClCompile Include="..\..\src\drop_count_for_battle.cpp" />
     <ClCompile Include="..\..\src\drop_gauge_renderer.cpp" />
     <ClCompile Include="..\..\src\error_box.cpp" />
     <ClCompile Include="..\..\src\fade_effect.cpp" />
@@ -387,6 +388,7 @@
     <ClInclude Include="..\..\src\debug_scene.h" />
     <ClInclude Include="..\..\src\description_field_renderer.h" />
     <ClInclude Include="..\..\src\drop_count.h" />
+    <ClInclude Include="..\..\src\drop_count_for_battle.h" />
     <ClInclude Include="..\..\src\drop_gauge_renderer.h" />
     <ClInclude Include="..\..\src\error_box.h" />
     <ClInclude Include="..\..\src\fade_effect.h" />
@@ -403,6 +405,7 @@
     <ClInclude Include="..\..\src\hold_tetromino.h" />
     <ClInclude Include="..\..\src\input_bridge_keyboard.h" />
     <ClInclude Include="..\..\src\input_bridge_simple_cpu.h" />
+    <ClInclude Include="..\..\src\i_drop_count.h" />
     <ClInclude Include="..\..\src\i_input_bridge.h" />
     <ClInclude Include="..\..\src\i_game_end_checker.h" />
     <ClInclude Include="..\..\src\i_scene.h" />

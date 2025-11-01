@@ -6,6 +6,7 @@
 
 #include "battle_scene.h"
 
+#include "drop_count_for_battle.h"
 #include "game_const.h"
 #include "game_end_checker_nothing.h"
 #include "input_bridge_keyboard.h"
@@ -32,7 +33,7 @@ BattleScene::BattleScene(
           std::make_shared<InputBridgeKeyBoard>(key_event_handler_ptr),
           player_tetris_field_ptr_, player_tetromino_ptr_, player_next_ptr_,
           player_hold_ptr_, std::make_shared<TetrisLevel>(),
-          std::make_shared<DropCount>(),
+          std::make_shared<DropCountForBattle>(),
           std::make_shared<ScoreCalculatorNothing>(),
           std::make_shared<GameEndCheckerNothing>(),
           std::make_shared<TetrisFieldEffectNothing>(),
@@ -54,7 +55,8 @@ BattleScene::BattleScene(
       enemy_tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
           std::make_shared<InputBridgeSimpleCPU>(), enemy_tetris_field_ptr_,
           enemy_tetromino_ptr_, enemy_next_ptr_, enemy_hold_ptr_,
-          std::make_shared<TetrisLevel>(), std::make_shared<DropCount>(),
+          std::make_shared<TetrisLevel>(),
+          std::make_shared<DropCountForBattle>(),
           std::make_shared<ScoreCalculatorNothing>(),
           std::make_shared<GameEndCheckerNothing>(),
           std::make_shared<TetrisFieldEffectNothing>(),

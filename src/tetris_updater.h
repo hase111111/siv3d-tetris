@@ -9,9 +9,9 @@
 #include <memory>
 #include <tuple>
 
-#include "drop_count.h"
 #include "game_setting_record.h"
 #include "hold_tetromino.h"
+#include "i_drop_count.h"
 #include "i_game_end_checker.h"
 #include "i_input_bridge.h"
 #include "i_score_calculator.h"
@@ -33,7 +33,7 @@ class TetrisUpdater final {
       const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
       const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr,
       const std::shared_ptr<TetrisLevel>& tetris_level_ptr,
-      const std::shared_ptr<DropCount>& drop_count_ptr,
+      const std::shared_ptr<IDropCount>& drop_count_ptr,
       const std::shared_ptr<IScoreCalculator>& score_calculator_ptr,
       const std::shared_ptr<IGameEndChecker>& game_end_checker_ptr,
       const std::shared_ptr<ITetrisFieldEffect>& tetris_field_effect_ptr,
@@ -82,7 +82,7 @@ class TetrisUpdater final {
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
   const std::shared_ptr<TetrisLevel> tetris_level_ptr_;
-  const std::shared_ptr<DropCount> drop_count_ptr_;
+  const std::shared_ptr<IDropCount> drop_count_ptr_;
   const std::shared_ptr<IScoreCalculator> score_calculator_ptr_;
   const std::shared_ptr<IGameEndChecker> game_end_checker_ptr_;
   const std::shared_ptr<ITetrisFieldEffect> tetris_field_effect_ptr_;
