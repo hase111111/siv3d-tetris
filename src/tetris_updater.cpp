@@ -11,7 +11,7 @@
 namespace mytetris {
 
 TetrisUpdater::TetrisUpdater(
-    const std::shared_ptr<const IInputBridge>& input_bridge_ptr,
+    const std::shared_ptr<IInputBridge>& input_bridge_ptr,
     const std::shared_ptr<TetrisField>& tetris_field_ptr,
     const std::shared_ptr<Tetromino>& tetromino_ptr,
     const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
@@ -120,6 +120,8 @@ void TetrisUpdater::Update() {
   } else {
     fix_count_ = 0;  // 下に落ちていないのでカウントをリセット.
   }
+
+  input_bridge_ptr_->Update(tetromino_x_, tetromino_y_);
 }
 
 void TetrisUpdater::SetInitialTetrominoPosition() {

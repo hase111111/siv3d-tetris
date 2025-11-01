@@ -53,9 +53,11 @@ BattleScene::BattleScene(
       enemy_hold_ptr_(
           std::make_shared<HoldTetromino>(game_setting_record_ptr->allow_hold)),
       enemy_tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
-          std::make_shared<InputBridgeSimpleCPU>(), enemy_tetris_field_ptr_,
-          enemy_tetromino_ptr_, enemy_next_ptr_, enemy_hold_ptr_,
-          std::make_shared<TetrisLevel>(),
+          std::make_shared<InputBridgeSimpleCPU>(
+              enemy_tetris_field_ptr_, enemy_tetromino_ptr_, enemy_next_ptr_,
+              enemy_hold_ptr_),
+          enemy_tetris_field_ptr_, enemy_tetromino_ptr_, enemy_next_ptr_,
+          enemy_hold_ptr_, std::make_shared<TetrisLevel>(),
           std::make_shared<DropCountForBattle>(),
           std::make_shared<ScoreCalculatorNothing>(),
           std::make_shared<GameEndCheckerNothing>(),

@@ -12,6 +12,8 @@ class IInputBridge {
  public:
   virtual ~IInputBridge() = default;
 
+  virtual void Update(int, int) {};
+
   //! @brief ホールド操作が行われたかどうかを取得する.
   virtual bool IsHoldRequested() const = 0;
 

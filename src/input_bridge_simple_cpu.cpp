@@ -10,7 +10,22 @@
 
 namespace mytetris {
 
-InputBridgeSimpleCPU::InputBridgeSimpleCPU() {}
+InputBridgeSimpleCPU::InputBridgeSimpleCPU(
+    const std::shared_ptr<TetrisField>& tetris_field_ptr,
+    const std::shared_ptr<Tetromino>& tetromino_ptr,
+    const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
+    const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr)
+    : tetris_field_ptr_(tetris_field_ptr),
+      tetromino_ptr_(tetromino_ptr),
+      next_tetromino_ptr_(next_tetromino_ptr),
+      hold_tetromino_ptr_(hold_tetromino_ptr) {}
+
+void InputBridgeSimpleCPU::Update(const int x, const int y) {
+  tetromino_x_ = x;
+  tetromino_y_ = y;
+
+  ++counter_;
+}
 
 bool InputBridgeSimpleCPU::IsHoldRequested() const {
   //
@@ -18,7 +33,14 @@ bool InputBridgeSimpleCPU::IsHoldRequested() const {
 }
 
 bool InputBridgeSimpleCPU::IsHardDropRequested() const {
-  //
+  if (counter_ % control_frame != control_frame - 1) {
+    return false;
+  }
+
+  if (target_x_ == tetromino_x_ &&
+      tetromino_ptr_->GetRotationIndex() == target_rotation_index_) {
+    return true;
+  }
   return false;
 }
 
@@ -28,8 +50,15 @@ int InputBridgeSimpleCPU::GetSoftDropCount() const {
 }
 
 bool InputBridgeSimpleCPU::IsRotateCWRequested() const {
-  //
-  return true;
+  if (counter_ % control_frame != control_frame / 2) {
+    return false;
+  }
+
+  if (tetromino_ptr_->GetRotationIndex() != target_rotation_index_) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 bool InputBridgeSimpleCPU::IsRotateCCWRequested() const {
@@ -38,12 +67,24 @@ bool InputBridgeSimpleCPU::IsRotateCCWRequested() const {
 }
 
 int InputBridgeSimpleCPU::GetLeftMoveCount() const {
-  //
+  if (counter_ % control_frame != control_frame - 1) {
+    return 0;
+  }
+
+  if (target_x_ < tetromino_x_) {
+    return 1;
+  }
   return 0;
 }
 
 int InputBridgeSimpleCPU::GetRightMoveCount() const {
-  //
+  if (counter_ % control_frame != control_frame - 1) {
+    return 0;
+  }
+
+  if (tetromino_x_ < target_x_) {
+    return 1;
+  }
   return 0;
 }
 

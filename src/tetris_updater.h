@@ -27,7 +27,7 @@ namespace mytetris {
 class TetrisUpdater final {
  public:
   TetrisUpdater(
-      const std::shared_ptr<const IInputBridge>& input_bridge_ptr,
+      const std::shared_ptr<IInputBridge>& input_bridge_ptr,
       const std::shared_ptr<TetrisField>& tetris_field_ptr,
       const std::shared_ptr<Tetromino>& tetromino_ptr,
       const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
@@ -76,7 +76,7 @@ class TetrisUpdater final {
   void RotateTetromino();
   bool CheckRotationCollision(bool is_left, int offset_x, int offset_y) const;
 
-  const std::shared_ptr<const IInputBridge> input_bridge_ptr_;
+  const std::shared_ptr<IInputBridge> input_bridge_ptr_;
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
   const std::shared_ptr<Tetromino> tetromino_ptr_;
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
