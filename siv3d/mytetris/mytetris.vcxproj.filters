@@ -205,6 +205,9 @@
     <Filter Include="Source Files\tetris\score_calculator">
       <UniqueIdentifier>{b1d5e9ef-039e-4e63-8441-e7d8fabdebab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tetris\input_bridge">
+      <UniqueIdentifier>{d738fb47-740b-4eb0-8aa4-e70d3d738c9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -374,6 +377,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\score_calculator_nothing.cpp">
       <Filter>Source Files\tetris\score_calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\input_bridge_keyboard.cpp">
+      <Filter>Source Files\tetris\input_bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\input_bridge_simple_cpu.cpp">
+      <Filter>Source Files\tetris\input_bridge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1252,6 +1261,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\i_game_end_checker.h">
       <Filter>Source Files\tetris\game_end_checker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\i_input_bridge.h">
+      <Filter>Source Files\tetris\input_bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\input_bridge_keyboard.h">
+      <Filter>Source Files\tetris\input_bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\input_bridge_simple_cpu.h">
+      <Filter>Source Files\tetris\input_bridge</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

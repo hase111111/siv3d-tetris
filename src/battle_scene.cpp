@@ -8,6 +8,8 @@
 
 #include "game_const.h"
 #include "game_end_checker_nothing.h"
+#include "input_bridge_keyboard.h"
+#include "input_bridge_simple_cpu.h"
 #include "my_assert.h"
 #include "score_calculator_nothing.h"
 #include "tetris_field_effect_nothing.h"
@@ -27,9 +29,10 @@ BattleScene::BattleScene(
       player_hold_ptr_(
           std::make_shared<HoldTetromino>(game_setting_record_ptr->allow_hold)),
       player_tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
-          key_event_handler_ptr, player_tetris_field_ptr_,
-          player_tetromino_ptr_, player_next_ptr_, player_hold_ptr_,
-          std::make_shared<TetrisLevel>(), std::make_shared<DropCount>(),
+          std::make_shared<InputBridgeKeyBoard>(key_event_handler_ptr),
+          player_tetris_field_ptr_, player_tetromino_ptr_, player_next_ptr_,
+          player_hold_ptr_, std::make_shared<TetrisLevel>(),
+          std::make_shared<DropCount>(),
           std::make_shared<ScoreCalculatorNothing>(),
           std::make_shared<GameEndCheckerNothing>(),
           std::make_shared<TetrisFieldEffectNothing>(),
@@ -49,9 +52,9 @@ BattleScene::BattleScene(
       enemy_hold_ptr_(
           std::make_shared<HoldTetromino>(game_setting_record_ptr->allow_hold)),
       enemy_tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
-          key_event_handler_ptr, enemy_tetris_field_ptr_, enemy_tetromino_ptr_,
-          enemy_next_ptr_, enemy_hold_ptr_, std::make_shared<TetrisLevel>(),
-          std::make_shared<DropCount>(),
+          std::make_shared<InputBridgeSimpleCPU>(), enemy_tetris_field_ptr_,
+          enemy_tetromino_ptr_, enemy_next_ptr_, enemy_hold_ptr_,
+          std::make_shared<TetrisLevel>(), std::make_shared<DropCount>(),
           std::make_shared<ScoreCalculatorNothing>(),
           std::make_shared<GameEndCheckerNothing>(),
           std::make_shared<TetrisFieldEffectNothing>(),

@@ -8,6 +8,7 @@
 
 #include "game_const.h"
 #include "game_end_checker.h"
+#include "input_bridge_keyboard.h"
 #include "score_calculator.h"
 #include "tetris_field_effect.h"
 #include "tetromino_generator.h"
@@ -40,13 +41,14 @@ TetrisScene::TetrisScene(
       tetris_field_effect_ptr_(
           std::make_shared<TetrisFieldEffect>(tetris_level_ptr_)),
       tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
-          key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
-          next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
-          drop_count_ptr_, score_calculator_ptr_, game_end_checker_ptr_,
+          std::make_shared<InputBridgeKeyBoard>(key_event_handler_ptr_),
+          tetris_field_ptr_, tetromino_ptr_, next_tetromino_ptr_,
+          hold_tetromino_ptr_, tetris_level_ptr_, drop_count_ptr_,
+          score_calculator_ptr_, game_end_checker_ptr_,
           tetris_field_effect_ptr_, game_setting_record_ptr)),
-      description_field_renderer_{resource_container_ptr, key_event_handler_ptr,
-                                  game_end_checker_ptr_, tetris_field_ptr_,
-                                  tetris_timer_ptr_},
+      description_field_renderer_{resource_container_ptr,
+                                  key_event_handler_ptr_, game_end_checker_ptr_,
+                                  tetris_field_ptr_, tetris_timer_ptr_},
       tetris_renderer_{resource_container_ptr,
                        tetris_field_ptr_,
                        tetromino_ptr_,
@@ -64,7 +66,7 @@ TetrisScene::TetrisScene(
       score_board_renderer_{tetris_timer_ptr_, tetris_level_ptr_,
                             drop_count_ptr_, score_calculator_ptr_,
                             resource_container_ptr},
-      pause_renderer_{resource_container_ptr, key_event_handler_ptr},
+      pause_renderer_{resource_container_ptr, key_event_handler_ptr_},
       tetris_game_mode_{TetrisGameMode::kEndless} {
   fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
