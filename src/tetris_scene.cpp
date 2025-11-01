@@ -39,7 +39,7 @@ TetrisScene::TetrisScene(
           std::make_shared<ScoreCalculator>(tetris_announce_ptr_)),
       tetris_field_effect_ptr_(
           std::make_shared<TetrisFieldEffect>(tetris_level_ptr_)),
-      tetris_updater_ptr_(std::make_unique<TetrisUpdater>(
+      tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
           key_event_handler_ptr_, tetris_field_ptr_, tetromino_ptr_,
           next_tetromino_ptr_, hold_tetromino_ptr_, tetris_level_ptr_,
           drop_count_ptr_, score_calculator_ptr_, game_end_checker_ptr_,
@@ -51,6 +51,7 @@ TetrisScene::TetrisScene(
                        tetris_field_ptr_,
                        tetromino_ptr_,
                        tetris_field_effect_ptr_,
+                       tetris_updater_ptr_,
                        40.0f * game_const::kResolutionEx,
                        game_setting_record_ptr->display_ghost_tetromino},
       next_renderer_{resource_container_ptr, next_tetromino_ptr_},
@@ -119,7 +120,6 @@ bool TetrisScene::Update() {
   }
 
   // •`‰æ‰æ–Ê‚ÌXV.
-  tetris_renderer_.SetClearLines(cleared_lines);
   tetris_renderer_.Update();
   tetris_field_effect_ptr_->Update();
   description_field_renderer_.Update();
@@ -148,12 +148,9 @@ void TetrisScene::Draw() const {
   description_field_renderer_.Draw(game_const::kResolutionXF * 1.f / 64.f,
                                    game_const::kResolutionYF * 1.f / 48.f);
 
-  const auto [tetromino_x, tetromino_y] = tetris_updater_ptr_->GetPosition();
   tetris_renderer_.Draw(
       game_const::kResolutionXF / 2.f,
-      game_const::kResolutionYF / 2.f - tetris_renderer_.GetBlockSize() * 1.5f,
-      tetromino_x, tetromino_y, tetris_updater_ptr_->IsGameOver(),
-      tetris_updater_ptr_->IsPinch());
+      game_const::kResolutionYF / 2.f - tetris_renderer_.GetBlockSize() * 1.5f);
 
   tetris_announce_ptr_->Draw(game_const::kResolutionX / 2,
                              game_const::kResolutionY / 2);

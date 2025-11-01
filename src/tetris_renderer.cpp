@@ -21,11 +21,13 @@ TetrisRenderer::TetrisRenderer(
     const std::shared_ptr<const TetrisField>& tetris_field_ptr,
     const std::shared_ptr<const Tetromino>& tetromino_ptr,
     const std::shared_ptr<const ITetrisFieldEffect>& tetris_field_effect_ptr,
+    const std::shared_ptr<const TetrisUpdater>& tetris_updater_ptr,
     const float block_size, bool ghost_tetromino_enabled)
     : resource_container_ptr_(resource_container_ptr),
       tetris_field_ptr_(tetris_field_ptr),
       tetromino_ptr_(tetromino_ptr),
       tetris_field_effect_ptr_(tetris_field_effect_ptr),
+      tetris_updater_ptr_(tetris_updater_ptr),
       block_size_(block_size),
       ghost_tetromino_enabled_(ghost_tetromino_enabled),
       block_textures_(GetBlockTextureMap(resource_container_ptr)),
@@ -37,21 +39,24 @@ TetrisRenderer::TetrisRenderer(
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_effect_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_updater_ptr);
 
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetromino_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(tetris_field_effect_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(tetris_updater_ptr_);
 }
 
 void TetrisRenderer::Update() {
   ++counter_;
   broken_block_renderer_.Update();
+
+  const auto cleared_lines = tetris_updater_ptr_->GetClearedLines();
+  SetClearLines(cleared_lines);
 }
 
-void TetrisRenderer::Draw(const float render_x, const float render_y,
-                          const int tetromino_pos_x, const int tetromino_pos_y,
-                          const bool is_game_over, const bool is_pinch) const {
+void TetrisRenderer::Draw(const float render_x, const float render_y) const {
   const float render_x_ =
       render_x - block_size_ * (tetris_field_ptr_->GetWidth() / 2.f - 0.5f);
   const float render_y_ =
@@ -60,7 +65,7 @@ void TetrisRenderer::Draw(const float render_x, const float render_y,
   const Tetromino tetromino_copy = *tetromino_ptr_;
 
   // ƒsƒ“ƒ`Žž‚Ì•`‰æ.
-  if (is_pinch && !is_game_over) {
+  if (tetris_updater_ptr_->IsPinch() && !tetris_updater_ptr_->IsGameOver()) {
     const float x_size = block_size_ * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size_ * (tetris_field_ptr_->GetHeight() - 2);
     DrawRectAlpha(render_x - x_size / 2.f, render_y_ - y_size / 2.f,
@@ -93,6 +98,8 @@ void TetrisRenderer::Draw(const float render_x, const float render_y,
   }
 
   // ƒeƒgƒŠƒ~ƒm‚Ì•`‰æ.
+  const auto [tetromino_pos_x, tetromino_pos_y] =
+      tetris_updater_ptr_->GetPosition();
   DrawTetromino(tetromino_copy, block_textures_.at(tetromino_ptr_->GetColor()),
                 render_x_ + tetromino_pos_x * block_size_,
                 render_y_ + tetromino_pos_y * block_size_, 1.f, block_size_);
@@ -112,7 +119,7 @@ void TetrisRenderer::Draw(const float render_x, const float render_y,
   }
 
   // ƒQ[ƒ€ƒI[ƒo[Žž‚Ì•`‰æ.
-  if (is_game_over) {
+  if (tetris_updater_ptr_->IsGameOver()) {
     const float x_size = block_size_ * (tetris_field_ptr_->GetWidth() - 2);
     const float y_size = block_size_ * (tetris_field_ptr_->GetHeight() - 2);
     DrawRectAlpha(render_x - x_size / 2.f, render_y_ - y_size / 2.f,

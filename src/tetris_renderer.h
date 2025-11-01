@@ -15,6 +15,7 @@
 #include "i_tetris_field_effect.h"
 #include "resource_container.h"
 #include "tetris_feild.h"
+#include "tetris_updater.h"
 #include "tetromino.h"
 #include "texture_view.h"
 
@@ -27,16 +28,12 @@ class TetrisRenderer final {
       const std::shared_ptr<const TetrisField>& tetris_field_ptr,
       const std::shared_ptr<const Tetromino>& tetromino_ptr,
       const std::shared_ptr<const ITetrisFieldEffect>& tetris_field_effect_ptr,
+      const std::shared_ptr<const TetrisUpdater>& tetris_updater_ptr,
       float block_size, bool ghost_tetromino_enabled);
 
   void Update();
 
-  void Draw(float render_x, float render_y, int tetromino_pos_x,
-            int tetromino_pos_y, bool is_game_over, bool is_pinch) const;
-
-  void SetClearLines(
-      const std::vector<std::tuple<int, std::vector<TetrominoColor>>>&
-          clear_lines);
+  void Draw(float render_x, float render_y) const;
 
   inline int GetBlockSize() const { return static_cast<int>(block_size_); }
 
@@ -49,12 +46,17 @@ class TetrisRenderer final {
   }
 
  private:
+  void SetClearLines(
+      const std::vector<std::tuple<int, std::vector<TetrominoColor>>>&
+          clear_lines);
+
   void DrawGrid(float render_x, float render_y) const;
 
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   const std::shared_ptr<const TetrisField> tetris_field_ptr_;
   const std::shared_ptr<const Tetromino> tetromino_ptr_;
   const std::shared_ptr<const ITetrisFieldEffect> tetris_field_effect_ptr_;
+  const std::shared_ptr<const TetrisUpdater> tetris_updater_ptr_;
   const std::map<TetrominoColor, TextureView> block_textures_;
   const float block_size_;
   const FontView font_view_;

@@ -68,7 +68,7 @@ class TetrisScene final : public IScene {
   const std::shared_ptr<TetrisAnnounce> tetris_announce_ptr_;
   const std::shared_ptr<IScoreCalculator> score_calculator_ptr_;
   const std::shared_ptr<TetrisFieldEffect> tetris_field_effect_ptr_;
-  const std::unique_ptr<TetrisUpdater> tetris_updater_ptr_;
+  const std::shared_ptr<TetrisUpdater> tetris_updater_ptr_;
   DescriptionFieldRenderer description_field_renderer_;
   TetrisRenderer tetris_renderer_;
   NextRenderer next_renderer_;
