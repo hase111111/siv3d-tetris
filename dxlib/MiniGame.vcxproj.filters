@@ -73,6 +73,27 @@
     <Filter Include="ソース ファイル\tetris\render\ui">
       <UniqueIdentifier>{1ae7b626-5f34-43d1-af22-f1969c8d72a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\common\debug">
+      <UniqueIdentifier>{a756bc79-c48b-4be1-a93f-744b9b93df0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\tetris\drop_count">
+      <UniqueIdentifier>{06e25129-5104-49a4-99b2-e72ad508ef0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\tetris\effect">
+      <UniqueIdentifier>{6daf0381-3c02-46d1-8c63-52c14a1d18a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\tetris\evalution">
+      <UniqueIdentifier>{482b8a78-60f7-4009-a084-a264c17f4cc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\tetris\game_end_checker">
+      <UniqueIdentifier>{0195264d-8fac-48ae-a7d5-77b22bb1b90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\tetris\input_bridge">
+      <UniqueIdentifier>{e3fddbc8-c99c-47d3-aaf5-22dad7b072f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\tetris\score_calculator">
+      <UniqueIdentifier>{4be2c500-ae75-48ab-8589-11060f8b5c17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -88,12 +109,6 @@
     </ClCompile>
     <ClCompile Include="..\src\debug_scene.cpp">
       <Filter>ソース ファイル\scenes\debug_scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\drop_count.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\game_end_checker.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
     </ClCompile>
     <ClCompile Include="..\src\game_main_loop.cpp">
       <Filter>ソース ファイル\system</Filter>
@@ -215,12 +230,6 @@
     <ClCompile Include="..\src\title_back_ground.cpp">
       <Filter>ソース ファイル\scenes\title_scene\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\score_calculator.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\tetris_field_effect.cpp">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\description_field_renderer.cpp">
       <Filter>ソース ファイル\tetris\render\ui</Filter>
     </ClCompile>
@@ -236,6 +245,42 @@
     <ClCompile Include="..\src\tetris_announce.cpp">
       <Filter>ソース ファイル\tetris\render\ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\log_print.cpp">
+      <Filter>ソース ファイル\common\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\drop_count_for_battle.cpp">
+      <Filter>ソース ファイル\tetris\drop_count</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\drop_count.cpp">
+      <Filter>ソース ファイル\tetris\drop_count</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tetris_field_effect_nothing.cpp">
+      <Filter>ソース ファイル\tetris\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tetris_field_effect.cpp">
+      <Filter>ソース ファイル\tetris\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tetris_evalution_util.cpp">
+      <Filter>ソース ファイル\tetris\evalution</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_end_checker.cpp">
+      <Filter>ソース ファイル\tetris\game_end_checker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\game_end_checker_nothing.cpp">
+      <Filter>ソース ファイル\tetris\game_end_checker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\input_bridge_keyboard.cpp">
+      <Filter>ソース ファイル\tetris\input_bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\input_bridge_simple_cpu.cpp">
+      <Filter>ソース ファイル\tetris\input_bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\score_calculator.cpp">
+      <Filter>ソース ファイル\tetris\score_calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\score_calculator_nothing.cpp">
+      <Filter>ソース ファイル\tetris\score_calculator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\broken_block_renderer.h">
@@ -244,14 +289,8 @@
     <ClInclude Include="..\src\debug_scene.h">
       <Filter>ソース ファイル\scenes\debug_scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\drop_count.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\game_const.h">
       <Filter>ソース ファイル\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\game_end_checker.h">
-      <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
     <ClInclude Include="..\src\game_main_loop.h">
       <Filter>ソース ファイル\system</Filter>
@@ -409,12 +448,6 @@
     <ClInclude Include="..\src\i_scene.h">
       <Filter>ソース ファイル\scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\score_calculator.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\tetris_field_effect.h">
-      <Filter>ソース ファイル\tetris</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\tetromino_color.h">
       <Filter>ソース ファイル\tetris</Filter>
     </ClInclude>
@@ -432,6 +465,57 @@
     </ClInclude>
     <ClInclude Include="..\src\tetris_announce.h">
       <Filter>ソース ファイル\tetris\render\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\log_print.h">
+      <Filter>ソース ファイル\common\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\drop_count_for_battle.h">
+      <Filter>ソース ファイル\tetris\drop_count</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\drop_count.h">
+      <Filter>ソース ファイル\tetris\drop_count</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\i_drop_count.h">
+      <Filter>ソース ファイル\tetris\drop_count</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tetris_field_effect_nothing.h">
+      <Filter>ソース ファイル\tetris\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tetris_field_effect.h">
+      <Filter>ソース ファイル\tetris\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\i_tetris_field_effect.h">
+      <Filter>ソース ファイル\tetris\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tetris_evalution_util.h">
+      <Filter>ソース ファイル\tetris\evalution</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\game_end_checker.h">
+      <Filter>ソース ファイル\tetris\game_end_checker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\game_end_checker_nothing.h">
+      <Filter>ソース ファイル\tetris\game_end_checker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\i_game_end_checker.h">
+      <Filter>ソース ファイル\tetris\game_end_checker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\i_input_bridge.h">
+      <Filter>ソース ファイル\tetris\input_bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\input_bridge_keyboard.h">
+      <Filter>ソース ファイル\tetris\input_bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\input_bridge_simple_cpu.h">
+      <Filter>ソース ファイル\tetris\input_bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\score_calculator.h">
+      <Filter>ソース ファイル\tetris\score_calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\score_calculator_nothing.h">
+      <Filter>ソース ファイル\tetris\score_calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\i_score_calculator.h">
+      <Filter>ソース ファイル\tetris\score_calculator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

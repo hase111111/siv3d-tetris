@@ -69,7 +69,7 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <DisableSpecificWarnings>26451;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -96,7 +96,7 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <DisableSpecificWarnings>26451;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -136,6 +136,7 @@
     <ClCompile Include="..\..\src\input_bridge_simple_cpu.cpp" />
     <ClCompile Include="..\..\src\key_config_data.cpp" />
     <ClCompile Include="..\..\src\key_event_handler.cpp" />
+    <ClCompile Include="..\..\src\log_print.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\my_assert.cpp" />
     <ClCompile Include="..\..\src\next_renderer.cpp" />
@@ -416,6 +417,7 @@
     <ClInclude Include="..\..\src\key_event_handler.h" />
     <ClInclude Include="..\..\src\key_group.h" />
     <ClInclude Include="..\..\src\key_handle.h" />
+    <ClInclude Include="..\..\src\log_print.h" />
     <ClInclude Include="..\..\src\my_assert.h" />
     <ClInclude Include="..\..\src\my_format.h" />
     <ClInclude Include="..\..\src\next_renderer.h" />

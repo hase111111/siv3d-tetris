@@ -6,7 +6,9 @@
 
 #pragma once
 
+#include <array>
 #include <memory>
+#include <tuple>
 
 #include "hold_tetromino.h"
 #include "i_input_bridge.h"
@@ -24,6 +26,7 @@ class InputBridgeSimpleCPU final : public IInputBridge {
       const std::shared_ptr<Tetromino>& tetromino_ptr,
       const std::shared_ptr<NextTetromino>& next_tetromino_ptr,
       const std::shared_ptr<HoldTetromino>& hold_tetromino_ptr);
+  ~InputBridgeSimpleCPU() = default;
 
   void Update(int x, int y) override;
 
@@ -54,7 +57,8 @@ class InputBridgeSimpleCPU final : public IInputBridge {
   //! @brief フィールドの評価値を計算する.
   int CalculateFieldEvaluationValue(
       const std::array<std::array<bool, TetrisField::kWidth>,
-                       TetrisField::kHeight>& field) const;
+                       TetrisField::kHeight>& field,
+      int line) const;
 
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
   const std::shared_ptr<Tetromino> tetromino_ptr_;

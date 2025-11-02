@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include <string>
-
 #include "tetris_game_mode.h"
 
 namespace mytetris {

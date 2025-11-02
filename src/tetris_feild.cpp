@@ -169,9 +169,9 @@ TetrisField::ClearLines() {
   std::vector<std::tuple<int, std::vector<TetrominoColor>>> cleared_lines;
 
   // 列がそろっているかチェックし，そろっていたら削除して上に詰める.
-  for (int y = kHeight - 2; y >= 0; --y) {  // 最下段は壁なので除外
+  for (int y = kHeight - 2; y >= 0; --y) {  // 最下段は壁なので除外.
     bool is_full_line = true;
-    for (int x = 1; x < kWidth - 1; ++x) {  // 両端は壁なので除外
+    for (int x = 1; x < kWidth - 1; ++x) {  // 両端は壁なので除外.
       if (field_[y][x] == TetrominoColor::kNone) {
         is_full_line = false;
         break;

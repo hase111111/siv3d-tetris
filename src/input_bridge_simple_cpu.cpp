@@ -6,84 +6,14 @@
 
 #include "input_bridge_simple_cpu.h"
 
+#include <array>
 #include <optional>
 
+#include "log_print.h"
 #include "my_assert.h"
 #include "tetris_evalution_util.h"
 
 namespace mytetris {
-
-static std::optional<
-    std::array<std::array<bool, TetrisField::kWidth>, TetrisField::kHeight>>
-PlaceTetromino(const std::array<std::array<bool, TetrisField::kWidth>,
-                                TetrisField::kHeight>& field,
-               const std::vector<std::vector<bool>>& shape, int x) {
-  auto result = field;
-
-  const int shapeHeight = static_cast<int>(shape.size());
-  const int shapeWidth = static_cast<int>(shape[0].size());
-
-  // 壁にめり込んでいるならアウト
-  if (x < 0 || x + shapeWidth > TetrisField::kWidth) {
-    return std::nullopt;
-  }
-
-  // 下に向かって落下
-  int dropY = 0;
-  bool placed = false;
-
-  for (int y = 0; y <= TetrisField::kHeight - shapeHeight; ++y) {
-    bool collision = false;
-
-    // shape と field の衝突判定
-    for (int dy = 0; dy < shapeHeight && !collision; ++dy) {
-      for (int dx = 0; dx < shapeWidth; ++dx) {
-        if (!shape[dy][dx]) continue;
-
-        int fx = x + dx;
-        int fy = y + dy;
-
-        // フィールド外 or 衝突
-        if (fy >= TetrisField::kHeight || fx < 0 || fx >= TetrisField::kWidth ||
-            field[fy][fx]) {
-          collision = true;
-          break;
-        }
-      }
-    }
-
-    if (collision) {
-      // 一つ上で止める
-      dropY = y - 1;
-      placed = true;
-      break;
-    }
-  }
-
-  // 最後まで落ちても衝突しなかったら一番下で止まる
-  if (!placed) {
-    dropY = TetrisField::kHeight - shapeHeight;
-  }
-
-  // もし最初から衝突してたらnullopt
-  if (dropY < 0) return std::nullopt;
-
-  // 設置処理（上書き）
-  for (int dy = 0; dy < shapeHeight; ++dy) {
-    for (int dx = 0; dx < shapeWidth; ++dx) {
-      if (!shape[dy][dx]) continue;
-
-      int fx = x + dx;
-      int fy = dropY + dy;
-
-      // 壁・床はもともと true なので上書きされない
-      if (result[fy][fx]) return std::nullopt;  // めり込み
-      result[fy][fx] = true;
-    }
-  }
-
-  return result;
-}
 
 InputBridgeSimpleCPU::InputBridgeSimpleCPU(
     const std::shared_ptr<TetrisField>& tetris_field_ptr,
@@ -169,8 +99,6 @@ int InputBridgeSimpleCPU::GetRightMoveCount() const {
   return 0;
 }
 
-#include "Siv3D.hpp"
-
 void InputBridgeSimpleCPU::UpdateTarget() {
   using Shape = std::vector<std::vector<bool>>;
 
@@ -178,6 +106,29 @@ void InputBridgeSimpleCPU::UpdateTarget() {
 
   const auto [best_x, best_rotation_index, best_score] =
       GetBestPlacement(tetromino_shape);
+
+  //// ホールド不可ならそのまま決定.
+  // hold_requested_ = false;
+  // target_x_ = best_x;
+  // target_rotation_index_ = best_rotation_index;
+  // const auto field =
+  //     PlaceTetromino(last_field_, tetromino_shape[best_rotation_index],
+  //     best_x);
+  // const auto del_opt = DeleteFullLines(field.value());
+  // if (const auto [i, f] = del_opt; field.has_value()) {
+  //   Print << ToString(f, false);
+  //   Print << "Cleared lines: " << i << "\n";
+  //   const auto hole = GetHoleCountsPerColumn(f);
+  //   Print << "Holes per column: ";
+  //   for (const auto& h : hole) {
+  //     Print << h << " ";
+  //   }
+  //   Print << "\n";
+  //   const auto height_diff_sum = GetHeightDifferenceSquareSum(f);
+  //   Print << "Height difference square sum: " << height_diff_sum << "\n";
+  // }
+
+  // return;
 
   if (hold_tetromino_ptr_->CanHold()) {
     // ホールド可能ならばホールドした場合も評価.
@@ -251,7 +202,10 @@ std::tuple<int, int, int> InputBridgeSimpleCPU::GetBestPlacement(
       if (!placed_field_opt.has_value()) {
         continue;
       }
-      const int score = CalculateFieldEvaluationValue(placed_field_opt.value());
+      const auto [deleted_line_count, field] =
+          DeleteFullLines(placed_field_opt.value());
+      const int score =
+          CalculateFieldEvaluationValue(field, deleted_line_count);
       if (score > best_score) {
         best_score = score;
         x = i;
@@ -265,20 +219,20 @@ std::tuple<int, int, int> InputBridgeSimpleCPU::GetBestPlacement(
 
 int InputBridgeSimpleCPU::CalculateFieldEvaluationValue(
     const std::array<std::array<bool, TetrisField::kWidth>,
-                     TetrisField::kHeight>& field) const {
+                     TetrisField::kHeight>& field,
+    const int line) const {
   const auto hole = GetHoleCountsPerColumn(field);
   const auto height_diff_sum = GetHeightDifferenceSquareSum(field);
-  const auto cleared_line_count = GetClearedLineCount(field);
 
   int score = 0;
 
-  score += cleared_line_count * 100;
+  // score += line * 1;
 
   for (const auto& count : hole) {
-    score -= count * 1000;
+    score -= count * 100;
   }
 
-  score -= height_diff_sum * 80;
+  score -= height_diff_sum * 10;
 
   return static_cast<int>(score);
 }

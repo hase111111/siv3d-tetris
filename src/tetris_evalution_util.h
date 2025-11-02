@@ -1,8 +1,10 @@
 #pragma once
 
 #include <array>
+#include <optional>
 #include <sstream>
 #include <string>
+#include <vector>
 
 #include "tetris_feild.h"
 
@@ -11,8 +13,15 @@ namespace mytetris {
 using EvTetrisField =
     std::array<std::array<bool, TetrisField::kWidth>, TetrisField::kHeight>;
 
+using EvShape = std::vector<std::vector<bool>>;
+
 std::array<int, TetrisField::kWidth - 2> GetHoleCountsPerColumn(
     const EvTetrisField& field);
+
+std::optional<EvTetrisField> PlaceTetromino(const EvTetrisField& field,
+                                            const EvShape& shape, int x);
+
+std::tuple<int, EvTetrisField> DeleteFullLines(const EvTetrisField& field);
 
 //! @brief ‚‚³‚Ì•½‹Ï’l‚ğŒvZ‚·‚é.
 int GetHeightSum(const EvTetrisField& field);
@@ -41,9 +50,9 @@ inline std::string ToString(
   for (int y = 0; y < TetrisField::kHeight; ++y) {
     for (int x = 0; x < TetrisField::kWidth; ++x) {
       if (field[y][x]) {
-        oss << (useWide ? "¡" : "#");
+        oss << (useWide ? "a" : "#");
       } else {
-        oss << (useWide ? "@" : "_");
+        oss << (useWide ? "b" : "_");
       }
     }
     oss << '\n';

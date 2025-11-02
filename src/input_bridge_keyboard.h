@@ -17,6 +17,7 @@ class InputBridgeKeyBoard final : public IInputBridge {
  public:
   InputBridgeKeyBoard(
       const std::shared_ptr<const KeyEventHandler>& key_event_handler_ptr);
+  ~InputBridgeKeyBoard() = default;
 
   bool IsHoldRequested() const override;
 

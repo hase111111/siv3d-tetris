@@ -214,6 +214,9 @@
     <Filter Include="Source Files\tetris\evalution">
       <UniqueIdentifier>{fc58a785-4ad8-4260-9c6b-f434f534a451}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\common\debug">
+      <UniqueIdentifier>{5a77af06-9961-4602-bdb1-071f9de88bfe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -395,6 +398,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\tetris_evalution_util.cpp">
       <Filter>Source Files\tetris\evalution</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\log_print.cpp">
+      <Filter>Source Files\common\debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1291,6 +1297,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\tetris_evalution_util.h">
       <Filter>Source Files\tetris\evalution</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\log_print.h">
+      <Filter>Source Files\common\debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
