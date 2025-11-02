@@ -64,7 +64,7 @@ class InputBridgeSimpleCPU final : public IInputBridge {
   const std::shared_ptr<Tetromino> tetromino_ptr_;
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
-  const int control_frame{1};
+  const int control_frame{10};
 
   std::array<std::array<bool, TetrisField::kWidth>, TetrisField::kHeight>
       last_field_{};

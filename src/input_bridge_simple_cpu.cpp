@@ -203,7 +203,7 @@ int InputBridgeSimpleCPU::CalculateFieldEvaluationValue(
 
   int score = 0;
 
-  score += line * 1;
+  score += line * line * 5;
 
   for (const auto& count : hole) {
     score -= count * 100;

@@ -32,6 +32,7 @@ TetrisRenderer::TetrisRenderer(
       ghost_tetromino_enabled_(ghost_tetromino_enabled),
       block_textures_(GetBlockTextureMap(resource_container_ptr)),
       broken_block_renderer_(resource_container_ptr),
+      font_view_large_(resource_container_ptr->GetFont("large")),
       font_view_(resource_container_ptr->GetFont("default")),
       font_view_small_(resource_container_ptr->GetFont("small")) {
   // 引数のチェック.
@@ -72,6 +73,8 @@ void TetrisRenderer::Draw(const float render_x, const float render_y) const {
                   render_x + x_size / 2.f, render_y + y_size / 2.f, 0x00FF0000,
                   true, 0.3f * std::powf(std::sinf(counter_ / 15.f), 2.f));
   }
+
+  DrawPenaltyCount(render_x, render_y);
 
   // グリッドの描画.
   DrawGrid(render_x, render_y);
@@ -186,6 +189,27 @@ void TetrisRenderer::DrawGrid(const float render_x,
         render_y_ + (tetris_field_ptr_->GetHeight() - 1.5f) * block_size_,
         grid_color, thickness, alpha);
   }
+}
+
+void TetrisRenderer::DrawPenaltyCount(const float render_x,
+                                      const float render_y) const {
+  const int penalty_lines = tetris_updater_ptr_->GetPenaltyLines();
+  if (penalty_lines <= 0) {
+    return;
+  }
+
+  const float render_y_ =
+      render_y - block_size_ * (tetris_field_ptr_->GetHeight() / 2.f - 0.5f);
+  const float x_size = block_size_ * (tetris_field_ptr_->GetWidth() - 2);
+  const float y_size = block_size_ * (tetris_field_ptr_->GetHeight() - 2);
+  DrawRectAlpha(render_x - x_size / 2.f, render_y_ - y_size / 2.f,
+                render_x + x_size / 2.f, render_y + y_size / 2.f, 0xFFFF00,
+                true, 0.15f);
+
+  const std::string text = "+ " + std::to_string(penalty_lines);
+
+  font_view_large_.Draw(render_x, render_y - 350.f * game_const::kResolutionEx,
+                        RenderAnchor::Center, text, game_const::kResolutionEx);
 }
 
 }  // namespace mytetris

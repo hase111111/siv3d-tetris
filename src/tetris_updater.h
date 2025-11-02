@@ -69,6 +69,10 @@ class TetrisUpdater final {
 
   inline bool IsPinch() const { return tetris_field_ptr_->IsPinch(); }
 
+  inline int GetPenaltyLines() const { return penalty_lines_; }
+
+  void AddPenaltyLines(int line_num) { penalty_lines_ += line_num; }
+
  private:
   void SetInitialTetrominoPosition();
   void UpdateTetrominoPosition();
@@ -101,6 +105,8 @@ class TetrisUpdater final {
   const int horizontal_count_;
   const bool hard_drop_lock_;
   const bool soft_drop_lock_;
+
+  int penalty_lines_{0};
 
   //! ゲームオーバー時の演出を入れ終わったか確認するフラグ.
   bool is_game_over_animation_finished_{false};

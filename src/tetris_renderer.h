@@ -52,6 +52,8 @@ class TetrisRenderer final {
 
   void DrawGrid(float render_x, float render_y) const;
 
+  void DrawPenaltyCount(float render_x, float render_y) const;
+
   const std::shared_ptr<const ResourceContainer> resource_container_ptr_;
   const std::shared_ptr<const TetrisField> tetris_field_ptr_;
   const std::shared_ptr<const Tetromino> tetromino_ptr_;
@@ -59,6 +61,7 @@ class TetrisRenderer final {
   const std::shared_ptr<const TetrisUpdater> tetris_updater_ptr_;
   const std::map<TetrominoColor, TextureView> block_textures_;
   const float block_size_;
+  const FontView font_view_large_;
   const FontView font_view_;
   const FontView font_view_small_;
   const bool ghost_tetromino_enabled_;

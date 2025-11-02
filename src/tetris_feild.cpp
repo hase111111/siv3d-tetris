@@ -6,6 +6,8 @@
 
 #include "tetris_feild.h"
 
+#include "calc_util.h"
+
 namespace mytetris {
 
 TetrisField::TetrisField() : field_(InitializeField()) {}
@@ -217,6 +219,34 @@ TetrisField::GetAllLines() const {
     all_lines.emplace_back(y, line);
   }
   return all_lines;
+}
+
+void TetrisField::AddPenalty(int line_num) {
+  if (line_num <= 0) {
+    return;
+  }
+
+  // line_num が kHeight - 2 を超えないようにする.
+  line_num = std::min(line_num, kHeight - 2);
+
+  // 上に line_num 行分ずらす.
+  for (int y = 0; y < kHeight - 1 - line_num; ++y) {
+    for (int x = 1; x < kWidth - 1; ++x) {
+      field_[y][x] = field_[y + line_num][x];
+    }
+  }
+
+  // 下から line_num 行分を お邪魔ブロック で埋める.
+  for (int y = kHeight - 1 - line_num; y < kHeight - 1; ++y) {
+    int none_area = GetRandom(1, kWidth - 2);
+    for (int x = 1; x < kWidth - 1; ++x) {
+      if (none_area == x) {
+        field_[y][x] = TetrominoColor::kNone;
+      } else {
+        field_[y][x] = TetrominoColor::kOther5;
+      }
+    }
+  }
 }
 
 void TetrisField::SetDeathColor() {

@@ -17,8 +17,11 @@
 #include "key_event_handler.h"
 #include "next_renderer.h"
 #include "next_tetromino.h"
+#include "penalty_renderer.h"
+#include "penalty_updater.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
+#include "score_calculator_for_battle.h"
 #include "tetris_feild.h"
 #include "tetris_renderer.h"
 #include "tetris_updater.h"
@@ -49,6 +52,7 @@ class BattleScene final : public IScene {
   const std::shared_ptr<Tetromino> player_tetromino_ptr_;
   const std::shared_ptr<NextTetromino> player_next_ptr_;
   const std::shared_ptr<HoldTetromino> player_hold_ptr_;
+  const std::shared_ptr<ScoreCalculatorForBattle> player_score_calculator_ptr_;
   const std::shared_ptr<TetrisUpdater> player_tetris_updater_ptr_;
   TetrisRenderer player_tetris_renderer_;
   HoldRenderer player_hold_renderer_;
@@ -58,10 +62,14 @@ class BattleScene final : public IScene {
   const std::shared_ptr<Tetromino> enemy_tetromino_ptr_;
   const std::shared_ptr<NextTetromino> enemy_next_ptr_;
   const std::shared_ptr<HoldTetromino> enemy_hold_ptr_;
+  const std::shared_ptr<ScoreCalculatorForBattle> enemy_score_calculator_ptr_;
   const std::shared_ptr<TetrisUpdater> enemy_tetris_updater_ptr_;
   TetrisRenderer enemy_tetris_renderer_;
   HoldRenderer enemy_hold_renderer_;
   NextRenderer enemy_next_renderer_;
+
+  const std::shared_ptr<PenaltyUpdater> penalty_updater_ptr_;
+  PenaltyRenderer penalty_renderer_;
 };
 
 }  // namespace mytetris

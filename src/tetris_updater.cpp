@@ -273,6 +273,10 @@ void TetrisUpdater::SetTetromino() {
 
   // エフェクトをリセット.
   tetris_field_effect_ptr_->Reset();
+
+  // ペナルティ処理.
+  tetris_field_ptr_->AddPenalty(penalty_lines_);
+  penalty_lines_ = 0;
 }
 
 void TetrisUpdater::RotateTetromino() {

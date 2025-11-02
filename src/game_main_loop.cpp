@@ -144,6 +144,9 @@ std::shared_ptr<SceneStack> GameMainLoop::InitializeSceneStack() const {
       "default", std::move(std::make_unique<Font>(
                      "dat/font/x10y12pxDonguriDuel.ttf", 40)));
   resource_container->RegisterFont(
+      "large", std::move(std::make_unique<Font>(
+                   "dat/font/x10y12pxDonguriDuel.ttf", 100)));
+  resource_container->RegisterFont(
       "small", std::move(std::make_unique<Font>(
                    "dat/font/x10y12pxDonguriDuel.ttf", 20)));
 

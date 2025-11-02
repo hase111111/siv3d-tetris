@@ -109,6 +109,9 @@ class TetrisField final {
 
   std::vector<std::tuple<int, std::vector<TetrominoColor>>> GetAllLines() const;
 
+  //! @brief ペナルティを与える.
+  void AddPenalty(int line_num);
+
   void SetDeathColor();
 
  private:
