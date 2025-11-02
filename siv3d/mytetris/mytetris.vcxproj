@@ -156,6 +156,7 @@
     <ClCompile Include="..\..\src\setting_ui.cpp" />
     <ClCompile Include="..\..\src\system_main.cpp" />
     <ClCompile Include="..\..\src\tetris_announce.cpp" />
+    <ClCompile Include="..\..\src\tetris_evalution_util.cpp" />
     <ClCompile Include="..\..\src\tetris_feild.cpp" />
     <ClCompile Include="..\..\src\tetris_field_effect.cpp" />
     <ClCompile Include="..\..\src\tetris_field_effect_nothing.cpp" />
@@ -437,6 +438,7 @@
     <ClInclude Include="..\..\src\setting_ui.h" />
     <ClInclude Include="..\..\src\system_main.h" />
     <ClInclude Include="..\..\src\tetris_announce.h" />
+    <ClInclude Include="..\..\src\tetris_evalution_util.h" />
     <ClInclude Include="..\..\src\tetris_feild.h" />
     <ClInclude Include="..\..\src\tetris_field_effect.h" />
     <ClInclude Include="..\..\src\tetris_field_effect_nothing.h" />

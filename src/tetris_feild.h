@@ -23,6 +23,9 @@ class TetrisField final {
 
   TetrisField();
 
+  //!@ brief 比較演算子 ==.
+  bool operator==(const TetrisField& other) const;
+
   //! @brief Tetris フィールドの幅を返す.
   //! @return フィールドの幅(ただし, 壁を含む).
   int GetWidth() const { return kWidth; }
@@ -40,6 +43,8 @@ class TetrisField final {
   //! @brief T-spin 判定用に指定したマスの4隅が埋まっているかを返す.
   bool IsOccupiedCorners(int tetromino_x, int tetromino_y,
                          bool allow_wall) const;
+
+  std::array<std::array<bool, kWidth>, kHeight> GetOccupancyField() const;
 
   class Iterator {
    public:

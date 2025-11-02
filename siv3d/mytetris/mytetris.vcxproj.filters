@@ -211,6 +211,9 @@
     <Filter Include="Source Files\tetris\drop_count">
       <UniqueIdentifier>{38e607d3-9fc8-45eb-ae3c-3f8410bd1491}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tetris\evalution">
+      <UniqueIdentifier>{fc58a785-4ad8-4260-9c6b-f434f534a451}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -389,6 +392,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\drop_count_for_battle.cpp">
       <Filter>Source Files\tetris\drop_count</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tetris_evalution_util.cpp">
+      <Filter>Source Files\tetris\evalution</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1282,6 +1288,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\drop_count_for_battle.h">
       <Filter>Source Files\tetris\drop_count</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\tetris_evalution_util.h">
+      <Filter>Source Files\tetris\evalution</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

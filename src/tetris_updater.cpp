@@ -260,7 +260,7 @@ void TetrisUpdater::SetTetromino() {
     score_calculator_ptr_->ResetCombo();
   }
 
-  tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext());
+  tetromino_ptr_->Reshape(next_tetromino_ptr_->GetNext().GetResetRotation());
   next_tetromino_ptr_->Next();
   last_move_is_spin = false;
 

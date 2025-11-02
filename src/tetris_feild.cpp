@@ -10,6 +10,10 @@ namespace mytetris {
 
 TetrisField::TetrisField() : field_(InitializeField()) {}
 
+bool TetrisField::operator==(const TetrisField& other) const {
+  return field_ == other.field_;
+}
+
 bool TetrisField::IsGameOver() const {
   const int y_ = 5;
   // 最上段にブロックがあるかどうかで判定.
@@ -75,6 +79,17 @@ bool TetrisField::IsOccupiedCorners(const int tetromino_x,
   }
 
   return occupied_corners >= 3;
+}
+
+std::array<std::array<bool, TetrisField::kWidth>, TetrisField::kHeight>
+TetrisField::GetOccupancyField() const {
+  std::array<std::array<bool, kWidth>, kHeight> occupancy_field{};
+  for (int y = 0; y < kHeight; ++y) {
+    for (int x = 0; x < kWidth; ++x) {
+      occupancy_field[y][x] = (field_[y][x] != TetrominoColor::kNone);
+    }
+  }
+  return occupancy_field;
 }
 
 std::tuple<int, int> TetrisField::GetHardDropPosition(

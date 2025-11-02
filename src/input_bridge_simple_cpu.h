@@ -42,16 +42,33 @@ class InputBridgeSimpleCPU final : public IInputBridge {
   int GetRightMoveCount() const override;
 
  private:
+  void UpdateTarget();
+
+  std::array<std::vector<std::vector<bool>>, 4> GetTetrominoShapes(
+      const Tetromino& tetromino) const;
+
+  std::tuple<int, int, int> GetBestPlacement(
+      const std::array<std::vector<std::vector<bool>>, 4>& tetromino_shape)
+      const;
+
+  //! @brief フィールドの評価値を計算する.
+  int CalculateFieldEvaluationValue(
+      const std::array<std::array<bool, TetrisField::kWidth>,
+                       TetrisField::kHeight>& field) const;
+
   const std::shared_ptr<TetrisField> tetris_field_ptr_;
   const std::shared_ptr<Tetromino> tetromino_ptr_;
   const std::shared_ptr<NextTetromino> next_tetromino_ptr_;
   const std::shared_ptr<HoldTetromino> hold_tetromino_ptr_;
-  const int control_frame{5};
+  const int control_frame{1};
 
+  std::array<std::array<bool, TetrisField::kWidth>, TetrisField::kHeight>
+      last_field_{};
   int counter_{0};
   int tetromino_x_{0}, tetromino_y_{0};
-  int target_x_{7};
-  int target_rotation_index_{3};
+  int target_x_{5};
+  int target_rotation_index_{0};
+  bool hold_requested_{false};
 };
 
 }  // namespace mytetris
