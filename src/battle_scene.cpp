@@ -47,6 +47,8 @@ BattleScene::BattleScene(
                               game_setting_record_ptr->display_ghost_tetromino},
       player_hold_renderer_{resource_container_ptr, player_hold_ptr_,
                             block_size_},
+      player_next_renderer_{resource_container_ptr, player_next_ptr_,
+                            block_size_, 2},
       enemy_tetris_field_ptr_(std::make_shared<TetrisField>()),
       enemy_tetromino_ptr_(std::make_shared<Tetromino>()),
       enemy_next_ptr_(std::make_shared<NextTetromino>()),
@@ -71,7 +73,9 @@ BattleScene::BattleScene(
                              block_size_,
                              game_setting_record_ptr->display_ghost_tetromino},
       enemy_hold_renderer_{resource_container_ptr, enemy_hold_ptr_,
-                           block_size_} {
+                           block_size_},
+      enemy_next_renderer_{resource_container_ptr, enemy_next_ptr_, block_size_,
+                           2} {
   // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
 
@@ -110,12 +114,17 @@ void BattleScene::Draw() const {
   const float render_y = -player_tetris_renderer_.GetRenderHeight() / 2.f +
                          game_const::kResolutionYF;
 
-  player_tetris_renderer_.Draw(player_render_x, render_y);
-  player_hold_renderer_.Draw(block_size_ * 11.5f, render_y - block_size_ * 13);
+  player_hold_renderer_.Draw(block_size_ * 11.5f,
+                             render_y - block_size_ * 13.f);
+  player_next_renderer_.Draw(block_size_ * 12.f, render_y - block_size_ * 6.5f);
 
-  enemy_tetris_renderer_.Draw(enemy_render_x, render_y);
   enemy_hold_renderer_.Draw(game_const::kResolutionXF - block_size_ * 16.5f,
-                            render_y - block_size_ * 13);
+                            render_y - block_size_ * 13.f);
+  enemy_next_renderer_.Draw(game_const::kResolutionXF - block_size_ * 16.f,
+                            render_y - block_size_ * 6.5f);
+
+  player_tetris_renderer_.Draw(player_render_x, render_y);
+  enemy_tetris_renderer_.Draw(enemy_render_x, render_y);
 }
 
 void BattleScene::OnStart(const SceneChangeParameter&) {}

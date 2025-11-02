@@ -15,6 +15,7 @@
 #include "i_scene.h"
 #include "i_tetris_field_effect.h"
 #include "key_event_handler.h"
+#include "next_renderer.h"
 #include "next_tetromino.h"
 #include "resource_container.h"
 #include "scene_change_listener.h"
@@ -51,6 +52,7 @@ class BattleScene final : public IScene {
   const std::shared_ptr<TetrisUpdater> player_tetris_updater_ptr_;
   TetrisRenderer player_tetris_renderer_;
   HoldRenderer player_hold_renderer_;
+  NextRenderer player_next_renderer_;
 
   const std::shared_ptr<TetrisField> enemy_tetris_field_ptr_;
   const std::shared_ptr<Tetromino> enemy_tetromino_ptr_;
@@ -59,6 +61,7 @@ class BattleScene final : public IScene {
   const std::shared_ptr<TetrisUpdater> enemy_tetris_updater_ptr_;
   TetrisRenderer enemy_tetris_renderer_;
   HoldRenderer enemy_hold_renderer_;
+  NextRenderer enemy_next_renderer_;
 };
 
 }  // namespace mytetris

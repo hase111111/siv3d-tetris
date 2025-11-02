@@ -107,29 +107,6 @@ void InputBridgeSimpleCPU::UpdateTarget() {
   const auto [best_x, best_rotation_index, best_score] =
       GetBestPlacement(tetromino_shape);
 
-  //// ホールド不可ならそのまま決定.
-  // hold_requested_ = false;
-  // target_x_ = best_x;
-  // target_rotation_index_ = best_rotation_index;
-  // const auto field =
-  //     PlaceTetromino(last_field_, tetromino_shape[best_rotation_index],
-  //     best_x);
-  // const auto del_opt = DeleteFullLines(field.value());
-  // if (const auto [i, f] = del_opt; field.has_value()) {
-  //   Print << ToString(f, false);
-  //   Print << "Cleared lines: " << i << "\n";
-  //   const auto hole = GetHoleCountsPerColumn(f);
-  //   Print << "Holes per column: ";
-  //   for (const auto& h : hole) {
-  //     Print << h << " ";
-  //   }
-  //   Print << "\n";
-  //   const auto height_diff_sum = GetHeightDifferenceSquareSum(f);
-  //   Print << "Height difference square sum: " << height_diff_sum << "\n";
-  // }
-
-  // return;
-
   if (hold_tetromino_ptr_->CanHold()) {
     // ホールド可能ならばホールドした場合も評価.
     if (!hold_tetromino_ptr_->IsHold()) {
@@ -226,7 +203,7 @@ int InputBridgeSimpleCPU::CalculateFieldEvaluationValue(
 
   int score = 0;
 
-  // score += line * 1;
+  score += line * 1;
 
   for (const auto& count : hole) {
     score -= count * 100;

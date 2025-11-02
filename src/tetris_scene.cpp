@@ -57,7 +57,8 @@ TetrisScene::TetrisScene(
                        tetris_updater_ptr_,
                        40.0f * game_const::kResolutionEx,
                        game_setting_record_ptr->display_ghost_tetromino},
-      next_renderer_{resource_container_ptr, next_tetromino_ptr_},
+      next_renderer_{resource_container_ptr, next_tetromino_ptr_,
+                     40.0f * game_const::kResolutionEx, 5},
       hold_renderer_{
           resource_container_ptr,
           hold_tetromino_ptr_,
