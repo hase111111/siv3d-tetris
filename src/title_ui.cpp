@@ -20,16 +20,19 @@ TitleUI::TitleUI(
     const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr,
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr_,
     const std::function<void(const SceneChangeParameter&)>& to_game_scene,
+    const std::function<void()>& to_battle_scene,
     const std::function<void()>& to_setting_scene)
     : font_view_40_(resource_container_ptr_->GetFont("default")),
       font_view_20_(resource_container_ptr_->GetFont("small")),
       key_event_handler_ptr_(key_event_handler_ptr),
-      title_items_({"Game Start", "Special Mode", "Setting", "Quit Game"}),
+      title_items_(
+          {"Game Start", "Special Mode", "VS CPU", "Setting", "Quit Game"}),
       game_mode_items_({"Endless Mode", "Ultra Mode", "Sprint Mode",
                         "Marathon Mode", "Back"}),
       special_mode_items_({"Yamada Mode", "Pentris Mode", "Trick Mode",
                            "Practice Mode", "Back"}),
       to_game_scene_(to_game_scene),
+      to_battle_scene_(to_battle_scene),
       to_setting_scene_(to_setting_scene) {
   // nullptr チェック.
   DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr);
@@ -116,13 +119,20 @@ bool TitleUI::UpdateTitle() {
       return true;
     }
     case 2: {
+      // Battle.
+      if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
+        to_battle_scene_();
+      }
+      return true;
+    }
+    case 3: {
       // Setting.
       if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         to_setting_scene_();
       }
       return true;
     }
-    case 3: {
+    case 4: {
       if (key_event_handler_ptr_->GetPressingCount(KeyGroup::kDecide) == 1) {
         return false;  // QuitGame selected
       }
@@ -281,7 +291,7 @@ bool TitleUI::UpdateSpecialMode() {
 }
 
 void TitleUI::DrawTitle() const {
-  const float offset_y = 80.f;
+  const float offset_y = 70.f;
   const int idx = mode_index_ % title_items_.size();
   const float alpha = 0.5f + 0.5f * std::abs(std::sinf(counter_ / 15.f));
 

@@ -28,6 +28,7 @@ class PenaltyUpdater final {
 
   int penalty_lines_{0};
   int counter_{0};
+  int dic_counter_{0};
 };
 
 }  // namespace mytetris

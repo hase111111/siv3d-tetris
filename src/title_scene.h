@@ -36,6 +36,7 @@ class TitleScene final : public IScene {
 
  private:
   void ToTetrisScene(const SceneChangeParameter& parameter);
+  void ToBattleScene();
   void ToSettingScene();
 
   const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;

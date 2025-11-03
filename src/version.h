@@ -14,10 +14,10 @@ namespace mytetris {
 inline constexpr int kVersionMajor = 1;
 
 //! @brief ゲームのマイナーバージョン.
-inline constexpr int kVersionMinor = 2;
+inline constexpr int kVersionMinor = 3;
 
 //! @brief ゲームのパッチバージョン.
-inline constexpr int kVersionPatch = 1;
+inline constexpr int kVersionPatch = 0;
 
 //! @brief ゲームのバージョン文字列を取得する.
 //! @return 形式は "1.2.1" のようになる.

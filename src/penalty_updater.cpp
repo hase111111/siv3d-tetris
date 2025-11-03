@@ -22,19 +22,21 @@ std::tuple<int, int> PenaltyUpdater::Update() {
   player_score_calculator_ptr_->Update();
   enemy_score_calculator_ptr_->Update();
 
-  // ペナルティライン数を更新.
-  penalty_lines_ += score_difference;
-
   if (score_difference != 0) {
+    ++dic_counter_;
     if (0 < score_difference * penalty_lines_) {
-      counter_ = std::max(0, counter_ - penalty_interval_ / 5);
+      counter_ = std::max(0, counter_ - penalty_interval_ / 2 / dic_counter_);
     } else {
-      counter_ = std::max(0, counter_ - penalty_interval_ * 2 / 5);
+      counter_ = std::max(0, counter_ - penalty_interval_ / dic_counter_);
     }
   }
 
+  // ペナルティライン数を更新.
+  penalty_lines_ += score_difference;
+
   if (penalty_lines_ == 0) {
     counter_ = 0;
+    dic_counter_ = 0;
     return std::make_tuple(0, 0);
   } else {
     ++counter_;

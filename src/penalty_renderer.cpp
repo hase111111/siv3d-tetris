@@ -27,12 +27,13 @@ void PenaltyRenderer::Draw(const float render_x, const float render_y) const {
 
   if (const auto penalty_counter = penalty_updater_ptr_->GetCounter();
       penalty_counter != 0) {
+    const auto penalty_line = penalty_updater_ptr_->GetPenaltyLines();
     const float alpha =
         0.5f * penalty_counter /
         static_cast<float>(penalty_updater_ptr_->GetPenaltyInterval());
+    const unsigned int color = penalty_line < 0 ? 0xFFE000 : 0xE0FF00;
     DrawRectAlpha(render_x, render_y, render_x + wall_size_ * (wall_x_num + 1),
-                  render_y + wall_size_ * (wall_y_num + 1), 0xFFFF00, true,
-                  alpha);
+                  render_y + wall_size_ * (wall_y_num + 1), color, true, alpha);
   }
 
   // ペナルティライン数表示.

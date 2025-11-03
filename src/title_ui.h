@@ -24,6 +24,7 @@ class TitleUI final {
       const std::shared_ptr<const KeyEventHandler> key_event_handler_ptr,
       const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
       const std::function<void(const SceneChangeParameter&)>& to_game_scene,
+      const std::function<void()>& to_battle_scene,
       const std::function<void()>& to_setting_scene);
   ~TitleUI() = default;
 
@@ -48,6 +49,7 @@ class TitleUI final {
   const std::vector<std::string> game_mode_items_;
   const std::vector<std::string> special_mode_items_;
   const std::function<void(const SceneChangeParameter&)> to_game_scene_;
+  const std::function<void()> to_battle_scene_;
   const std::function<void()> to_setting_scene_;
 
   std::string lower_announcement_;
