@@ -43,7 +43,9 @@ class GameMainLoop final {
   const std::shared_ptr<SceneStack> scene_stack_ptr_;
   SceneChangeExecuter scene_change_executer_;
 
+#if defined(DXLIB_COMPILE)
   FpsController fps_controller_{60};
+#endif  // defined(DXLIB_COMPILE)
 
   int texture_count_{0};
 };

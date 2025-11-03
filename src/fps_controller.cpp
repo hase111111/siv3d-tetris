@@ -8,9 +8,6 @@
 
 #if defined(DXLIB_COMPILE)
 #include <Dxlib.h>
-#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
-#include <Siv3D.hpp>
-#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
 #include <cmath>
 #include <string>
@@ -34,18 +31,9 @@ void FpsController::Wait() {
   int wait_time = 0;
 
   if (CheckNeedSkipDrawScreen(&wait_time)) {
-#if defined(DXLIB_COMPILE)
     WaitTimer(wait_time);  // 取得した時間分待つ．
 
     RegisterTime(GetNowCount());  // 現在の時刻を記録する．
-
-#elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
-
-    s3d::System::Sleep(wait_time);
-    RegisterTime(
-        static_cast<int>(s3d::Time::GetMillisec()));  // 現在の時刻を記録する．
-
-#endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 
   } else {
     // 時間オーバーしているので，コマ落ちの処理をする．
@@ -91,12 +79,7 @@ bool FpsController::CheckNeedSkipDrawScreen(int* time) const {
   }
 
   // 実際にかかった時間を求める．
-#if defined DXLIB_COMPILE
   int actually_took_time = GetNowCount() - time_list_.back();
-#elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
-  int actually_took_time =
-      static_cast<int>(s3d::Time::GetMillisec()) - time_list_.back();
-#endif  // defined DXLIB_COMPILE
 
   // 計算上かかるべき時間 - 実際にかかった時間　はすなわち待つべき時間．
   int wait_time = one_frame_time_ - actually_took_time;
@@ -136,3 +119,5 @@ bool FpsController::TargetFpsIsValid() const {
 }
 
 }  // namespace mytetris
+
+#endif  // defined(DXLIB_COMPILE)
