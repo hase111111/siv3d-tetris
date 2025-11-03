@@ -414,6 +414,9 @@
     <ClCompile Include="..\..\src\penalty_updater.cpp">
       <Filter>Source Files\tetris\penalty</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\battle_announce.cpp">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -1321,6 +1324,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\penalty_updater.h">
       <Filter>Source Files\tetris\penalty</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\battle_announce.h">
+      <Filter>Source Files\tetris\renderer\ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

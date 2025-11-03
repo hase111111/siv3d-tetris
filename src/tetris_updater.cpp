@@ -6,6 +6,7 @@
 
 #include "tetris_updater.h"
 
+#include "log_print.h"
 #include "my_assert.h"
 
 namespace mytetris {
@@ -242,6 +243,7 @@ void TetrisUpdater::SetTetromino() {
   }
 
   // テトリミノをフィールドに固定.
+  const TetrisField last_field = *tetris_field_ptr_;
   tetris_field_ptr_->SetTetromino(*tetromino_ptr_, tetromino_x_, tetromino_y_);
 
   // ラインクリア処理.
@@ -249,12 +251,12 @@ void TetrisUpdater::SetTetromino() {
 
   if (clear_lines_.size() > 0) {
     // ラインをクリアした場合スコアを加算.
-    score_calculator_ptr_->AddScore(
-        static_cast<int>(clear_lines_.size()),
+    const bool is_tspin =
         tetromino_ptr_->GetColor() == TetrominoColor::kT && last_move_is_spin &&
-            tetris_field_ptr_->IsOccupiedCorners(tetromino_x_, tetromino_y_,
-                                                 true),
-        tetris_field_ptr_->IsEmpty());
+        last_field.IsOccupiedCorners(tetromino_x_, tetromino_y_, true);
+
+    score_calculator_ptr_->AddScore(static_cast<int>(clear_lines_.size()),
+                                    is_tspin, tetris_field_ptr_->IsEmpty());
   } else {
     // ラインをクリアしていない場合コンボをリセット.
     score_calculator_ptr_->ResetCombo();

@@ -7,6 +7,7 @@
 #include "tetris_feild.h"
 
 #include "calc_util.h"
+#include "log_print.h"
 
 namespace mytetris {
 
@@ -62,9 +63,9 @@ bool TetrisField::IsOccupiedCorners(const int tetromino_x,
   int occupied_corners = 0;
   const std::array<std::tuple<int, int>, 4> corners = {
       std::make_tuple(tetromino_x + 1, tetromino_y + 1),
-      std::make_tuple(tetromino_x + 4, tetromino_y + 1),
-      std::make_tuple(tetromino_x + 1, tetromino_y + 4),
-      std::make_tuple(tetromino_x + 4, tetromino_y + 4),
+      std::make_tuple(tetromino_x + 3, tetromino_y + 1),
+      std::make_tuple(tetromino_x + 1, tetromino_y + 3),
+      std::make_tuple(tetromino_x + 3, tetromino_y + 3),
   };
   for (const auto& [corner_x, corner_y] : corners) {
     if (corner_x < 0 || corner_x >= kWidth || corner_y < 0 ||
@@ -73,9 +74,15 @@ bool TetrisField::IsOccupiedCorners(const int tetromino_x,
       ++occupied_corners;
     } else {
       const TetrominoColor color = field_[corner_y][corner_x];
-      if (color != TetrominoColor::kNone &&
-          (allow_wall || color != TetrominoColor::kWall)) {
-        ++occupied_corners;
+      Print << static_cast<int>(color);
+      if (allow_wall) {
+        if (color != TetrominoColor::kNone) {
+          ++occupied_corners;
+        }
+      } else {
+        if (color != TetrominoColor::kNone && color != TetrominoColor::kWall) {
+          ++occupied_corners;
+        }
       }
     }
   }

@@ -127,7 +127,7 @@ void BattleScene::Draw() const {
                                enemy_tetris_renderer_.GetRenderWidth() / 2.f -
                                block_size_ / 4.f;
   const float render_y = -player_tetris_renderer_.GetRenderHeight() / 2.f +
-                         game_const::kResolutionYF;
+                         game_const::kResolutionYF - block_size_ / 4.f;
 
   player_hold_renderer_.Draw(player_render_x + block_size_ * 5.5f,
                              render_y - block_size_ * 13.f);

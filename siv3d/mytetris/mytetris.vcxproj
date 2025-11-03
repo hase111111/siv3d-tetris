@@ -115,6 +115,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\battle_announce.cpp" />
     <ClCompile Include="..\..\src\battle_scene.cpp" />
     <ClCompile Include="..\..\src\broken_block_renderer.cpp" />
     <ClCompile Include="..\..\src\debug_scene.cpp" />
@@ -387,6 +388,7 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\battle_announce.h" />
     <ClInclude Include="..\..\src\battle_scene.h" />
     <ClInclude Include="..\..\src\broken_block_renderer.h" />
     <ClInclude Include="..\..\src\calc_util.h" />
