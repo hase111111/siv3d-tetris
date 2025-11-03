@@ -24,14 +24,17 @@ BattleScene::BattleScene(
     const std::shared_ptr<const ResourceContainer>& resource_container_ptr,
     const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr)
     : scene_change_listener_ptr_(scene_change_listener_ptr),
+      key_event_handler_ptr_(key_event_handler_ptr),
       block_size_(35.f * game_const::kResolutionEx),
       player_tetris_field_ptr_(std::make_shared<TetrisField>()),
       player_tetromino_ptr_(std::make_shared<Tetromino>()),
       player_next_ptr_(std::make_shared<NextTetromino>()),
       player_hold_ptr_(
           std::make_shared<HoldTetromino>(game_setting_record_ptr->allow_hold)),
+      player_announce_ptr_(
+          std::make_shared<BattleAnnounce>(resource_container_ptr)),
       player_score_calculator_ptr_(
-          std::make_shared<ScoreCalculatorForBattle>()),
+          std::make_shared<ScoreCalculatorForBattle>(player_announce_ptr_)),
       player_tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
           std::make_shared<InputBridgeKeyBoard>(key_event_handler_ptr),
           player_tetris_field_ptr_, player_tetromino_ptr_, player_next_ptr_,
@@ -56,7 +59,10 @@ BattleScene::BattleScene(
       enemy_next_ptr_(std::make_shared<NextTetromino>()),
       enemy_hold_ptr_(
           std::make_shared<HoldTetromino>(game_setting_record_ptr->allow_hold)),
-      enemy_score_calculator_ptr_(std::make_shared<ScoreCalculatorForBattle>()),
+      enemy_announce_ptr_(
+          std::make_shared<BattleAnnounce>(resource_container_ptr)),
+      enemy_score_calculator_ptr_(
+          std::make_shared<ScoreCalculatorForBattle>(enemy_announce_ptr_)),
       enemy_tetris_updater_ptr_(std::make_shared<TetrisUpdater>(
           std::make_shared<InputBridgeSimpleCPU>(
               enemy_tetris_field_ptr_, enemy_tetromino_ptr_, enemy_next_ptr_,
@@ -81,9 +87,15 @@ BattleScene::BattleScene(
       penalty_updater_ptr_(std::make_shared<PenaltyUpdater>(
           player_score_calculator_ptr_, enemy_score_calculator_ptr_)),
       penalty_renderer_(resource_container_ptr, penalty_updater_ptr_,
-                        block_size_) {
+                        block_size_),
+      fade_effect_{30} {
   // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
   DEBUG_ASSERT_NOT_NULL_PTR(resource_container_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
+
+  DEBUG_ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+  DEBUG_ASSERT_NOT_NULL_PTR(key_event_handler_ptr_);
 
   DEBUG_ASSERT_NOT_NULL_PTR(player_tetris_field_ptr_);
   DEBUG_ASSERT_NOT_NULL_PTR(player_tetromino_ptr_);
@@ -102,12 +114,19 @@ BattleScene::BattleScene(
   enemy_next_ptr_->SetGameMode(TetrisGameMode::kEndless);
   enemy_tetromino_ptr_->Reshape(enemy_next_ptr_->GetNext());
   enemy_next_ptr_->Next();
+
+  // フェードイン開始.
+  fade_effect_.Start(FadeType::kFadeIn, []() {});
 }
 
 bool BattleScene::Update() {
   // 盤面の更新.
   player_tetris_updater_ptr_->Update();
   enemy_tetris_updater_ptr_->Update();
+
+  // アナウンスの更新.
+  player_announce_ptr_->Update();
+  enemy_announce_ptr_->Update();
 
   // ペナルティライン追加.
   const auto [p_player, p_enemy] = penalty_updater_ptr_->Update();
@@ -144,6 +163,9 @@ void BattleScene::Draw() const {
 
   player_tetris_renderer_.Draw(player_render_x, render_y);
   enemy_tetris_renderer_.Draw(enemy_render_x, render_y);
+
+  player_announce_ptr_->Draw(player_render_x, render_y);
+  enemy_announce_ptr_->Draw(enemy_render_x, render_y);
 }
 
 void BattleScene::OnStart(const SceneChangeParameter&) {}

@@ -10,6 +10,14 @@
 
 namespace mytetris {
 
+ScoreCalculatorForBattle::ScoreCalculatorForBattle(
+    const std::shared_ptr<BattleAnnounce>& announce_ptr)
+    : announce_ptr_(announce_ptr) {
+  // nullptr チェック.
+  DEBUG_ASSERT_NOT_NULL_PTR(announce_ptr);
+  DEBUG_ASSERT_NOT_NULL_PTR(announce_ptr_);
+}
+
 void ScoreCalculatorForBattle::Update() { score_ = 0; }
 
 void ScoreCalculatorForBattle::AddScore(const int lines_num,
@@ -45,8 +53,12 @@ void ScoreCalculatorForBattle::AddScore(const int lines_num,
 
   // BTB ボーナス加算.
   if (is_btb_active_) {
-    diff = static_cast<int>(diff * btb_multiplier_);
+    diff += btb_bonus_score_;
   }
+
+  // アナウンス表示.
+  announce_ptr_->SetClearLineAnnounce(lines_num, combo_num_, is_tspin,
+                                      is_btb_active_);
 
   // BTB 状態更新.
   is_btb_active_ = IsBtbActive(lines_num, is_tspin);

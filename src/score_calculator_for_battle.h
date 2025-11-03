@@ -9,6 +9,7 @@
 #include <memory>
 #include <vector>
 
+#include "battle_announce.h"
 #include "i_score_calculator.h"
 #include "tetris_announce.h"
 
@@ -16,7 +17,7 @@ namespace mytetris {
 
 class ScoreCalculatorForBattle final : public IScoreCalculator {
  public:
-  ScoreCalculatorForBattle() = default;
+  ScoreCalculatorForBattle(const std::shared_ptr<BattleAnnounce>& announce_ptr);
   ~ScoreCalculatorForBattle() = default;
 
   void Update() override;
@@ -40,12 +41,12 @@ class ScoreCalculatorForBattle final : public IScoreCalculator {
 
   bool IsBtbActive(int lines_num, bool is_tspin) const;
 
+  const std::shared_ptr<BattleAnnounce> announce_ptr_;
   const std::vector<int> line_clear_scores_{0, 1, 2, 4, 5};
-  const std::vector<int> tspin_scores_{2, 4, 5};
-  const std::vector<int> perfect_clear_scores_{4, 5, 6, 7};
-  const float btb_multiplier_{1.5f};
-  const std::vector<int> combo_bonus_{0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2,
-                                      2, 3, 3, 3, 3, 4, 4, 4, 4, 4};
+  const std::vector<int> tspin_scores_{2, 4, 6};
+  const std::vector<int> perfect_clear_scores_{10, 10, 10, 10};
+  const int btb_bonus_score_ = 1;
+  const std::vector<int> combo_bonus_{0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 5};
 
   int score_{0};
   bool is_btb_active_{false};
