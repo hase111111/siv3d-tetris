@@ -130,6 +130,7 @@
     <ClCompile Include="..\..\src\fps_addon.cpp" />
     <ClCompile Include="..\..\src\fps_controller.cpp" />
     <ClCompile Include="..\..\src\game_end_checker.cpp" />
+    <ClCompile Include="..\..\src\game_end_checker_for_battle.cpp" />
     <ClCompile Include="..\..\src\game_end_checker_nothing.cpp" />
     <ClCompile Include="..\..\src\game_main_loop.cpp" />
     <ClCompile Include="..\..\src\hold_renderer.cpp" />
@@ -405,6 +406,7 @@
     <ClInclude Include="..\..\src\fps_controller.h" />
     <ClInclude Include="..\..\src\game_const.h" />
     <ClInclude Include="..\..\src\game_end_checker.h" />
+    <ClInclude Include="..\..\src\game_end_checker_for_battle.h" />
     <ClInclude Include="..\..\src\game_end_checker_nothing.h" />
     <ClInclude Include="..\..\src\game_main_loop.h" />
     <ClInclude Include="..\..\src\game_setting_record.h" />

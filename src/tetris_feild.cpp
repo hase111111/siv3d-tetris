@@ -7,7 +7,6 @@
 #include "tetris_feild.h"
 
 #include "calc_util.h"
-#include "log_print.h"
 
 namespace mytetris {
 
@@ -74,7 +73,6 @@ bool TetrisField::IsOccupiedCorners(const int tetromino_x,
       ++occupied_corners;
     } else {
       const TetrominoColor color = field_[corner_y][corner_x];
-      Print << static_cast<int>(color);
       if (allow_wall) {
         if (color != TetrominoColor::kNone) {
           ++occupied_corners;

@@ -7,8 +7,12 @@
 namespace mytetris {
 
 BattleAnnounce::BattleAnnounce(
-    const std::shared_ptr<const ResourceContainer>& resource_container)
-    : font_view_(resource_container->GetFont("default")) {}
+    const std::shared_ptr<const ResourceContainer>& resource_container,
+    const std::shared_ptr<TetrisField>& enemy_field)
+    : enemy_field_ptr_(enemy_field),
+      font_view_(resource_container->GetFont("default")),
+      font_view_large_(resource_container->GetFont("large")),
+      font_view_small_(resource_container->GetFont("small")) {}
 
 void BattleAnnounce::SetClearLineAnnounce(const int line_num, const int combo,
                                           const bool is_tspin,
@@ -47,10 +51,18 @@ void BattleAnnounce::SetClearLineAnnounce(const int line_num, const int combo,
 void BattleAnnounce::Update() { ++counter_; }
 
 void BattleAnnounce::Draw(const float x, const float y) const {
-  // if (tetris_field_ptr_->IsGameOver()) {
-  //   // ゲームオーバー時は表示しない.
-  //   return;
-  // }
+  if (enemy_field_ptr_->IsGameOver()) {
+    // 敵がゲームオーバーの場合は勝利アナウンスを表示する.
+    font_view_large_.Draw(x + 5 * game_const::kResolutionEx, y,
+                          RenderAnchor::Center, "You Win!",
+                          game_const::kResolutionEx);
+
+    // r to retry
+    font_view_small_.Draw(x, y + 80.f * game_const::kResolutionEx,
+                          RenderAnchor::Center, "Press R to Retry",
+                          game_const::kResolutionEx);
+    return;
+  }
 
   // クリアラインアナウンス表示.
   if (!clear_line_announce_.empty() &&

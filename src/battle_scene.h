@@ -19,6 +19,7 @@
 #include "key_event_handler.h"
 #include "next_renderer.h"
 #include "next_tetromino.h"
+#include "pause_renderer.h"
 #include "penalty_renderer.h"
 #include "penalty_updater.h"
 #include "resource_container.h"
@@ -53,8 +54,10 @@ class BattleScene final : public IScene {
 
   const float block_size_;
 
-  // プレイヤー関連.
   const std::shared_ptr<TetrisField> player_tetris_field_ptr_;
+  const std::shared_ptr<TetrisField> enemy_tetris_field_ptr_;
+
+  // プレイヤー関連.
   const std::shared_ptr<Tetromino> player_tetromino_ptr_;
   const std::shared_ptr<NextTetromino> player_next_ptr_;
   const std::shared_ptr<HoldTetromino> player_hold_ptr_;
@@ -66,7 +69,6 @@ class BattleScene final : public IScene {
   NextRenderer player_next_renderer_;
 
   // 敵関連.
-  const std::shared_ptr<TetrisField> enemy_tetris_field_ptr_;
   const std::shared_ptr<Tetromino> enemy_tetromino_ptr_;
   const std::shared_ptr<NextTetromino> enemy_next_ptr_;
   const std::shared_ptr<HoldTetromino> enemy_hold_ptr_;
@@ -80,6 +82,8 @@ class BattleScene final : public IScene {
   const std::shared_ptr<PenaltyUpdater> penalty_updater_ptr_;
   PenaltyRenderer penalty_renderer_;
   FadeEffect fade_effect_;
+  PauseRenderer pause_renderer_;
+  bool is_pause_{false};
 };
 
 }  // namespace mytetris
