@@ -12,6 +12,8 @@
 
 namespace mytetris {
 
+//! @brief DXライブラリを使用してエラーメッセージボックスを表示する.
+//! @param message 表示するエラーメッセージ.
 void ShowErrorBox(const std::string& message);
 
 }  // namespace mytetris

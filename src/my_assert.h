@@ -1,5 +1,5 @@
 //! @file my_assert.h
-//! @brief
+//! @copyright
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
 //! https://opensource.org/licenses/mit-license.php
@@ -72,8 +72,8 @@ void ErrorAssert(const std::string& conditional_expression,
 //! @brief エラーが発生したときにエラーメッセージを表示する．
 //! DxLib の動作を止め，独自のエラーメッセージを表示する．
 //! DxLib が初期化されていない場合は，例外を投げるが，そもそも呼び出さないこと．
-//! @param expr TRUE であることが期待される条件
-//! @param error_mes エラーメッセージ
+//! @param expr TRUE であることが期待される条件.
+//! @param error_mes エラーメッセージ.
 #define DEBUG_ASSERT(expr, error_mes) ASSERT(expr, error_mes)
 
 #define DEBUG_ASSERT_NOT_NULL_PTR(ptr) \

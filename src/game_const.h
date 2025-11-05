@@ -19,7 +19,7 @@ static constexpr float kResolutionYF = static_cast<float>(kResolutionY);
 //! ‚»‚Ì‰ğ‘œ“x‚É‘Î‚·‚é”ä—¦‚ğ’è‹`‚·‚éD
 static constexpr float kResolutionEx = kResolutionXF / 1280.f;
 
-static constexpr char kWindowTitle[] = "Tetris";
+static constexpr auto kWindowTitle = "Tetris";
 
 static_assert(kResolutionX % 16 == 0,
               "The resolution X must be a multiple of 16.");

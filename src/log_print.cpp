@@ -1,4 +1,4 @@
-//! @file log_print.h
+//! @file log_print.cpp
 //! @brief
 //! Copyright(c) 2024-2025 Taisei Hasegawa
 //! Released under the MIT license
@@ -12,7 +12,7 @@
 
 #include "log_print.h"
 
-namespace mytetris {
+namespace mytetris::internal {
 
 void LogPrintInternal::PrintString([[maybe_unused]] const std::string str) {
 #if defined(DXLIB_COMPILE)
@@ -24,4 +24,4 @@ void LogPrintInternal::PrintString([[maybe_unused]] const std::string str) {
 #endif  //! defined(DXLIB_COMPILE)
 }
 
-}  // namespace mytetris
+}  // namespace mytetris::internal

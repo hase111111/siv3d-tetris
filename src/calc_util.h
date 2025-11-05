@@ -1,3 +1,9 @@
+//! @file calc_util.h
+//! @brief
+//! Copyright(c) 2024-2025 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include <cmath>
@@ -8,9 +14,9 @@ namespace mytetris {
 
 namespace internal {
 
-// 乱数エンジンはヘッダで直接グローバル変数として定義すると ODR
-// 問題を起こすため、 関数内 static を用いて単一インスタンスを提供する。
 inline std::mt19937& GetEngine() {
+  // 乱数エンジンはヘッダで直接グローバル変数として定義すると ODR
+  // 問題を起こすため, 関数内 static を用いて単一インスタンスを提供する.
   static std::random_device seed_gen;
   static std::mt19937 engine(seed_gen());
   return engine;

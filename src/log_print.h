@@ -9,7 +9,7 @@
 #include <sstream>
 #include <string>
 
-namespace mytetris {
+namespace mytetris::internal {
 
 class LogPrintInternal final {
  public:
@@ -33,6 +33,10 @@ class LogPrintInternal final {
   void PrintString(const std::string str);
 };
 
-static LogPrintInternal Print;
+}  // namespace mytetris::internal
+
+namespace mytetris {
+
+static internal::LogPrintInternal Print;
 
 }  // namespace mytetris
