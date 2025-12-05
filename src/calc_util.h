@@ -34,11 +34,16 @@ inline std::string RoundToString(const float value, const int decimal_places) {
   return std::to_string(rounded_value / multiplier) + "." + lower_str;
 }
 
-inline int GetRandom(int min_, int max_) {
-  // min~max ‚Ìˆê—l®”—”‚ğ•Ô‚·
-  if (min_ > max_) std::swap(min_, max_);
-  std::uniform_int_distribution<int> dist(min_, max_);
-  return dist(internal::GetEngine());
+inline int GetRandom(const int min_, const int max_) {
+  // min~max ‚Ìˆê—l®”—”‚ğ•Ô‚·.
+  if (min_ < max_) {
+    std::uniform_int_distribution<int> dist(min_, max_);
+    return dist(internal::GetEngine());
+  } else {
+    // max_ <= min_ ‚È‚ç“ü‚ê‘Ö‚¦‚Äˆ—‚·‚é.
+    std::uniform_int_distribution<int> dist(max_, min_);
+    return dist(internal::GetEngine());
+  }
 }
 
 }  // namespace mytetris

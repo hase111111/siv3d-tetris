@@ -1,4 +1,3 @@
-
 #include "fps_addon.h"
 
 #include "my_assert.h"

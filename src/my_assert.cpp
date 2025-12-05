@@ -1,9 +1,3 @@
-//! @file my_assert.cpp
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #include "my_assert.h"
 
 #if defined DXLIB_COMPILE
@@ -16,7 +10,7 @@
 #include <string>
 #include <vector>
 
-namespace mytetris::assert_internal {
+namespace mytetris::internal {
 
 static std::string GetFileName(const std::string& file_path) {
   // ファイルパスからファイル名を取得する．
@@ -188,4 +182,4 @@ void ErrorAssert(const std::string& conditional_expression,
 
 #endif
 
-}  // namespace mytetris::assert_internal
+}  // namespace mytetris::internal

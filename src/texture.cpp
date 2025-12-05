@@ -1,10 +1,3 @@
-
-//! @file texture.cpp
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #include "texture.h"
 
 #if defined DXLIB_COMPILE
@@ -28,7 +21,7 @@ Texture::Texture(const std::string& file_name)
   ASSERT(handle_ >= 0, std::format("Failed to load texture: {} (handle: {})",
                                    file_name, handle_));
   // 1フレーム間に大量のテクスチャのロードが発生することを防ぐため，
-  // ロードした数をカウントする
+  // ロードした数をカウントする.
   ++count_;
 }
 

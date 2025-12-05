@@ -1,9 +1,3 @@
-//! @file fps_controller.h
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #pragma once
 
 #include <list>
@@ -52,7 +46,7 @@ class FpsController final {
   //! 目標のFPS，推奨値は 60 or 30．DxLib の使用上 60 を上回る値を推奨しない．
   const int target_fps_value_;
 
-  //! 1フレーム当たりにかかる時間(ミリ秒)
+  //! 1フレーム当たりにかかる時間(ミリ秒).
   const int one_frame_time_;
 
   //! リストに2秒分のフレームごとにかかった時間を記録するため，
@@ -63,7 +57,7 @@ class FpsController final {
   std::list<int> time_list_;
 
   //! コマ落ちを実装するためのフラグ．
-  //! trueであれば 1フレーム描画を飛ばし，その後フラグを折る
+  //! trueであれば 1フレーム描画を飛ばし，その後フラグを折る.
   bool need_skip_draw_screen_;
 };
 
