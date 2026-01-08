@@ -19,6 +19,7 @@
 #include "my_format.h"
 #include "resource_container.h"
 #include "texture.h"
+#include "touch_pad_addon.h"
 
 namespace mytetris {
 
@@ -40,7 +41,12 @@ GameMainLoop::GameMainLoop(
   DEBUG_ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
 
 #if defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
+  // Addon登録.
   s3d::Addon::Register(U"FpsController", std::make_unique<FpsAddon>(60));
+  // タッチパッドアドオンを登録.
+  auto t = std::make_unique<TouchPadAddon>();
+  t->init();
+  s3d::Addon::Register(U"TouchPad", std::move(t));
 #endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 }
 

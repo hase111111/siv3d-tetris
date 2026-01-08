@@ -420,6 +420,9 @@
     <ClCompile Include="..\..\src\game_end_checker_for_battle.cpp">
       <Filter>Source Files\tetris\game_end_checker</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\touch_pad_addon.cpp">
+      <Filter>Source Files\common\fps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -1333,6 +1336,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\game_end_checker_for_battle.h">
       <Filter>Source Files\tetris\game_end_checker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\touch_pad_addon.h">
+      <Filter>Source Files\common\fps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
