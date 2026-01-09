@@ -44,9 +44,7 @@ GameMainLoop::GameMainLoop(
   // Addon登録.
   s3d::Addon::Register(U"FpsController", std::make_unique<FpsAddon>(60));
   // タッチパッドアドオンを登録.
-  auto t = std::make_unique<TouchPadAddon>();
-  t->init();
-  s3d::Addon::Register(U"TouchPad", std::move(t));
+  s3d::Addon::Register(U"TouchPad", std::make_unique<TouchPadAddon>());
 #endif  // defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
 }
 

@@ -1340,5 +1340,8 @@
     <ClInclude Include="..\..\src\touch_pad_addon.h">
       <Filter>Source Files\common\fps</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\siv3d_touch.h">
+      <Filter>Source Files\common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

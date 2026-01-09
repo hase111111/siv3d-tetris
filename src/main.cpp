@@ -38,8 +38,35 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 #include "system_main.h"
 
+#if defined(__EMSCRIPTEN__)
+#include "siv3d_touch.h"
+
+EM_JS(void, setupMultiTouchHandler, (), {
+  // グローバル変数を定義
+  window.myTouches = [];
+
+  // タッチイベントの処理を設定
+  const canvas = Module['canvas'];
+
+  function updateTouches(e) {
+    window.myTouches = Array.from(e.touches);
+    // e.preventDefault(); // 任意：スクロール防止など
+  }
+
+  canvas.addEventListener("touchstart", updateTouches, false);
+  canvas.addEventListener("touchmove", updateTouches, false);
+  canvas.addEventListener("touchend", updateTouches, false);
+});
+
+#endif  // defined(__EMSCRIPTEN__)
+
 void Main() {
   using mytetris::SystemMain;
+
+#if defined(__EMSCRIPTEN__)
+  // JavaScriptのタッチイベントハンドラをセットアップ
+  setupMultiTouchHandler();
+#endif  // defined(__EMSCRIPTEN__)
 
   SystemMain system_main;
 

@@ -8,7 +8,7 @@ namespace mytetris {
 inline constexpr int kVersionMajor = 1;
 
 //! @brief ゲームのマイナーバージョン.
-inline constexpr int kVersionMinor = 3;
+inline constexpr int kVersionMinor = 4;
 
 //! @brief ゲームのパッチバージョン.
 inline constexpr int kVersionPatch = 0;

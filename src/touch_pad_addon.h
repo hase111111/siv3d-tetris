@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)
+
 #include <Siv3D.hpp>
 
 #include "key_group.h"
@@ -10,10 +12,12 @@ class TouchPadAddon final : public IAddon {
   struct Button final {
     RectF rect;
     String label;
-    bool pressed = false;
+    int pressed_cnt{0};
   };
 
  public:
+  TouchPadAddon() { Init(); };
+
 #if defined(__EMSCRIPTEN__)
   bool update() override;
 #else
@@ -22,14 +26,21 @@ class TouchPadAddon final : public IAddon {
 
   void draw() const override;
 
-  bool pressed(KeyGroup key) const;
-
-  bool init();
+  static int pressedCount(KeyGroup key);
 
  private:
+  void Init();
   void updateInput();
 
-  HashTable<KeyGroup, Button> buttons_;
+  static HashTable<KeyGroup, Button> buttons_;
+
+  static bool is_active_;
+
+  Array<double> touch_times_;
+
+  RectF deactivate_rect_{};
 };
 
 }  // namespace mytetris
+
+#endif  // defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)

@@ -449,6 +449,7 @@
     <ClInclude Include="..\..\src\setting_back.h" />
     <ClInclude Include="..\..\src\setting_scene.h" />
     <ClInclude Include="..\..\src\setting_ui.h" />
+    <ClInclude Include="..\..\src\siv3d_touch.h" />
     <ClInclude Include="..\..\src\system_main.h" />
     <ClInclude Include="..\..\src\tetris_announce.h" />
     <ClInclude Include="..\..\src\tetris_evalution_util.h" />

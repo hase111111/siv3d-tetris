@@ -220,6 +220,9 @@
     <Filter Include="Source Files\tetris\score_calculator">
       <UniqueIdentifier>{1967a884-5dcc-42c2-859a-60f532ce0f84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\common\web_touch">
+      <UniqueIdentifier>{fd0af746-cd10-4fb9-a1bf-a52affa967a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\engine\font\fontawesome\LICENSE.txt">
@@ -1102,6 +1105,12 @@
     <ClInclude Include="..\..\src\battle_announce.h">
       <Filter>Source Files\tetris\renderer\ui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\siv3d_touch.h">
+      <Filter>Source Files\common\web_touch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\touch_pad_addon.h">
+      <Filter>Source Files\common\web_touch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\error_box.cpp">
@@ -1298,6 +1307,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\battle_announce.cpp">
       <Filter>Source Files\tetris\renderer\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\touch_pad_addon.cpp">
+      <Filter>Source Files\common\web_touch</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

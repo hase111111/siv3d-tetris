@@ -7,6 +7,7 @@
 #endif  // defined DXLIB_COMPILE
 
 #include "my_assert.h"
+#include "touch_pad_addon.h"
 
 namespace mytetris {
 
@@ -215,6 +216,11 @@ int KeyEventHandler::GetPressingCount(const KeyGroup group) const {
   const int cast_code = static_cast<int>(key_code);
   if (!IsAvailableCode(cast_code)) {
     return -1;
+  }
+
+  // TouchPadƒAƒhƒIƒ“‚ðŽæ“¾‚·‚é.
+  if (const int cnt = TouchPadAddon::pressedCount(group); 0 < cnt) {
+    return cnt;
   }
 
   return key_pressing_counter_[cast_code];
