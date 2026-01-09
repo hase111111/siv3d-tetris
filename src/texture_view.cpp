@@ -1,10 +1,3 @@
-
-//! @file texture_view.cpp
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #include "texture_view.h"
 
 #if defined DXLIB_COMPILE
@@ -59,12 +52,14 @@ int TextureView::GetHeight() const {
 
 #endif  // defined DXLIB_COMPILE
 
-void TextureView::Draw(float x, float y, RenderAnchor anchor) const {
+void TextureView::Draw(const float x, const float y,
+                       const RenderAnchor anchor) const {
   DrawRotated(x, y, anchor, 1.0f, 0.0f);
 }
 
-void TextureView::DrawAlpha(float x, float y, RenderAnchor anchor,
-                            float alpha) const {
+void TextureView::DrawAlpha(const float x, const float y,
+                            const RenderAnchor anchor,
+                            const float alpha) const {
 #if defined DXLIB_COMPILE
   const int alpha_ = static_cast<int>(alpha * 255);
   DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
@@ -79,8 +74,9 @@ void TextureView::DrawAlpha(float x, float y, RenderAnchor anchor,
 #endif  // defined DXLIB_COMPILE
 }
 
-void TextureView::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
-                              float angle) const {
+void TextureView::DrawRotated(const float x, const float y,
+                              const RenderAnchor anchor, const float ex,
+                              const float angle) const {
   if (!IsValid()) {
     return;
   }
@@ -98,8 +94,9 @@ void TextureView::DrawRotated(float x, float y, RenderAnchor anchor, float ex,
 #endif  // defined DXLIB_COMPILE
 }
 
-void TextureView::DrawRotatedAlpha(float x, float y, RenderAnchor anchor,
-                                   float ex, float angle, float alpha) const {
+void TextureView::DrawRotatedAlpha(const float x, const float y,
+                                   const RenderAnchor anchor, const float ex,
+                                   const float angle, const float alpha) const {
 #if defined DXLIB_COMPILE
   const int alpha_ = static_cast<int>(alpha * 255);
   DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha_);
@@ -117,7 +114,8 @@ void TextureView::DrawRotatedAlpha(float x, float y, RenderAnchor anchor,
 #endif
 }
 
-std::tuple<int, int> TextureView::GetRenderPos(RenderAnchor anchor) const {
+std::tuple<int, int> TextureView::GetRenderPos(
+    const RenderAnchor anchor) const {
   const int width = GetWidth();
   const int height = GetHeight();
   switch (anchor) {

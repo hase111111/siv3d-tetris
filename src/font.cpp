@@ -1,9 +1,3 @@
-//! @file font.cpp
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #include "font.h"
 
 #if defined DXLIB_COMPILE
@@ -60,7 +54,7 @@ Font::~Font() {
   s3d::FontAsset::Unregister(path);
 }
 
-void Font::Draw(float x, float y, RenderAnchor anchor,
+void Font::Draw(const float x, const float y, const RenderAnchor anchor,
                 const std::string& str) const {
   const s3d::String path{handle_.begin(), handle_.end()};
   const std::string key_str = handle_ + "_" + std::to_string(font_size_);

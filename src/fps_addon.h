@@ -1,9 +1,3 @@
-//! @file fps_addon.h
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #pragma once
 
 #if defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)

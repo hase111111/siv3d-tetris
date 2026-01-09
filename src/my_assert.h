@@ -1,9 +1,3 @@
-//! @file my_assert.h
-//! @copyright
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #pragma once
 
 #include <cassert>
@@ -15,7 +9,7 @@
 
 namespace mytetris {
 
-namespace assert_internal {
+namespace internal {
 
 bool IsInitialized();
 
@@ -23,7 +17,7 @@ void ErrorAssert(const std::string& conditional_expression,
                  const std::string& error_mes, const std::string& file,
                  const std::string& func, int line);
 
-}  // namespace assert_internal
+}  // namespace internal
 
 }  // namespace mytetris
 
@@ -34,7 +28,7 @@ void ErrorAssert(const std::string& conditional_expression,
 //! @param error_mes エラーメッセージ．
 #define MYTETRIS_INTERNAL_ERROR_MESSAGE(expression, error_mes)               \
   const std::source_location location = std::source_location::current();     \
-  ::mytetris::assert_internal::ErrorAssert(                                  \
+  ::mytetris::internal::ErrorAssert(                                         \
       expression, error_mes, location.file_name(), location.function_name(), \
       location.line());
 
@@ -43,16 +37,16 @@ void ErrorAssert(const std::string& conditional_expression,
 //! @brief エラーが発生したときにエラーメッセージを表示する．
 //! @param expression エラーが発生条件の式(文字列).
 //! @param error_mes エラーメッセージ．
-#define MYTETRIS_INTERNAL_ERROR_MESSAGE(expression, error_mes) \
-  ::mytetris::assert_internal::ErrorAssert(                    \
-      expression, error_mes, "unknown_file", "unknown_function", -1);
+#define MYTETRIS_INTERNAL_ERROR_MESSAGE(expression, error_mes)             \
+  ::mytetris::internal::ErrorAssert(expression, error_mes, "unknown_file", \
+                                    "unknown_function", -1);
 
 #endif
 
 #define ASSERT(expr, error_mes)                             \
   do {                                                      \
     if (!(!!(expr))) {                                      \
-      if (!::mytetris::assert_internal::IsInitialized()) {  \
+      if (!::mytetris::internal::IsInitialized()) {         \
         assert(false && "Engine is not initialized.");      \
       } else {                                              \
         const std::string expr_str = #expr;                 \

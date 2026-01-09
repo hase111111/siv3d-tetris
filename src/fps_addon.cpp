@@ -1,9 +1,3 @@
-//! @file fps_addon.cpp
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #include "fps_addon.h"
 
 #include "my_assert.h"

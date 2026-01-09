@@ -1,10 +1,4 @@
-﻿//! @file key_config_data.h
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
-#pragma once
+﻿#pragma once
 
 #include "key_group.h"
 #include "key_handle.h"

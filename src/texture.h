@@ -1,10 +1,3 @@
-
-//! @file texture.h
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #pragma once
 
 #include <memory>
@@ -32,7 +25,7 @@ class Texture final {
   Texture(Texture &&) = default;
   ~Texture();
 
-  //! @todo friend ŠÖ”‚É‚·‚×‚«
+  //! @todo friend ŠÖ”‚É‚·‚×‚«.
 #if defined DXLIB_COMPILE
   inline int GetRawHandle() const { return handle_; }
 #elif defined SIV3D_COMPILE || defined(__EMSCRIPTEN__)

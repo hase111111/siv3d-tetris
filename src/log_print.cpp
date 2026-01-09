@@ -1,9 +1,3 @@
-//! @file log_print.cpp
-//! @brief
-//! Copyright(c) 2024-2025 Taisei Hasegawa
-//! Released under the MIT license
-//! https://opensource.org/licenses/mit-license.php
-
 #if defined(DXLIB_COMPILE)
 #include <Dxlib.h>
 #elif defined(SIV3D_COMPILE) || defined(__EMSCRIPTEN__)
@@ -14,7 +8,7 @@
 
 namespace mytetris::internal {
 
-void LogPrintInternal::PrintString([[maybe_unused]] const std::string str) {
+void LogPrintInternal::PrintString(const std::string str) {
 #if defined(DXLIB_COMPILE)
   setPrintColorDx(GetColor(255, 0, 0), GetColor(0, 255, 0));
   printfDx("%s", str.c_str());
